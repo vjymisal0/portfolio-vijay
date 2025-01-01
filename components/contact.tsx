@@ -53,6 +53,7 @@ export default function Contact() {
       }
     } catch (error) {
       setShowError(true);
+      console.log('Error sending message:', error);
     } finally {
       setIsLoading(false);
     }
