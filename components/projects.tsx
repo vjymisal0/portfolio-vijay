@@ -103,7 +103,7 @@ export default function Projects() {
         initial="hidden"
         animate="visible"
       >
-        {projects.map((project, index) => (
+        {projects.map((project) => (
           <motion.div key={project.title} variants={cardVariants}>
             <Card className="h-full flex flex-col">
               <CardHeader>
