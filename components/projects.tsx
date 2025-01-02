@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
 import { motion } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Github } from 'lucide-react'
+import { Github, ExternalLink } from 'lucide-react'
 
 const projects = [
   {
@@ -34,16 +35,14 @@ const projects = [
     technologies: ['Java', 'Android', 'Firebase', 'Arduino', 'ESP32'],
     link: '#',
     github: 'https://github.com/vjymisal0/Smart-Shopping-Cart-IOT'
-  }
-  ,
+  },
   {
     title: 'Get Notes',
     description: 'A simple javascript based web application that allows users to create, edit, delete and view notes in real-time. The notes are stored in the local storage of the browser.',
     technologies: ['HTML', 'CSS', 'JavaScript', 'Local Storage'],
     link: 'https://vjymisal0.github.io/GetNotes/',
     github: 'https://github.com/vjymisal0/GetNotes'
-  }
-  ,
+  },
   {
     title: 'Phonebook Manager',
     description: 'A simple phonebook management system using python and PyQT5 that allows users to add, edit, delete, view and sort contacts in real-time. The contacts are stored in the MySQL Database.',
@@ -58,13 +57,13 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.3
+      staggerChildren: 0.2
     }
   }
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
@@ -88,59 +87,74 @@ const techBadgeVariants = {
 
 export default function Projects() {
   return (
-    <section className="py-20">
-      <motion.h2
-        className="text-4xl font-bold mb-12 text-center"
-        variants={titleVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        Projects
-      </motion.h2>
-      <motion.div
-        className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {projects.map((project) => (
-          <motion.div key={project.title} variants={cardVariants}>
-            <Card className="h-full flex flex-col">
-              <CardHeader>
-                <CardTitle className="text-2xl mb-2">{project.title}</CardTitle>
-                <CardDescription className="text-sm">{project.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <motion.div
-                  className="flex flex-wrap gap-2"
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  {project.technologies.map((tech) => (
-                    <motion.div key={tech} variants={techBadgeVariants}>
-                      <Badge variant="secondary" className="text-xs">
-                        {tech}
-                      </Badge>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button asChild variant="outline">
-                  <a href={project.link} target="_blank" rel="noopener noreferrer">View Project</a>
-                </Button>
-                <Button asChild variant="ghost" size="icon">
-                  <a href={project.github} target="_blank" rel="noopener noreferrer">
-                    <Github className="h-5 w-5" />
-                    <span className="sr-only">GitHub</span>
-                  </a>
-                </Button>
-              </CardFooter>
-            </Card>
-          </motion.div>
-        ))}
-      </motion.div>
+    <section className="py-20 bg-gradient-to-b from-background to-secondary/20">
+      <div className="container mx-auto px-4">
+        <motion.h2
+          className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+          variants={titleVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          Projects
+        </motion.h2>
+        <motion.div
+          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {projects.map((project, index) => (
+            <motion.div key={project.title} variants={cardVariants}>
+              <Card className="h-full flex flex-col overflow-hidden group hover:shadow-lg transition-shadow duration-300 border-primary/10">
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-2xl mb-2 group-hover:text-primary transition-colors duration-300">
+                    {project.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <CardDescription className="text-sm mb-4 line-clamp-3">
+                    {project.description}
+                  </CardDescription>
+                  <motion.div
+                    className="flex flex-wrap gap-2"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    {project.technologies.map((tech) => (
+                      <motion.div key={tech} variants={techBadgeVariants}>
+                        <Badge variant="outline" className="text-xs bg-primary/5 hover:bg-primary/10 transition-colors duration-300">
+                          {tech}
+                        </Badge>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </CardContent>
+                <CardFooter className="flex justify-between pt-4 border-t border-primary/10">
+                  {project.link === '#' ? (
+                    <Button variant="outline" size="sm" disabled className="opacity-50 cursor-not-allowed">
+                      Not Available
+                    </Button>
+                  ) : (
+                    <Button asChild variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                        View Project
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    </Button>
+                  )}
+                  <Button asChild variant="ghost" size="icon" className="group-hover:text-primary transition-colors duration-300">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                      <Github className="h-5 w-5" />
+                      <span className="sr-only">GitHub</span>
+                    </a>
+                  </Button>
+                </CardFooter>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </section>
   )
 }

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Code, Server, Database, Cloud, GitBranch, Cpu } from 'lucide-react'
 
 const skillsData = [
@@ -25,42 +26,60 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 }
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      damping: 12,
+      stiffness: 100
+    }
+  }
 }
 
 export default function Skills() {
   return (
-    <section className="py-20">
-      <motion.h2
-        className="text-3xl font-bold mb-8 text-center"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        Skills
-      </motion.h2>
-      <motion.div
-        className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {skillsData.map((skillCategory) => (
-          <motion.div key={skillCategory.category} variants={itemVariants} className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <skillCategory.icon className="h-6 w-6 text-primary" />
-              <h3 className="text-xl font-semibold">{skillCategory.category}</h3>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {skillCategory.items.map((skill) => (
-                <Badge key={skill} variant="secondary" className="text-sm">
-                  {skill}
-                </Badge>
-              ))}
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+    <section className="py-20 bg-gradient-to-b from-background to-secondary/10">
+      <div className="container mx-auto px-4">
+        <motion.h2
+          className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Skills
+        </motion.h2>
+        <motion.div
+          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {skillsData.map((skillCategory) => (
+            <motion.div key={skillCategory.category} variants={itemVariants}>
+              <Card className="h-full hover:shadow-lg transition-shadow duration-300">
+                <CardHeader className="flex flex-row items-center space-x-2 pb-2">
+                  <skillCategory.icon className="h-6 w-6 text-primary" />
+                  <CardTitle className="text-xl font-semibold">{skillCategory.category}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    {skillCategory.items.map((skill) => (
+                      <Badge
+                        key={skill}
+                        variant="secondary"
+                        className="text-sm bg-primary/10 hover:bg-primary/20 transition-colors duration-300"
+                      >
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </section>
   )
 }

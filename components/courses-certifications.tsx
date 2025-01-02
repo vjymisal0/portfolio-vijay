@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { BadgeIcon as Certificate, ExternalLink } from 'lucide-react'
+import { BadgeIcon as Certificate, ExternalLink, Calendar } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 
@@ -30,7 +30,7 @@ const certifications = [
     date: 'September 2024',
     credentialUrl: 'https://www.linkedin.com/learning/certificates/64623e7e701df5658e86d54bbe4b63e4ce46a3ac446e3a175f4dcf3f7c1a8559?u=126888530',
   },
-   {
+  {
     title: 'Generative AI',
     issuer: 'LinkedIn Learning',
     date: 'October 2024',
@@ -50,51 +50,66 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 }
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      damping: 12,
+      stiffness: 100
+    }
+  }
 }
 
 export default function CoursesAndCertifications() {
   return (
-    <section className="py-20">
-      <motion.h2
-        className="text-4xl font-bold mb-12 text-center"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        Courses & Certifications
-      </motion.h2>
-      <motion.div
-        className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {certifications.map((cert, index) => (
-          <motion.div key={index} variants={itemVariants}>
-            <Card className="h-full flex flex-col">
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Certificate className="h-8 w-8 text-primary" />
-                <CardTitle>{cert.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <p className="text-sm text-muted-foreground">{cert.issuer}</p>
-                <p className="text-sm text-muted-foreground">{cert.date}</p>
-              </CardContent>
-              <CardFooter className="pt-2">
-                <Button 
-                  variant="outline" 
-                  className="w-full flex items-center justify-center"
-                  onClick={() => window.open(cert.credentialUrl, '_blank')}
-                >
-                  View Credential
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </Button>
-              </CardFooter>
-            </Card>
-          </motion.div>
-        ))}
-      </motion.div>
+    <section className="py-20 bg-gradient-to-b from-background to-secondary/10">
+      <div className="container mx-auto px-4">
+        <motion.h2
+          className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Courses & Certifications
+        </motion.h2>
+        <motion.div
+          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {certifications.map((cert, index) => (
+            <motion.div key={index} variants={itemVariants}>
+              <Card className="h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+                <CardHeader className="pb-4">
+                  <div className="flex items-center gap-4 mb-2">
+                    <Certificate className="h-8 w-8 text-primary" />
+                    <CardTitle className="text-xl">{cert.title}</CardTitle>
+                  </div>
+                  <p className="text-sm font-medium text-muted-foreground">{cert.issuer}</p>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <div className="flex items-center text-sm text-muted-foreground">
+                    <Calendar className="h-4 w-4 mr-2 text-primary/60" />
+                    {cert.date}
+                  </div>
+                </CardContent>
+                <CardFooter className="pt-4 border-t border-border">
+                  <Button
+                    variant="outline"
+                    className="w-full group hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+                    onClick={() => window.open(cert.credentialUrl, '_blank')}
+                  >
+                    View Credential
+                    <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </Button>
+                </CardFooter>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </section>
   )
 }
