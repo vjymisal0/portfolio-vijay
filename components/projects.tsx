@@ -10,7 +10,7 @@ const projects = [
   {
     title: 'SCORE-GO',
     description: 'SCORE-GO is a personalized cricket scoring website where users can signup, signin, create teams for local and global cricket tournaments and play matches, record scores and share it as a live scorecard with friends which can be viewed in real-time.',
-    technologies: ['HTML', 'CSS', 'Node.js', 'Express.js', 'MongoDB', 'Socket.io'],
+    technologies: ['HTML', 'CSS', 'JavaScript', 'Node JS', 'Express JS', 'MongoDB'],
     link: 'https://score-go.onrender.com/',
     github: 'https://github.com/vjymisal0/SCORE-GO'
   },
