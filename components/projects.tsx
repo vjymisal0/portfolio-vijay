@@ -4,10 +4,13 @@ import { motion } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Github, ExternalLink, MessageCircle, Syringe, ShoppingCart, Phone } from 'lucide-react'
+import {  ExternalLink, MessageCircle, Syringe, ShoppingCart, Phone } from 'lucide-react'
 // import { BiSportsCricket } from "react-icons/bi";
 import { BiNotepad } from "react-icons/bi";
 import { MdOutlineSportsCricket } from "react-icons/md";
+import { FaGithub } from "react-icons/fa";
+
+
 
 
 const projects = [
@@ -205,7 +208,7 @@ export default function Projects() {
                     )}
                     <Button asChild variant="ghost" size="icon" className="group-hover:text-primary transition-colors duration-300">
                       <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Github className="h-5 w-5" />
+                        <FaGithub/>
                         <span className="sr-only">GitHub</span>
                       </a>
                     </Button>
