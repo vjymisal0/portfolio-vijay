@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 
@@ -84,7 +84,7 @@ export default function Introduction() {
                   rel="noopener noreferrer"
                   className="flex items-center justify-center"
                 >
-                  <Github className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                  <FaGithub className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
                   GitHub
                 </a>
               </Button>
@@ -102,7 +102,7 @@ export default function Introduction() {
                   rel="noopener noreferrer"
                   className="flex items-center justify-center"
                 >
-                  <Linkedin className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                  <FaLinkedin className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
                   LinkedIn
                 </a>
               </Button>
@@ -118,7 +118,7 @@ export default function Introduction() {
                   href="mailto:vijay.22320079@viit.ac.in"
                   className="flex items-center justify-center"
                 >
-                  <Mail className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                  <FaEnvelope className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
                   Email
                 </a>
               </Button>
