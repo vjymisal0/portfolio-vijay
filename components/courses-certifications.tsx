@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 const certifications = [
   {
     title: 'JavaScript & JQuery',
-    issuer: 'Amazon Web Services',
+    issuer: 'Udemy',
     date: 'August 2024',
     credentialUrl: 'https://udemy-certificate.s3.amazonaws.com/pdf/UC-804abdd8-39ef-4196-bdf9-e98c866ac9a9.pdf',
   },
