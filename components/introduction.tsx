@@ -5,6 +5,8 @@ import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 
+import { FaDownload } from "react-icons/fa";
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -68,7 +70,7 @@ export default function Introduction() {
             Passionate about creating elegant solutions to complex problems. With expertise in React, Node.js, and cloud technologies, I build scalable and efficient web applications that make a difference.
           </motion.p>
           <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6"
+            className="flex flex-wrap items-center justify-center gap-4"
             variants={containerVariants}
           >
             <motion.div variants={socialIconVariants}>
@@ -120,6 +122,23 @@ export default function Introduction() {
                 >
                   <FaEnvelope className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
                   Email
+                </a>
+              </Button>
+            </motion.div>
+            <motion.div variants={socialIconVariants}>
+              <Button
+                variant="outline"
+                size="lg"
+                className="w-full sm:w-auto group hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+                asChild
+              >
+                <a
+                  href="/resume/Vijay Resume.pdf"
+                  download
+                  className="flex items-center justify-center"
+                >
+                  <FaDownload className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                  Resume
                 </a>
               </Button>
             </motion.div>

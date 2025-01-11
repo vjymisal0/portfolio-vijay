@@ -6,11 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Code, Server, Database, Cloud, GitBranch, Cpu } from 'lucide-react'
 
 const skillsData = [
-  { category: "Languages", items: ['Java', 'Python', 'C++', 'C', 'JavaScript', 'TypeScript'], icon: Code },
-  { category: "Frontend", items: ['HTML', 'CSS', 'Tailwind CSS', 'Bootstrap', 'SASS', 'React', 'Next.js'], icon: Cpu },
+  { category: "Languages", items: ['Java', 'Python', 'C++', 'C', 'JavaScript', 'TypeScript', 'PHP',], icon: Code },
+  { category: "Frontend", items: ['HTML', 'CSS', 'Tailwind CSS', 'Bootstrap', 'SASS', 'React.js', 'Next.js'], icon: Cpu },
   { category: "Backend", items: ['Node.js', 'Express', 'GraphQL', 'Flask', 'REST APIs'], icon: Server },
   { category: "Databases", items: ['MongoDB', 'PostgreSQL', 'Firebase', 'MySQL'], icon: Database },
-  { category: "Cloud & DevOps", items: ['AWS', 'Docker', 'CI/CD'], icon: Cloud },
+  { category: "Cloud & DevOps", items: ['AWS', 'Render', 'Vercel', 'Netlify', 'Docker', 'CI/CD'], icon: Cloud },
   { category: "Version Control", items: ['Git', 'GitHub'], icon: GitBranch },
 ]
 
