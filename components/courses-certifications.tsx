@@ -36,6 +36,12 @@ const certifications = [
     date: 'October 2024',
     credentialUrl: 'https://www.linkedin.com/learning/certificates/ed852ca2ee92281a6e504d59481b18ca43c229c1fa157d94e29479d6681ce3aa?u=126888530',
   },
+  {
+    title: 'Backend Developer',
+    issuer: 'Meta',
+    date: 'January 2025',
+    credentialUrl: 'https://coursera.org/share/2b69aca6396dd733cb8010dba508c3b4',
+  },
 ]
 
 const containerVariants = {
