@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { BadgeIcon as Certificate, ExternalLink, Calendar } from 'lucide-react'
+import { Award, ExternalLink, Calendar } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 
@@ -84,7 +84,7 @@ export default function CoursesAndCertifications() {
               <Card className="h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
                 <CardHeader className="pb-4">
                   <div className="flex items-center gap-4 mb-2">
-                    <Certificate className="h-8 w-8 text-primary" />
+                    <Award className="h-8 w-8 text-primary" />
                     <CardTitle className="text-xl">{cert.title}</CardTitle>
                   </div>
                   <p className="text-sm font-medium text-muted-foreground">{cert.issuer}</p>
