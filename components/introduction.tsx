@@ -48,7 +48,7 @@ export default function Introduction() {
               <AvatarImage
                 src="/vjy.jpg"
                 alt="Vijay Misal"
-                className="w-full h-full object-cover filter brightness-95 contrast-95 saturate-110"
+                className="w-full h-full object-cover filter brightness-35 contrast-95 saturate-110"
               />
               <AvatarFallback className="text-xl font-bold">VM</AvatarFallback>
             </Avatar>
