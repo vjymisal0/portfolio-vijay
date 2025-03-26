@@ -132,7 +132,7 @@ const getIconForProject = (title: string) => {
       return ShoppingCart
     case "Get Notes":
       return BiNotepad
-    case "HealthBites":
+    case "Health Bites":
       return Activity
     default:
       return ExternalLink
