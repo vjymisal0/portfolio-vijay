@@ -1,20 +1,18 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaEnvelope, FaDownload } from 'react-icons/fa'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-
-import { FaDownload } from "react-icons/fa";
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2
-    }
-  }
+      staggerChildren: 0.2,
+    },
+  },
 }
 
 const itemVariants = {
@@ -25,14 +23,14 @@ const itemVariants = {
     transition: {
       type: 'spring',
       damping: 12,
-      stiffness: 100
-    }
-  }
+      stiffness: 100,
+    },
+  },
 }
 
 const socialIconVariants = {
   hidden: { scale: 0 },
-  visible: { scale: 1, transition: { type: 'spring', stiffness: 260, damping: 20 } }
+  visible: { scale: 1, transition: { type: 'spring', stiffness: 260, damping: 20 } },
 }
 
 export default function Introduction() {
@@ -46,9 +44,13 @@ export default function Introduction() {
           animate="visible"
         >
           <motion.div variants={itemVariants}>
-            <Avatar className="w-48 h-48 mx-auto mb-8 border-4 border-primary/20 shadow-lg">
-              <AvatarImage src="/vjy.jpg" alt="Vijay Misal" />
-              <AvatarFallback>VM</AvatarFallback>
+            <Avatar className="w-56 h-56 mx-auto mb-8 border-4 border-primary/20 shadow-2xl overflow-hidden rounded-full relative">
+              <AvatarImage
+                src="/vjy.jpg"
+                alt="Vijay Misal"
+                className="w-full h-full object-cover filter brightness-95 contrast-95 saturate-110"
+              />
+              <AvatarFallback className="text-xl font-bold">VM</AvatarFallback>
             </Avatar>
           </motion.div>
           <motion.h1
@@ -148,4 +150,3 @@ export default function Introduction() {
     </section>
   )
 }
-
