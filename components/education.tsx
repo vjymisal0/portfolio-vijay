@@ -9,13 +9,22 @@ const educationData = [
     degree: "Bachelor of Technology in Information Technology",
     institution: "Vishwakarma Institute of Information Technology",
     location: "Pune, Maharashtra",
+    cgpa: "8.13/10",
     year: "2023 - 2026",
   },
   {
     degree: "Diploma in Computer Techhnology",
     institution: "Government Polytechnic, Solapur",
     location: "Solapur, Maharashtra",
+    percentage: "91.43%",
     year: "2021 - 2023",
+  },
+  {
+    degree: "Schooling",
+    institution: "Umabai Shravika Vidyalaya, Solapur",
+    location: "Solapur, Maharashtra",
+    percentage: "88.40%",
+    year: "2020",
   },
 ]
 
@@ -64,6 +73,16 @@ export default function Education() {
                   <MapPin className="h-4 w-4 mr-2" />
                   {edu.location}
                 </div>
+                {edu.cgpa && (
+                  <div className="flex items-center text-sm text-muted-foreground mb-1">
+                    <span className="font-medium">CGPA:</span> {edu.cgpa}
+                  </div>
+                )}
+                {edu.percentage && (
+                  <div className="flex items-center text-sm text-muted-foreground mb-1">
+                    <span className="font-medium">Percentage:</span> {edu.percentage}
+                  </div>
+                )}
                 <div className="flex items-center text-sm text-muted-foreground">
                   <Calendar className="h-4 w-4 mr-2" />
                   {edu.year}
