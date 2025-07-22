@@ -128,21 +128,7 @@ export default function Introduction() {
               </Button>
             </motion.div>
             <motion.div variants={socialIconVariants}>
-              <Button
-                variant="outline"
-                size="lg"
-                className="w-full sm:w-auto group hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
-                asChild
-              >
-                <a
-                  href="/resume/Vijay Resume.pdf"
-                  download
-                  className="flex items-center justify-center"
-                >
-                  <FaDownload className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-                  Resume
-                </a>
-              </Button>
+          
             </motion.div>
           </motion.div>
         </motion.div>
