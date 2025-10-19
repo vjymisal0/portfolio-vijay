@@ -59,12 +59,28 @@ export default function Introduction() {
           >
             Vijay Misal
           </motion.h1>
-          <motion.h2
-            className="text-2xl sm:text-3xl text-muted-foreground mb-6"
+          <motion.div
+            className="flex flex-wrap items-center justify-center gap-2 mb-6"
             variants={itemVariants}
           >
-            Full Stack Developer
-          </motion.h2>
+            <span className="text-xl sm:text-2xl text-muted-foreground">
+              SDE Intern @
+            </span>
+            <div className="flex items-center justify-center bg-white px-3 py-1 rounded-lg shadow-md">
+              <span
+                className="text-xl sm:text-2xl font-bold tracking-tight"
+                style={{
+                  fontFamily: 'Poppins, sans-serif',
+                  fontWeight: '700',
+                  color: '#5865F2',
+                  letterSpacing: '-0.02em'
+                }}
+              >
+                Loopr  AI
+              </span>
+
+            </div>
+          </motion.div>
           <motion.p
             className="mb-10 text-base sm:text-lg leading-relaxed"
             variants={itemVariants}
@@ -128,7 +144,7 @@ export default function Introduction() {
               </Button>
             </motion.div>
             <motion.div variants={socialIconVariants}>
-          
+
             </motion.div>
           </motion.div>
         </motion.div>
