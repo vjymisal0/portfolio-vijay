@@ -9,7 +9,7 @@ const educationData = [
     degree: "Bachelor of Technology in Information Technology",
     institution: "Vishwakarma Institute of Information Technology",
     location: "Pune, Maharashtra",
-    cgpa: "8.23/10",
+    cgpa: "8.22/10",
     year: "2023 - 2026",
   },
   {
