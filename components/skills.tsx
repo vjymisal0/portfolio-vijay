@@ -3,15 +3,16 @@
 import { motion } from 'framer-motion'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Code, Server, Database, Cloud, GitBranch, Cpu } from 'lucide-react'
+import { Code, Server, Database, Cloud, GitBranch, Cpu, Bot } from 'lucide-react'
 
 const skillsData = [
   { category: "Tech", items: ['Java', 'Python', 'JavaScript', 'TypeScript',], icon: Code },
   { category: "Frontend", items: ['HTML', 'CSS', 'Tailwind CSS', 'React.js', 'Next.js'], icon: Cpu },
-  { category: "Backend", items: ['Node.js', 'Express', 'GraphQL', 'Flask', 'REST APIs', 'Nest.js'], icon: Server },
-  { category: "Databases", items: ['MongoDB', 'PostgreSQL', 'Firebase', 'MySQL'], icon: Database },
+  { category: "Backend", items: ['NestJS', 'Node.js', 'Express', 'GraphQL', 'Flask', 'REST APIs'], icon: Server },
+  { category: "Databases", items: ['MongoDB', 'Firebase', 'MySQL'], icon: Database },
   { category: "Cloud & DevOps", items: ['AWS', 'Render', 'Vercel', 'Netlify', 'Docker', 'CI/CD'], icon: Cloud },
   { category: "Version Control", items: ['Git', 'GitHub'], icon: GitBranch },
+  { category: "Automation Tools", items: ['N8N Automation'], icon: Bot }
 ]
 
 const containerVariants = {
