@@ -69,10 +69,10 @@ const itemVariants = {
 
 export default function CoursesAndCertifications() {
   return (
-    <section className="py-20 bg-gradient-to-b from-background to-secondary/10">
-      <div className="container mx-auto px-4">
+    <section className="h-full flex flex-col py-6 overflow-y-auto bg-gradient-to-b from-background to-secondary/10">
+      <div className="container mx-auto px-4 flex flex-col h-full">
         <motion.h2
-          className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+          className="text-3xl font-bold mb-4 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -80,7 +80,7 @@ export default function CoursesAndCertifications() {
           Courses & Certifications
         </motion.h2>
         <motion.div
-          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
