@@ -16,7 +16,7 @@ const achievements = [
 
 export default function Achievements() {
   return (
-    <section className="h-full flex flex-col justify-center py-8">
+    <section className="h-full flex flex-col justify-center py-6 overflow-y-auto">
       <div className="container mx-auto px-6 max-w-2xl">
         <motion.h2
           className="text-2xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"

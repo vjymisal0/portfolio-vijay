@@ -1,34 +1,42 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Briefcase, MapPin, CalendarDays } from 'lucide-react'
-import { SiReact, SiNodedotjs, SiNestjs, SiTypescript, SiDocker } from 'react-icons/si'
+import { Briefcase, MapPin, CalendarDays, ShieldCheck, Bot, Activity } from 'lucide-react'
+import { SiReact, SiNestjs, SiTypescript, SiNodedotjs } from 'react-icons/si'
 import type { IconType } from 'react-icons'
+import type { LucideIcon } from 'lucide-react'
+
+type AnyIcon = IconType | LucideIcon
 
 const experiences = [
   {
-    role: 'Software Development Engineer Intern',
+    role: 'Software Engineer',
+    product: 'LooprIQ Inspect — AI-powered visual inspection for industrial quality control',
     company: 'Loopr AI',
-    location: 'Remote, India',
-    period: 'Jun 2025 – Present',
-    duration: '1 Year',
+    award: 'GeekWire Startup of the Year 2026',
+    location: 'Pune, India',
+    period: 'July 2025 – Present',
     type: 'Internship',
     status: 'Current',
     statusColor: 'bg-emerald-500/15 text-emerald-400',
     accent: 'hover:border-emerald-500/30 hover:shadow-[0_0_24px_rgba(16,185,129,0.05)]',
     iconBg: 'bg-emerald-500/15 text-emerald-400',
     bullets: [
-      'Built and maintained full-stack web features using React, NestJS, and Node.js in a production environment.',
-      'Collaborated with the product team to ship new modules, improving performance and user experience.',
-      'Integrated REST APIs and worked with cloud infrastructure for scalable deployments.',
-      'Participated in code reviews, sprint planning, and agile development cycles.',
+      'Secured Engine APIs with JWT authentication and dynamic API key protection to prevent unauthorized external access.',
+      'Migrated runtime feature flags to a database-backed PostHog system — enabling live feature toggles without redeployments.',
+      'Built end-to-end platform features: logo management, workspace auto-selection, annotation configuration, and inspection type badges.',
+      'Diagnosed and fixed production bugs across login flows, workspace management, and inspection workflows.',
+      'Instrumented key APIs with PostHog telemetry to surface AI prediction override rates to the product team.',
+      'Built automated E2E test flows using n8n with scheduled weekly sanity runs per customer environment.',
     ],
     tech: [
-      { icon: SiReact, label: 'React' },
-      { icon: SiNodedotjs, label: 'Node.js' },
-      { icon: SiNestjs, label: 'NestJS' },
-      { icon: SiTypescript, label: 'TypeScript' },
-      { icon: SiDocker, label: 'Docker' },
+      { icon: SiReact as AnyIcon,      label: 'React' },
+      { icon: SiNestjs as AnyIcon,     label: 'NestJS' },
+      { icon: SiTypescript as AnyIcon, label: 'TypeScript' },
+      { icon: SiNodedotjs as AnyIcon,  label: 'Node.js' },
+      { icon: ShieldCheck,             label: 'JWT' },
+      { icon: Activity,                label: 'PostHog' },
+      { icon: Bot,                     label: 'n8n' },
     ],
     index: '01',
   },
@@ -46,10 +54,10 @@ const itemVariants = {
 
 export default function Experience() {
   return (
-    <section className="h-full flex flex-col justify-center py-8 px-4">
+    <section className="h-full flex flex-col justify-center py-6 px-4 overflow-y-auto">
       <div className="container mx-auto max-w-2xl">
         <motion.h2
-          className="text-2xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+          className="text-2xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
           initial={{ opacity: 0, y: -14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
@@ -58,7 +66,6 @@ export default function Experience() {
         </motion.h2>
 
         <div className="relative">
-          {/* Vertical line */}
           <div className="absolute left-[19px] top-3 bottom-3 w-px bg-border" />
 
           <motion.div
@@ -78,8 +85,9 @@ export default function Experience() {
 
                 {/* Card */}
                 <div className={`flex-1 rounded-xl border border-border bg-card/40 hover:bg-card/70 transition-all duration-300 p-5 group ${exp.accent}`}>
+
                   {/* Header */}
-                  <div className="flex items-start justify-between gap-3 mb-3">
+                  <div className="flex items-start justify-between gap-3 mb-1">
                     <div className="min-w-0">
                       <p className="text-[11px] font-mono text-muted-foreground/60 uppercase tracking-wider mb-0.5">
                         {exp.type}
@@ -87,9 +95,13 @@ export default function Experience() {
                       <h3 className="text-sm font-semibold leading-snug text-foreground group-hover:text-primary transition-colors">
                         {exp.role}
                       </h3>
-                      <p className="text-sm font-medium text-muted-foreground mt-0.5">
-                        {exp.company}
-                      </p>
+                      <div className="flex flex-wrap items-center gap-2 mt-0.5">
+                        <p className="text-sm font-medium text-muted-foreground">{exp.company}</p>
+                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-400 font-medium">
+                          🏆 {exp.award}
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-muted-foreground/50 mt-0.5 italic">{exp.product}</p>
                     </div>
                     <span className={`flex-shrink-0 text-xs px-2.5 py-1 rounded-full font-semibold ${exp.statusColor}`}>
                       {exp.status}
@@ -97,21 +109,21 @@ export default function Experience() {
                   </div>
 
                   {/* Meta */}
-                  <div className="flex items-center gap-4 mb-4 text-xs text-muted-foreground">
+                  <div className="flex flex-wrap items-center gap-4 my-3 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1.5">
                       <MapPin className="w-3 h-3" /> {exp.location}
                     </span>
                     <span className="flex items-center gap-1.5">
                       <CalendarDays className="w-3 h-3" /> {exp.period}
                     </span>
-                    <span className="ml-auto font-mono text-muted-foreground/50">{exp.index}</span>
+                    <span className="ml-auto font-mono text-muted-foreground/40">{exp.index}</span>
                   </div>
 
                   {/* Bullets */}
                   <ul className="space-y-1.5 mb-4">
                     {exp.bullets.map((b, i) => (
                       <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground leading-relaxed">
-                        <span className="mt-1.5 w-1 h-1 rounded-full bg-primary/50 flex-shrink-0" />
+                        <span className="mt-1.5 w-1 h-1 rounded-full bg-emerald-400/60 flex-shrink-0" />
                         {b}
                       </li>
                     ))}

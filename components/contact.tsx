@@ -50,7 +50,7 @@ export default function Contact() {
   }
 
   return (
-    <section className="h-full flex flex-col justify-center py-8 px-6 bg-gradient-to-b from-background to-secondary/10">
+    <section className="h-full flex flex-col justify-center py-6 px-4 sm:px-6 overflow-y-auto bg-gradient-to-b from-background to-secondary/10">
       <div className="container mx-auto max-w-4xl">
         <motion.h2
           className="text-2xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
