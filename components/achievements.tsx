@@ -29,35 +29,37 @@ const itemVariants = {
 
 export default function Achievements() {
   return (
-    <section className="py-20">
+    <section className="h-full flex flex-col justify-center py-6">
       <motion.h2
-        className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+        className="text-3xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
         Achievements
       </motion.h2>
-      <motion.div
-        className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {achievements.map((achievement, index) => (
-          <motion.div key={index} variants={itemVariants}>
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Award className="h-8 w-8 text-primary" />
-                <CardTitle>{achievement.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>{achievement.description}</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
-      </motion.div>
+      <div className="container mx-auto px-4 max-w-2xl">
+        <motion.div
+          className="grid gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {achievements.map((achievement, index) => (
+            <motion.div key={index} variants={itemVariants}>
+              <Card>
+                <CardHeader className="flex flex-row items-center gap-4">
+                  <Award className="h-8 w-8 text-primary" />
+                  <CardTitle>{achievement.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>{achievement.description}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </section>
   )
 }

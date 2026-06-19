@@ -1,97 +1,119 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { GraduationCap, Calendar, MapPin } from 'lucide-react'
-import { Card, CardContent } from '@/components/ui/card'
+import { MapPin, CalendarDays } from 'lucide-react'
 
 const educationData = [
   {
     degree: "Bachelor of Technology in Information Technology",
+    short: "B.Tech — IT",
     institution: "Vishwakarma Institute of Information Technology",
     location: "Pune, Maharashtra",
-    cgpa: "8.22/10",
-    year: "2023 - 2026",
+    score: "8.44 CGPA",
+    scoreColor: "bg-emerald-500/15 text-emerald-400",
+    year: "2023 – 2026",
+    index: "01",
   },
   {
-    degree: "Diploma in Computer Techhnology",
+    degree: "Diploma in Computer Technology",
+    short: "Diploma — CS",
     institution: "Government Polytechnic, Solapur",
     location: "Solapur, Maharashtra",
-    percentage: "91.43%",
-    year: "2021 - 2023",
+    score: "91.43%",
+    scoreColor: "bg-blue-500/15 text-blue-400",
+    year: "2021 – 2023",
+    index: "02",
   },
   {
-    degree: "Schooling",
+    degree: "Secondary School Certificate",
+    short: "SSC",
     institution: "Umabai Shravika Vidyalaya, Solapur",
     location: "Solapur, Maharashtra",
-    percentage: "88.40%",
+    score: "88.40%",
+    scoreColor: "bg-violet-500/15 text-violet-400",
     year: "2020",
+    index: "03",
   },
 ]
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 }
+  hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0, transition: { type: 'spring', damping: 14, stiffness: 100 } },
 }
 
 export default function Education() {
   return (
-    <section className="py-20">
-      <motion.h2
-        className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        Education
-      </motion.h2>
-      <motion.div
-        className="max-w-3xl mx-auto"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {educationData.map((edu, index) => (
-          <motion.div key={index} variants={itemVariants} className="mb-8 last:mb-0">
-            <Card className="relative">
-              <div className="absolute -left-3 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
-                <GraduationCap className="h-4 w-4 text-primary-foreground" />
-              </div>
-              <CardContent className="pl-8 py-4">
-                <h3 className="text-xl font-semibold mb-2">{edu.degree}</h3>
-                <p className="text-lg mb-2">{edu.institution}</p>
-                <div className="flex items-center text-sm text-muted-foreground mb-1">
-                  <MapPin className="h-4 w-4 mr-2" />
-                  {edu.location}
-                </div>
-                {edu.cgpa && (
-                  <div className="flex items-center text-sm text-muted-foreground mb-1">
-                    <span className="font-medium">CGPA:</span> {edu.cgpa}
+    <section className="h-full flex flex-col justify-center py-8 px-4">
+      <div className="container mx-auto max-w-2xl">
+        <motion.h2
+          className="text-2xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+          initial={{ opacity: 0, y: -14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          Education
+        </motion.h2>
+
+        {/* Timeline */}
+        <div className="relative">
+          {/* Vertical line */}
+          <div className="absolute left-[19px] top-3 bottom-3 w-px bg-border" />
+
+          <motion.div
+            className="space-y-4"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {educationData.map((edu) => (
+              <motion.div key={edu.index} variants={itemVariants} className="flex gap-5">
+                {/* Timeline dot */}
+                <div className="relative flex-shrink-0 flex flex-col items-center pt-4">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center z-10">
+                    <span className="text-[11px] font-mono font-semibold text-primary">{edu.index}</span>
                   </div>
-                )}
-                {edu.percentage && (
-                  <div className="flex items-center text-sm text-muted-foreground mb-1">
-                    <span className="font-medium">Percentage:</span> {edu.percentage}
-                  </div>
-                )}
-                <div className="flex items-center text-sm text-muted-foreground">
-                  <Calendar className="h-4 w-4 mr-2" />
-                  {edu.year}
                 </div>
-              </CardContent>
-            </Card>
+
+                {/* Card */}
+                <div className="flex-1 rounded-xl border border-border bg-card/40 hover:border-primary/30 hover:bg-card/70 transition-all duration-300 p-4 group">
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-mono text-muted-foreground/60 uppercase tracking-wider mb-0.5">
+                        {edu.short}
+                      </p>
+                      <h3 className="text-sm font-semibold leading-snug text-foreground group-hover:text-primary transition-colors">
+                        {edu.degree}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mt-0.5 font-medium">
+                        {edu.institution}
+                      </p>
+                    </div>
+                    <span className={`flex-shrink-0 text-xs px-2.5 py-1 rounded-full font-semibold ${edu.scoreColor}`}>
+                      {edu.score}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-4 mt-3 pt-3 border-t border-border/50">
+                    <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                      <MapPin className="w-3 h-3" />
+                      {edu.location}
+                    </span>
+                    <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                      <CalendarDays className="w-3 h-3" />
+                      {edu.year}
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
-        ))}
-      </motion.div>
+        </div>
+      </div>
     </section>
   )
 }
