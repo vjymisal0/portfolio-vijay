@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import Introduction from '@/components/introduction'
 import Skills from '@/components/skills'
 import Projects from '@/components/projects'
@@ -12,92 +12,49 @@ import Contact from '@/components/contact'
 import StickyNavbar from '@/components/sticky-navbar'
 import Footer from '@/components/footer'
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut"
-    }
+function SectionContent({ id }: { id: string }) {
+  switch (id) {
+    case 'home':         return <Introduction />
+    case 'skills':       return <Skills />
+    case 'education':    return <Education />
+    case 'projects':     return <Projects />
+    case 'achievements': return <Achievements />
+    case 'courses':      return <CoursesAndCertifications />
+    case 'contact':
+      return (
+        <div className="h-full flex flex-col">
+          <div className="flex-grow"><Contact /></div>
+          <Footer />
+        </div>
+      )
+    default: return null
   }
 }
 
 export default function Home() {
+  const [activeSection, setActiveSection] = useState('home')
+
   useEffect(() => {
     document.body.classList.add('dark')
   }, [])
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
-      <main className="flex-grow container mx-auto px-4 py-8">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={sectionVariants}
-          id="home"
-        >
-          <Introduction />
-        </motion.div>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={sectionVariants}
-          id="skills"
-        >
-          <Skills />
-        </motion.div>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={sectionVariants}
-          id="education"
-        >
-          <Education />
-        </motion.div>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={sectionVariants}
-          id="projects"
-        >
-          <Projects />
-        </motion.div>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={sectionVariants}
-          id="achievements"
-        >
-          <Achievements />
-        </motion.div>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={sectionVariants}
-          id="courses"
-        >
-          <CoursesAndCertifications />
-        </motion.div>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={sectionVariants}
-          id="contact"
-        >
-          <Contact />
-        </motion.div>
+    <div className="h-screen overflow-hidden flex bg-background text-foreground">
+      <StickyNavbar activeSection={activeSection} onNavigate={setActiveSection} />
+      <main className="flex-1 h-screen overflow-hidden relative">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeSection}
+            className="absolute inset-0"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.22, ease: 'easeInOut' }}
+          >
+            <SectionContent id={activeSection} />
+          </motion.div>
+        </AnimatePresence>
       </main>
-      <Footer />
-      <StickyNavbar />
     </div>
   )
 }
-

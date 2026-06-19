@@ -67,9 +67,9 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-20 px-4 min-h-screen bg-gradient-to-b from-background to-secondary/20">
+    <section className="h-full flex flex-col justify-center py-6 px-4 bg-gradient-to-b from-background to-secondary/20">
       <motion.h2
-        className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+        className="text-3xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
