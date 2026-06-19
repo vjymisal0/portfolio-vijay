@@ -19,12 +19,12 @@ export default function Footer() {
       variants={footerVariants}
     >
       <div className="container mx-auto px-4">
-        <div className="flex flex-col justify-center space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <p className="text-sm text-muted-foreground">
             © {currentYear} Vijay Misal. All rights reserved.
           </p>
-          <p className="text-sm text-muted-foreground flex items-center justify-end space-x-1">
-            Made with <Heart className="h-4 w-4 mx-1 text-red-500" /> using Next.js, Tailwind CSS, ShadCN and Framer Motion.
+          <p className="text-sm text-muted-foreground flex items-center gap-1">
+            Made with <Heart className="h-3.5 w-3.5 text-red-500" /> using Next.js, Tailwind &amp; Framer Motion.
           </p>
         </div>
       </div>
