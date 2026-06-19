@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -101,7 +100,7 @@ export default function Introduction() {
                 </a>
               </Button>
               <Button asChild variant="ghost" size="lg" className="gap-2 font-medium">
-                <a href="mailto:vijay.22320079@viit.ac.in">
+                <a href="mailto:misalvijay153@gmail.com">
                   <FaEnvelope className="h-4 w-4" />
                   Email
                 </a>
