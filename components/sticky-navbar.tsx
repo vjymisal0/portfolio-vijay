@@ -2,83 +2,120 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Home, Briefcase, Mail, Award, Code, GraduationCap } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Menu, X } from 'lucide-react'
 
 const navItems = [
-  { icon: Home, label: 'Home' },
-  { icon: Code, label: 'Skills' },
-  { icon: GraduationCap, label: 'Education' },
-  { icon: Briefcase, label: 'Projects' },
-  { icon: Award, label: 'Achievements' },
-  { icon: Mail, label: 'Contact' },
+  { id: 'home', label: 'Home' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'education', label: 'Education' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'achievements', label: 'Achievements' },
+  { id: 'courses', label: 'Courses' },
+  { id: 'contact', label: 'Contact' },
 ]
 
-export default function StickyNavbar() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+interface Props {
+  activeSection: string
+  onNavigate: (id: string) => void
+}
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault()
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
+export default function StickyNavbar({ activeSection, onNavigate }: Props) {
+  const [mobileOpen, setMobileOpen] = useState(false)
+
+  const handleNav = (id: string) => {
+    onNavigate(id)
+    setMobileOpen(false)
   }
 
   return (
-    <div className="fixed bottom-4 left-0 right-0 flex justify-center z-50">
-      <motion.nav
-        className="bg-background/80 backdrop-blur-sm border border-border rounded-full shadow-lg"
-        initial={{ width: '350px', height: '60px', opacity: 0, y: 20 }}
-        animate={{ width: '390px', height: '60px', opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
+    <>
+      {/* ── Desktop sidebar ── */}
+      <motion.aside
+        className="hidden lg:flex flex-shrink-0 w-40 h-screen border-r border-border bg-background/95 backdrop-blur-sm flex-col justify-center px-3 py-8"
+        initial={{ opacity: 0, x: -24 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
       >
-        <motion.div 
-          className="flex items-center justify-center h-full px-2 space-x-2"
-        >
-          {navItems.map((item, index) => (
-            <div key={index} className="relative">
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="relative flex flex-col items-center justify-center w-12 h-12 p-0"
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                <a 
-                  href={`#${item.label.toLowerCase()}`}
-                  className="flex flex-col items-center justify-center w-full h-full"
-                  onClick={(e) => handleClick(e, item.label.toLowerCase())}
-                >
-                  <AnimatePresence>
-                    {hoveredIndex === index && (
-                      <motion.span 
-                        className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full mb-1 text-xs whitespace-nowrap bg-background/80 backdrop-blur-sm px-2 py-1 rounded-full"
-                        initial={{ opacity: 0, y: 5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 5 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        {item.label}
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                  <motion.div
-                    animate={{
-                      scale: hoveredIndex === index ? 1.2 : 1,
-                      y: hoveredIndex === index ? -2 : 0,
-                    }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 10 }}
-                  >
-                    <item.icon className="h-5 w-5" />
-                  </motion.div>
-                </a>
-              </Button>
-            </div>
+        <div className="mb-6 px-3">
+          <span className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">
+            Portfolio
+          </span>
+        </div>
+        <nav className="flex flex-col gap-0.5">
+          {navItems.map((item) => (
+            <motion.button
+              key={item.id}
+              onClick={() => handleNav(item.id)}
+              className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 cursor-pointer ${
+                activeSection === item.id
+                  ? 'bg-primary text-primary-foreground'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+              }`}
+              whileHover={{ x: activeSection === item.id ? 0 : 3 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+            >
+              {item.label}
+            </motion.button>
           ))}
-        </motion.div>
-      </motion.nav>
-    </div>
+        </nav>
+      </motion.aside>
+
+      {/* ── Mobile hamburger button ── */}
+      <motion.button
+        onClick={() => setMobileOpen(true)}
+        className="fixed top-4 right-4 z-50 lg:hidden w-10 h-10 rounded-xl border border-border bg-background/90 backdrop-blur-sm flex items-center justify-center text-foreground"
+        aria-label="Open menu"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        <Menu className="w-5 h-5" />
+      </motion.button>
+
+      {/* ── Mobile full-screen overlay ── */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            className="fixed inset-0 z-50 lg:hidden bg-background/98 backdrop-blur-md flex flex-col items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+          >
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="absolute top-4 right-4 w-10 h-10 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Close menu"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-8">
+              Portfolio
+            </p>
+
+            <nav className="flex flex-col items-center gap-1 w-full px-8">
+              {navItems.map((item, idx) => (
+                <motion.button
+                  key={item.id}
+                  onClick={() => handleNav(item.id)}
+                  className={`w-full max-w-xs text-center py-3 rounded-xl text-lg font-medium transition-colors ${
+                    activeSection === item.id
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+                  }`}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.04, duration: 0.18 }}
+                >
+                  {item.label}
+                </motion.button>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
-
