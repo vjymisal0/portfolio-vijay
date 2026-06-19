@@ -48,7 +48,7 @@ const itemVariants = {
 
 export default function Education() {
   return (
-    <section className="h-full flex flex-col justify-center py-8 px-4">
+    <section className="h-full flex flex-col justify-center py-6 px-4 overflow-y-auto">
       <div className="container mx-auto max-w-2xl">
         <motion.h2
           className="text-2xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
