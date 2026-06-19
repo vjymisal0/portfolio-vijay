@@ -8,6 +8,7 @@ import Projects from '@/components/projects'
 import Achievements from '@/components/achievements'
 import CoursesAndCertifications from '@/components/courses-certifications'
 import Education from '@/components/education'
+import Experience from '@/components/experience'
 import Contact from '@/components/contact'
 import StickyNavbar from '@/components/sticky-navbar'
 import Footer from '@/components/footer'
@@ -15,6 +16,7 @@ import Footer from '@/components/footer'
 function SectionContent({ id }: { id: string }) {
   switch (id) {
     case 'home':         return <Introduction />
+    case 'experience':   return <Experience />
     case 'skills':       return <Skills />
     case 'education':    return <Education />
     case 'projects':     return <Projects />
