@@ -79,32 +79,44 @@ export default function Introduction() {
             </motion.p>
 
             <motion.div
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-3"
+              className="flex items-center justify-center lg:justify-start gap-3"
               variants={itemVariants}
             >
-              <Button asChild size="lg" className="gap-2 font-medium">
-                <a href="https://github.com/vjymisal0" target="_blank" rel="noopener noreferrer">
-                  <FaGithub className="h-4 w-4" />
-                  GitHub
-                </a>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="gap-2 font-medium hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
-              >
-                <a href="https://www.linkedin.com/in/vijaymisal/" target="_blank" rel="noopener noreferrer">
-                  <FaLinkedin className="h-4 w-4" />
-                  LinkedIn
-                </a>
-              </Button>
-              <Button asChild variant="ghost" size="lg" className="gap-2 font-medium">
-                <a href="mailto:misalvijay153@gmail.com">
-                  <FaEnvelope className="h-4 w-4" />
-                  Email
-                </a>
-              </Button>
+              {[
+                {
+                  icon: FaGithub,
+                  href: 'https://github.com/vjymisal0',
+                  label: 'GitHub',
+                  hover: 'hover:bg-foreground hover:text-background hover:border-foreground',
+                  external: true,
+                },
+                {
+                  icon: FaLinkedin,
+                  href: 'https://www.linkedin.com/in/vijaymisal/',
+                  label: 'LinkedIn',
+                  hover: 'hover:bg-blue-600 hover:text-white hover:border-blue-600',
+                  external: true,
+                },
+                {
+                  icon: FaEnvelope,
+                  href: 'mailto:misalvijay153@gmail.com',
+                  label: 'Email',
+                  hover: 'hover:bg-primary hover:text-primary-foreground hover:border-primary',
+                  external: false,
+                },
+              ].map(({ icon: Icon, href, label, hover, external }) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  title={label}
+                  className={`w-11 h-11 rounded-xl border border-border flex items-center justify-center text-muted-foreground transition-all duration-200 ${hover}`}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Icon className="w-5 h-5" />
+                </motion.a>
+              ))}
             </motion.div>
           </motion.div>
 
