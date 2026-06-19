@@ -61,7 +61,7 @@ const cardVariants = {
 export default function CoursesAndCertifications() {
   return (
     <section className="h-full flex flex-col py-5 overflow-y-auto bg-gradient-to-b from-background to-secondary/10">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.h2
           className="text-2xl font-bold mb-5 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
           initial={{ opacity: 0, y: -14 }}

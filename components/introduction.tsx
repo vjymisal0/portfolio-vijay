@@ -33,8 +33,8 @@ const photoVariants = {
 export default function Introduction() {
   return (
     <section className="h-full flex items-center bg-gradient-to-br from-background via-background to-secondary/10">
-      <div className="container mx-auto px-8 lg:px-16">
-        <div className="flex flex-col-reverse lg:flex-row items-center gap-10 lg:gap-20">
+      <div className="container mx-auto px-6 lg:px-12">
+        <div className="flex flex-col-reverse lg:flex-row items-center gap-6 sm:gap-8 lg:gap-16">
 
           {/* Text content */}
           <motion.div
@@ -51,7 +51,7 @@ export default function Introduction() {
             </motion.span>
 
             <motion.h1
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-5 leading-[1.1]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-3 sm:mb-5 leading-[1.1]"
               variants={itemVariants}
             >
               Vijay{' '}
@@ -127,7 +127,7 @@ export default function Introduction() {
             initial="hidden"
             animate="visible"
           >
-            <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80">
+            <div className="relative w-40 h-40 sm:w-52 sm:h-52 lg:w-64 lg:h-64">
               <div className="absolute inset-0 rounded-full border border-primary/20 scale-110 animate-pulse" />
               <div className="absolute inset-0 rounded-full border border-primary/10 scale-125" />
               <Avatar className="w-full h-full border-4 border-primary/25 shadow-2xl overflow-hidden rounded-full">
