@@ -72,7 +72,6 @@ export default function Contact() {
           >
             <div>
               <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-                Open to internships, full-time roles, and freelance work.
                 If you have something interesting, send a message and I&apos;ll get back to you.
               </p>
 
