@@ -76,12 +76,12 @@ export default function StickyNavbar({ activeSection, onNavigate }: Props) {
           ref={navRef}
           className="nav-scroll flex items-center gap-0.5 overflow-x-auto max-w-full rounded-full px-2 py-1.5"
           style={{
-            background: 'linear-gradient(160deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.06) 100%)',
-            backdropFilter: 'blur(48px) saturate(200%) brightness(1.05)',
-            WebkitBackdropFilter: 'blur(48px) saturate(200%) brightness(1.05)',
-            border: '1px solid rgba(255,255,255,0.20)',
+            background: 'linear-gradient(160deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%)',
+            backdropFilter: 'blur(16px) saturate(160%)',
+            WebkitBackdropFilter: 'blur(16px) saturate(160%)',
+            border: '1px solid rgba(255,255,255,0.10)',
             boxShadow:
-              '0 8px 32px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.20), inset 0 -1px 0 rgba(0,0,0,0.12)',
+              '0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.10)',
           }}
         >
           {navItems.map((item) => {
