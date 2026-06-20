@@ -52,27 +52,54 @@ export default function StickyNavbar({ activeSection, onNavigate }: Props) {
         </nav>
       </motion.aside>
 
-      {/* ── Mobile / Tablet floating bottom pill nav ── */}
+      {/* ── Mobile liquid glass floating bottom nav ── */}
       <motion.div
-        className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50"
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: 'easeOut' }}
+        className="lg:hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-50"
+        initial={{ opacity: 0, y: 24, scale: 0.94 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
       >
-        <nav className="nav-scroll flex items-center gap-0.5 bg-background/90 backdrop-blur-md border border-border/60 rounded-full px-2 py-1.5 shadow-xl overflow-x-auto max-w-[92vw]">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => onNavigate(item.id)}
-              className={`flex-shrink-0 px-2.5 py-1 rounded-full text-[11px] font-medium transition-colors duration-150 cursor-pointer whitespace-nowrap ${
-                activeSection === item.id
-                  ? 'bg-primary text-primary-foreground'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-accent'
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
+        <nav
+          className="nav-scroll flex items-center gap-0.5 overflow-x-auto max-w-[92vw] rounded-full px-2 py-1.5"
+          style={{
+            background: 'linear-gradient(160deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.06) 100%)',
+            backdropFilter: 'blur(48px) saturate(200%) brightness(1.05)',
+            WebkitBackdropFilter: 'blur(48px) saturate(200%) brightness(1.05)',
+            border: '1px solid rgba(255,255,255,0.20)',
+            boxShadow:
+              '0 8px 32px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.20), inset 0 -1px 0 rgba(0,0,0,0.12)',
+          }}
+        >
+          {navItems.map((item) => {
+            const isActive = activeSection === item.id
+            return (
+              <button
+                key={item.id}
+                onClick={() => onNavigate(item.id)}
+                className="relative flex-shrink-0 px-3 py-1.5 rounded-full text-[11px] font-medium cursor-pointer whitespace-nowrap"
+                style={{
+                  color: isActive ? 'rgba(255,255,255,0.96)' : 'rgba(255,255,255,0.42)',
+                  transition: 'color 0.2s ease',
+                }}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="liquid-pill"
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      background:
+                        'linear-gradient(140deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.13) 100%)',
+                      border: '1px solid rgba(255,255,255,0.34)',
+                      boxShadow:
+                        '0 2px 12px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.40), inset 0 -1px 0 rgba(0,0,0,0.08)',
+                    }}
+                    transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+                  />
+                )}
+                <span className="relative z-10">{item.label}</span>
+              </button>
+            )
+          })}
         </nav>
       </motion.div>
     </>
