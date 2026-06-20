@@ -54,7 +54,8 @@ const itemVariants = {
 
 export default function Experience() {
   return (
-    <section className="h-full flex flex-col justify-center py-6 px-4 overflow-y-auto">
+    <section className="h-full overflow-y-auto">
+      <div className="min-h-full flex flex-col justify-center py-6 px-4 pb-24 lg:pb-6">
       <div className="container mx-auto max-w-2xl">
         <motion.h2
           className="text-2xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
@@ -75,7 +76,7 @@ export default function Experience() {
             animate="visible"
           >
             {experiences.map((exp) => (
-              <motion.div key={exp.index} variants={itemVariants} className="flex gap-5">
+              <motion.div key={exp.index} variants={itemVariants} className="flex gap-3 sm:gap-5">
                 {/* Timeline dot */}
                 <div className="relative flex-shrink-0 flex flex-col items-center pt-4">
                   <div className={`w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center z-10 ${exp.iconBg}`}>
@@ -84,7 +85,7 @@ export default function Experience() {
                 </div>
 
                 {/* Card */}
-                <div className={`flex-1 rounded-xl border border-border bg-card/40 hover:bg-card/70 transition-all duration-300 p-5 group ${exp.accent}`}>
+                <div className={`flex-1 rounded-xl border border-border bg-card/40 hover:bg-card/70 transition-all duration-300 p-3 sm:p-5 group ${exp.accent}`}>
 
                   {/* Header */}
                   <div className="flex items-start justify-between gap-3 mb-1">
@@ -146,6 +147,7 @@ export default function Experience() {
             ))}
           </motion.div>
         </div>
+      </div>
       </div>
     </section>
   )
