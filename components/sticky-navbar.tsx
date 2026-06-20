@@ -1,8 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 
 const navItems = [
   { id: 'home', label: 'Home' },
@@ -21,12 +20,17 @@ interface Props {
 }
 
 export default function StickyNavbar({ activeSection, onNavigate }: Props) {
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const navRef = useRef<HTMLElement>(null)
+  const activeRef = useRef<HTMLButtonElement>(null)
 
-  const handleNav = (id: string) => {
-    onNavigate(id)
-    setMobileOpen(false)
-  }
+  useEffect(() => {
+    if (activeRef.current && navRef.current) {
+      const nav = navRef.current
+      const btn = activeRef.current
+      const scrollLeft = btn.offsetLeft - nav.offsetWidth / 2 + btn.offsetWidth / 2
+      nav.scrollTo({ left: scrollLeft, behavior: 'smooth' })
+    }
+  }, [activeSection])
 
   return (
     <>
@@ -46,7 +50,7 @@ export default function StickyNavbar({ activeSection, onNavigate }: Props) {
           {navItems.map((item) => (
             <motion.button
               key={item.id}
-              onClick={() => handleNav(item.id)}
+              onClick={() => onNavigate(item.id)}
               className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 cursor-pointer ${
                 activeSection === item.id
                   ? 'bg-primary text-primary-foreground'
@@ -61,61 +65,58 @@ export default function StickyNavbar({ activeSection, onNavigate }: Props) {
         </nav>
       </motion.aside>
 
-      {/* ── Mobile hamburger button ── */}
-      <motion.button
-        onClick={() => setMobileOpen(true)}
-        className="fixed top-4 right-4 z-50 lg:hidden w-10 h-10 rounded-xl border border-border bg-background/90 backdrop-blur-sm flex items-center justify-center text-foreground"
-        aria-label="Open menu"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
+      {/* ── Mobile liquid glass floating bottom nav ── */}
+      <motion.div
+        className="lg:hidden fixed bottom-5 inset-x-0 z-50 flex justify-center px-4"
+        initial={{ opacity: 0, y: 24, scale: 0.94 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
       >
-        <Menu className="w-5 h-5" />
-      </motion.button>
-
-      {/* ── Mobile full-screen overlay ── */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            className="fixed inset-0 z-50 lg:hidden bg-background/98 backdrop-blur-md flex flex-col items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.18 }}
-          >
-            <button
-              onClick={() => setMobileOpen(false)}
-              className="absolute top-4 right-4 w-10 h-10 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Close menu"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-8">
-              Portfolio
-            </p>
-
-            <nav className="flex flex-col items-center gap-1 w-full px-8">
-              {navItems.map((item, idx) => (
-                <motion.button
-                  key={item.id}
-                  onClick={() => handleNav(item.id)}
-                  className={`w-full max-w-xs text-center py-3 rounded-xl text-lg font-medium transition-colors ${
-                    activeSection === item.id
-                      ? 'bg-primary text-primary-foreground'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-accent'
-                  }`}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.04, duration: 0.18 }}
-                >
-                  {item.label}
-                </motion.button>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        <nav
+          ref={navRef}
+          className="nav-scroll flex items-center gap-0.5 overflow-x-auto max-w-full rounded-full px-2 py-1.5"
+          style={{
+            background: 'linear-gradient(160deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.06) 100%)',
+            backdropFilter: 'blur(48px) saturate(200%) brightness(1.05)',
+            WebkitBackdropFilter: 'blur(48px) saturate(200%) brightness(1.05)',
+            border: '1px solid rgba(255,255,255,0.20)',
+            boxShadow:
+              '0 8px 32px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.20), inset 0 -1px 0 rgba(0,0,0,0.12)',
+          }}
+        >
+          {navItems.map((item) => {
+            const isActive = activeSection === item.id
+            return (
+              <button
+                key={item.id}
+                ref={isActive ? activeRef : null}
+                onClick={() => onNavigate(item.id)}
+                className="relative flex-shrink-0 px-3 py-1.5 rounded-full text-[11px] font-medium cursor-pointer whitespace-nowrap"
+                style={{
+                  color: isActive ? 'rgba(255,255,255,0.96)' : 'rgba(255,255,255,0.42)',
+                  transition: 'color 0.2s ease',
+                }}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="liquid-pill"
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      background:
+                        'linear-gradient(140deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.13) 100%)',
+                      border: '1px solid rgba(255,255,255,0.34)',
+                      boxShadow:
+                        '0 2px 12px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.40), inset 0 -1px 0 rgba(0,0,0,0.08)',
+                    }}
+                    transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+                  />
+                )}
+                <span className="relative z-10">{item.label}</span>
+              </button>
+            )
+          })}
+        </nav>
+      </motion.div>
     </>
   )
 }
