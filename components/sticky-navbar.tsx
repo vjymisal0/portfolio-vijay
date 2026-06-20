@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 const navItems = [
@@ -19,6 +20,18 @@ interface Props {
 }
 
 export default function StickyNavbar({ activeSection, onNavigate }: Props) {
+  const navRef = useRef<HTMLElement>(null)
+  const activeRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (activeRef.current && navRef.current) {
+      const nav = navRef.current
+      const btn = activeRef.current
+      const scrollLeft = btn.offsetLeft - nav.offsetWidth / 2 + btn.offsetWidth / 2
+      nav.scrollTo({ left: scrollLeft, behavior: 'smooth' })
+    }
+  }, [activeSection])
+
   return (
     <>
       {/* ── Desktop sidebar ── */}
@@ -54,13 +67,14 @@ export default function StickyNavbar({ activeSection, onNavigate }: Props) {
 
       {/* ── Mobile liquid glass floating bottom nav ── */}
       <motion.div
-        className="lg:hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-50"
+        className="lg:hidden fixed bottom-5 inset-x-0 z-50 flex justify-center px-4"
         initial={{ opacity: 0, y: 24, scale: 0.94 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
       >
         <nav
-          className="nav-scroll flex items-center gap-0.5 overflow-x-auto max-w-[92vw] rounded-full px-2 py-1.5"
+          ref={navRef}
+          className="nav-scroll flex items-center gap-0.5 overflow-x-auto max-w-full rounded-full px-2 py-1.5"
           style={{
             background: 'linear-gradient(160deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.06) 100%)',
             backdropFilter: 'blur(48px) saturate(200%) brightness(1.05)',
@@ -75,6 +89,7 @@ export default function StickyNavbar({ activeSection, onNavigate }: Props) {
             return (
               <button
                 key={item.id}
+                ref={isActive ? activeRef : null}
                 onClick={() => onNavigate(item.id)}
                 className="relative flex-shrink-0 px-3 py-1.5 rounded-full text-[11px] font-medium cursor-pointer whitespace-nowrap"
                 style={{
