@@ -77,3 +77,11 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.nav-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.nav-scroll::-webkit-scrollbar {
+  display: none;
+}

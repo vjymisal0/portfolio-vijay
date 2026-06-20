@@ -48,7 +48,8 @@ const itemVariants = {
 
 export default function Education() {
   return (
-    <section className="h-full flex flex-col justify-center py-6 px-4 overflow-y-auto">
+    <section className="h-full overflow-y-auto">
+      <div className="min-h-full flex flex-col justify-center py-6 px-4">
       <div className="container mx-auto max-w-2xl">
         <motion.h2
           className="text-2xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
@@ -81,21 +82,21 @@ export default function Education() {
 
                 {/* Card */}
                 <div className="flex-1 rounded-xl border border-border bg-card/40 hover:border-primary/30 hover:bg-card/70 transition-all duration-300 p-4 group">
-                  <div className="flex items-start justify-between gap-3 mb-2">
-                    <div className="min-w-0">
-                      <p className="text-[11px] font-mono text-muted-foreground/60 uppercase tracking-wider mb-0.5">
+                  <div className="mb-2">
+                    <div className="flex items-center justify-between gap-2 mb-0.5">
+                      <p className="text-[11px] font-mono text-muted-foreground/60 uppercase tracking-wider">
                         {edu.short}
                       </p>
-                      <h3 className="text-sm font-semibold leading-snug text-foreground group-hover:text-primary transition-colors">
-                        {edu.degree}
-                      </h3>
-                      <p className="text-sm text-muted-foreground mt-0.5 font-medium">
-                        {edu.institution}
-                      </p>
+                      <span className={`flex-shrink-0 text-xs px-2.5 py-0.5 rounded-full font-semibold ${edu.scoreColor}`}>
+                        {edu.score}
+                      </span>
                     </div>
-                    <span className={`flex-shrink-0 text-xs px-2.5 py-1 rounded-full font-semibold ${edu.scoreColor}`}>
-                      {edu.score}
-                    </span>
+                    <h3 className="text-sm font-semibold leading-snug text-foreground group-hover:text-primary transition-colors">
+                      {edu.degree}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mt-0.5 font-medium">
+                      {edu.institution}
+                    </p>
                   </div>
 
                   <div className="flex items-center gap-4 mt-3 pt-3 border-t border-border/50">
@@ -113,6 +114,7 @@ export default function Education() {
             ))}
           </motion.div>
         </div>
+      </div>
       </div>
     </section>
   )

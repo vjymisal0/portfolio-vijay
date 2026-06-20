@@ -1,8 +1,6 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const navItems = [
   { id: 'home', label: 'Home' },
@@ -21,13 +19,6 @@ interface Props {
 }
 
 export default function StickyNavbar({ activeSection, onNavigate }: Props) {
-  const [mobileOpen, setMobileOpen] = useState(false)
-
-  const handleNav = (id: string) => {
-    onNavigate(id)
-    setMobileOpen(false)
-  }
-
   return (
     <>
       {/* ── Desktop sidebar ── */}
@@ -46,7 +37,7 @@ export default function StickyNavbar({ activeSection, onNavigate }: Props) {
           {navItems.map((item) => (
             <motion.button
               key={item.id}
-              onClick={() => handleNav(item.id)}
+              onClick={() => onNavigate(item.id)}
               className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 cursor-pointer ${
                 activeSection === item.id
                   ? 'bg-primary text-primary-foreground'
@@ -61,61 +52,29 @@ export default function StickyNavbar({ activeSection, onNavigate }: Props) {
         </nav>
       </motion.aside>
 
-      {/* ── Mobile hamburger button ── */}
-      <motion.button
-        onClick={() => setMobileOpen(true)}
-        className="fixed top-4 right-4 z-50 lg:hidden w-10 h-10 rounded-xl border border-border bg-background/90 backdrop-blur-sm flex items-center justify-center text-foreground"
-        aria-label="Open menu"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
+      {/* ── Mobile / Tablet floating bottom pill nav ── */}
+      <motion.div
+        className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
       >
-        <Menu className="w-5 h-5" />
-      </motion.button>
-
-      {/* ── Mobile full-screen overlay ── */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            className="fixed inset-0 z-50 lg:hidden bg-background/98 backdrop-blur-md flex flex-col items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.18 }}
-          >
+        <nav className="nav-scroll flex items-center gap-0.5 bg-background/90 backdrop-blur-md border border-border/60 rounded-full px-2 py-1.5 shadow-xl overflow-x-auto max-w-[92vw]">
+          {navItems.map((item) => (
             <button
-              onClick={() => setMobileOpen(false)}
-              className="absolute top-4 right-4 w-10 h-10 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Close menu"
+              key={item.id}
+              onClick={() => onNavigate(item.id)}
+              className={`flex-shrink-0 px-2.5 py-1 rounded-full text-[11px] font-medium transition-colors duration-150 cursor-pointer whitespace-nowrap ${
+                activeSection === item.id
+                  ? 'bg-primary text-primary-foreground'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+              }`}
             >
-              <X className="w-5 h-5" />
+              {item.label}
             </button>
-
-            <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-8">
-              Portfolio
-            </p>
-
-            <nav className="flex flex-col items-center gap-1 w-full px-8">
-              {navItems.map((item, idx) => (
-                <motion.button
-                  key={item.id}
-                  onClick={() => handleNav(item.id)}
-                  className={`w-full max-w-xs text-center py-3 rounded-xl text-lg font-medium transition-colors ${
-                    activeSection === item.id
-                      ? 'bg-primary text-primary-foreground'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-accent'
-                  }`}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.04, duration: 0.18 }}
-                >
-                  {item.label}
-                </motion.button>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          ))}
+        </nav>
+      </motion.div>
     </>
   )
 }

@@ -41,9 +41,9 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="h-screen overflow-hidden flex bg-background text-foreground">
+    <div className="h-screen overflow-hidden flex flex-col lg:flex-row bg-background text-foreground">
       <StickyNavbar activeSection={activeSection} onNavigate={setActiveSection} />
-      <main className="flex-1 h-screen overflow-hidden relative">
+      <main className="flex-1 overflow-hidden relative pb-16 lg:pb-0">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSection}
