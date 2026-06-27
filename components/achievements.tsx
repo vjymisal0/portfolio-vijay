@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import ElasticScroll from '@/components/elastic-scroll'
 import { Trophy, Building2, Medal } from 'lucide-react'
 
 const achievements = [
@@ -16,8 +17,12 @@ const achievements = [
 
 export default function Achievements() {
   return (
-    <section className="h-full flex flex-col justify-center py-6 overflow-y-auto">
-      <div className="container mx-auto px-6 max-w-2xl">
+    <section className="h-full">
+      <ElasticScroll
+        className="h-full"
+        innerClassName="min-h-full flex flex-col justify-center py-6 px-6 pb-24 lg:pb-6"
+      >
+      <div className="container mx-auto max-w-2xl">
         <motion.h2
           className="text-2xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
           initial={{ opacity: 0, y: -14 }}
@@ -81,6 +86,7 @@ export default function Achievements() {
           ))}
         </motion.div>
       </div>
+      </ElasticScroll>
     </section>
   )
 }
