@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import ElasticScroll from '@/components/elastic-scroll'
 import { MapPin, CalendarDays } from 'lucide-react'
 
 const educationData = [
@@ -48,8 +49,11 @@ const itemVariants = {
 
 export default function Education() {
   return (
-    <section className="h-full overflow-y-auto">
-      <div className="min-h-full flex flex-col justify-center py-6 px-4">
+    <section className="h-full">
+      <ElasticScroll
+        className="h-full"
+        innerClassName="min-h-full flex flex-col justify-center py-6 px-4 pb-24 lg:pb-6"
+      >
       <div className="container mx-auto max-w-2xl">
         <motion.h2
           className="text-2xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
@@ -115,7 +119,7 @@ export default function Education() {
           </motion.div>
         </div>
       </div>
-      </div>
+      </ElasticScroll>
     </section>
   )
 }
