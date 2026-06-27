@@ -11,22 +11,27 @@ interface Props {
   innerClassName?: string
 }
 
+// Turn a raw pull distance (px) into a damped, rubbery offset.
+const damp = (raw: number) => Math.sign(raw) * Math.pow(Math.abs(raw), 0.82) * 0.5
+
 /**
  * A natively-scrolling container with a WhatsApp-style rubber-band overscroll:
  * pulling past the top or bottom stretches the content with diminishing
  * returns, and on release it springs back to where it was.
  *
  * The content is translated (not the scroller) so the scrollbar stays put and
- * normal scrolling is never touched — we only intercept the gesture once the
- * user is genuinely pulling past an edge.
+ * normal scrolling is never touched — we only intercept once the user is
+ * genuinely past an edge. Crucially the stretch is measured *incrementally from
+ * the edge*, so a tall, scrollable section feels exactly like a short one: you
+ * scroll to the end and the rubber-band starts from zero, instead of inheriting
+ * all the distance you already scrolled.
  */
-// Turn a raw pull distance (px) into a damped, rubbery offset.
-const damp = (raw: number) => Math.sign(raw) * Math.pow(Math.abs(raw), 0.82) * 0.5
-
 export default function ElasticScroll({ children, className = '', innerClassName = '' }: Props) {
   const scroller = useRef<HTMLDivElement>(null)
   const y = useMotionValue(0)
-  const startY = useRef(0)
+  // Touch state.
+  const lastY = useRef(0)
+  const pull = useRef(0) // signed overscroll accumulated since the edge
   const pulling = useRef(false)
   const tracking = useRef(false)
   // Wheel/trackpad state.
@@ -37,30 +42,54 @@ export default function ElasticScroll({ children, className = '', innerClassName
     const el = scroller.current
     if (!el) return
 
+    // A small tolerance is essential on the bottom edge: sub-pixel/fractional
+    // heights (from the gradient bg, padding, zoom) mean scrollTop+clientHeight
+    // can settle ~1px short of scrollHeight, so an exact compare would make the
+    // bottom rubber-band never trigger even though the top one does.
     const atTop = () => el.scrollTop <= 0
-    const atBottom = () => Math.ceil(el.scrollTop + el.clientHeight) >= el.scrollHeight
-
+    const atBottom = () => el.scrollHeight - (el.scrollTop + el.clientHeight) <= 2
     const springBack = () => animate(y, 0, { type: 'spring', stiffness: 380, damping: 30, mass: 0.6 })
 
     // ── Touch (mobile) ──
     const onStart = (e: TouchEvent) => {
-      startY.current = e.touches[0].clientY
-      tracking.current = true
+      lastY.current = e.touches[0].clientY
+      pull.current = 0
       pulling.current = false
+      tracking.current = true
     }
 
     const onMove = (e: TouchEvent) => {
       if (!tracking.current) return
-      const delta = e.touches[0].clientY - startY.current
+      const cy = e.touches[0].clientY
+      const dy = cy - lastY.current // incremental movement this frame
+      lastY.current = cy
 
-      if ((atTop() && delta > 0) || (atBottom() && delta < 0)) {
-        pulling.current = true
-        y.set(damp(delta))
+      if (pulling.current) {
+        const next = pull.current + dy
+        // Returned past the edge — hand control back to native scrolling.
+        if ((pull.current > 0 && next <= 0) || (pull.current < 0 && next >= 0)) {
+          pull.current = 0
+          pulling.current = false
+          y.set(0)
+          return
+        }
+        pull.current = next
+        y.set(damp(pull.current))
         e.preventDefault()
-      } else if (pulling.current) {
-        // Crossed back over the edge mid-gesture — snap content home.
-        pulling.current = false
-        y.set(0)
+        return
+      }
+
+      // Not stretching yet — only begin when sitting at an edge and pulling out.
+      if (atTop() && dy > 0) {
+        pulling.current = true
+        pull.current = dy
+        y.set(damp(pull.current))
+        e.preventDefault()
+      } else if (atBottom() && dy < 0) {
+        pulling.current = true
+        pull.current = dy
+        y.set(damp(pull.current))
+        e.preventDefault()
       }
     }
 
@@ -68,6 +97,7 @@ export default function ElasticScroll({ children, className = '', innerClassName
       tracking.current = false
       if (pulling.current) {
         pulling.current = false
+        pull.current = 0
         springBack()
       }
     }

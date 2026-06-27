@@ -90,6 +90,7 @@ body {
    Visible thin scrollbar + momentum scrolling, and contain overscroll
    so the elastic pull (see ElasticScroll) never bubbles to the page. */
 .section-scroll {
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: contain;
   scrollbar-width: thin;
@@ -107,4 +108,29 @@ body {
 }
 .section-scroll::-webkit-scrollbar-thumb:hover {
   background-color: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* ── Reliable, always-visible scroll (Skills / Projects) ──
+   Plain native scrolling with a prominent, always-present scrollbar so it's
+   obvious there's more content — no JS transform to get in the way. */
+.scroll-reliable {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary) / 0.5) hsl(var(--muted) / 0.25);
+}
+.scroll-reliable::-webkit-scrollbar {
+  width: 8px;
+}
+.scroll-reliable::-webkit-scrollbar-track {
+  background: hsl(var(--muted) / 0.2);
+  border-radius: 9999px;
+}
+.scroll-reliable::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--primary) / 0.45);
+  border-radius: 9999px;
+}
+.scroll-reliable::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--primary) / 0.7);
 }
