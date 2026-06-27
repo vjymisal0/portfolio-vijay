@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import ElasticScroll from "@/components/elastic-scroll"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink, MessageCircle, Syringe, ShoppingCart, Activity } from "lucide-react"
 import { BiNotepad } from "react-icons/bi"
@@ -104,11 +103,9 @@ export default function Projects() {
   const [selected, setSelected] = useState<(typeof projects)[0] | null>(null)
 
   return (
-    <section className="h-full bg-gradient-to-b from-background to-secondary/10">
-      <ElasticScroll
-        className="h-full py-5 pb-24 lg:pb-6"
-        innerClassName="container mx-auto px-4 sm:px-6"
-      >
+    <section className="relative h-full bg-gradient-to-b from-background to-secondary/10">
+      <div className="scroll-reliable h-full py-5 pb-28 lg:pb-6">
+        <div className="container mx-auto px-4 sm:px-6">
         <motion.h2
           className="text-2xl font-bold mb-5 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
           initial={{ opacity: 0, y: -14 }}
@@ -204,7 +201,10 @@ export default function Projects() {
             )
           })}
         </motion.div>
-      </ElasticScroll>
+        </div>
+      </div>
+      {/* "more content" fade hint at the bottom (mobile) */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background to-transparent lg:hidden" />
 
       <Dialog open={!!selected} onOpenChange={(open) => !open && setSelected(null)}>
         <DialogContent className="max-w-md">
