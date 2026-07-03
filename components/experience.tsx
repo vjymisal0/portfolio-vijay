@@ -11,17 +11,40 @@ type AnyIcon = IconType | LucideIcon
 
 const experiences = [
   {
-    role: 'Software Engineer',
+    role: 'SDE 1',
     product: 'LooprIQ Inspect — AI-powered visual inspection for industrial quality control',
     company: 'Loopr AI',
     award: 'GeekWire Startup of the Year 2026',
     location: 'Pune, India',
-    period: 'July 2025 – Present',
-    type: 'Internship',
+    period: 'July 2026 – Present',
+    type: 'Full-time',
     status: 'Current',
     statusColor: 'bg-emerald-500/15 text-emerald-400',
     accent: 'hover:border-emerald-500/30 hover:shadow-[0_0_24px_rgba(16,185,129,0.05)]',
     iconBg: 'bg-emerald-500/15 text-emerald-400',
+    bullets: [
+      'Converted from intern to full-time SDE 1 — continuing to own and ship platform features across the LooprIQ Inspect stack.',
+    ],
+    tech: [
+      { icon: SiReact as AnyIcon,      label: 'React' },
+      { icon: SiNestjs as AnyIcon,     label: 'NestJS' },
+      { icon: SiTypescript as AnyIcon, label: 'TypeScript' },
+      { icon: SiNodedotjs as AnyIcon,  label: 'Node.js' },
+    ],
+    index: '01',
+  },
+  {
+    role: 'SDE Intern',
+    product: 'LooprIQ Inspect — AI-powered visual inspection for industrial quality control',
+    company: 'Loopr AI',
+    award: '',
+    location: 'Pune, India',
+    period: 'July 2025 – June 2026',
+    type: 'Internship',
+    status: 'Completed',
+    statusColor: 'bg-sky-500/15 text-sky-400',
+    accent: 'hover:border-sky-500/30 hover:shadow-[0_0_24px_rgba(56,189,248,0.05)]',
+    iconBg: 'bg-sky-500/15 text-sky-400',
     bullets: [
       'Secured Engine APIs with JWT authentication and dynamic API key protection to prevent unauthorized external access.',
       'Migrated runtime feature flags to a database-backed PostHog system — enabling live feature toggles without redeployments.',
@@ -39,7 +62,7 @@ const experiences = [
       { icon: Activity,                label: 'PostHog' },
       { icon: Bot,                     label: 'n8n' },
     ],
-    index: '01',
+    index: '02',
   },
 ]
 
@@ -102,9 +125,11 @@ export default function Experience() {
                       </h3>
                       <div className="flex flex-wrap items-center gap-2 mt-0.5">
                         <p className="text-sm font-medium text-muted-foreground">{exp.company}</p>
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-400 font-medium">
-                          🏆 {exp.award}
-                        </span>
+                        {exp.award && (
+                          <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-400 font-medium">
+                            🏆 {exp.award}
+                          </span>
+                        )}
                       </div>
                       <p className="text-[11px] text-muted-foreground/50 mt-0.5 italic">{exp.product}</p>
                     </div>

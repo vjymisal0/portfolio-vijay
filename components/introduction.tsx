@@ -64,7 +64,7 @@ export default function Introduction() {
               className="text-base sm:text-lg text-muted-foreground mb-2"
               variants={itemVariants}
             >
-              SDE Intern at{' '}
+              SDE 1 at{' '}
               <span className="font-semibold text-foreground tracking-tight">
                 Loopr AI
               </span>
