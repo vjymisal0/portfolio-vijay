@@ -3,13 +3,15 @@
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import SectionTitle from "@/components/section-title"
-import { ExternalLink, MessageCircle, Syringe, ShoppingCart, Activity } from "lucide-react"
+import { ExternalLink, MessageCircle, Syringe, ShoppingCart, Activity, Lock, Images, ArrowLeft, Image as ImageIcon } from "lucide-react"
 import { BiNotepad } from "react-icons/bi"
 import { MdOutlineSportsCricket } from "react-icons/md"
 import { FaGithub } from "react-icons/fa"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { useState } from "react"
 
+// Drop screenshots into /public/projects/ using these file names and they
+// replace the placeholders automatically.
 const projects = [
   {
     title: "SCORE-GO",
@@ -18,6 +20,7 @@ const projects = [
     technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Express.js", "MongoDB"],
     link: "https://score-go.onrender.com/",
     github: "https://github.com/vjymisal0/SCORE-GO",
+    gallery: ["/projects/score-go-1.png", "/projects/score-go-2.png", "/projects/score-go-3.png"],
   },
   {
     title: "Chat + Sentiment Analysis",
@@ -26,6 +29,7 @@ const projects = [
     technologies: ["React", "Node.js", "Express.js", "Firebase", "sentiment.js"],
     link: "https://chat-app-sentiment.netlify.app/",
     github: "https://github.com/vjymisal0/Chat-App-with-Sentiment-Analysis",
+    gallery: ["/projects/chat-sentiment-1.png", "/projects/chat-sentiment-2.png", "/projects/chat-sentiment-3.png"],
   },
   {
     title: "Vaccine Management",
@@ -34,6 +38,7 @@ const projects = [
     technologies: ["Java", "Swing", "MySQL", "JDBC"],
     link: "#",
     github: "https://github.com/ITR-project-group/Vaccine_management_system",
+    gallery: ["/projects/vaccine-1.png", "/projects/vaccine-2.png", "/projects/vaccine-3.png"],
   },
   {
     title: "Smart Shopping Cart",
@@ -42,6 +47,7 @@ const projects = [
     technologies: ["Java", "Android", "Firebase", "Arduino", "ESP32"],
     link: "#",
     github: "https://github.com/vjymisal0/Smart-Shopping-Cart-IOT",
+    gallery: ["/projects/smart-cart-1.png", "/projects/smart-cart-2.png", "/projects/smart-cart-3.png"],
   },
   {
     title: "Get Notes",
@@ -50,6 +56,7 @@ const projects = [
     technologies: ["HTML", "CSS", "JavaScript", "Local Storage"],
     link: "https://vjymisal0.github.io/GetNotes/",
     github: "https://github.com/vjymisal0/GetNotes",
+    gallery: ["/projects/get-notes-1.png", "/projects/get-notes-2.png", "/projects/get-notes-3.png"],
   },
   {
     title: "Health Bites",
@@ -57,9 +64,12 @@ const projects = [
       "MERN wellness platform with Google Cloud Vision for AI food recognition, calorie tracking, meal planning, and Auth0 authentication.",
     technologies: ["React", "Node.js", "MongoDB", "Google Cloud Vision", "Auth0"],
     link: "https://health-bites-app.netlify.app/",
-    github: "https://github.com/vjymisal0/Phonebook-Management-PyQt5",
+    github: "https://github.com/vjymisal0/Health-Bites-Stunner",
+    gallery: ["/projects/health-bites-1.png", "/projects/health-bites-2.png", "/projects/health-bites-3.png"],
   },
 ]
+
+type Project = (typeof projects)[number]
 
 const techColor = (tech: string) => {
   const palette = [
@@ -100,8 +110,44 @@ const cardVariants = {
   visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 14, stiffness: 100 } },
 }
 
+function GalleryShot({ src, title, index, total }: { src: string; title: string; index: number; total: number }) {
+  const [failed, setFailed] = useState(false)
+
+  return (
+    <div className="relative flex-shrink-0 w-[85%] sm:w-[70%] aspect-video snap-center overflow-hidden rounded-lg border border-border bg-card/40">
+      {!failed ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={src}
+          alt={`${title} screenshot ${index}`}
+          loading="lazy"
+          onError={() => setFailed(true)}
+          className="h-full w-full object-cover"
+        />
+      ) : (
+        <div className="flex h-full w-full flex-col items-center justify-center gap-1.5 text-muted-foreground/50">
+          <ImageIcon className="h-6 w-6" />
+          <span className="text-[11px] font-medium">{title}</span>
+          <span className="text-[10px] text-muted-foreground/30">screenshot {index} / {total}</span>
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default function Projects() {
-  const [selected, setSelected] = useState<(typeof projects)[0] | null>(null)
+  const [selected, setSelected] = useState<Project | null>(null)
+  const [galleryOpen, setGalleryOpen] = useState(false)
+
+  const openProject = (project: Project) => {
+    setSelected(project)
+    setGalleryOpen(false)
+  }
+
+  const closeDialog = () => {
+    setSelected(null)
+    setGalleryOpen(false)
+  }
 
   return (
     <div>
@@ -119,7 +165,7 @@ export default function Projects() {
               <motion.div
                 key={project.title}
                 variants={cardVariants}
-                onClick={() => setSelected(project)}
+                onClick={() => openProject(project)}
                 className="group relative rounded-xl border border-border bg-card/40 hover:border-primary/40 hover:bg-card/70 hover:shadow-[0_0_24px_rgba(255,255,255,0.04)] transition-all duration-300 cursor-pointer p-4 flex flex-col gap-2.5"
               >
                 {/* Top row */}
@@ -173,7 +219,7 @@ export default function Projects() {
                     </a>
                   ) : (
                     <span className="flex items-center gap-1 text-[11px] text-muted-foreground/40">
-                      <ExternalLink className="w-3 h-3" /> N/A
+                      <Lock className="w-3 h-3" /> No demo
                     </span>
                   )}
                   <a
@@ -185,8 +231,8 @@ export default function Projects() {
                   >
                     <FaGithub className="w-3 h-3" /> Code
                   </a>
-                  <span className="ml-auto text-[11px] text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                    Details →
+                  <span className="ml-auto flex items-center gap-1 text-[11px] text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Images className="w-3 h-3" /> Gallery →
                   </span>
                 </div>
               </motion.div>
@@ -194,41 +240,82 @@ export default function Projects() {
           })}
         </motion.div>
 
-      <Dialog open={!!selected} onOpenChange={(open) => !open && setSelected(null)}>
-        <DialogContent className="max-w-md">
+      <Dialog open={!!selected} onOpenChange={(open) => !open && closeDialog()}>
+        <DialogContent className="max-w-lg">
           <DialogHeader>
-            <DialogTitle>{selected?.title}</DialogTitle>
+            <DialogTitle className="flex items-center gap-2">
+              {selected?.title}
+            </DialogTitle>
           </DialogHeader>
-          <DialogDescription className="text-foreground/80 leading-relaxed">
-            {selected?.description}
-          </DialogDescription>
-          <div className="flex flex-wrap gap-1.5 mt-3">
-            {selected?.technologies.map((tech) => (
-              <Badge key={tech} variant="secondary" className={`text-xs ${techColor(tech)}`}>
-                {tech}
-              </Badge>
-            ))}
-          </div>
-          <div className="flex gap-3 mt-4">
-            {selected?.link !== "#" && (
-              <a
-                href={selected?.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-sm text-primary hover:underline"
+
+          {galleryOpen ? (
+            /* ── Gallery view ── */
+            <div>
+              <button
+                type="button"
+                onClick={() => setGalleryOpen(false)}
+                className="mb-3 inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
               >
-                <ExternalLink className="w-4 h-4" /> View Live
-              </a>
-            )}
-            <a
-              href={selected?.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-primary hover:underline"
-            >
-              <FaGithub className="w-4 h-4" /> GitHub
-            </a>
-          </div>
+                <ArrowLeft className="w-3.5 h-3.5" /> Back to details
+              </button>
+
+              <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2 nav-scroll">
+                {selected?.gallery?.map((src, i) => (
+                  <GalleryShot
+                    key={src}
+                    src={src}
+                    title={selected.title}
+                    index={i + 1}
+                    total={selected.gallery.length}
+                  />
+                ))}
+              </div>
+              <p className="mt-1 text-[11px] text-muted-foreground/50">Scroll sideways to see more →</p>
+            </div>
+          ) : (
+            /* ── Details view ── */
+            <>
+              <DialogDescription className="text-foreground/80 leading-relaxed">
+                {selected?.description}
+              </DialogDescription>
+              <div className="flex flex-wrap gap-1.5 mt-3">
+                {selected?.technologies.map((tech) => (
+                  <Badge key={tech} variant="secondary" className={`text-xs ${techColor(tech)}`}>
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
+              <div className="flex flex-wrap items-center gap-4 mt-4">
+                {selected?.link !== "#" && (
+                  <a
+                    href={selected?.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-sm text-primary hover:underline"
+                  >
+                    <ExternalLink className="w-4 h-4" /> View Live
+                  </a>
+                )}
+                <a
+                  href={selected?.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-sm text-primary hover:underline"
+                >
+                  <FaGithub className="w-4 h-4" /> GitHub
+                </a>
+                {selected?.gallery && selected.gallery.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setGalleryOpen(true)}
+                    className="flex items-center gap-1.5 text-sm text-primary hover:underline cursor-pointer"
+                  >
+                    <Images className="w-4 h-4" /> Gallery
+                  </button>
+                )}
+              </div>
+            </>
+          )}
         </DialogContent>
       </Dialog>
     </div>
