@@ -2,6 +2,7 @@
 
 import Skills from '@/components/skills'
 import Projects from '@/components/projects'
+import ProjectGallery from '@/components/project-gallery'
 import Education from '@/components/education'
 
 export default function Work() {
@@ -11,6 +12,7 @@ export default function Work() {
         <div className="container mx-auto px-4 sm:px-6 space-y-16">
           <Skills />
           <Projects />
+          <ProjectGallery />
           <Education />
         </div>
       </div>
