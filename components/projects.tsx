@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
+import SectionTitle from "@/components/section-title"
 import { ExternalLink, MessageCircle, Syringe, ShoppingCart, Activity } from "lucide-react"
 import { BiNotepad } from "react-icons/bi"
 import { MdOutlineSportsCricket } from "react-icons/md"
@@ -104,14 +105,7 @@ export default function Projects() {
 
   return (
     <div>
-        <motion.h2
-          className="text-2xl font-bold mb-5 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
-          initial={{ opacity: 0, y: -14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          Projects
-        </motion.h2>
+        <SectionTitle className="mb-5">Projects</SectionTitle>
 
         <motion.div
           className="grid gap-3 md:grid-cols-2 lg:grid-cols-3"

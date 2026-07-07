@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import ElasticScroll from '@/components/elastic-scroll'
+import SectionTitle from '@/components/section-title'
 import { Briefcase, MapPin, CalendarDays, ShieldCheck, Bot, Activity } from 'lucide-react'
 import { SiReact, SiNestjs, SiTypescript, SiNodedotjs } from 'react-icons/si'
 import type { IconType } from 'react-icons'
@@ -86,14 +87,7 @@ export default function Experience() {
         innerClassName="min-h-full flex flex-col justify-center py-6 px-4 pb-24 lg:pb-6"
       >
       <div className="container mx-auto max-w-2xl">
-        <motion.h2
-          className="text-2xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
-          initial={{ opacity: 0, y: -14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          Experience
-        </motion.h2>
+        <SectionTitle className="mb-6">Experience</SectionTitle>
 
         <div className="relative">
           <div className="absolute left-[19px] top-3 bottom-3 w-px bg-border" />

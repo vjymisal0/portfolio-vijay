@@ -1,7 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Server, GitBranch, Bot, Zap } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Server, GitBranch, Bot, Zap, ChevronDown } from 'lucide-react'
 import {
   SiOpenjdk, SiPython, SiJavascript, SiTypescript,
   SiHtml5, SiCss3, SiTailwindcss, SiReact, SiNextdotjs,
@@ -107,17 +108,40 @@ const cardVariants = {
 }
 
 export default function Skills() {
+  const [open, setOpen] = useState(false)
+
   return (
     <div>
-        <motion.h2
-          className="text-2xl font-bold mb-5 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+        <motion.div
+          className="flex flex-col items-center mb-5"
           initial={{ opacity: 0, y: -14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
-          Skills
-        </motion.h2>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            className="group flex items-center gap-2 text-2xl font-bold tracking-tight text-foreground cursor-pointer"
+          >
+            Skills
+            <ChevronDown
+              className={`w-5 h-5 text-muted-foreground transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
+            />
+          </button>
+          <span className="mt-2 h-[3px] w-10 rounded-full bg-gradient-to-r from-primary via-primary/70 to-primary/20" />
+        </motion.div>
 
+        <AnimatePresence initial={false}>
+        {open && (
+        <motion.div
+          key="skills-grid"
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 'auto', opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+          className="overflow-hidden"
+        >
         <motion.div
           className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
           variants={containerVariants}
@@ -164,6 +188,9 @@ export default function Skills() {
             )
           })}
         </motion.div>
+        </motion.div>
+        )}
+        </AnimatePresence>
     </div>
   )
 }
