@@ -3,9 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Introduction from '@/components/introduction'
-import Skills from '@/components/skills'
-import Projects from '@/components/projects'
-import Education from '@/components/education'
+import Work from '@/components/work'
 import Experience from '@/components/experience'
 import StickyNavbar from '@/components/sticky-navbar'
 
@@ -13,9 +11,7 @@ function SectionContent({ id }: { id: string }) {
   switch (id) {
     case 'home':         return <Introduction />
     case 'experience':   return <Experience />
-    case 'skills':       return <Skills />
-    case 'education':    return <Education />
-    case 'projects':     return <Projects />
+    case 'work':         return <Work />
     default: return null
   }
 }
