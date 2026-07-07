@@ -9,9 +9,6 @@ const navItems = [
   { id: 'skills', label: 'Skills' },
   { id: 'education', label: 'Education' },
   { id: 'projects', label: 'Projects' },
-  { id: 'achievements', label: 'Achievements' },
-  { id: 'courses', label: 'Courses' },
-  { id: 'contact', label: 'Contact' },
 ]
 
 interface Props {

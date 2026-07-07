@@ -5,13 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Introduction from '@/components/introduction'
 import Skills from '@/components/skills'
 import Projects from '@/components/projects'
-import Achievements from '@/components/achievements'
-import CoursesAndCertifications from '@/components/courses-certifications'
 import Education from '@/components/education'
 import Experience from '@/components/experience'
-import Contact from '@/components/contact'
 import StickyNavbar from '@/components/sticky-navbar'
-import Footer from '@/components/footer'
 
 function SectionContent({ id }: { id: string }) {
   switch (id) {
@@ -20,15 +16,6 @@ function SectionContent({ id }: { id: string }) {
     case 'skills':       return <Skills />
     case 'education':    return <Education />
     case 'projects':     return <Projects />
-    case 'achievements': return <Achievements />
-    case 'courses':      return <CoursesAndCertifications />
-    case 'contact':
-      return (
-        <div className="h-full flex flex-col">
-          <div className="flex-grow"><Contact /></div>
-          <Footer />
-        </div>
-      )
     default: return null
   }
 }
