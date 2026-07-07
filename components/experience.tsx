@@ -24,12 +24,14 @@ const experiences = [
     iconBg: 'bg-emerald-500/15 text-emerald-400',
     bullets: [
       'Converted from intern to full-time SDE 1 — continuing to own and ship platform features across the LooprIQ Inspect stack.',
+      'Built an n8n workflow to automate performance monitoring of the platform — surfacing key metrics without manual checks.',
     ],
     tech: [
       { icon: SiReact as AnyIcon,      label: 'React' },
       { icon: SiNestjs as AnyIcon,     label: 'NestJS' },
       { icon: SiTypescript as AnyIcon, label: 'TypeScript' },
       { icon: SiNodedotjs as AnyIcon,  label: 'Node.js' },
+      { icon: Bot,                     label: 'n8n' },
     ],
     index: '01',
   },
