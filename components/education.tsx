@@ -1,8 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import ElasticScroll from '@/components/elastic-scroll'
 import { MapPin, CalendarDays } from 'lucide-react'
+import SectionTitle from '@/components/section-title'
 
 const educationData = [
   {
@@ -49,20 +49,8 @@ const itemVariants = {
 
 export default function Education() {
   return (
-    <section className="h-full">
-      <ElasticScroll
-        className="h-full"
-        innerClassName="min-h-full flex flex-col justify-center py-6 px-4 pb-24 lg:pb-6"
-      >
-      <div className="container mx-auto max-w-2xl">
-        <motion.h2
-          className="text-2xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
-          initial={{ opacity: 0, y: -14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          Education
-        </motion.h2>
+    <div className="max-w-2xl mx-auto">
+        <SectionTitle className="mb-8">Education</SectionTitle>
 
         {/* Timeline */}
         <div className="relative">
@@ -118,8 +106,6 @@ export default function Education() {
             ))}
           </motion.div>
         </div>
-      </div>
-      </ElasticScroll>
-    </section>
+    </div>
   )
 }
