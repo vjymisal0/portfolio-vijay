@@ -47,7 +47,7 @@ export default function Introduction() {
               variants={itemVariants}
               className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-4"
             >
-              Full-Stack Developer
+              SOFTWARE ENGINEER
             </motion.span>
 
             <motion.h1
