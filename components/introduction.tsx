@@ -75,8 +75,10 @@ export default function Introduction() {
               className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-8 max-w-md mx-auto lg:mx-0"
               variants={itemVariants}
             >
-              Passionate about creating elegant solutions to complex problems.
-              I build scalable web applications with React, Node.js, and cloud technologies.
+              I build and ship full-stack features for LooprIQ Inspect, an AI-powered
+              visual inspection platform — from secure APIs to feature flags, telemetry,
+              and workflow automation. I like turning ambiguous problems into reliable,
+              well-crafted software.
             </motion.p>
 
             <motion.div
