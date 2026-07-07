@@ -9,7 +9,7 @@ import {
   SiNestjs, SiNodedotjs, SiExpress, SiGraphql, SiFlask,
   SiMongodb, SiFirebase, SiMysql,
   SiAmazonwebservices, SiVercel, SiNetlify, SiDocker,
-  SiGit, SiGithub,
+  SiGit, SiGithub, SiRender,
 } from 'react-icons/si'
 import type { IconType } from 'react-icons'
 import type { LucideIcon } from 'lucide-react'
@@ -36,6 +36,7 @@ const skillIcons: Record<string, AnyIcon> = {
   'Firebase':      SiFirebase,
   'MySQL':         SiMysql,
   'AWS':           SiAmazonwebservices,
+  'Render':        SiRender,
   'Vercel':        SiVercel,
   'Netlify':       SiNetlify,
   'Docker':        SiDocker,
