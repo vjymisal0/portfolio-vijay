@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { MapPin, CalendarDays } from 'lucide-react'
+import SectionTitle from '@/components/section-title'
 
 const educationData = [
   {
@@ -49,14 +50,7 @@ const itemVariants = {
 export default function Education() {
   return (
     <div className="max-w-2xl mx-auto">
-        <motion.h2
-          className="text-2xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
-          initial={{ opacity: 0, y: -14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          Education
-        </motion.h2>
+        <SectionTitle className="mb-8">Education</SectionTitle>
 
         {/* Timeline */}
         <div className="relative">
