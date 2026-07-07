@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaEnvelope, FaDownload } from 'react-icons/fa'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 const containerVariants = {
@@ -32,9 +32,10 @@ const photoVariants = {
 
 export default function Introduction() {
   return (
-    <section className="h-full flex items-center bg-gradient-to-br from-background via-background to-secondary/10">
-      <div className="container mx-auto px-6 lg:px-12">
-        <div className="flex flex-col-reverse lg:flex-row items-center gap-6 sm:gap-8 lg:gap-16">
+    <section className="h-full overflow-y-auto bg-gradient-to-br from-background via-background to-secondary/10">
+      <div className="min-h-full flex items-center">
+        <div className="container mx-auto px-6 lg:px-12 py-10">
+          <div className="flex flex-col-reverse lg:flex-row items-center gap-6 sm:gap-8 lg:gap-16">
 
           {/* Text content */}
           <motion.div
@@ -79,9 +80,16 @@ export default function Introduction() {
             </motion.p>
 
             <motion.div
-              className="flex items-center justify-center lg:justify-start gap-3"
+              className="flex items-center justify-center lg:justify-start gap-3 flex-wrap"
               variants={itemVariants}
             >
+              <a
+                href="/resume.pdf"
+                download
+                className="inline-flex items-center gap-2 h-11 px-4 rounded-xl bg-primary text-primary-foreground text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
+              >
+                <FaDownload className="w-4 h-4" /> Download CV
+              </a>
               {[
                 {
                   icon: FaGithub,
@@ -141,6 +149,7 @@ export default function Introduction() {
             </div>
           </motion.div>
 
+          </div>
         </div>
       </div>
     </section>

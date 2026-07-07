@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import SectionTitle from "@/components/section-title"
-import { ExternalLink, MessageCircle, Syringe, ShoppingCart, Activity } from "lucide-react"
+import { ExternalLink, MessageCircle, Syringe, ShoppingCart, Activity, Lock } from "lucide-react"
 import { BiNotepad } from "react-icons/bi"
 import { MdOutlineSportsCricket } from "react-icons/md"
 import { FaGithub } from "react-icons/fa"
@@ -57,7 +57,7 @@ const projects = [
       "MERN wellness platform with Google Cloud Vision for AI food recognition, calorie tracking, meal planning, and Auth0 authentication.",
     technologies: ["React", "Node.js", "MongoDB", "Google Cloud Vision", "Auth0"],
     link: "https://health-bites-app.netlify.app/",
-    github: "https://github.com/vjymisal0/Phonebook-Management-PyQt5",
+    github: "https://github.com/vjymisal0/Health-Bites-Stunner",
   },
 ]
 
@@ -173,7 +173,7 @@ export default function Projects() {
                     </a>
                   ) : (
                     <span className="flex items-center gap-1 text-[11px] text-muted-foreground/40">
-                      <ExternalLink className="w-3 h-3" /> N/A
+                      <Lock className="w-3 h-3" /> No demo
                     </span>
                   )}
                   <a
