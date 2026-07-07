@@ -237,6 +237,6 @@ export default function Projects() {
           </div>
         </DialogContent>
       </Dialog>
-    </section>
+    </div>
   )
 }
