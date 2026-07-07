@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 const navItems = [
   { id: 'home', label: 'Home' },
   { id: 'experience', label: 'Experience' },
-  { id: 'work', label: 'Work' },
+  { id: 'work', label: 'Background' },
 ]
 
 interface Props {
