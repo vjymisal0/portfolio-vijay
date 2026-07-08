@@ -6,7 +6,6 @@ import Introduction from '@/components/introduction'
 import Work from '@/components/work'
 import Experience from '@/components/experience'
 import StickyNavbar from '@/components/sticky-navbar'
-import ThemeToggle from '@/components/theme-toggle'
 
 const SECTIONS = ['home', 'experience', 'work'] as const
 type SectionId = (typeof SECTIONS)[number]
@@ -49,7 +48,6 @@ export default function Home() {
   return (
     <div className="h-screen overflow-hidden flex flex-col lg:flex-row bg-background text-foreground">
       <StickyNavbar activeSection={activeSection} onNavigate={handleNavigate} />
-      <ThemeToggle className="fixed top-4 right-4 z-50" />
       <main className="flex-1 overflow-hidden relative pb-16 lg:pb-0">
         <AnimatePresence mode="wait">
           <motion.div

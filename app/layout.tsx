@@ -1,7 +1,6 @@
 import './globals.css'
 import { Poppins } from 'next/font/google'
 import { Metadata } from 'next'
-import { ThemeProvider } from '@/components/theme-provider'
 import Clarity from '@/components/clarity'
 
 const poppins = Poppins({
@@ -67,11 +66,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark">
       <body className={poppins.className}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          {children}
-        </ThemeProvider>
+        {children}
         <Clarity />
       </body>
     </html>
