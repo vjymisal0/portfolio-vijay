@@ -38,7 +38,7 @@ export default function PostContent({ post }: { post: Post }) {
           </div>
         )}
       </header>
-      <div className="prose dark:prose-invert max-w-none prose-headings:tracking-tight prose-headings:font-semibold prose-a:text-primary prose-p:leading-relaxed">
+      <div className="prose prose-invert max-w-none prose-headings:tracking-tight prose-headings:font-semibold prose-a:text-primary prose-p:leading-relaxed">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>
           {post.markdown}
         </ReactMarkdown>

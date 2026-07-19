@@ -25,7 +25,6 @@
     "framer-motion": "^11.15.0",
     "lucide-react": "^0.469.0",
     "next": "^16.2.9",
-    "next-themes": "^0.4.4",
     "nodemailer": "^6.9.16",
     "notion-to-md": "^3.1.9",
     "react": "^19.0.0",
