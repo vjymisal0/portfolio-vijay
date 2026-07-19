@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google'
 import { Metadata } from 'next'
 import { ThemeProvider } from '@/components/theme-provider'
 import Clarity from '@/components/clarity'
+import SiteShell from '@/components/site-shell'
 
 const poppins = Poppins({
   weight: ['400', '600', '700'],
@@ -70,7 +71,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={poppins.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          {children}
+          <SiteShell>{children}</SiteShell>
         </ThemeProvider>
         <Clarity />
       </body>

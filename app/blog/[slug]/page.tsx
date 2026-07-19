@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
+import { ArrowLeft } from 'lucide-react'
 import { notFound } from 'next/navigation'
 import { getAllPosts, getPostBySlug } from '@/lib/notion'
 import PostContent from '@/components/blog/post-content'
@@ -40,8 +42,17 @@ export default async function BlogPostPage({
   if (!post) notFound()
 
   return (
-    <article className="container mx-auto px-4 sm:px-6 py-16 max-w-2xl">
-      <PostContent post={post} />
-    </article>
+    <div className="section-scroll relative h-full">
+      <article className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 pb-28 lg:pb-16 max-w-2xl">
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground mb-8"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" />
+          Writings &amp; Learnings
+        </Link>
+        <PostContent post={post} />
+      </article>
+    </div>
   )
 }
