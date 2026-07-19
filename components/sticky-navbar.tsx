@@ -9,7 +9,7 @@ import { Home, UserRound, FolderKanban, PenLine } from 'lucide-react'
 const sectionItems = [
   { id: 'home', label: 'Home', icon: Home },
   { id: 'experience', label: 'Experience', icon: UserRound },
-  { id: 'work', label: 'Projects', icon: FolderKanban },
+  { id: 'work', label: 'Background', icon: FolderKanban },
 ]
 
 const blogItem = { id: 'blog', label: 'Writings', icon: PenLine }
