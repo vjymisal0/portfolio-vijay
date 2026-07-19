@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 
 const navItems = [
@@ -57,6 +58,12 @@ export default function StickyNavbar({ activeSection, onNavigate }: Props) {
               {item.label}
             </motion.button>
           ))}
+          <Link
+            href="/blog"
+            className="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 text-muted-foreground hover:text-foreground hover:bg-accent"
+          >
+            Writings
+          </Link>
         </nav>
       </motion.aside>
 
@@ -110,6 +117,13 @@ export default function StickyNavbar({ activeSection, onNavigate }: Props) {
               </button>
             )
           })}
+          <Link
+            href="/blog"
+            className="relative flex-shrink-0 px-3 py-1.5 rounded-full text-[11px] font-medium whitespace-nowrap"
+            style={{ color: 'rgba(255,255,255,0.42)', transition: 'color 0.2s ease' }}
+          >
+            Writings
+          </Link>
         </nav>
       </motion.div>
     </>
