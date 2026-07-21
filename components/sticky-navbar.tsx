@@ -19,15 +19,25 @@ export default function StickyNavbar() {
   const pathname = usePathname()
   const [hash, setHash] = useState('home')
 
+  const onBlog = pathname.startsWith('/blog')
+
+  // Re-read the hash on every route change (not just mount) so the highlight
+  // updates when returning from /blog to a '/#section' — a client navigation
+  // that never fires 'hashchange'.
   useEffect(() => {
     const applyHash = () => setHash(window.location.hash.replace('#', '') || 'home')
     applyHash()
     window.addEventListener('hashchange', applyHash)
     return () => window.removeEventListener('hashchange', applyHash)
-  }, [])
+  }, [pathname])
 
-  const onBlog = pathname.startsWith('/blog')
   const activeId = onBlog ? 'blog' : pathname === '/' ? hash : ''
+
+  // Leaving /blog via client-side nav, the home page can't rely on the hash
+  // being applied before it mounts, so hand off the target section explicitly.
+  const gotoSection = (id: string) => {
+    if (onBlog) sessionStorage.setItem('goto-section', id)
+  }
 
   // Keep the active pill centered in the mobile scroller.
   useEffect(() => {
@@ -80,7 +90,12 @@ export default function StickyNavbar() {
               </>
             )
             return onBlog ? (
-              <Link key={item.id} href={`/#${item.id}`} className={desktopClass(isActive)}>
+              <Link
+                key={item.id}
+                href={`/#${item.id}`}
+                onClick={() => gotoSection(item.id)}
+                className={desktopClass(isActive)}
+              >
                 {content}
               </Link>
             ) : (
@@ -139,6 +154,7 @@ export default function StickyNavbar() {
                 key={item.id}
                 ref={isActive ? activeRef : null}
                 href={`/#${item.id}`}
+                onClick={() => gotoSection(item.id)}
                 className={mobileClass(isActive)}
               >
                 {content}
