@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { getAllPosts } from '@/lib/posts'
-import SectionTitle from '@/components/section-title'
-import BlogCard from '@/components/blog/blog-card'
+import WritingList from '@/components/blog/writing-list'
 
 export const revalidate = 60
 
@@ -14,23 +13,29 @@ export default async function BlogPage() {
   const posts = await getAllPosts()
 
   return (
-    <section className="section-scroll relative h-full bg-gradient-to-b from-background to-secondary/10">
-      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 pb-28 lg:pb-16 space-y-3">
-        <SectionTitle>Writings &amp; Learnings</SectionTitle>
-        <p className="text-center text-sm text-muted-foreground max-w-md mx-auto">
-          Posts and short notes on what I&apos;m building and learning.
-        </p>
+    <section className="section-scroll relative h-full">
+      <div className="mx-auto max-w-2xl px-5 py-16 pb-28 sm:px-6 sm:py-20 lg:pb-20">
+        {/* Masthead */}
+        <header>
+          <p className="font-sans text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
+            Vijay Misal
+          </p>
+          <h1 className="mt-4 font-display text-5xl font-normal leading-[0.95] tracking-tight text-foreground sm:text-6xl">
+            Writings
+            <span className="block italic text-muted-foreground">&amp; learnings</span>
+          </h1>
+          <p className="mt-5 max-w-md font-reading text-lg leading-relaxed text-muted-foreground">
+            A working notebook — longer posts on what I build, and shorter notes
+            on what I&apos;m still figuring out.
+          </p>
+        </header>
 
         {posts.length === 0 ? (
-          <p className="text-center text-muted-foreground pt-10">
-            No posts yet — check back soon.
+          <p className="mt-16 border-t border-border pt-16 text-center font-reading text-muted-foreground">
+            Nothing published yet — check back soon.
           </p>
         ) : (
-          <div className="grid gap-5 sm:grid-cols-2 pt-8 max-w-3xl mx-auto">
-            {posts.map((post) => (
-              <BlogCard key={post.id} post={post} />
-            ))}
-          </div>
+          <WritingList posts={posts} />
         )}
       </div>
     </section>
