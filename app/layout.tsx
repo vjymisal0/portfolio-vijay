@@ -6,6 +6,7 @@ const poppins = Poppins({
   weight: ['400', '600', '700'],
   subsets: ['latin'],
   display: 'swap',
+  variable: '--font-sans',
 })
 
 const siteUrl = 'https://vijaymisal.vercel.app'
@@ -65,7 +66,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className={`dark ${poppins.variable}`}>
       <body className={poppins.className}>{children}</body>
     </html>
   )

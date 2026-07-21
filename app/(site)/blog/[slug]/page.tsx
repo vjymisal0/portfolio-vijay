@@ -43,16 +43,16 @@ export default async function BlogPostPage({
 
   return (
     <div className="section-scroll relative h-full">
-      <article className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 pb-28 lg:pb-16 max-w-2xl">
+      <div className="mx-auto max-w-2xl px-5 py-12 pb-28 sm:px-6 sm:py-16 lg:pb-20">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground mb-8"
+          className="group mb-10 inline-flex items-center gap-1.5 font-sans text-[11px] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
-          Writings &amp; Learnings
+          <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
+          Writings
         </Link>
         <PostContent post={post} />
-      </article>
+      </div>
     </div>
   )
 }
