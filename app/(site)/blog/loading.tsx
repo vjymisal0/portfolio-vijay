@@ -1,27 +1,28 @@
 export default function BlogLoading() {
   return (
-    <section className="section-scroll relative h-full bg-gradient-to-b from-background to-secondary/10">
-      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 pb-28 lg:pb-16 space-y-3">
-        <div className="flex flex-col items-center animate-pulse">
-          <div className="h-7 w-56 rounded bg-muted" />
-          <span className="mt-2 h-[3px] w-10 rounded-full bg-gradient-to-r from-primary via-primary/70 to-primary/20" />
+    <section className="section-scroll relative h-full">
+      <div className="mx-auto max-w-2xl px-5 py-16 pb-28 sm:px-6 sm:py-20 lg:pb-20">
+        <div className="animate-pulse">
+          <div className="h-3 w-24 rounded bg-muted" />
+          <div className="mt-5 h-12 w-64 rounded bg-muted" />
+          <div className="mt-3 h-12 w-48 rounded bg-muted" />
+          <div className="mt-6 h-4 w-80 max-w-full rounded bg-muted" />
         </div>
-        <div className="h-4 w-64 rounded bg-muted mx-auto animate-pulse" />
 
-        <div className="grid gap-5 sm:grid-cols-2 pt-8 max-w-3xl mx-auto">
+        <div className="mt-14">
           {Array.from({ length: 4 }).map((_, i) => (
             <div
               key={i}
-              className="rounded-xl border border-border/80 p-4 space-y-3 animate-pulse"
-              style={{ animationDelay: `${i * 80}ms` }}
+              className="grid grid-cols-[3.25rem_1fr] gap-4 border-t border-border py-7 sm:grid-cols-[4.5rem_1fr] sm:gap-8"
             >
-              <div className="h-3 w-20 rounded bg-muted" />
-              <div className="h-4 w-4/5 rounded bg-muted" />
-              <div className="h-3 w-full rounded bg-muted" />
-              <div className="h-3 w-2/3 rounded bg-muted" />
-              <div className="flex gap-1.5 pt-1">
-                <div className="h-4 w-16 rounded-full bg-muted" />
-                <div className="h-4 w-12 rounded-full bg-muted" />
+              <div className="animate-pulse space-y-1.5 pt-1" style={{ animationDelay: `${i * 80}ms` }}>
+                <div className="h-2.5 w-8 rounded bg-muted" />
+                <div className="h-2.5 w-8 rounded bg-muted" />
+              </div>
+              <div className="animate-pulse space-y-3" style={{ animationDelay: `${i * 80}ms` }}>
+                <div className="h-6 w-3/4 rounded bg-muted" />
+                <div className="h-3.5 w-full rounded bg-muted" />
+                <div className="h-3.5 w-2/3 rounded bg-muted" />
               </div>
             </div>
           ))}
