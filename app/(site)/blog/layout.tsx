@@ -1,11 +1,12 @@
-import { Fraunces, Newsreader } from 'next/font/google'
+import { Instrument_Serif, Newsreader } from 'next/font/google'
 
-// The writings section speaks in a different voice than the portfolio chrome:
-// prose, not résumé. These serif faces are scoped to /blog only — the rest of
-// the site stays in Poppins.
-const fraunces = Fraunces({
+// Field Notes speaks in a different voice than the portfolio chrome: prose,
+// not résumé. These serif faces are scoped to /blog only — the rest of the
+// site stays in Poppins. Instrument Serif (elegant, high-contrast) carries the
+// display; Newsreader is tuned for comfortable long-form reading.
+const displaySerif = Instrument_Serif({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: '400',
   style: ['normal', 'italic'],
   variable: '--font-display',
   display: 'swap',
@@ -25,7 +26,7 @@ export default function BlogLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className={`${fraunces.variable} ${newsreader.variable} h-full`}>
+    <div className={`${displaySerif.variable} ${newsreader.variable} h-full`}>
       {children}
     </div>
   )

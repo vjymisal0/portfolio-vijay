@@ -3,7 +3,7 @@ import { getAllPosts } from '@/lib/posts'
 import WritingList from '@/components/blog/writing-list'
 
 export const metadata: Metadata = {
-  title: 'Writings & Learnings',
+  title: 'Field Notes',
   description: 'Posts and short notes on what I’m building and learning.',
 }
 
@@ -25,9 +25,9 @@ export default async function BlogPage() {
 
         {/* Masthead */}
         <header className="pt-10">
-          <h1 className="font-display text-[3.25rem] font-normal leading-[0.92] tracking-tight text-foreground sm:text-7xl">
-            Writings
-            <span className="block italic text-muted-foreground">&amp; learnings</span>
+          <h1 className="font-display text-6xl font-normal leading-[0.9] tracking-tight text-foreground sm:text-8xl">
+            Field
+            <span className="block italic text-muted-foreground">Notes</span>
           </h1>
           <p className="mt-6 max-w-md font-reading text-lg leading-relaxed text-muted-foreground">
             A working notebook — longer posts on what I build, and shorter notes
