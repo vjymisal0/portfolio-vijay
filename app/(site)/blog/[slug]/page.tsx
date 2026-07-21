@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { notFound } from 'next/navigation'
-import { getAllPosts, getPostBySlug } from '@/lib/notion'
+import { getAllPosts, getPostBySlug } from '@/lib/posts'
 import PostContent from '@/components/blog/post-content'
 
 export const revalidate = 60

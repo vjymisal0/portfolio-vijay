@@ -1,8 +1,6 @@
 import './globals.css'
 import { Poppins } from 'next/font/google'
 import { Metadata } from 'next'
-import Clarity from '@/components/clarity'
-import SiteShell from '@/components/site-shell'
 
 const poppins = Poppins({
   weight: ['400', '600', '700'],
@@ -68,10 +66,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={poppins.className}>
-        <SiteShell>{children}</SiteShell>
-        <Clarity />
-      </body>
+      <body className={poppins.className}>{children}</body>
     </html>
   )
 }
