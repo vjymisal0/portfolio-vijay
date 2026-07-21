@@ -5,8 +5,6 @@ import { notFound } from 'next/navigation'
 import { getAllPosts, getPostBySlug } from '@/lib/posts'
 import PostContent from '@/components/blog/post-content'
 
-export const revalidate = 60
-
 export async function generateStaticParams() {
   const posts = await getAllPosts()
   return posts.map((post) => ({ slug: post.slug }))
