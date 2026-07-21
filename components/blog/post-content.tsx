@@ -79,7 +79,7 @@ export default function PostContent({ post }: { post: Post }) {
           className="group inline-flex items-center gap-1.5 font-sans text-[11px] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
         >
           <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
-          All writings
+          All notes
         </Link>
         <span className="font-sans text-[11px] uppercase tracking-[0.2em] text-muted-foreground/60">
           Vijay Misal

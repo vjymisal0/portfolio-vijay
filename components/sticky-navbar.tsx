@@ -11,7 +11,7 @@ const sectionItems = [
   { id: 'work', label: 'Background', icon: FolderKanban },
 ]
 
-const blogItem = { id: 'blog', label: 'Writings', icon: PenLine }
+const blogItem = { id: 'blog', label: 'Field Notes', icon: PenLine }
 
 export default function StickyNavbar() {
   const navRef = useRef<HTMLDivElement>(null)
