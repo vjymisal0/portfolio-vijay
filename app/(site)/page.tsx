@@ -32,7 +32,23 @@ export default function Home() {
       const id = window.location.hash.replace('#', '')
       if (isSection(id)) setActiveSection(id)
     }
-    applyHash()
+
+    // Arriving from /blog, the navbar hands off the target section explicitly
+    // (a client navigation doesn't reliably apply the hash before mount).
+    const handoff = sessionStorage.getItem('goto-section')
+    if (handoff && isSection(handoff)) {
+      sessionStorage.removeItem('goto-section')
+      setActiveSection(handoff)
+      if (window.location.hash !== `#${handoff}`) {
+        history.replaceState(null, '', `/#${handoff}`)
+      }
+      // Nudge the persistent navbar (it only re-reads on 'hashchange') so its
+      // highlight matches the section we just selected.
+      window.dispatchEvent(new Event('hashchange'))
+    } else {
+      applyHash()
+    }
+
     window.addEventListener('hashchange', applyHash)
     return () => window.removeEventListener('hashchange', applyHash)
   }, [])
