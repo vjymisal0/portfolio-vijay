@@ -15,76 +15,72 @@ function railDate(date: string) {
 }
 
 export default function WritingList({ posts }: { posts: PostSummary[] }) {
+  const total = posts.length
+
   return (
-    <ol className="mt-14">
+    <ol className="mt-12 border-t border-border">
       {posts.map((post, i) => {
         const { mon, year } = railDate(post.date)
-        // Dim the rail when this entry shares a month with the one above it,
-        // so the date column reads like a grouped ledger rather than a repeat.
-        const prev = posts[i - 1]
-        const sameGroup =
-          prev && railDate(prev.date).mon === mon && railDate(prev.date).year === year
+        // Content-true entry number: the Nth thing written, newest highest.
+        const no = String(total - i).padStart(2, '0')
 
         return (
           <motion.li
             key={post.id}
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: Math.min(i * 0.06, 0.4), ease: 'easeOut' }}
+            transition={{ duration: 0.4, delay: Math.min(i * 0.05, 0.35), ease: 'easeOut' }}
+            className="border-b border-border"
           >
             <Link
               href={`/blog/${post.slug}`}
-              className="group grid grid-cols-[3.25rem_1fr] gap-4 border-t border-border py-6 sm:grid-cols-[4.5rem_1fr] sm:gap-8 sm:py-7"
+              className="group grid grid-cols-[3.5rem_1fr] gap-4 py-7 sm:grid-cols-[5rem_1fr] sm:gap-8"
             >
-              {/* Date rail — content-true: when it was written */}
-              <div
-                className={`pt-1 font-sans text-[10px] font-medium leading-tight tracking-[0.18em] transition-opacity ${
-                  sameGroup ? 'opacity-25' : 'text-muted-foreground'
-                }`}
-              >
-                <div>{mon}</div>
-                <div>{year}</div>
+              {/* Ledger rail: entry number + when it was written */}
+              <div className="flex flex-col gap-2 pt-1.5">
+                <span className="font-sans text-[11px] font-medium tabular-nums tracking-[0.1em] text-foreground/80">
+                  №{no}
+                </span>
+                <span className="font-sans text-[10px] leading-tight tracking-[0.18em] text-muted-foreground">
+                  {mon}
+                  <br />
+                  {year}
+                </span>
               </div>
 
               <div className="min-w-0">
-                <div className="flex items-baseline gap-2">
-                  {post.type === 'Thought' && (
-                    <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                      Thought ·
-                    </span>
-                  )}
-                  <h2 className="font-display text-xl font-normal leading-snug tracking-tight text-foreground transition-colors sm:text-2xl">
-                    <span className="bg-gradient-to-r from-foreground to-foreground bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-300 ease-out group-hover:bg-[length:100%_1px]">
-                      {post.title}
-                    </span>
-                    <ArrowUpRight className="ml-1 inline-block h-4 w-4 -translate-y-0.5 text-muted-foreground opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100" />
-                  </h2>
-                </div>
+                {post.type === 'Thought' && (
+                  <span className="mb-1.5 inline-block font-sans text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                    Thought
+                  </span>
+                )}
+
+                <h2 className="font-display text-2xl font-normal leading-snug tracking-tight text-foreground sm:text-[1.7rem]">
+                  <span className="bg-gradient-to-r from-foreground to-foreground bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-1 transition-[background-size] duration-300 ease-out group-hover:bg-[length:100%_1px]">
+                    {post.title}
+                  </span>
+                  <ArrowUpRight className="ml-1 inline-block h-4 w-4 -translate-y-1 text-muted-foreground opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100" />
+                </h2>
 
                 {post.excerpt && (
-                  <p className="mt-2 max-w-xl font-reading text-[15px] leading-relaxed text-muted-foreground">
+                  <p className="mt-2.5 max-w-xl font-reading text-[15px] leading-relaxed text-muted-foreground">
                     {post.excerpt}
                   </p>
                 )}
 
-                {post.tags.length > 0 && (
-                  <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="font-sans text-[10px] uppercase tracking-[0.15em] text-muted-foreground/70"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                <div className="mt-3.5 flex flex-wrap items-center gap-x-3 gap-y-1 font-sans text-[10px] uppercase tracking-[0.15em] text-muted-foreground/70">
+                  <span>{post.minutes} min read</span>
+                  {post.tags.map((tag) => (
+                    <span key={tag} className="before:mr-3 before:text-border before:content-['/']">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </Link>
           </motion.li>
         )
       })}
-      <li className="border-t border-border" />
     </ol>
   )
 }
