@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getAllPosts } from '@/lib/notion'
+import { getAllPosts } from '@/lib/posts'
 import SectionTitle from '@/components/section-title'
 import BlogCard from '@/components/blog/blog-card'
 
