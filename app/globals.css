@@ -78,15 +78,40 @@ body {
   }
 }
 
+/* ── Field Notes: scoped identity (ink accent + notebook paper) ──
+   These variables/motifs live only under .field-notes so the rest of the
+   strictly-monochrome portfolio is untouched. */
+.field-notes {
+  /* Periwinkle-indigo "ink" — the single accent, used sparingly. */
+  --ink: 246 84% 74%;
+  position: relative;
+  isolation: isolate;
+}
+/* Faint engineering-notebook dot grid, fixed behind the scrolling content. */
+.field-notes::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(
+    hsl(var(--foreground) / 0.05) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 0%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 100% 80% at 50% 0%, #000 40%, transparent 100%);
+  pointer-events: none;
+}
+
 /* ── Reading page: drop cap on the opening paragraph ── */
 .post-prose > p:first-of-type::first-letter {
   float: left;
   font-family: var(--font-display), Georgia, serif;
   font-weight: 400;
-  font-size: 4rem;
-  line-height: 0.7;
-  padding: 0.3rem 0.55rem 0 0;
-  color: hsl(var(--foreground));
+  font-size: 4.25rem;
+  line-height: 0.68;
+  padding: 0.32rem 0.6rem 0 0;
+  color: hsl(var(--ink));
 }
 
 .nav-scroll {

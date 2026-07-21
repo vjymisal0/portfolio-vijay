@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, Lightbulb } from 'lucide-react'
 import type { PostSummary } from '@/lib/posts'
 
 function railDate(date: string) {
@@ -38,10 +38,10 @@ export default function WritingList({ posts }: { posts: PostSummary[] }) {
             >
               {/* Ledger rail: entry number + when it was written */}
               <div className="flex flex-col gap-2 pt-1.5">
-                <span className="font-sans text-[11px] font-medium tabular-nums tracking-[0.1em] text-foreground/80">
+                <span className="font-mono text-[13px] font-medium tabular-nums tracking-tight text-ink">
                   №{no}
                 </span>
-                <span className="font-sans text-[10px] leading-tight tracking-[0.18em] text-muted-foreground">
+                <span className="font-mono text-[10px] leading-tight tracking-tight text-muted-foreground">
                   {mon}
                   <br />
                   {year}
@@ -50,16 +50,17 @@ export default function WritingList({ posts }: { posts: PostSummary[] }) {
 
               <div className="min-w-0">
                 {post.type === 'Thought' && (
-                  <span className="mb-1.5 inline-block font-sans text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                  <span className="mb-1.5 inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.18em] text-ink">
+                    <Lightbulb className="h-3 w-3" />
                     Thought
                   </span>
                 )}
 
-                <h2 className="font-display text-2xl font-normal leading-snug tracking-tight text-foreground sm:text-[1.7rem]">
-                  <span className="bg-gradient-to-r from-foreground to-foreground bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-1 transition-[background-size] duration-300 ease-out group-hover:bg-[length:100%_1px]">
+                <h2 className="font-display text-[1.7rem] font-normal leading-[1.15] tracking-tight text-foreground sm:text-3xl">
+                  <span className="bg-gradient-to-r from-ink to-ink bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-1 transition-[background-size] duration-300 ease-out group-hover:bg-[length:100%_1px]">
                     {post.title}
                   </span>
-                  <ArrowUpRight className="ml-1 inline-block h-4 w-4 -translate-y-1 text-muted-foreground opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100" />
+                  <ArrowUpRight className="ml-1 inline-block h-4 w-4 -translate-y-1 text-ink opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100" />
                 </h2>
 
                 {post.excerpt && (
@@ -68,10 +69,10 @@ export default function WritingList({ posts }: { posts: PostSummary[] }) {
                   </p>
                 )}
 
-                <div className="mt-3.5 flex flex-wrap items-center gap-x-3 gap-y-1 font-sans text-[10px] uppercase tracking-[0.15em] text-muted-foreground/70">
-                  <span>{post.minutes} min read</span>
+                <div className="mt-3.5 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground/70">
+                  <span>{post.minutes} min</span>
                   {post.tags.map((tag) => (
-                    <span key={tag} className="before:mr-3 before:text-border before:content-['/']">
+                    <span key={tag} className="before:mr-3 before:text-border before:content-['·']">
                       {tag}
                     </span>
                   ))}
