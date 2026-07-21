@@ -1,9 +1,11 @@
-import { Instrument_Serif, Newsreader } from 'next/font/google'
+import { Instrument_Serif, Newsreader, IBM_Plex_Mono } from 'next/font/google'
 
-// Field Notes speaks in a different voice than the portfolio chrome: prose,
-// not résumé. These serif faces are scoped to /blog only — the rest of the
-// site stays in Poppins. Instrument Serif (elegant, high-contrast) carries the
-// display; Newsreader is tuned for comfortable long-form reading.
+// Field Notes speaks in a different voice than the portfolio chrome. Three
+// roles, scoped to /blog only:
+//   · Instrument Serif — elegant high-contrast display (masthead, titles)
+//   · Newsreader       — comfortable long-form reading (prose, deks)
+//   · IBM Plex Mono    — the ledger: entry numbers, dates, meta — reads like
+//                        the ruled margin of an engineer's notebook.
 const displaySerif = Instrument_Serif({
   subsets: ['latin'],
   weight: '400',
@@ -20,13 +22,22 @@ const newsreader = Newsreader({
   display: 'swap',
 })
 
+const mono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-mono-notes',
+  display: 'swap',
+})
+
 export default function BlogLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <div className={`${displaySerif.variable} ${newsreader.variable} h-full`}>
+    <div
+      className={`field-notes ${displaySerif.variable} ${newsreader.variable} ${mono.variable} h-full`}
+    >
       {children}
     </div>
   )

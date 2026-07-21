@@ -13,8 +13,10 @@ export default {
   			sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
   			display: ['var(--font-display)', 'Georgia', 'serif'],
   			reading: ['var(--font-reading)', 'Georgia', 'serif'],
+  			mono: ['var(--font-mono-notes)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
   		},
   		colors: {
+  			ink: 'hsl(var(--ink))',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
