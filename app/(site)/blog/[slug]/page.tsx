@@ -44,9 +44,9 @@ export default async function BlogPostPage({
       <div className="mx-auto max-w-2xl px-5 py-10 pb-28 sm:px-6 sm:py-14 lg:pb-20">
         <Link
           href="/blog"
-          className="group mb-12 inline-flex items-center gap-1.5 font-sans text-[11px] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
+          className="group mb-12 inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground"
         >
-          <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
+          <ArrowLeft className="h-3.5 w-3.5 text-ink transition-transform group-hover:-translate-x-0.5" />
           Field Notes
         </Link>
         <PostContent post={post} />
