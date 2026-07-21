@@ -29,9 +29,17 @@ function readingMinutes(markdown: string): number {
   return Math.max(1, Math.round(words / 220))
 }
 
+// YAML auto-parses an unquoted `2026-07-19` into a Date object, so normalise
+// both Dates and strings down to a plain `YYYY-MM-DD`.
+function normalizeDate(value: unknown): string {
+  if (!value) return ''
+  if (value instanceof Date) return value.toISOString().slice(0, 10)
+  return String(value).slice(0, 10)
+}
+
 interface Frontmatter {
   title?: string
-  date?: string
+  date?: string | Date
   tags?: string[]
   type?: string
   excerpt?: string
@@ -56,7 +64,7 @@ function readPostFile(slug: string): Post | null {
     id: slug,
     slug,
     title: fm.title ?? slug,
-    date: fm.date ? String(fm.date).slice(0, 10) : '',
+    date: normalizeDate(fm.date),
     tags: Array.isArray(fm.tags) ? fm.tags : [],
     type: fm.type === 'Thought' ? 'Thought' : 'Post',
     excerpt: fm.excerpt ?? '',
