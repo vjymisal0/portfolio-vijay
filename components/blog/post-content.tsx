@@ -1,7 +1,7 @@
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Badge } from '@/components/ui/badge'
-import type { Post } from '@/lib/notion'
+import type { Post } from '@/lib/posts'
 
 function formatDate(date: string) {
   if (!date) return ''
