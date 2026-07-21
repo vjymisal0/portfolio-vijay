@@ -48,14 +48,14 @@ export default function StickyNavbar() {
   const desktopClass = (active: boolean) =>
     `flex items-center gap-2.5 w-full px-3 py-2.5 rounded-lg text-sm font-medium border transition-colors ${
       active
-        ? 'bg-primary text-primary-foreground border-primary'
+        ? 'text-foreground border-border bg-accent/60'
         : 'text-muted-foreground border-transparent hover:text-foreground hover:border-muted-foreground/40'
     }`
 
   const mobileClass = (active: boolean) =>
     `flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-medium whitespace-nowrap border transition-colors ${
       active
-        ? 'border-primary/70 bg-white/10 text-foreground'
+        ? 'border-white/25 bg-white/[0.06] text-foreground'
         : 'border-transparent text-muted-foreground hover:border-muted-foreground/40'
     }`
 
