@@ -17,10 +17,16 @@ export interface PostSummary {
   type: PostType
   excerpt: string
   cover: string | null
+  minutes: number
 }
 
 export interface Post extends PostSummary {
   markdown: string
+}
+
+function readingMinutes(markdown: string): number {
+  const words = markdown.trim().split(/\s+/).filter(Boolean).length
+  return Math.max(1, Math.round(words / 220))
 }
 
 interface Frontmatter {
@@ -44,6 +50,8 @@ function readPostFile(slug: string): Post | null {
   // A post is published unless it explicitly opts out with `published: false`.
   if (fm.published === false) return null
 
+  const markdown = content.trim()
+
   return {
     id: slug,
     slug,
@@ -53,7 +61,8 @@ function readPostFile(slug: string): Post | null {
     type: fm.type === 'Thought' ? 'Thought' : 'Post',
     excerpt: fm.excerpt ?? '',
     cover: fm.cover ?? null,
-    markdown: content.trim(),
+    minutes: readingMinutes(markdown),
+    markdown,
   }
 }
 
