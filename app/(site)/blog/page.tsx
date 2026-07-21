@@ -2,8 +2,6 @@ import type { Metadata } from 'next'
 import { getAllPosts } from '@/lib/posts'
 import WritingList from '@/components/blog/writing-list'
 
-export const revalidate = 60
-
 export const metadata: Metadata = {
   title: 'Writings & Learnings',
   description: 'Posts and short notes on what I’m building and learning.',
