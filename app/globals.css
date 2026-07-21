@@ -82,10 +82,10 @@ body {
 .post-prose > p:first-of-type::first-letter {
   float: left;
   font-family: var(--font-display), Georgia, serif;
-  font-weight: 500;
-  font-size: 3.6rem;
-  line-height: 0.72;
-  padding: 0.35rem 0.6rem 0 0;
+  font-weight: 400;
+  font-size: 4rem;
+  line-height: 0.7;
+  padding: 0.3rem 0.55rem 0 0;
   color: hsl(var(--foreground));
 }
 
