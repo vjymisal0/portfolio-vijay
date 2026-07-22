@@ -53,6 +53,21 @@ export default function Home() {
     return () => window.removeEventListener('hashchange', applyHash)
   }, [])
 
+  // Dev-only: Next disables link prefetch in development, so the first click on
+  // Field Notes pays for compiling the /blog route on demand (that first-nav
+  // lag). Warm it in the background once the page is idle so the click is
+  // instant. No-op in production, where /blog is static and already prefetched.
+  useEffect(() => {
+    if (process.env.NODE_ENV !== 'development') return
+    const warm = () => { void fetch('/blog').catch(() => {}) }
+    const hasRic = typeof window.requestIdleCallback === 'function'
+    const id = hasRic ? window.requestIdleCallback(warm) : window.setTimeout(warm, 1500)
+    return () => {
+      if (hasRic) window.cancelIdleCallback(id)
+      else window.clearTimeout(id)
+    }
+  }, [])
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
