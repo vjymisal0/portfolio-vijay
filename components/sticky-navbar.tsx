@@ -3,15 +3,13 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, UserRound, FolderKanban, PenLine } from 'lucide-react'
+import { Home, UserRound, FolderKanban } from 'lucide-react'
 
 const sectionItems = [
   { id: 'home', label: 'Home', icon: Home },
   { id: 'experience', label: 'Experience', icon: UserRound },
   { id: 'work', label: 'Background', icon: FolderKanban },
 ]
-
-const blogItem = { id: 'blog', label: 'Field Notes', icon: PenLine }
 
 export default function StickyNavbar() {
   const navRef = useRef<HTMLDivElement>(null)
@@ -104,13 +102,6 @@ export default function StickyNavbar() {
               </a>
             )
           })}
-
-          <div className="my-2 h-px bg-border" />
-
-          <Link href="/blog" className={desktopClass(activeId === 'blog')}>
-            <blogItem.icon className="h-4 w-4 flex-shrink-0" strokeWidth={2} />
-            {blogItem.label}
-          </Link>
         </nav>
       </aside>
 
@@ -128,7 +119,7 @@ export default function StickyNavbar() {
             boxShadow: '0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.10)',
           }}
         >
-          {[...sectionItems, blogItem].map((item) => {
+          {sectionItems.map((item) => {
             const isActive = activeId === item.id
             const Icon = item.icon
             const content = (
@@ -137,18 +128,6 @@ export default function StickyNavbar() {
                 <span>{item.label}</span>
               </>
             )
-            if (item.id === 'blog') {
-              return (
-                <Link
-                  key={item.id}
-                  ref={isActive ? activeRef : null}
-                  href="/blog"
-                  className={mobileClass(isActive)}
-                >
-                  {content}
-                </Link>
-              )
-            }
             return onBlog ? (
               <Link
                 key={item.id}
