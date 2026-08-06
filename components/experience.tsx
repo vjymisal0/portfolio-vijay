@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import ElasticScroll from '@/components/elastic-scroll'
 import SectionTitle from '@/components/section-title'
+import { onSpotlightMove, SpotlightOverlay } from '@/components/ui/spotlight'
 import { Briefcase, MapPin, CalendarDays, ShieldCheck, Bot, Activity } from 'lucide-react'
 import { SiReact, SiNestjs, SiTypescript, SiNodedotjs } from 'react-icons/si'
 import type { IconType } from 'react-icons'
@@ -112,8 +113,10 @@ export default function Experience() {
             <motion.div
               key={group.company}
               variants={itemVariants}
-              className="rounded-xl border border-border bg-card/40 p-4 sm:p-6"
+              onMouseMove={onSpotlightMove}
+              className="group/spotlight relative rounded-xl border border-border bg-card/40 p-4 sm:p-6"
             >
+              <SpotlightOverlay />
               {/* Company header */}
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">

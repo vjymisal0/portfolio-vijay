@@ -1,9 +1,12 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { motion } from 'framer-motion'
 import { Home, UserRound, FolderKanban } from 'lucide-react'
+import { Dock, DockIcon } from '@/components/ui/dock'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
 const sectionItems = [
   { id: 'home', label: 'Home', icon: Home },
@@ -12,8 +15,6 @@ const sectionItems = [
 ]
 
 export default function StickyNavbar() {
-  const navRef = useRef<HTMLDivElement>(null)
-  const activeRef = useRef<HTMLAnchorElement>(null)
   const pathname = usePathname()
   const [hash, setHash] = useState('home')
 
@@ -37,35 +38,37 @@ export default function StickyNavbar() {
     if (onBlog) sessionStorage.setItem('goto-section', id)
   }
 
-  // Keep the active pill centered in the mobile scroller.
-  useEffect(() => {
-    if (activeRef.current && navRef.current) {
-      const nav = navRef.current
-      const el = activeRef.current
-      const scrollLeft = el.offsetLeft - nav.offsetWidth / 2 + el.offsetWidth / 2
-      nav.scrollTo({ left: scrollLeft, behavior: 'smooth' })
-    }
-  }, [activeId])
-
   // Section links behave differently depending on where we are:
   // - On '/', a native <a href="/#id"> changes only the hash (no reload) and
   //   fires 'hashchange', which swaps the section instantly.
   // - On '/blog', a native anchor to '/#id' would do a full-page reload (the
   //   lag). Use next/link instead for a client-side route change; the home page
   //   reads the hash on mount and selects the right section.
+  // The pill itself is a shared-layout motion.span rendered only in the
+  // active link — Framer Motion animates it sliding to wherever it
+  // reappears, instead of each link owning a static highlight.
   const desktopClass = (active: boolean) =>
-    `flex items-center gap-2.5 w-full px-3 py-2.5 rounded-lg text-sm font-medium border transition-colors ${
+    `relative flex items-center gap-2.5 w-full px-3 py-2.5 rounded-lg text-sm font-medium border transition-colors ${
       active
-        ? 'text-foreground border-border bg-accent/60'
+        ? 'text-foreground border-border'
         : 'text-muted-foreground border-transparent hover:text-foreground hover:border-muted-foreground/40'
     }`
 
-  const mobileClass = (active: boolean) =>
-    `flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-medium whitespace-nowrap border transition-colors ${
-      active
-        ? 'border-white/25 bg-white/[0.06] text-foreground'
-        : 'border-transparent text-muted-foreground hover:border-muted-foreground/40'
-    }`
+  const desktopPill = (
+    <motion.span
+      layoutId="desktop-nav-pill"
+      className="absolute inset-0 -z-10 rounded-lg bg-accent/60"
+      transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
+    />
+  )
+
+  const dockPill = (
+    <motion.span
+      layoutId="mobile-dock-pill"
+      className="absolute inset-0 -z-10 rounded-full bg-white/[0.08]"
+      transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
+    />
+  )
 
   return (
     <>
@@ -83,6 +86,7 @@ export default function StickyNavbar() {
             const Icon = item.icon
             const content = (
               <>
+                {isActive && desktopPill}
                 <Icon className="h-4 w-4 flex-shrink-0" strokeWidth={2} />
                 {item.label}
               </>
@@ -105,51 +109,53 @@ export default function StickyNavbar() {
         </nav>
       </aside>
 
-      {/* ── Mobile floating bottom nav ── */}
+      {/* ── Mobile floating dock — macOS-style, icons magnify toward the
+          cursor and reveal their label as a tooltip instead of always
+          showing text inline. ── */}
       <div className="lg:hidden fixed bottom-5 inset-x-0 z-50 flex justify-center px-4">
-        <nav
-          ref={navRef}
-          className="nav-scroll flex items-center gap-1 overflow-x-auto max-w-full rounded-full px-2 py-1.5"
-          style={{
-            background:
-              'linear-gradient(160deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%)',
-            backdropFilter: 'blur(16px) saturate(160%)',
-            WebkitBackdropFilter: 'blur(16px) saturate(160%)',
-            border: '1px solid rgba(255,255,255,0.10)',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.10)',
-          }}
-        >
-          {sectionItems.map((item) => {
-            const isActive = activeId === item.id
-            const Icon = item.icon
-            const content = (
-              <>
-                <Icon className="h-3.5 w-3.5" strokeWidth={2} />
-                <span>{item.label}</span>
-              </>
-            )
-            return onBlog ? (
-              <Link
-                key={item.id}
-                ref={isActive ? activeRef : null}
-                href={`/#${item.id}`}
-                onClick={() => gotoSection(item.id)}
-                className={mobileClass(isActive)}
-              >
-                {content}
-              </Link>
-            ) : (
-              <a
-                key={item.id}
-                ref={isActive ? activeRef : null}
-                href={`/#${item.id}`}
-                className={mobileClass(isActive)}
-              >
-                {content}
-              </a>
-            )
-          })}
-        </nav>
+        <TooltipProvider delayDuration={150}>
+          <Dock
+            className="gap-2 rounded-full px-3 py-2"
+            style={{
+              background:
+                'linear-gradient(160deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%)',
+              backdropFilter: 'blur(16px) saturate(160%)',
+              WebkitBackdropFilter: 'blur(16px) saturate(160%)',
+              border: '1px solid rgba(255,255,255,0.10)',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.10)',
+            }}
+          >
+            {sectionItems.map((item) => {
+              const isActive = activeId === item.id
+              const Icon = item.icon
+              const icon = (
+                <DockIcon
+                  className={
+                    isActive
+                      ? 'text-foreground'
+                      : 'text-muted-foreground transition-colors hover:text-foreground'
+                  }
+                >
+                  {isActive && dockPill}
+                  <Icon className="h-[46%] w-[46%]" strokeWidth={2} />
+                </DockIcon>
+              )
+              const trigger = onBlog ? (
+                <Link href={`/#${item.id}`} onClick={() => gotoSection(item.id)}>
+                  {icon}
+                </Link>
+              ) : (
+                <a href={`/#${item.id}`}>{icon}</a>
+              )
+              return (
+                <Tooltip key={item.id}>
+                  <TooltipTrigger asChild>{trigger}</TooltipTrigger>
+                  <TooltipContent side="top">{item.label}</TooltipContent>
+                </Tooltip>
+              )
+            })}
+          </Dock>
+        </TooltipProvider>
       </div>
     </>
   )

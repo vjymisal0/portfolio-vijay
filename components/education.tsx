@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { MapPin, CalendarDays } from 'lucide-react'
 import SectionTitle from '@/components/section-title'
+import { onSpotlightMove, SpotlightOverlay } from '@/components/ui/spotlight'
 
 const educationData = [
   {
@@ -73,7 +74,11 @@ export default function Education() {
                 </div>
 
                 {/* Card */}
-                <div className="flex-1 rounded-xl border border-border bg-card/40 hover:border-primary/30 hover:bg-card/70 transition-all duration-300 p-4 group">
+                <div
+                  onMouseMove={onSpotlightMove}
+                  className="group group/spotlight relative flex-1 rounded-xl border border-border bg-card/40 hover:border-primary/30 hover:bg-card/70 transition-all duration-300 p-4"
+                >
+                  <SpotlightOverlay />
                   <div className="mb-2">
                     <div className="flex items-center justify-between gap-2 mb-0.5">
                       <p className="text-[11px] font-mono text-muted-foreground/60 uppercase tracking-wider">

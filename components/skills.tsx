@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Server, GitBranch, Bot, Zap, ChevronDown } from 'lucide-react'
+import Marquee from '@/components/ui/marquee'
+import { onSpotlightMove, SpotlightOverlay } from '@/components/ui/spotlight'
 import {
   SiOpenjdk, SiPython, SiJavascript, SiTypescript,
   SiHtml5, SiCss3, SiTailwindcss, SiReact, SiNextdotjs,
@@ -98,6 +100,27 @@ const skillsData = [
   },
 ]
 
+// Flattened for the marquee rows — every skill paired with its category's
+// accent color so the scrolling strip still reads as color-coded.
+const allSkills = skillsData.flatMap((cat) => cat.items.map((item) => ({ skill: item, accent: cat.accent })))
+const marqueeMid = Math.ceil(allSkills.length / 2)
+const marqueeRowA = allSkills.slice(0, marqueeMid)
+const marqueeRowB = allSkills.slice(marqueeMid)
+
+function SkillChip({ skill, accent }: { skill: string; accent: string }) {
+  const Icon = skillIcons[skill] as AnyIcon | undefined
+  return (
+    <span className="flex items-center gap-1.5 rounded-full border border-border bg-card/40 px-3 py-1.5 text-xs font-medium text-muted-foreground whitespace-nowrap">
+      {Icon && (
+        <span className={`flex h-5 w-5 items-center justify-center rounded-md ${accent}`}>
+          <Icon className="w-3 h-3" />
+        </span>
+      )}
+      {skill}
+    </span>
+  )
+}
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
@@ -133,6 +156,26 @@ export default function Skills() {
           <span className="mt-2 h-[3px] w-10 rounded-full bg-gradient-to-r from-primary via-primary/70 to-primary/20" />
         </motion.div>
 
+        {/* Always-visible showcase strip — the categorized breakdown below
+            is opt-in via the toggle above. */}
+        <motion.div
+          className="mb-5 space-y-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+        >
+          <Marquee durationSeconds={34}>
+            {marqueeRowA.map(({ skill, accent }) => (
+              <SkillChip key={skill} skill={skill} accent={accent} />
+            ))}
+          </Marquee>
+          <Marquee durationSeconds={38} reverse>
+            {marqueeRowB.map(({ skill, accent }) => (
+              <SkillChip key={skill} skill={skill} accent={accent} />
+            ))}
+          </Marquee>
+        </motion.div>
+
         <AnimatePresence initial={false}>
         {open && (
         <motion.div
@@ -155,8 +198,10 @@ export default function Skills() {
               <motion.div
                 key={cat.category}
                 variants={cardVariants}
-                className="group relative rounded-xl border border-border bg-card/40 hover:border-primary/40 hover:bg-card/70 hover:shadow-[0_0_24px_rgba(255,255,255,0.04)] transition-all duration-300 p-4 flex flex-col gap-3"
+                onMouseMove={onSpotlightMove}
+                className="group group/spotlight relative rounded-xl border border-border bg-card/40 hover:border-primary/40 hover:bg-card/70 transition-all duration-300 p-4 flex flex-col gap-3"
               >
+                <SpotlightOverlay />
                 {/* Header */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">

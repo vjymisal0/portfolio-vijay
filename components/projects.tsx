@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import SectionTitle from "@/components/section-title"
 import { ExternalLink, MessageCircle, Syringe, ShoppingCart, Activity, Lock, Images, ArrowLeft, Image as ImageIcon } from "lucide-react"
@@ -8,6 +9,7 @@ import { BiNotepad } from "react-icons/bi"
 import { MdOutlineSportsCricket } from "react-icons/md"
 import { FaGithub } from "react-icons/fa"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { onSpotlightMove, SpotlightOverlay } from "@/components/ui/spotlight"
 import { useState } from "react"
 
 // Drop screenshots into /public/projects/ using these file names and they
@@ -116,13 +118,13 @@ function GalleryShot({ src, title, index, total }: { src: string; title: string;
   return (
     <div className="relative flex-shrink-0 w-[85%] sm:w-[70%] aspect-video snap-center overflow-hidden rounded-lg border border-border bg-card/40">
       {!failed ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <Image
           src={src}
           alt={`${title} screenshot ${index}`}
-          loading="lazy"
+          fill
+          sizes="(min-width: 640px) 70vw, 85vw"
+          className="object-cover"
           onError={() => setFailed(true)}
-          className="h-full w-full object-cover"
         />
       ) : (
         <div className="flex h-full w-full flex-col items-center justify-center gap-1.5 text-muted-foreground/50">
@@ -166,8 +168,10 @@ export default function Projects() {
                 key={project.title}
                 variants={cardVariants}
                 onClick={() => openProject(project)}
-                className="group relative rounded-xl border border-border bg-card/40 hover:border-primary/40 hover:bg-card/70 hover:shadow-[0_0_24px_rgba(255,255,255,0.04)] transition-all duration-300 cursor-pointer p-4 flex flex-col gap-2.5"
+                onMouseMove={onSpotlightMove}
+                className="group group/spotlight relative rounded-xl border border-border bg-card/40 hover:border-primary/40 hover:bg-card/70 transition-all duration-300 cursor-pointer p-4 flex flex-col gap-2.5"
               >
+                <SpotlightOverlay />
                 {/* Top row */}
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex items-center gap-2.5 min-w-0">
