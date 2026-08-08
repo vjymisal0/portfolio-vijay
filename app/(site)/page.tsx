@@ -5,8 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Introduction from '@/components/introduction'
 import Work from '@/components/work'
 import Experience from '@/components/experience'
+import OpenSource from '@/components/open-source'
 
-const SECTIONS = ['home', 'experience', 'work'] as const
+const SECTIONS = ['home', 'experience', 'work', 'oss'] as const
 type SectionId = (typeof SECTIONS)[number]
 
 function isSection(id: string): id is SectionId {
@@ -18,6 +19,7 @@ function SectionContent({ id }: { id: string }) {
     case 'home':         return <Introduction />
     case 'experience':   return <Experience />
     case 'work':         return <Work />
+    case 'oss':          return <OpenSource />
     default: return null
   }
 }
