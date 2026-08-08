@@ -124,7 +124,7 @@ body {
 
 /* ── Scrollable sections ──
    Visible thin scrollbar + momentum scrolling, and contain overscroll
-   so the elastic pull (see ElasticScroll) never bubbles to the page. */
+   so a panel's scroll never bubbles to the page underneath it. */
 .section-scroll {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;

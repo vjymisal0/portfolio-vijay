@@ -1,9 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import ElasticScroll from '@/components/elastic-scroll'
 import SectionTitle from '@/components/section-title'
 import { onSpotlightMove, SpotlightOverlay } from '@/components/ui/spotlight'
+import { useSmoothScroll } from '@/lib/use-smooth-scroll'
 import { Briefcase, MapPin, CalendarDays, ShieldCheck, Bot, Activity } from 'lucide-react'
 import { SiReact, SiNestjs, SiTypescript, SiNodedotjs } from 'react-icons/si'
 import type { IconType } from 'react-icons'
@@ -94,12 +94,12 @@ const itemVariants = {
 }
 
 export default function Experience() {
+  const { wrapperRef, contentRef } = useSmoothScroll()
+
   return (
     <section className="h-full">
-      <ElasticScroll
-        className="h-full"
-        innerClassName="min-h-full flex flex-col py-6 px-4 pb-24 lg:pb-6"
-      >
+      <div ref={wrapperRef} className="section-scroll h-full">
+      <div ref={contentRef} className="min-h-full flex flex-col py-6 px-4 pb-24 lg:pb-6">
       <div className="container mx-auto max-w-2xl my-auto">
         <SectionTitle className="mb-6">Experience</SectionTitle>
 
@@ -205,7 +205,8 @@ export default function Experience() {
           ))}
         </motion.div>
       </div>
-      </ElasticScroll>
+      </div>
+      </div>
     </section>
   )
 }
