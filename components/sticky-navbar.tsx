@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Home, UserRound, FolderKanban } from 'lucide-react'
+import { Home, UserRound, FolderKanban, GitBranch } from 'lucide-react'
+import { FaGithub } from 'react-icons/fa'
 import { Dock, DockIcon } from '@/components/ui/dock'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
@@ -12,6 +13,7 @@ const sectionItems = [
   { id: 'home', label: 'Home', icon: Home },
   { id: 'experience', label: 'Experience', icon: UserRound },
   { id: 'work', label: 'Background', icon: FolderKanban },
+  { id: 'oss', label: 'Open Source', icon: GitBranch },
 ]
 
 export default function StickyNavbar() {
@@ -44,21 +46,21 @@ export default function StickyNavbar() {
   // - On '/blog', a native anchor to '/#id' would do a full-page reload (the
   //   lag). Use next/link instead for a client-side route change; the home page
   //   reads the hash on mount and selects the right section.
-  // The pill itself is a shared-layout motion.span rendered only in the
-  // active link — Framer Motion animates it sliding to wherever it
+  // The desktop rail reads as a table of contents — a spine rule with a tick
+  // per chapter — rather than the usual pill-highlight sidebar. The lit tick
+  // is a shared-layout motion.span rendered only in the active link, so
+  // Framer Motion animates it sliding along the spine to wherever it
   // reappears, instead of each link owning a static highlight.
   const desktopClass = (active: boolean) =>
-    `relative flex items-center gap-2.5 w-full px-3 py-2.5 rounded-lg text-sm font-medium border transition-colors ${
-      active
-        ? 'text-foreground border-border'
-        : 'text-muted-foreground border-transparent hover:text-foreground hover:border-muted-foreground/40'
+    `group relative flex items-center gap-3 py-2.5 text-sm font-medium transition-colors ${
+      active ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
     }`
 
-  const desktopPill = (
+  const desktopTick = (
     <motion.span
-      layoutId="desktop-nav-pill"
-      className="absolute inset-0 -z-10 rounded-lg bg-accent/60"
-      transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
+      layoutId="desktop-nav-tick"
+      className="absolute inset-0 m-auto h-2 w-2 rounded-full bg-primary ring-4 ring-primary/15"
+      transition={{ type: 'spring', bounce: 0.25, duration: 0.5 }}
     />
   )
 
@@ -73,21 +75,38 @@ export default function StickyNavbar() {
   return (
     <>
       {/* ── Desktop sidebar ── */}
-      <aside className="hidden lg:flex flex-shrink-0 w-48 h-screen border-r border-border bg-background/95 backdrop-blur-sm flex-col justify-center px-3 py-8">
-        <div className="mb-8 px-3 flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-primary" />
-          <span className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">
-            Portfolio
+      <aside className="hidden lg:flex flex-shrink-0 w-52 h-screen border-r border-border bg-background/95 backdrop-blur-sm flex-col px-4 py-8">
+        <div className="mb-10 flex items-center gap-2.5">
+          <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 font-mono text-[11px] font-bold text-primary">
+            VM
           </span>
+          <span className="text-sm font-semibold text-foreground">Vijay Misal</span>
         </div>
-        <nav className="flex flex-col gap-1">
-          {sectionItems.map((item) => {
+
+        {/* Table of contents — a spine rule with one tick per chapter,
+            rather than a dashboard-style pill nav. */}
+        <nav className="relative flex flex-col gap-1">
+          <motion.span
+            aria-hidden
+            className="absolute left-2 top-1 bottom-1 w-px origin-top bg-border"
+            initial={{ scaleY: 0, opacity: 0 }}
+            animate={{ scaleY: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+          />
+          {sectionItems.map((item, i) => {
             const isActive = activeId === item.id
-            const Icon = item.icon
             const content = (
               <>
-                {isActive && desktopPill}
-                <Icon className="h-4 w-4 flex-shrink-0" strokeWidth={2} />
+                <span className="relative h-4 w-4 flex-shrink-0">
+                  {isActive ? (
+                    desktopTick
+                  ) : (
+                    <span className="absolute inset-0 m-auto h-1.5 w-1.5 rounded-full bg-border transition-colors group-hover:bg-muted-foreground/60" />
+                  )}
+                </span>
+                <span className="w-5 flex-shrink-0 font-mono text-[10px] text-muted-foreground/40">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
                 {item.label}
               </>
             )
@@ -107,6 +126,16 @@ export default function StickyNavbar() {
             )
           })}
         </nav>
+
+        <a
+          href="https://github.com/vjymisal0"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-auto flex items-center gap-2 py-2 text-xs text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <FaGithub className="h-3.5 w-3.5 flex-shrink-0" />
+          @vjymisal0
+        </a>
       </aside>
 
       {/* ── Mobile floating dock — macOS-style, icons magnify toward the
