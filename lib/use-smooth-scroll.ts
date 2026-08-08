@@ -8,9 +8,8 @@ import Lenis from 'lenis'
  * the page body — each section here scrolls independently inside its own
  * fixed-height container, so a single global Lenis instance would fight the
  * hidden ones. `wrapperRef` goes on the existing overflow container,
- * `contentRef` on its direct child; touch input is left native (it already
- * feels smooth on mobile, and ElasticScroll's rubber-band edges rely on
- * untouched touch events elsewhere in the app).
+ * `contentRef` on its direct child; touch input is left native since it
+ * already feels smooth on mobile without help.
  */
 export function useSmoothScroll<T extends HTMLElement = HTMLDivElement>() {
   const wrapperRef = useRef<T>(null)
