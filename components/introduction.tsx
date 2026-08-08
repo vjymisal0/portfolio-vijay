@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaEnvelope, FaDownload } from 'react-icons/fa'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import AuroraBackground from '@/components/ui/aurora-background'
+import { useSmoothScroll } from '@/lib/use-smooth-scroll'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -32,10 +33,12 @@ const photoVariants = {
 }
 
 export default function Introduction() {
+  const { wrapperRef, contentRef } = useSmoothScroll<HTMLElement>()
+
   return (
-    <section className="relative h-full overflow-y-auto bg-gradient-to-br from-background via-background to-secondary/10">
+    <section ref={wrapperRef} className="relative h-full overflow-y-auto bg-gradient-to-br from-background via-background to-secondary/10">
       <AuroraBackground />
-      <div className="relative min-h-full flex items-center">
+      <div ref={contentRef} className="relative min-h-full flex items-center">
         <div className="container mx-auto px-6 lg:px-12 py-10">
           <div className="flex flex-col-reverse lg:flex-row items-center gap-6 sm:gap-8 lg:gap-16">
 

@@ -5,6 +5,7 @@ import SectionTitle from '@/components/section-title'
 import { onSpotlightMove, SpotlightOverlay } from '@/components/ui/spotlight'
 import { ExternalLink, GitPullRequest, Bug, Sparkles, FileText, TestTube2, Eraser, Package, Download } from 'lucide-react'
 import { FaGithub, FaNpm } from 'react-icons/fa'
+import { useSmoothScroll } from '@/lib/use-smooth-scroll'
 
 // Real merged PRs, newest first. Add a new entry here whenever one lands —
 // same pattern as the `projects` array in components/projects.tsx.
@@ -168,11 +169,12 @@ function SubHeading({ icon: Icon, children }: { icon: typeof Package; children: 
 
 export default function OpenSource() {
   const repoCount = new Set(contributions.map((c) => c.repo)).size
+  const { wrapperRef, contentRef } = useSmoothScroll()
 
   return (
     <section className="h-full">
-      <div className="scroll-reliable h-full py-8 pb-28 lg:pb-10">
-        <div className="container mx-auto max-w-4xl px-4 sm:px-6 space-y-10">
+      <div ref={wrapperRef} className="scroll-reliable h-full py-8 pb-28 lg:pb-10">
+        <div ref={contentRef} className="container mx-auto max-w-4xl px-4 sm:px-6 space-y-10">
           <div>
             <SectionTitle className="mb-1.5">Open Source</SectionTitle>
             <p className="text-center text-xs text-muted-foreground/60 mb-6">
