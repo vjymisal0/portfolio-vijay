@@ -99,7 +99,7 @@ export default function Experience() {
   return (
     <section className="h-full">
       <div ref={wrapperRef} className="section-scroll h-full">
-      <div ref={contentRef} className="min-h-full flex flex-col py-6 px-4 pb-24 lg:pb-6">
+      <div ref={contentRef} className="min-h-full flex flex-col py-6 px-4 pb-28 lg:pb-6">
       <div className="container mx-auto max-w-2xl my-auto">
         <SectionTitle className="mb-6">Experience</SectionTitle>
 

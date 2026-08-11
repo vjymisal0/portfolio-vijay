@@ -11,6 +11,30 @@ import { useSmoothScroll } from '@/lib/use-smooth-scroll'
 // same pattern as the `projects` array in components/projects.tsx.
 const contributions = [
   {
+    repo: 'apache/superset',
+    title: 'Stacked Timeseries Bar total excludes the sort-only metric',
+    url: 'https://github.com/apache/superset/pull/42881',
+    number: 42881,
+    date: '2026-08-10',
+    kind: 'fix',
+  },
+  {
+    repo: 'mercadona/rele',
+    title: 'publish() reports the wrong error when settings has no RELE dict',
+    url: 'https://github.com/mercadona/rele/pull/343',
+    number: 343,
+    date: '2026-08-10',
+    kind: 'fix',
+  },
+  {
+    repo: 'reductstore/reductstore',
+    title: 'Avoid blocking system-event replication on replication updates',
+    url: 'https://github.com/reductstore/reductstore/pull/1594',
+    number: 1594,
+    date: '2026-08-08',
+    kind: 'fix',
+  },
+  {
     repo: 'kubestellar/console',
     title: 'Fix coverage merge job on incomplete shard artifact set',
     url: 'https://github.com/kubestellar/console/pull/22284',
@@ -156,6 +180,9 @@ const cardVariants = {
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
 
+const CARD_CLASS =
+  'group group/spotlight relative rounded-xl border border-border bg-card/40 hover:border-primary/40 hover:bg-card/70 transition-all duration-300 p-4 flex flex-col gap-2.5'
+
 function SubHeading({ icon: Icon, children }: { icon: typeof Package; children: string }) {
   return (
     <div className="flex items-center gap-2 mb-3">
@@ -164,6 +191,36 @@ function SubHeading({ icon: Icon, children }: { icon: typeof Package; children: 
         {children}
       </span>
     </div>
+  )
+}
+
+function IconBadge({ icon: Icon }: { icon: typeof FaGithub }) {
+  return (
+    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors flex items-center justify-center">
+      <Icon className="w-4 h-4 text-primary" />
+    </div>
+  )
+}
+
+function CardFooterLink({
+  href,
+  icon: Icon,
+  children,
+}: {
+  href: string
+  icon: typeof FaGithub
+  children: string
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={(e) => e.stopPropagation()}
+      className="flex items-center gap-1 text-[11px] text-muted-foreground hover:text-primary transition-colors"
+    >
+      <Icon className="w-3 h-3" /> {children}
+    </a>
   )
 }
 
@@ -202,15 +259,13 @@ export default function OpenSource() {
                     rel="noopener noreferrer"
                     variants={cardVariants}
                     onMouseMove={onSpotlightMove}
-                    className="group group/spotlight relative rounded-xl border border-border bg-card/40 hover:border-primary/40 hover:bg-card/70 transition-all duration-300 p-4 flex flex-col gap-2.5"
+                    className={CARD_CLASS}
                   >
                     <SpotlightOverlay />
                     {/* Top row */}
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex items-center gap-2.5 min-w-0">
-                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors flex items-center justify-center">
-                          <FaGithub className="w-4 h-4 text-primary" />
-                        </div>
+                        <IconBadge icon={FaGithub} />
                         <h3 className="text-sm font-semibold leading-snug group-hover:text-primary transition-colors line-clamp-1">
                           {c.repo}
                         </h3>
@@ -261,14 +316,12 @@ export default function OpenSource() {
                   key={pkg.name}
                   variants={cardVariants}
                   onMouseMove={onSpotlightMove}
-                  className="group group/spotlight relative rounded-xl border border-border bg-card/40 hover:border-primary/40 hover:bg-card/70 transition-all duration-300 p-4 flex flex-col gap-2.5"
+                  className={CARD_CLASS}
                 >
                   <SpotlightOverlay />
                   {/* Top row */}
                   <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors flex items-center justify-center">
-                      <FaNpm className="w-4 h-4 text-primary" />
-                    </div>
+                    <IconBadge icon={FaNpm} />
                     <h3 className="text-sm font-semibold leading-snug group-hover:text-primary transition-colors truncate">
                       {pkg.name}
                     </h3>
@@ -286,24 +339,8 @@ export default function OpenSource() {
 
                   {/* Footer links */}
                   <div className="flex items-center gap-3 pt-2 border-t border-border/50">
-                    <a
-                      href={pkg.npm}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="flex items-center gap-1 text-[11px] text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <Download className="w-3 h-3" /> npm
-                    </a>
-                    <a
-                      href={pkg.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="flex items-center gap-1 text-[11px] text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <FaGithub className="w-3 h-3" /> Code
-                    </a>
+                    <CardFooterLink href={pkg.npm} icon={Download}>npm</CardFooterLink>
+                    <CardFooterLink href={pkg.github} icon={FaGithub}>Code</CardFooterLink>
                   </div>
                 </motion.div>
               ))}

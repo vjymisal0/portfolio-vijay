@@ -147,11 +147,11 @@ export default function StickyNavbar() {
             className="gap-2 rounded-full px-3 py-2"
             style={{
               background:
-                'linear-gradient(160deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%)',
-              backdropFilter: 'blur(16px) saturate(160%)',
-              WebkitBackdropFilter: 'blur(16px) saturate(160%)',
-              border: '1px solid rgba(255,255,255,0.10)',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.10)',
+                'linear-gradient(160deg, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.015) 100%)',
+              backdropFilter: 'blur(8px) saturate(160%)',
+              WebkitBackdropFilter: 'blur(8px) saturate(160%)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)',
             }}
           >
             {sectionItems.map((item) => {
