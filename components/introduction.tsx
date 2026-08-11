@@ -39,7 +39,7 @@ export default function Introduction() {
     <section ref={wrapperRef} className="relative h-full overflow-y-auto bg-gradient-to-br from-background via-background to-secondary/10">
       <AuroraBackground />
       <div ref={contentRef} className="relative min-h-full flex items-center">
-        <div className="container mx-auto px-6 lg:px-12 py-10">
+        <div className="container mx-auto px-6 lg:px-12 py-10 pb-28 lg:pb-10">
           <div className="flex flex-col-reverse lg:flex-row items-center gap-6 sm:gap-8 lg:gap-16">
 
           {/* Text content */}
