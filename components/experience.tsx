@@ -190,9 +190,9 @@ export default function Experience() {
                         {exp.tech.map(({ icon: Icon, label }) => (
                           <span
                             key={label}
-                            className="flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-md bg-muted/50 text-muted-foreground"
+                            className="group/badge flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-md bg-muted/50 text-muted-foreground transition-all duration-300 hover:bg-primary/10 hover:text-primary hover:shadow-[0_0_12px_rgba(255,255,255,0.15)] hover:-translate-y-0.5 cursor-default border border-transparent hover:border-primary/20"
                           >
-                            <Icon className="w-3 h-3" />
+                            <Icon className="w-3 h-3 transition-transform duration-300 group-hover/badge:scale-110" />
                             {label}
                           </span>
                         ))}
