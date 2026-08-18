@@ -24,12 +24,12 @@ const educationData = [
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
 }
 
 const itemVariants = {
   hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0, transition: { type: 'spring', damping: 15, stiffness: 100 } },
+  visible: { opacity: 1, y: 0, transition: { type: 'spring', damping: 12, stiffness: 120 } },
 }
 
 export default function Education() {
@@ -48,6 +48,7 @@ export default function Education() {
             key={idx} 
             variants={itemVariants}
             onMouseMove={onSpotlightMove}
+            whileHover={{ scale: 1.01, x: 2 }}
             className="group group/spotlight relative rounded-xl border border-border bg-card/20 hover:border-primary/30 hover:bg-card/40 transition-all duration-300 p-3 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 overflow-hidden"
           >
             <SpotlightOverlay />

@@ -75,10 +75,10 @@ export default function Home() {
       <motion.div
         key={activeSection}
         className="absolute inset-0"
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -12 }}
-        transition={{ duration: 0.22, ease: 'easeInOut' }}
+        initial={{ opacity: 0, y: 20, scale: 0.96, filter: "blur(4px)" }}
+        animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+        exit={{ opacity: 0, y: -20, scale: 0.96, filter: "blur(4px)" }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
       >
         <SectionContent id={activeSection} />
       </motion.div>
