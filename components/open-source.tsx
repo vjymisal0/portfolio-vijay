@@ -183,15 +183,7 @@ const contributions = [
 
 // Packages published under vjymisal0 / @vijayishere on npm. Add an entry
 // here after `npm publish` — same pattern as `contributions` above.
-const packages = [
-  {
-    name: 'blur-score',
-    description: 'Detect how blurry an image is (0-1 sharpness score) using Laplacian variance.',
-    install: 'npm i blur-score',
-    npm: 'https://www.npmjs.com/package/blur-score',
-    github: 'https://github.com/vjymisal0/blur-score',
-  },
-  {
+const packages = [  {
     name: '@vijayishere/photo-hash',
     description: 'Detect near-duplicate photos using a perceptual difference hash (dHash), robust to resizing and recompression.',
     install: 'npm i @vijayishere/photo-hash',
