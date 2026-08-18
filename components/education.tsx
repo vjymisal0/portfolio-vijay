@@ -28,8 +28,8 @@ const containerVariants = {
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0, transition: { type: 'spring', damping: 12, stiffness: 120 } },
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { type: 'spring', damping: 12, stiffness: 120 } },
 }
 
 export default function Education() {
