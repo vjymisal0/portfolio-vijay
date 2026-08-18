@@ -238,8 +238,8 @@ const containerVariants = {
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { type: 'spring', damping: 12, stiffness: 120 } },
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { type: 'spring', damping: 12, stiffness: 120 } },
 }
 
 const formatDate = (iso: string) =>
