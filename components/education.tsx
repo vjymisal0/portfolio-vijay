@@ -1,7 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { GraduationCap, Calendar, MapPin } from 'lucide-react'
 import SectionTitle from '@/components/section-title'
+import { onSpotlightMove, SpotlightOverlay } from '@/components/ui/spotlight'
 
 const educationData = [
   {
@@ -9,39 +11,73 @@ const educationData = [
     institution: "Vishwakarma Institute of Information Technology",
     score: "8.44 CGPA",
     year: "2023 – 2026",
+    color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
   },
   {
     degree: "Diploma in Computer Technology",
     institution: "Government Polytechnic, Solapur",
     score: "91.43%",
     year: "2021 – 2023",
+    color: "text-blue-400 bg-blue-500/10 border-blue-500/20",
   },
 ]
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { type: 'spring', damping: 15, stiffness: 100 } },
+}
+
 export default function Education() {
   return (
-    <div>
-      <SectionTitle className="mb-4">Education</SectionTitle>
+    <div className="max-w-3xl">
+      <SectionTitle className="mb-5">Education</SectionTitle>
 
       <motion.div 
-        className="flex flex-col gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        className="grid gap-3"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
       >
         {educationData.map((edu, idx) => (
-          <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between text-sm">
-            <div className="flex items-center gap-2">
-              <span className="font-semibold text-foreground/90">{edu.degree}</span>
-              <span className="text-muted-foreground/40 hidden sm:inline">•</span>
-              <span className="text-muted-foreground">{edu.institution}</span>
+          <motion.div 
+            key={idx} 
+            variants={itemVariants}
+            onMouseMove={onSpotlightMove}
+            className="group group/spotlight relative rounded-xl border border-border bg-card/20 hover:border-primary/30 hover:bg-card/40 transition-all duration-300 p-3 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 overflow-hidden"
+          >
+            <SpotlightOverlay />
+            
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 flex-shrink-0 w-8 h-8 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors flex items-center justify-center">
+                <GraduationCap className="w-4 h-4 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                  {edu.degree}
+                </h3>
+                <div className="flex items-center gap-1.5 mt-1">
+                  <span className="text-xs font-medium text-muted-foreground">
+                    {edu.institution}
+                  </span>
+                </div>
+              </div>
             </div>
-            <div className="flex items-center gap-2 text-muted-foreground whitespace-nowrap mt-1 sm:mt-0">
-              <span className="text-xs px-2 py-0.5 rounded-full bg-secondary/50 font-medium">
+
+            <div className="flex items-center gap-3 ml-11 sm:ml-0">
+              <span className={`text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full border font-semibold ${edu.color}`}>
                 {edu.score}
               </span>
-              <span className="text-xs font-mono">{edu.year}</span>
+              <span className="flex items-center gap-1 text-[11px] font-mono text-muted-foreground/60">
+                <Calendar className="w-3 h-3" />
+                {edu.year}
+              </span>
             </div>
-          </div>
+          </motion.div>
         ))}
       </motion.div>
     </div>
