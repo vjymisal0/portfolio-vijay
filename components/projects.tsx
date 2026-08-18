@@ -4,9 +4,9 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import SectionTitle from "@/components/section-title"
-import { ExternalLink, MessageCircle, Syringe, ShoppingCart, Activity, Lock, Images, ArrowLeft, Image as ImageIcon } from "lucide-react"
-import { BiNotepad } from "react-icons/bi"
-import { MdOutlineSportsCricket } from "react-icons/md"
+import { ExternalLink, MessageCircle, Syringe, Activity, Lock, Images, ArrowLeft, Image as ImageIcon } from "lucide-react"
+
+
 import { FaGithub } from "react-icons/fa"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { onSpotlightMove, SpotlightOverlay } from "@/components/ui/spotlight"
@@ -15,15 +15,6 @@ import { useState } from "react"
 // Drop screenshots into /public/projects/ using these file names and they
 // replace the placeholders automatically.
 const projects = [
-  {
-    title: "SCORE-GO",
-    description:
-      "Full-stack cricket platform built with Node.js, Express.js, and MongoDB. Supports team management, live match scoring, and real-time shareable scorecards.",
-    technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Express.js", "MongoDB"],
-    link: "https://score-go.onrender.com/",
-    github: "https://github.com/vjymisal0/SCORE-GO",
-    gallery: ["/projects/score-go-1.png", "/projects/score-go-2.png", "/projects/score-go-3.png"],
-  },
   {
     title: "Chat + Sentiment Analysis",
     description:
@@ -41,24 +32,6 @@ const projects = [
     link: "#",
     github: "https://github.com/ITR-project-group/Vaccine_management_system",
     gallery: ["/projects/vaccine-1.png", "/projects/vaccine-2.png", "/projects/vaccine-3.png"],
-  },
-  {
-    title: "Smart Shopping Cart",
-    description:
-      "IoT Android app paired with an ESP32 barcode scanner. Products are scanned into a live cart, and Firebase syncs order data in real time.",
-    technologies: ["Java", "Android", "Firebase", "Arduino", "ESP32"],
-    link: "#",
-    github: "https://github.com/vjymisal0/Smart-Shopping-Cart-IOT",
-    gallery: ["/projects/smart-cart-1.png", "/projects/smart-cart-2.png", "/projects/smart-cart-3.png"],
-  },
-  {
-    title: "Get Notes",
-    description:
-      "Lightweight browser-based notes app. Create, edit, delete and view notes that persist across sessions via the Local Storage API.",
-    technologies: ["HTML", "CSS", "JavaScript", "Local Storage"],
-    link: "https://vjymisal0.github.io/GetNotes/",
-    github: "https://github.com/vjymisal0/GetNotes",
-    gallery: ["/projects/get-notes-1.png", "/projects/get-notes-2.png", "/projects/get-notes-3.png"],
   },
   {
     title: "Health Bites",
@@ -92,11 +65,11 @@ const techColor = (tech: string) => {
 
 const iconFor = (title: string) => {
   switch (title) {
-    case "SCORE-GO":              return MdOutlineSportsCricket
+    
     case "Chat + Sentiment Analysis": return MessageCircle
     case "Vaccine Management":    return Syringe
-    case "Smart Shopping Cart":   return ShoppingCart
-    case "Get Notes":             return BiNotepad
+    
+    
     case "Health Bites":          return Activity
     default:                      return ExternalLink
   }
