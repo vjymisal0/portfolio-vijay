@@ -12,7 +12,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 const sectionItems = [
   { id: 'home', label: 'Home', icon: Home },
   { id: 'experience', label: 'Experience', icon: UserRound },
-  { id: 'work', label: 'Background', icon: FolderKanban },
+  { id: 'projects', label: 'Projects', icon: FolderKanban },
   { id: 'oss', label: 'Open Source', icon: GitBranch },
 ]
 
