@@ -428,10 +428,10 @@ export default function OpenSource() {
                 I'm always open to discussing new projects, open-source collaborations, or creative ideas.
               </p>
               <div className="flex flex-wrap justify-center items-center gap-4">
-                <a href="mailto:vijaymisal0@gmail.com" className="inline-flex items-center gap-2 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 px-5 py-2.5 rounded-full transition-colors relative z-10">
+                <a href="mailto:misalvijay153@gmail.com" className="inline-flex items-center gap-2 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 px-5 py-2.5 rounded-full transition-colors relative z-10">
                   <FileText className="w-4 h-4" /> Send an Email
                 </a>
-                <a href="https://linkedin.com/in/vijaymisal0" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium bg-secondary text-secondary-foreground hover:bg-secondary/80 px-5 py-2.5 rounded-full transition-colors relative z-10">
+                <a href="https://www.linkedin.com/in/vijaymisal/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium bg-secondary text-secondary-foreground hover:bg-secondary/80 px-5 py-2.5 rounded-full transition-colors relative z-10">
                    LinkedIn Profile
                 </a>
               </div>
