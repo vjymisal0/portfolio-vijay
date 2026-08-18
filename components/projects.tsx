@@ -10,7 +10,7 @@ import { ExternalLink, MessageCircle, Syringe, Activity, Lock, Images, ArrowLeft
 import { FaGithub } from "react-icons/fa"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { onSpotlightMove, SpotlightOverlay } from "@/components/ui/spotlight"
-import { useState, useMemo } from "react"
+import { useState } from "react"
 
 // Drop screenshots into /public/projects/ using these file names and they
 // replace the placeholders automatically.
@@ -77,12 +77,12 @@ const iconFor = (title: string) => {
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 }
 
 const cardVariants = {
   hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 14, stiffness: 100 } },
+  visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 12, stiffness: 120 } },
 }
 
 function GalleryShot({ src, title, index, total }: { src: string; title: string; index: number; total: number }) {
@@ -113,17 +113,6 @@ function GalleryShot({ src, title, index, total }: { src: string; title: string;
 export default function Projects() {
   const [selected, setSelected] = useState<Project | null>(null)
   const [galleryOpen, setGalleryOpen] = useState(false)
-  const [selectedTech, setSelectedTech] = useState<string | null>(null)
-
-  const allTechs = useMemo(() => {
-    const techs = new Set<string>()
-    projects.forEach(p => p.technologies.forEach(t => techs.add(t)))
-    return Array.from(techs).sort()
-  }, [])
-
-  const filteredProjects = selectedTech 
-    ? projects.filter(p => p.technologies.includes(selectedTech))
-    : projects
 
 
   const openProject = (project: Project) => {
@@ -141,46 +130,20 @@ export default function Projects() {
         <SectionTitle className="mb-5">Projects</SectionTitle>
 
 
-        {/* Tech Filter */}
-        <div className="mb-6 flex flex-wrap gap-2">
-          <button
-            onClick={() => setSelectedTech(null)}
-            className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors border ${
-              selectedTech === null 
-                ? 'bg-primary text-primary-foreground border-primary' 
-                : 'bg-card/40 text-muted-foreground border-border hover:border-primary/40 hover:text-foreground'
-            }`}
-          >
-            All
-          </button>
-          {allTechs.map(tech => (
-            <button
-              key={tech}
-              onClick={() => setSelectedTech(tech)}
-              className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors border ${
-                selectedTech === tech 
-                  ? 'bg-primary text-primary-foreground border-primary' 
-                  : 'bg-card/40 text-muted-foreground border-border hover:border-primary/40 hover:text-foreground'
-              }`}
-            >
-              {tech}
-            </button>
-          ))}
-        </div>
-
         <motion.div
           className="grid gap-3 md:grid-cols-2 lg:grid-cols-3"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {filteredProjects.map((project, idx) => {
+          {projects.map((project, idx) => {
             const Icon = iconFor(project.title)
             return (
               <motion.div
                 key={project.title}
                 variants={cardVariants}
                 onClick={() => openProject(project)}
+                whileHover={{ y: -4 }}
                 onMouseMove={onSpotlightMove}
                 className="group group/spotlight relative rounded-xl border border-border bg-card/40 hover:border-primary/40 hover:bg-card/70 transition-all duration-300 cursor-pointer p-4 flex flex-col gap-2.5"
               >

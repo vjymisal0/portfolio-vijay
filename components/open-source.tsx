@@ -234,12 +234,12 @@ const kindMeta: Record<Kind, { label: string; icon: typeof Bug; color: string }>
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
 }
 
 const cardVariants = {
   hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { type: 'spring', damping: 14, stiffness: 100 } },
+  visible: { opacity: 1, y: 0, transition: { type: 'spring', damping: 12, stiffness: 120 } },
 }
 
 const formatDate = (iso: string) =>
