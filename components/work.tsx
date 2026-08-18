@@ -2,7 +2,6 @@
 
 'use client'
 
-import Skills from '@/components/skills'
 import Projects from '@/components/projects'
 import Education from '@/components/education'
 import { useSmoothScroll } from '@/lib/use-smooth-scroll'
@@ -14,7 +13,6 @@ export default function Work() {
     <section className="relative h-full bg-gradient-to-b from-background to-secondary/10">
       <div ref={wrapperRef} className="scroll-reliable h-full py-8 pb-28 lg:pb-10">
         <div ref={contentRef} className="container mx-auto px-4 sm:px-6 space-y-16">
-          <Skills />
           <Projects />
           <Education />
         </div>
