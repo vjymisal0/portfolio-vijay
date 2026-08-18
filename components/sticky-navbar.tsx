@@ -1,5 +1,4 @@
 'use client'
-
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -8,20 +7,16 @@ import { Home, UserRound, FolderKanban, GitBranch } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
 import { Dock, DockIcon } from '@/components/ui/dock'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-
 const sectionItems = [
   { id: 'home', label: 'Home', icon: Home },
   { id: 'experience', label: 'Experience', icon: UserRound },
   { id: 'projects', label: 'Projects', icon: FolderKanban },
   { id: 'oss', label: 'Open Source', icon: GitBranch },
 ]
-
 export default function StickyNavbar() {
   const pathname = usePathname()
   const [hash, setHash] = useState('home')
-
   const onBlog = pathname.startsWith('/blog')
-
   // Re-read the hash on every route change (not just mount) so the highlight
   // updates when returning from /blog to a '/#section' — a client navigation
   // that never fires 'hashchange'.
@@ -31,15 +26,12 @@ export default function StickyNavbar() {
     window.addEventListener('hashchange', applyHash)
     return () => window.removeEventListener('hashchange', applyHash)
   }, [pathname])
-
   const activeId = onBlog ? 'blog' : pathname === '/' ? hash : ''
-
   // Leaving /blog via client-side nav, the home page can't rely on the hash
   // being applied before it mounts, so hand off the target section explicitly.
   const gotoSection = (id: string) => {
     if (onBlog) sessionStorage.setItem('goto-section', id)
   }
-
   // Section links behave differently depending on where we are:
   // - On '/', a native <a href="/#id"> changes only the hash (no reload) and
   //   fires 'hashchange', which swaps the section instantly.
@@ -50,9 +42,7 @@ export default function StickyNavbar() {
   // per chapter — rather than the usual pill-highlight sidebar. The lit tick
   // is a shared-layout motion.span rendered only in the active link, so
   // Framer Motion animates it sliding along the spine to wherever it
-  // reappears, instead of each link owning a static highlight.
-`
-
+  // reappears, instead of each link owning a static highlight.`
 
   const dockPill = (
     <motion.span
@@ -61,7 +51,6 @@ export default function StickyNavbar() {
       transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
     />
   )
-
   return (
     <>
       {/* ── Desktop sidebar ── */}
@@ -72,7 +61,6 @@ export default function StickyNavbar() {
           </span>
           <span className="text-sm font-semibold text-foreground">Vijay Misal</span>
         </div>
-
         {/* Clean Pill Navigation */}
         <nav className="relative flex flex-col gap-1.5">
           {sectionItems.map((item) => {
@@ -81,7 +69,7 @@ export default function StickyNavbar() {
             
             const content = (
               <>
-                <Icon className={`w-4 h-4 flex-shrink-0 transition-colors ${isActive ? 'text-primary' : 'text-muted-foreground group-hover:text-foreground'}`} />
+                <Icon className={"w-4 h-4 flex-shrink-0 transition-colors " + (isActive ? "text-primary" : "text-muted-foreground group-hover:text-foreground")} />
                 {item.label}
                 {isActive && (
                   <motion.span
@@ -93,27 +81,23 @@ export default function StickyNavbar() {
               </>
             )
             
-            const itemClass = `group relative flex items-center gap-3 px-3 py-2.5 text-sm font-medium transition-colors rounded-lg ${
-              isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-            }`
-
+            const itemClass = "group relative flex items-center gap-3 px-3 py-2.5 text-sm font-medium transition-colors rounded-lg " + (isActive ? "text-primary" : "text-muted-foreground hover:text-foreground hover:bg-muted/50")
             return onBlog ? (
               <Link
                 key={item.id}
-                href={`/#${item.id}`}
+                href={"/#" + item.id}
                 onClick={() => gotoSection(item.id)}
                 className={itemClass}
               >
                 {content}
               </Link>
             ) : (
-              <a key={item.id} href={`/#${item.id}`} className={itemClass}>
+              <a key={item.id} href={"/#" + item.id} className={itemClass}>
                 {content}
               </a>
             )
           })}
         </nav>
-
         <a
           href="https://github.com/vjymisal0"
           target="_blank"
@@ -124,7 +108,6 @@ export default function StickyNavbar() {
           @vjymisal0
         </a>
       </aside>
-
       {/* ── Mobile floating dock — macOS-style, icons magnify toward the
           cursor and reveal their label as a tooltip instead of always
           showing text inline. ── */}
@@ -157,11 +140,11 @@ export default function StickyNavbar() {
                 </DockIcon>
               )
               const trigger = onBlog ? (
-                <Link href={`/#${item.id}`} onClick={() => gotoSection(item.id)}>
+                <Link href={"/#" + item.id} onClick={() => gotoSection(item.id)}>
                   {icon}
                 </Link>
               ) : (
-                <a href={`/#${item.id}`}>{icon}</a>
+                <a href={"/#" + item.id}>{icon}</a>
               )
               return (
                 <Tooltip key={item.id}>
