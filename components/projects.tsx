@@ -10,7 +10,7 @@ import { ExternalLink, MessageCircle, Syringe, Activity, Lock, Images, ArrowLeft
 import { FaGithub } from "react-icons/fa"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { onSpotlightMove, SpotlightOverlay } from "@/components/ui/spotlight"
-import { useState } from "react"
+import { useState, useMemo } from "react"
 
 // Drop screenshots into /public/projects/ using these file names and they
 // replace the placeholders automatically.
@@ -113,6 +113,18 @@ function GalleryShot({ src, title, index, total }: { src: string; title: string;
 export default function Projects() {
   const [selected, setSelected] = useState<Project | null>(null)
   const [galleryOpen, setGalleryOpen] = useState(false)
+  const [selectedTech, setSelectedTech] = useState<string | null>(null)
+
+  const allTechs = useMemo(() => {
+    const techs = new Set<string>()
+    projects.forEach(p => p.technologies.forEach(t => techs.add(t)))
+    return Array.from(techs).sort()
+  }, [])
+
+  const filteredProjects = selectedTech 
+    ? projects.filter(p => p.technologies.includes(selectedTech))
+    : projects
+
 
   const openProject = (project: Project) => {
     setSelected(project)
@@ -128,13 +140,41 @@ export default function Projects() {
     <div>
         <SectionTitle className="mb-5">Projects</SectionTitle>
 
+
+        {/* Tech Filter */}
+        <div className="mb-6 flex flex-wrap gap-2">
+          <button
+            onClick={() => setSelectedTech(null)}
+            className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors border ${
+              selectedTech === null 
+                ? 'bg-primary text-primary-foreground border-primary' 
+                : 'bg-card/40 text-muted-foreground border-border hover:border-primary/40 hover:text-foreground'
+            }`}
+          >
+            All
+          </button>
+          {allTechs.map(tech => (
+            <button
+              key={tech}
+              onClick={() => setSelectedTech(tech)}
+              className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors border ${
+                selectedTech === tech 
+                  ? 'bg-primary text-primary-foreground border-primary' 
+                  : 'bg-card/40 text-muted-foreground border-border hover:border-primary/40 hover:text-foreground'
+              }`}
+            >
+              {tech}
+            </button>
+          ))}
+        </div>
+
         <motion.div
           className="grid gap-3 md:grid-cols-2 lg:grid-cols-3"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {projects.map((project, idx) => {
+          {filteredProjects.map((project, idx) => {
             const Icon = iconFor(project.title)
             return (
               <motion.div

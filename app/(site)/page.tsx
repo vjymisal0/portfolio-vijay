@@ -3,11 +3,11 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Introduction from '@/components/introduction'
-import Work from '@/components/work'
+import ProjectsSection from '@/components/work'
 import Experience from '@/components/experience'
 import OpenSource from '@/components/open-source'
 
-const SECTIONS = ['home', 'experience', 'work', 'oss'] as const
+const SECTIONS = ['home', 'experience', 'projects', 'oss'] as const
 type SectionId = (typeof SECTIONS)[number]
 
 function isSection(id: string): id is SectionId {
@@ -18,7 +18,7 @@ function SectionContent({ id }: { id: string }) {
   switch (id) {
     case 'home':         return <Introduction />
     case 'experience':   return <Experience />
-    case 'work':         return <Work />
+    case 'projects':         return <ProjectsSection />
     case 'oss':          return <OpenSource />
     default: return null
   }
