@@ -26,12 +26,6 @@ export default function StickyNavbar() {
   return (
     <header className="fixed top-6 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
       <nav className="flex items-center gap-1 sm:gap-2 px-3 py-2 bg-background/80 backdrop-blur-xl border border-border rounded-full shadow-sm pointer-events-auto">
-        <div className="mr-2 sm:mr-4 ml-1 flex items-center justify-center">
-          <span className="flex h-6 w-6 items-center justify-center rounded border border-border bg-foreground/5 font-serif text-[10px] font-bold text-foreground">
-            VM
-          </span>
-        </div>
-
         {navItems.map((item) => {
           const isActive = activeId === item.id
 
