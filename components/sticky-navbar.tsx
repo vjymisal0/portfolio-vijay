@@ -54,9 +54,9 @@ export default function StickyNavbar() {
   return (
     <>
       {/* ── Desktop sidebar ── */}
-      <aside className="hidden lg:flex flex-shrink-0 w-52 h-screen border-r border-border bg-background/95 backdrop-blur-sm flex-col px-4 py-8">
+      <aside className="hidden lg:flex flex-shrink-0 w-52 h-screen sticky top-0 border-r border-border bg-background flex-col px-4 py-8">
         <div className="mb-10 flex items-center gap-2.5">
-          <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 font-mono text-[11px] font-bold text-primary">
+          <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg border border-border bg-foreground/5 font-serif text-[11px] font-bold text-foreground">
             VM
           </span>
           <span className="text-sm font-semibold text-foreground">Vijay Misal</span>
@@ -69,19 +69,19 @@ export default function StickyNavbar() {
             
             const content = (
               <>
-                <Icon className={"w-4 h-4 flex-shrink-0 transition-colors " + (isActive ? "text-primary" : "text-muted-foreground group-hover:text-foreground")} />
+                <Icon className={"w-4 h-4 flex-shrink-0 transition-colors " + (isActive ? "text-foreground" : "text-muted-foreground group-hover:text-foreground")} />
                 {item.label}
                 {isActive && (
                   <motion.span
                     layoutId="desktop-nav-pill"
-                    className="absolute inset-0 rounded-lg bg-primary/10 border border-primary/20 -z-10"
+                    className="absolute inset-0 rounded-lg bg-foreground/5 border border-border -z-10"
                     transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
                   />
                 )}
               </>
             )
             
-            const itemClass = "group relative flex items-center gap-3 px-3 py-2.5 text-sm font-medium transition-colors rounded-lg " + (isActive ? "text-primary" : "text-muted-foreground hover:text-foreground hover:bg-muted/50")
+            const itemClass = "group relative flex items-center gap-3 px-3 py-2.5 text-sm font-medium transition-colors rounded-lg " + (isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-muted/50")
             return onBlog ? (
               <Link
                 key={item.id}

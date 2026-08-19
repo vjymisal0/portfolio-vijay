@@ -6,9 +6,9 @@ import ScrollToTop from '@/components/scroll-to-top'
 
 export default function SiteShell({ children }: { children: ReactNode }) {
   return (
-    <div className="h-screen overflow-hidden flex flex-col lg:flex-row bg-background text-foreground">
+    <div className="flex flex-col bg-background text-foreground min-h-screen">
       <StickyNavbar />
-      <main className="flex-1 overflow-hidden relative pb-16 lg:pb-0">
+      <main className="flex-1 relative pb-16 lg:pb-0">
         {children}
         <ScrollToTop />
       </main>
