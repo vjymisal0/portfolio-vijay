@@ -37,43 +37,40 @@ const projects = [
 export default function Projects() {
   return (
     <div>
-      <h2 className="font-serif text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-foreground mb-6">Selected Projects</h2>
+      <h2 className="font-serif text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-foreground mb-12">Selected Projects</h2>
       
-      <div className="grid gap-4 md:grid-cols-2">
-        {projects.map((project, i) => (
+      <div className="flex flex-col border-t border-border">
+        {projects.map((project) => (
           <div
             key={project.title}
-            className={`group flex flex-col p-6 rounded-xl border border-border bg-card/10 transition-colors hover:border-foreground/30 ${i === 0 ? 'md:col-span-2' : ''}`}
+            className="group flex flex-col md:flex-row gap-6 py-8 border-b border-border transition-colors hover:bg-foreground/5"
           >
-            <div className="flex items-start justify-between gap-4 mb-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-foreground/5 border border-foreground/10 flex-shrink-0">
-                  <project.icon className="w-4 h-4 text-foreground/70" />
-                </div>
-                <h3 className="font-serif text-xl font-medium text-foreground">{project.title}</h3>
-              </div>
-              <div className="flex gap-2">
-                <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full hover:bg-foreground/5 text-muted-foreground transition-colors">
-                  <FaGithub className="w-4 h-4" />
+            <div className="w-full md:w-1/3">
+              <h3 className="font-serif text-xl font-medium text-foreground">{project.title}</h3>
+              <div className="flex gap-4 mt-4">
+                <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5">
+                  <FaGithub className="w-4 h-4" /> Code
                 </a>
                 {project.link !== "#" && (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full hover:bg-foreground/5 text-muted-foreground transition-colors">
-                    <ExternalLink className="w-4 h-4" />
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5">
+                    <ExternalLink className="w-4 h-4" /> Live
                   </a>
                 )}
               </div>
             </div>
             
-            <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-grow">
-              {project.description}
-            </p>
-            
-            <div className="flex flex-wrap gap-2 mt-auto">
-              {project.technologies.map(tech => (
-                <span key={tech} className="text-[11px] font-mono text-muted-foreground px-2 py-1 rounded bg-foreground/5">
-                  {tech}
-                </span>
-              ))}
+            <div className="w-full md:w-2/3">
+              <p className="text-base text-muted-foreground leading-relaxed mb-6">
+                {project.description}
+              </p>
+              
+              <div className="flex flex-wrap gap-x-3 gap-y-2">
+                {project.technologies.map(tech => (
+                  <span key={tech} className="text-xs font-mono text-muted-foreground">
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         ))}
