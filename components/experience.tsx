@@ -5,7 +5,7 @@ import { ShieldCheck, Bot, Activity } from 'lucide-react'
 import { SiReact, SiNestjs, SiTypescript, SiNodedotjs } from 'react-icons/si'
 import type { IconType } from 'react-icons'
 import type { LucideIcon } from 'lucide-react'
-import { techColor } from '@/lib/tech-colors'
+import { techColorHex } from '@/lib/tech-colors'
 
 type AnyIcon = IconType | LucideIcon
 
@@ -118,8 +118,8 @@ export default function Experience() {
 
                   <div className="flex flex-wrap gap-x-3 gap-y-2">
                     {exp.tech.map(({ icon: Icon, label }) => (
-                      <span key={label} className={`inline-flex items-center gap-1.5 text-xs font-mono px-2 py-0.5 rounded border ${techColor(label)}`}>
-                        <Icon className="w-3 h-3" />
+                      <span key={label} className="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-full border border-border bg-foreground/[0.03] text-foreground/75">
+                        <Icon className="w-3 h-3 shrink-0" style={{ color: techColorHex(label) }} />
                         {label}
                       </span>
                     ))}

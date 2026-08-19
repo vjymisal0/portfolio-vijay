@@ -41,3 +41,24 @@ export async function getLiveGitHubStats() {
     return { success: false, languageData: null }
   }
 }
+
+export type ContributionDay = { date: string; count: number; level: number }
+
+export async function getContributionCalendar() {
+  try {
+    const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}?y=last`, {
+      next: { revalidate: 3600 } // Cache for 1 hour
+    })
+
+    if (!res.ok) throw new Error('Failed to fetch contribution calendar')
+
+    const data = await res.json()
+    const days: ContributionDay[] = data.contributions ?? []
+    const total: number = data.total?.lastYear ?? days.reduce((sum, d) => sum + d.count, 0)
+
+    return { success: true, days, total }
+  } catch (error) {
+    console.error('GitHub contribution calendar error:', error)
+    return { success: false, days: [] as ContributionDay[], total: 0 }
+  }
+}

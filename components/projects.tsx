@@ -4,8 +4,7 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ExternalLink, MessageCircle, Syringe, Activity, X } from "lucide-react"
 import { FaGithub } from "react-icons/fa"
-import GitHubCharts from './github-charts'
-import { techColor } from '@/lib/tech-colors'
+import { TechBadge } from './tech-badge'
 
 type Project = {
   title: string
@@ -55,7 +54,7 @@ export default function Projects() {
 
   return (
     <div>
-      <h2 className="font-serif text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-foreground mb-12">Selected Projects</h2>
+      <h2 className="font-serif text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-foreground mb-12">Projects</h2>
       
       <div className="flex flex-col border-t border-border">
         {projects.map((project) => (
@@ -91,9 +90,7 @@ export default function Projects() {
               
               <div className="flex flex-wrap gap-x-3 gap-y-2">
                 {project.technologies.map(tech => (
-                  <span key={tech} className={`text-xs font-mono px-2 py-0.5 rounded border ${techColor(tech)}`}>
-                    {tech}
-                  </span>
+                  <TechBadge key={tech} tech={tech} />
                 ))}
               </div>
             </div>
@@ -148,7 +145,7 @@ export default function Projects() {
                 <div className="p-6 border-t border-border bg-foreground/[0.02] flex items-center justify-between mt-auto">
                   <div className="flex flex-wrap gap-2">
                     {selectedProject.technologies.map(tech => (
-                       <span key={tech} className={`text-xs font-mono px-2 py-1 rounded border ${techColor(tech)}`}>{tech}</span>
+                       <TechBadge key={tech} tech={tech} />
                     ))}
                   </div>
                   <div className="flex items-center gap-4">
@@ -162,10 +159,6 @@ export default function Projects() {
           </>
         )}
       </AnimatePresence>
-      
-      <div className="mt-8 border-t border-border pt-8">
-        <GitHubCharts />
-      </div>
     </div>
   )
 }

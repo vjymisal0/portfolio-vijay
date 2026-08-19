@@ -6,9 +6,9 @@ import { FaGithub } from 'react-icons/fa'
 
 const navItems = [
   { id: 'home', label: 'Home' },
+  { id: 'oss', label: 'Open Source' },
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
-  { id: 'oss', label: 'Open Source' },
 ]
 
 export default function StickyNavbar() {

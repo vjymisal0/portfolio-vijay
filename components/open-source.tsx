@@ -4,9 +4,8 @@ import { motion } from 'framer-motion'
 import { ExternalLink, GitPullRequest, Package, Download } from 'lucide-react'
 import { FaGithub, FaNpm } from 'react-icons/fa'
 import { useState } from 'react'
-import { techColor } from '@/lib/tech-colors'
+import { TechBadge } from './tech-badge'
 import { contributions, packages, kindMeta } from '@/lib/data'
-import OpenSourceCharts from './open-source-charts'
 
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
@@ -53,22 +52,12 @@ export default function OpenSource() {
   return (
     <section className="container mx-auto px-6 lg:px-12 max-w-4xl">
       <div className="mb-10">
-        <h2 className="font-serif text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-foreground mb-6">Open Source</h2>
-        <div className="grid grid-cols-3 border-t border-l border-border rounded-lg overflow-hidden">
-          {[
-            { label: 'Pull requests merged', value: contributions.length },
-            { label: 'Public repositories', value: repoCount },
-            { label: 'Packages published', value: packages.length },
-          ].map((stat) => (
-            <div key={stat.label} className="border-b border-r border-border px-4 py-5 sm:px-6 sm:py-6">
-              <div className="font-serif text-3xl sm:text-4xl font-medium text-foreground">{stat.value}</div>
-              <div className="text-[11px] sm:text-xs text-muted-foreground mt-1 leading-snug">{stat.label}</div>
-            </div>
-          ))}
-        </div>
+        <h2 className="font-serif text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-foreground mb-1.5">Open Source</h2>
+        <p className="text-sm text-muted-foreground">
+          {contributions.length} pull requests merged across {repoCount} public repositories, plus {packages.length} npm packages published.{' '}
+          <a href="/#home" className="underline underline-offset-2 hover:text-foreground transition-colors">See the full breakdown in Developer Analytics &rarr;</a>
+        </p>
       </div>
-
-      <OpenSourceCharts />
 
       <div className="space-y-12">
         {/* Pull requests */}
@@ -107,9 +96,7 @@ export default function OpenSource() {
                       {c.techs?.length > 0 && (
                         <div className="flex items-center gap-2">
                           {c.techs.map(tech => (
-                            <span key={tech} className={`text-[10px] font-mono px-1.5 py-0.5 rounded-sm border ${techColor(tech)}`}>
-                              {tech}
-                            </span>
+                            <TechBadge key={tech} tech={tech} />
                           ))}
                         </div>
                       )}

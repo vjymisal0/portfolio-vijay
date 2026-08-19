@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
+import GitHubCharts from './github-charts'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -24,7 +25,6 @@ export default function Introduction() {
   return (
     <section className="container mx-auto px-6 lg:px-12 max-w-4xl pt-32 pb-16">
       <motion.div
-        className="grid grid-cols-1 lg:grid-cols-[1fr_auto] lg:items-start gap-10 lg:gap-16"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -74,14 +74,11 @@ export default function Introduction() {
           </motion.nav>
         </div>
 
-        <motion.div variants={itemVariants} className="w-48 sm:w-64 lg:w-72 shrink-0 lg:mt-2">
-          <div className="rounded-2xl bg-black/90 p-2 shadow-xl">
-            <img
-              src="/vijay-terminal.webp"
-              alt="Vijay Misal"
-              className="w-full aspect-square rounded-xl object-cover"
-            />
-          </div>
+        {/* Portrait temporarily removed — re-add the framed <img src="/vijay-terminal.webp">
+            block (with bottom gradient overlay) here when ready. */}
+
+        <motion.div variants={itemVariants} className="mt-14 pt-8 border-t border-border">
+          <GitHubCharts />
         </motion.div>
       </motion.div>
     </section>
