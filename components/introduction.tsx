@@ -38,10 +38,10 @@ export default function Introduction() {
           </motion.h1>
 
           <motion.p
-            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mt-4 leading-relaxed font-body"
+            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mt-4 leading-relaxed font-sans"
             variants={itemVariants}
           >
-            SDE 1 at Loopr AI. I build and ship full-stack features for LooprIQ Inspect, an AI-powered visual inspection platform — from secure APIs to feature flags, telemetry, and workflow automation. I like turning ambiguous problems into reliable, well-crafted software.
+            SDE 1 at Loopr AI, where I build full-stack features for LooprIQ Inspect — an AI-powered visual inspection platform for industrial quality control. My work spans secure APIs, feature flags, telemetry, and workflow automation. I enjoy taking ambiguous problems and shaping them into reliable, well-crafted software.
           </motion.p>
 
           <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-4">
