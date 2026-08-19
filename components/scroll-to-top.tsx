@@ -10,11 +10,10 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     const handleScroll = (e: Event) => {
-      const target = e.target as HTMLElement
+      const target = e.target
       if (
-        target &&
-        target.classList &&
-        (target.classList.contains('section-scroll') || target.classList.contains('scroll-reliable') || target.tagName === 'MAIN')
+        target instanceof HTMLElement &&
+        target.scrollHeight > target.clientHeight
       ) {
         setIsVisible(target.scrollTop > 300)
         setScrollContainer(target)
