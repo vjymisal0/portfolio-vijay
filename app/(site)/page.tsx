@@ -6,10 +6,9 @@ import Introduction from '@/components/introduction'
 import ProjectsSection from '@/components/work'
 import Experience from '@/components/experience'
 import OpenSource from '@/components/open-source'
-import ToolsAndTech from '@/components/tools-tech'
 import RecentThoughts from '@/components/recent-thoughts'
 
-const SECTIONS = ['home', 'experience', 'projects', 'tools', 'oss', 'blog'] as const
+const SECTIONS = ['home', 'experience', 'projects', 'oss', 'blog'] as const
 type SectionId = (typeof SECTIONS)[number]
 
 function isSection(id: string): id is SectionId {
@@ -21,7 +20,6 @@ function SectionContent({ id }: { id: string }) {
     case 'home':         return <Introduction />
     case 'experience':   return <Experience />
     case 'projects':     return <ProjectsSection />
-    case 'tools':        return <ToolsAndTech />
     case 'oss':          return <OpenSource />
     case 'blog':         return <RecentThoughts />
     default: return null
