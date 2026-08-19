@@ -87,7 +87,7 @@ export default function Projects() {
               
               <div className="flex flex-wrap gap-x-3 gap-y-2">
                 {project.technologies.map(tech => (
-                  <span key={tech} className="text-xs font-mono text-muted-foreground">
+                  <span key={tech} className="text-xs font-mono text-emerald-400/90 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">
                     {tech}
                   </span>
                 ))}
@@ -143,8 +143,8 @@ export default function Projects() {
                 
                 <div className="p-6 border-t border-border bg-foreground/[0.02] flex items-center justify-between mt-auto">
                   <div className="flex flex-wrap gap-2">
-                    {selectedProject.technologies.slice(0, 3).map(tech => (
-                       <span key={tech} className="text-xs font-mono text-muted-foreground px-2 py-1 rounded bg-foreground/5">{tech}</span>
+                    {selectedProject.technologies.map(tech => (
+                       <span key={tech} className="text-xs font-mono text-emerald-400/90 bg-emerald-500/10 border border-emerald-500/20 px-2 py-1 rounded">{tech}</span>
                     ))}
                   </div>
                   <div className="flex items-center gap-4">

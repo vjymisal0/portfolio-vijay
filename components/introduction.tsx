@@ -43,7 +43,15 @@ export default function Introduction() {
           SDE 1 at Loopr AI. I build and ship full-stack features for LooprIQ Inspect, an AI-powered visual inspection platform — from secure APIs to feature flags, telemetry, and workflow automation. I like turning ambiguous problems into reliable, well-crafted software.
         </motion.p>
 
-        <motion.div variants={itemVariants} className="mt-6 flex flex-wrap gap-4">
+        <motion.div variants={itemVariants} className="mt-8 w-full max-w-2xl">
+          <img 
+            src="/vijay-terminal.webp" 
+            alt="Terminal stats" 
+            className="w-full rounded-xl border border-border/50 shadow-2xl bg-black/50"
+          />
+        </motion.div>
+
+        <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-4">
           <a
             href="/resume.pdf"
             target="_blank"
