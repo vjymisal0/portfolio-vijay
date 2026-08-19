@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { ExternalLink, MessageCircle, Syringe, Activity } from "lucide-react"
 import { FaGithub } from "react-icons/fa"
+import GitHubCharts from './github-charts'
 
 const projects = [
   {
@@ -74,6 +75,10 @@ export default function Projects() {
             </div>
           </div>
         ))}
+      </div>
+      
+      <div className="mt-8 border-t border-border pt-8">
+        <GitHubCharts />
       </div>
     </div>
   )

@@ -6,7 +6,6 @@ import { onSpotlightMove, SpotlightOverlay } from '@/components/ui/spotlight'
 import { ExternalLink, GitPullRequest, Bug, Sparkles, FileText, TestTube2, Eraser, Package, Download } from 'lucide-react'
 import { FaGithub, FaNpm } from 'react-icons/fa'
 import { useState } from 'react'
-import GitHubCharts from './github-charts'
 
 // Real merged PRs, newest first. Add a new entry here whenever one lands —
 // same pattern as the `projects` array in components/projects.tsx.
@@ -383,10 +382,6 @@ export default function OpenSource() {
               </div>
             ))}
           </div>
-        </div>
-
-        <div className="mt-20">
-          <GitHubCharts />
         </div>
 
         {/* Let's Connect CTA */}
