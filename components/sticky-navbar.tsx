@@ -8,7 +8,9 @@ const navItems = [
   { id: 'home', label: 'Home' },
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
+  { id: 'tools', label: 'Tools' },
   { id: 'oss', label: 'Open Source' },
+  { id: 'blog', label: 'Thoughts' },
 ]
 
 export default function StickyNavbar() {
