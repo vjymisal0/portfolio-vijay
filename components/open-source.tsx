@@ -15,6 +15,7 @@ const contributions = [
     number: 42881,
     date: '2026-08-07',
     kind: 'fix',
+    techs: ['React', 'TypeScript', 'Python']
   },
   {
     repo: 'chatwoot/chatwoot',
@@ -23,6 +24,7 @@ const contributions = [
     number: 15418,
     date: '2026-08-11',
     kind: 'fix',
+    techs: ['Vue', 'Ruby']
   },
   {
     repo: 'reticlehq/reticle',
@@ -31,6 +33,7 @@ const contributions = [
     number: 389,
     date: '2026-08-18',
     kind: 'docs',
+    techs: ['Go', 'TypeScript']
   },
   {
     repo: 'moov-io/metro2',
@@ -39,6 +42,7 @@ const contributions = [
     number: 256,
     date: '2026-08-17',
     kind: 'fix',
+    techs: ['Go']
   },
   {
     repo: 'h3js/h3',
@@ -47,6 +51,7 @@ const contributions = [
     number: 1528,
     date: '2026-08-15',
     kind: 'fix',
+    techs: ['JavaScript', 'Node.js']
   },
   {
     repo: 'benoitc/gunicorn',
@@ -55,6 +60,7 @@ const contributions = [
     number: 3684,
     date: '2026-08-15',
     kind: 'fix',
+    techs: ['Python']
   },
   {
     repo: 'collective/icalendar',
@@ -63,6 +69,7 @@ const contributions = [
     number: 1643,
     date: '2026-08-07',
     kind: 'cleanup',
+    techs: ['Python']
   },
   {
     repo: 'mercadona/rele',
@@ -71,6 +78,7 @@ const contributions = [
     number: 343,
     date: '2026-08-06',
     kind: 'fix',
+    techs: ['Python', 'Django']
   }
 ]
 
@@ -197,10 +205,19 @@ export default function OpenSource() {
                       {c.title}
                     </p>
                     <div className="flex flex-wrap items-center gap-4">
-                      <span className={`inline-flex items-center gap-1 text-[10px] uppercase tracking-wider font-semibold`}>
+                      <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-sm text-[10px] uppercase tracking-wider font-semibold ${meta.color}`}>
                         <Icon className="w-3 h-3" /> {meta.label}
                       </span>
-                      <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors flex items-center gap-1">
+                      {c.techs?.length > 0 && (
+                        <div className="flex items-center gap-2">
+                          {c.techs.map(tech => (
+                            <span key={tech} className="text-[10px] font-mono text-emerald-400/90 bg-emerald-500/10 border border-emerald-500/20 px-1.5 py-0.5 rounded-sm">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors flex items-center gap-1 ml-auto">
                         View PR <ExternalLink className="w-3 h-3" />
                       </span>
                     </div>
