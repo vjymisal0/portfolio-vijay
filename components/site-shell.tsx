@@ -6,9 +6,9 @@ import ScrollToTop from '@/components/scroll-to-top'
 
 export default function SiteShell({ children }: { children: ReactNode }) {
   return (
-    <div className="bg-background text-foreground min-h-screen">
+    <div className="h-screen overflow-hidden bg-background text-foreground">
       <StickyNavbar />
-      <main className="relative pt-24 pb-16 lg:pb-12">
+      <main className="h-full relative pb-16 lg:pb-12">
         {children}
         <ScrollToTop />
       </main>
