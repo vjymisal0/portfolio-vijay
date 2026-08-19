@@ -5,6 +5,8 @@ import Introduction from '@/components/introduction'
 import ProjectsSection from '@/components/work'
 import Experience from '@/components/experience'
 import OpenSource from '@/components/open-source'
+import ToolsAndTech from '@/components/tools-tech'
+import RecentThoughts from '@/components/recent-thoughts'
 
 function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   return (
@@ -41,8 +43,20 @@ export default function Home() {
       </FadeIn>
       
       <FadeIn delay={0.1}>
+        <div id="tools" className="pt-24">
+          <ToolsAndTech />
+        </div>
+      </FadeIn>
+      
+      <FadeIn delay={0.1}>
         <div id="oss" className="pt-24">
           <OpenSource />
+        </div>
+      </FadeIn>
+
+      <FadeIn delay={0.1}>
+        <div id="blog" className="pt-24">
+          <RecentThoughts />
         </div>
       </FadeIn>
     </div>
