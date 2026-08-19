@@ -33,12 +33,10 @@ const photoVariants = {
 }
 
 export default function Introduction() {
-  const { wrapperRef, contentRef } = useSmoothScroll<HTMLElement>()
-
   return (
-    <section ref={wrapperRef} className="relative h-full overflow-y-auto bg-gradient-to-br from-background via-background to-secondary/10">
+    <section className="relative py-20 lg:py-32 bg-gradient-to-br from-background via-background to-secondary/10">
       <AuroraBackground />
-      <div ref={contentRef} className="relative min-h-full flex items-center">
+      <div className="relative min-h-[70vh] flex items-center">
         <div className="container mx-auto px-6 lg:px-12 py-10 pb-28 lg:pb-10">
           <div className="flex flex-col-reverse lg:flex-row items-center gap-6 sm:gap-8 lg:gap-16">
 
@@ -57,7 +55,7 @@ export default function Introduction() {
             </motion.span>
 
             <motion.h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-3 sm:mb-5 leading-[1.1]"
+              className="text-5xl sm:text-6xl lg:text-7xl font-serif font-medium tracking-tight mb-3 sm:mb-5 leading-[1.1]"
               variants={itemVariants}
             >
               Vijay{' '}

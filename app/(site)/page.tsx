@@ -1,87 +1,50 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Introduction from '@/components/introduction'
 import ProjectsSection from '@/components/work'
 import Experience from '@/components/experience'
 import OpenSource from '@/components/open-source'
 
-const SECTIONS = ['home', 'experience', 'projects', 'oss'] as const
-type SectionId = (typeof SECTIONS)[number]
-
-function isSection(id: string): id is SectionId {
-  return (SECTIONS as readonly string[]).includes(id)
-}
-
-function SectionContent({ id }: { id: string }) {
-  switch (id) {
-    case 'home':         return <Introduction />
-    case 'experience':   return <Experience />
-    case 'projects':         return <ProjectsSection />
-    case 'oss':          return <OpenSource />
-    default: return null
-  }
+function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
+    >
+      {children}
+    </motion.div>
+  )
 }
 
 export default function Home() {
-  const [activeSection, setActiveSection] = useState<SectionId>('home')
-
-  // Sync the active section with the URL hash so sections are deep-linkable
-  // and the browser back/forward buttons work.
-  useEffect(() => {
-    const applyHash = () => {
-      const id = window.location.hash.replace('#', '')
-      if (isSection(id)) setActiveSection(id)
-    }
-
-    // Arriving from /blog, the navbar hands off the target section explicitly
-    // (a client navigation doesn't reliably apply the hash before mount).
-    const handoff = sessionStorage.getItem('goto-section')
-    if (handoff && isSection(handoff)) {
-      sessionStorage.removeItem('goto-section')
-      setActiveSection(handoff)
-      if (window.location.hash !== `#${handoff}`) {
-        history.replaceState(null, '', `/#${handoff}`)
-      }
-      // Nudge the persistent navbar (it only re-reads on 'hashchange') so its
-      // highlight matches the section we just selected.
-      window.dispatchEvent(new Event('hashchange'))
-    } else {
-      applyHash()
-    }
-
-    window.addEventListener('hashchange', applyHash)
-    return () => window.removeEventListener('hashchange', applyHash)
-  }, [])
-
-  // Dev-only: Next disables link prefetch in development, so the first click on
-  // Field Notes pays for compiling the /blog route on demand (that first-nav
-  // lag). Warm it in the background once the page is idle so the click is
-  // instant. No-op in production, where /blog is static and already prefetched.
-  useEffect(() => {
-    if (process.env.NODE_ENV !== 'development') return
-    const warm = () => { void fetch('/blog').catch(() => {}) }
-    const hasRic = typeof window.requestIdleCallback === 'function'
-    const id = hasRic ? window.requestIdleCallback(warm) : window.setTimeout(warm, 1500)
-    return () => {
-      if (hasRic) window.cancelIdleCallback(id)
-      else window.clearTimeout(id)
-    }
-  }, [])
-
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={activeSection}
-        className="absolute inset-0"
-        initial={{ opacity: 0, y: 20, scale: 0.96, filter: "blur(4px)" }}
-        animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-        exit={{ opacity: 0, y: -20, scale: 0.96, filter: "blur(4px)" }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
-      >
-        <SectionContent id={activeSection} />
-      </motion.div>
-    </AnimatePresence>
+    <main className="flex flex-col min-h-screen pb-32">
+      <FadeIn>
+        <div id="home">
+          <Introduction />
+        </div>
+      </FadeIn>
+      
+      <FadeIn delay={0.1}>
+        <div id="experience" className="pt-24 border-t border-border/40">
+          <Experience />
+        </div>
+      </FadeIn>
+      
+      <FadeIn delay={0.1}>
+        <div id="projects" className="pt-24 border-t border-border/40">
+          <ProjectsSection />
+        </div>
+      </FadeIn>
+      
+      <FadeIn delay={0.1}>
+        <div id="oss" className="pt-24 border-t border-border/40">
+          <OpenSource />
+        </div>
+      </FadeIn>
+    </main>
   )
 }

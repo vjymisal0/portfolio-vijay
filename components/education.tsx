@@ -1,9 +1,6 @@
-'use client'
+"use client"
 
-import { motion } from 'framer-motion'
 import { MapPin, CalendarDays } from 'lucide-react'
-import SectionTitle from '@/components/section-title'
-import { onSpotlightMove, SpotlightOverlay } from '@/components/ui/spotlight'
 
 const educationData = [
   {
@@ -12,7 +9,6 @@ const educationData = [
     institution: "Vishwakarma Institute of Information Technology",
     location: "Pune, Maharashtra",
     score: "8.44 CGPA",
-    scoreColor: "bg-emerald-500/15 text-emerald-400",
     year: "2023 – 2026",
     index: "01",
   },
@@ -22,85 +18,38 @@ const educationData = [
     institution: "Government Polytechnic, Solapur",
     location: "Solapur, Maharashtra",
     score: "91.43%",
-    scoreColor: "bg-blue-500/15 text-blue-400",
     year: "2021 – 2023",
     index: "02",
   },
 ]
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { type: 'spring', damping: 14, stiffness: 100 } },
-}
-
 export default function Education() {
   return (
-    <div className="max-w-2xl mx-auto">
-        <SectionTitle className="mb-8">Education</SectionTitle>
+    <div className="pt-8">
+      <h2 className="font-serif text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-foreground mb-6">Education</h2>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-[19px] top-3 bottom-3 w-px bg-border" />
-
-          <motion.div
-            className="space-y-4"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {educationData.map((edu) => (
-              <motion.div key={edu.index} variants={itemVariants} className="flex gap-5">
-                {/* Timeline dot */}
-                <div className="relative flex-shrink-0 flex flex-col items-center pt-4">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center z-10">
-                    <span className="text-[11px] font-mono font-semibold text-primary">{edu.index}</span>
-                  </div>
-                </div>
-
-                {/* Card */}
-                <div
-                  onMouseMove={onSpotlightMove}
-                  className="group group/spotlight relative flex-1 rounded-xl border border-border bg-card/40 hover:border-primary/30 hover:bg-card/70 transition-all duration-300 p-4"
-                >
-                  <SpotlightOverlay />
-                  <div className="mb-2">
-                    <div className="flex items-center justify-between gap-2 mb-0.5">
-                      <p className="text-[11px] font-mono text-muted-foreground/60 uppercase tracking-wider">
-                        {edu.short}
-                      </p>
-                      <span className={`flex-shrink-0 text-xs px-2.5 py-0.5 rounded-full font-semibold ${edu.scoreColor}`}>
-                        {edu.score}
-                      </span>
-                    </div>
-                    <h3 className="text-sm font-semibold leading-snug text-foreground group-hover:text-primary transition-colors">
-                      {edu.degree}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mt-0.5 font-medium">
-                      {edu.institution}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center gap-4 mt-3 pt-3 border-t border-border/50">
-                    <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                      <MapPin className="w-3 h-3" />
-                      {edu.location}
-                    </span>
-                    <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                      <CalendarDays className="w-3 h-3" />
-                      {edu.year}
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+      <div className="flex flex-col gap-3">
+        {educationData.map((edu) => (
+          <div key={edu.index} className="group rounded-xl border border-border bg-card/10 transition-colors hover:border-foreground/30 p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+              <h3 className="font-serif text-lg text-foreground">{edu.institution}</h3>
+              <span className="text-xs font-mono text-muted-foreground">{edu.year}</span>
+            </div>
+            
+            <p className="text-sm text-foreground/80 mb-4">{edu.degree}</p>
+            
+            <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
+              <span className="flex items-center gap-1.5">
+                <MapPin className="w-3 h-3" />
+                {edu.location}
+              </span>
+              <span className="px-2 py-0.5 rounded font-mono bg-foreground/5 text-foreground/70 border border-transparent">
+                {edu.score}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

@@ -1,10 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import SectionTitle from '@/components/section-title'
-import { onSpotlightMove, SpotlightOverlay } from '@/components/ui/spotlight'
-import { useSmoothScroll } from '@/lib/use-smooth-scroll'
-import { Briefcase, MapPin, CalendarDays, ShieldCheck, Bot, Activity } from 'lucide-react'
+import { Briefcase, MapPin, CalendarDays, ShieldCheck, Bot, Activity, ChevronDown } from 'lucide-react'
 import { SiReact, SiNestjs, SiTypescript, SiNodedotjs } from 'react-icons/si'
 import type { IconType } from 'react-icons'
 import type { LucideIcon } from 'lucide-react'
@@ -21,8 +18,6 @@ const experiences = [
     period: 'July 2026 – Present',
     type: 'Full-time',
     status: 'Current',
-    statusColor: 'bg-emerald-500/15 text-emerald-400',
-    dotColor: 'border-emerald-400 bg-emerald-400/20',
     bullets: [
       'Converted from intern to full-time SDE 1 — continuing to own and ship platform features across the LooprIQ Inspect stack.',
       'Built an n8n workflow to automate performance monitoring of the platform — surfacing key metrics without manual checks.',
@@ -45,8 +40,6 @@ const experiences = [
     period: 'July 2025 – June 2026',
     type: 'Internship',
     status: 'Completed',
-    statusColor: 'bg-sky-500/15 text-sky-400',
-    dotColor: 'border-sky-400 bg-sky-400/20',
     bullets: [
       'Secured Engine APIs with JWT authentication and dynamic API key protection to prevent unauthorized external access.',
       'Migrated runtime feature flags to a database-backed PostHog system — enabling live feature toggles without redeployments.',
@@ -68,10 +61,6 @@ const experiences = [
   },
 ]
 
-// Group consecutive roles at the same company — LinkedIn-style "grouped
-// positions": one company header, multiple role entries beneath it
-// connected by a timeline of dots (a promotion/role-change within the
-// same tenure), instead of duplicating the company card per role.
 type Experience = (typeof experiences)[number]
 const groups: { company: string; location: string; roles: Experience[] }[] = []
 for (const exp of experiences) {
@@ -83,116 +72,63 @@ for (const exp of experiences) {
   }
 }
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: { opacity: 1, x: 0, transition: { type: 'spring', damping: 14, stiffness: 100 } },
-}
-
 export default function Experience() {
-  const { wrapperRef, contentRef } = useSmoothScroll()
-
   return (
-    <section className="h-full">
-      <div ref={wrapperRef} className="section-scroll h-full">
-      <div ref={contentRef} className="min-h-full flex flex-col py-6 px-4 pb-28 lg:pb-6">
-      <div className="container mx-auto max-w-2xl my-auto">
-        <SectionTitle className="mb-6">Experience</SectionTitle>
+    <section className="container mx-auto px-6 lg:px-12 max-w-4xl">
+      <h2 className="font-serif text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-foreground mb-8">Experience</h2>
 
-        <motion.div
-          className="space-y-4"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {groups.map((group) => (
-            <motion.div
-              key={group.company}
-              variants={itemVariants}
-              onMouseMove={onSpotlightMove}
-              className="group/spotlight relative rounded-xl border border-border bg-card/40 p-4 sm:p-6"
-            >
-              <SpotlightOverlay />
-              {/* Company header */}
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
-                  <Briefcase className="w-4 h-4 text-primary" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="font-semibold text-foreground leading-snug">{group.company}</h3>
-                  <p className="text-xs text-muted-foreground flex items-center gap-1.5">
-                    <MapPin className="w-3 h-3" /> {group.location}
-                  </p>
-                </div>
+      <div className="flex flex-col gap-3">
+        {groups.map((group, groupIdx) => (
+          <details key={group.company} open={groupIdx === 0} className="group rounded-xl border border-border bg-card/10 transition-colors hover:border-foreground/30">
+            <summary className="flex cursor-pointer list-none items-center gap-4 p-4 sm:gap-6 sm:p-5 [&::-webkit-details-marker]:hidden">
+              <div className="w-10 h-10 rounded-lg bg-foreground/5 border border-foreground/10 flex items-center justify-center flex-shrink-0">
+                <Briefcase className="w-4 h-4 text-foreground/70" />
               </div>
-
-              {/* Roles — connected by a timeline when there's more than one */}
+              <div className="flex flex-col">
+                <span className="font-serif text-lg text-foreground">{group.company}</span>
+                <span className="font-mono text-xs text-muted-foreground">{group.roles[0].role}</span>
+              </div>
+              <span className="ml-auto whitespace-nowrap font-mono text-[0.7rem] text-muted-foreground sm:text-xs">
+                {group.roles[group.roles.length - 1].period.split(' – ')[0]} – {group.roles[0].period.split(' – ')[1]}
+              </span>
+              <ChevronDown className="size-5 shrink-0 text-muted-foreground transition-transform duration-200 group-open:rotate-180" />
+            </summary>
+            
+            <div className="px-4 pb-4 sm:px-5 sm:pb-5 pl-14 sm:pl-16">
               <div className="relative">
                 {group.roles.length > 1 && (
                   <div className="absolute left-[7px] top-2 bottom-2 w-px bg-border" />
                 )}
-                <div className="space-y-6">
+                <div className="space-y-8">
                   {group.roles.map((exp) => (
                     <div key={exp.index} className="relative pl-6">
-                      <span
-                        className={`absolute left-0 top-1.5 w-[15px] h-[15px] rounded-full border-2 z-10 ${exp.dotColor}`}
-                      />
+                      <span className="absolute left-0 top-1.5 w-[15px] h-[15px] rounded-full border-2 border-foreground/30 bg-background z-10" />
 
-                      {/* Role header */}
-                      <div className="flex items-start justify-between gap-3 mb-1">
-                        <div className="min-w-0">
-                          <h4 className="text-sm font-semibold leading-snug text-foreground">
-                            {exp.role}
-                          </h4>
-                          <div className="flex flex-wrap items-center gap-2 mt-0.5">
-                            <p className="text-[11px] font-mono text-muted-foreground/60 uppercase tracking-wider">
-                              {exp.type}
-                            </p>
-                            {exp.award && (
-                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-400 font-medium">
-                                🏆 {exp.award}
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-[11px] text-muted-foreground/50 mt-0.5 italic">
-                            {exp.product}
-                          </p>
-                        </div>
-                        <span className={`flex-shrink-0 text-xs px-2.5 py-1 rounded-full font-semibold ${exp.statusColor}`}>
-                          {exp.status}
-                        </span>
+                      <div className="flex flex-col mb-4">
+                        <h4 className="text-sm font-semibold leading-snug text-foreground">
+                          {exp.role}
+                        </h4>
+                        <p className="text-[11px] text-muted-foreground mt-0.5">
+                          {exp.product}
+                        </p>
                       </div>
 
-                      {/* Meta */}
-                      <div className="flex flex-wrap items-center gap-4 my-3 text-xs text-muted-foreground">
-                        <span className="flex items-center gap-1.5">
-                          <CalendarDays className="w-3 h-3" /> {exp.period}
-                        </span>
-                        <span className="ml-auto font-mono text-muted-foreground/40">{exp.index}</span>
-                      </div>
-
-                      {/* Bullets */}
-                      <ul className="space-y-1.5 mb-4">
+                      <ul className="space-y-2 mb-4">
                         {exp.bullets.map((b, i) => (
-                          <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground leading-relaxed">
-                            <span className="mt-1.5 w-1 h-1 rounded-full bg-emerald-400/60 flex-shrink-0" />
+                          <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground leading-relaxed">
+                            <span className="mt-[0.65em] h-1 w-1 shrink-0 rounded-full bg-foreground/60" />
                             {b}
                           </li>
                         ))}
                       </ul>
 
-                      {/* Tech chips */}
-                      <div className="flex flex-wrap gap-1.5 pt-3 border-t border-border/50">
+                      <div className="flex flex-wrap gap-1.5 pt-3">
                         {exp.tech.map(({ icon: Icon, label }) => (
                           <span
                             key={label}
-                            className="group/badge flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-md bg-muted/50 text-muted-foreground transition-all duration-300 hover:bg-primary/10 hover:text-primary hover:shadow-[0_0_12px_rgba(255,255,255,0.15)] hover:-translate-y-0.5 cursor-default border border-transparent hover:border-primary/20"
+                            className="flex items-center gap-1 text-[11px] px-2 py-0.5 rounded font-mono text-muted-foreground bg-foreground/5 border border-transparent"
                           >
-                            <Icon className="w-3 h-3 transition-transform duration-300 group-hover/badge:scale-110" />
+                            <Icon className="w-3 h-3" />
                             {label}
                           </span>
                         ))}
@@ -201,11 +137,9 @@ export default function Experience() {
                   ))}
                 </div>
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-      </div>
+            </div>
+          </details>
+        ))}
       </div>
     </section>
   )
