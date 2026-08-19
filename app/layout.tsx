@@ -1,5 +1,5 @@
 import './globals.css'
-import { Inter, Fraunces } from 'next/font/google'
+import { Inter, Outfit } from 'next/font/google'
 import { Metadata } from 'next'
 
 const inter = Inter({
@@ -8,10 +8,10 @@ const inter = Inter({
   variable: '--font-sans',
 })
 
-const fraunces = Fraunces({
+const outfit = Outfit({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-serif',
+  variable: '--font-display',
 })
 
 const siteUrl = 'https://vijaymisal.vercel.app'
@@ -91,7 +91,7 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" className={`dark ${inter.variable} ${fraunces.variable}`}>
+    <html lang="en" className={`dark ${inter.variable} ${outfit.variable}`}>
       <body className={`${inter.className} bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
         {children}

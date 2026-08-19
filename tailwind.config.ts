@@ -11,9 +11,9 @@ export default {
   	extend: {
   		fontFamily: {
   			sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-  			serif: ['var(--font-serif)', 'Georgia', 'serif'],
-  			display: ['var(--font-serif)', 'Georgia', 'serif'],
-  			reading: ['var(--font-serif)', 'Georgia', 'serif'],
+  			serif: ['var(--font-display)', 'Outfit', 'sans-serif'],
+  			display: ['var(--font-display)', 'Outfit', 'sans-serif'],
+  			reading: ['var(--font-display)', 'Outfit', 'sans-serif'],
   			mono: ['var(--font-mono-notes)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
   		},
   		colors: {
