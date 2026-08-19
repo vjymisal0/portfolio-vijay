@@ -61,7 +61,10 @@ export default function Projects() {
           <div
             key={project.title}
             onClick={() => setSelectedProject(project)}
-            className="group flex flex-col md:flex-row gap-6 py-8 border-b border-border transition-colors hover:bg-foreground/5 cursor-pointer"
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedProject(project) } }}
+            role="button"
+            tabIndex={0}
+            className="group flex flex-col md:flex-row gap-6 py-8 border-b border-border transition-colors hover:bg-foreground/5 cursor-pointer focus-visible:outline-2 focus-visible:outline-foreground focus-visible:outline-offset-2"
           >
             <div className="w-full md:w-1/3">
               <h3 className="font-serif text-xl font-medium text-foreground">{project.title}</h3>
@@ -104,7 +107,13 @@ export default function Projects() {
               onClick={() => setSelectedProject(null)}
               className="fixed inset-0 z-[100] bg-background/80 backdrop-blur-sm"
             />
-            <div className="fixed inset-0 z-[101] flex items-center justify-center p-4 sm:p-6 pointer-events-none">
+            <div
+              className="fixed inset-0 z-[101] flex items-center justify-center p-4 sm:p-6 pointer-events-none"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="case-study-title"
+              onKeyDown={(e) => { if (e.key === 'Escape') setSelectedProject(null) }}
+            >
               <motion.div
                 initial={{ opacity: 0, y: 20, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -113,8 +122,8 @@ export default function Projects() {
                 className="w-full max-w-2xl bg-background border border-border shadow-2xl rounded-2xl overflow-hidden pointer-events-auto flex flex-col max-h-[85vh]"
               >
                 <div className="flex items-center justify-between p-6 border-b border-border">
-                  <h3 className="font-serif text-2xl font-medium text-foreground">{selectedProject.title}</h3>
-                  <button onClick={() => setSelectedProject(null)} className="p-2 text-muted-foreground hover:text-foreground hover:bg-foreground/5 rounded-full transition-colors">
+                  <h3 id="case-study-title" className="font-serif text-2xl font-medium text-foreground">{selectedProject.title}</h3>
+                  <button onClick={() => setSelectedProject(null)} className="p-2 text-muted-foreground hover:text-foreground hover:bg-foreground/5 rounded-full transition-colors" aria-label="Close case study">
                     <X className="w-5 h-5" />
                   </button>
                 </div>

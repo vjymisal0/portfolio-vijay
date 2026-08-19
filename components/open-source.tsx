@@ -1,8 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import SectionTitle from '@/components/section-title'
-import { onSpotlightMove, SpotlightOverlay } from '@/components/ui/spotlight'
 import { ExternalLink, GitPullRequest, Bug, Sparkles, FileText, TestTube2, Eraser, Package, Download } from 'lucide-react'
 import { FaGithub, FaNpm } from 'react-icons/fa'
 import { useState } from 'react'
@@ -117,21 +115,8 @@ const kindMeta: Record<Kind, { label: string; icon: typeof Bug; color: string }>
   cleanup: { label: 'Cleanup', icon: Eraser, color: 'bg-orange-500/15 text-orange-400' },
 }
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
-}
-
-const cardVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { type: 'spring', damping: 12, stiffness: 120 } },
-}
-
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-
-const CARD_CLASS =
-  'group group/spotlight relative rounded-xl border border-border bg-card/40 hover:border-primary/40 hover:bg-card/70 transition-all duration-300 p-4 flex flex-col gap-2.5'
 
 function SubHeading({ icon: Icon, children }: { icon: typeof Package; children: string }) {
   return (
@@ -140,14 +125,6 @@ function SubHeading({ icon: Icon, children }: { icon: typeof Package; children: 
       <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
         {children}
       </span>
-    </div>
-  )
-}
-
-function IconBadge({ icon: Icon }: { icon: typeof FaGithub }) {
-  return (
-    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors flex items-center justify-center">
-      <Icon className="w-4 h-4 text-primary" />
     </div>
   )
 }

@@ -49,17 +49,6 @@ export default function Home() {
     return () => window.removeEventListener('hashchange', applyHash)
   }, [])
 
-  useEffect(() => {
-    if (process.env.NODE_ENV !== 'development') return
-    const warm = () => { void fetch('/blog').catch(() => {}) }
-    const hasRic = typeof window.requestIdleCallback === 'function'
-    const id = hasRic ? window.requestIdleCallback(warm) : window.setTimeout(warm, 1500)
-    return () => {
-      if (hasRic) window.cancelIdleCallback(id as number)
-      else window.clearTimeout(id as number)
-    }
-  }, [])
-
   return (
     <AnimatePresence mode="wait">
       <motion.div

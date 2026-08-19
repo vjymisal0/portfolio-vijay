@@ -43,6 +43,8 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Vijay Misal', url: siteUrl }],
   creator: 'Vijay Misal',
+  robots: { index: true, follow: true },
+  alternates: { canonical: siteUrl },
   openGraph: {
     type: 'website',
     url: siteUrl,
@@ -50,21 +52,15 @@ export const metadata: Metadata = {
     description:
       'Software engineer building scalable web apps with React, Node.js, and cloud technologies. Explore my experience, skills, and projects.',
     siteName: 'Vijay Misal',
-    images: [
-      {
-        url: '/vjy.png',
-        width: 1200,
-        height: 630,
-        alt: 'Vijay Misal — Software Engineer',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Vijay Misal — Software Engineer',
     description:
       'Software engineer building scalable web apps with React, Node.js, and cloud technologies.',
-    images: ['/vjy.png'],
+  },
+  other: {
+    'theme-color': '#000000',
   },
   icons: {
     icon: '/favicon.ico',

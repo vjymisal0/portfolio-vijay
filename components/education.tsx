@@ -1,6 +1,6 @@
 "use client"
 
-import { MapPin, CalendarDays } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 
 const educationData = [
   {
