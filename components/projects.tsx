@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ExternalLink, MessageCircle, Syringe, Activity, X } from "lucide-react"
 import { FaGithub } from "react-icons/fa"
 import GitHubCharts from './github-charts'
+import { techColor } from '@/lib/tech-colors'
 
 type Project = {
   title: string
@@ -16,7 +17,7 @@ type Project = {
   caseStudy?: string
 }
 
-const projects: Project[] = [
+export const projects: Project[] = [
   {
     title: "Chat + Sentiment Analysis",
     description:
@@ -64,10 +65,13 @@ export default function Projects() {
             onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedProject(project) } }}
             role="button"
             tabIndex={0}
-            className="group flex flex-col md:flex-row gap-6 py-8 border-b border-border transition-colors hover:bg-foreground/5 cursor-pointer focus-visible:outline-2 focus-visible:outline-foreground focus-visible:outline-offset-2"
+            className="group relative flex flex-col md:flex-row gap-6 py-8 pl-4 -ml-4 pr-4 border-b border-l-2 border-l-transparent border-border cursor-pointer transition-all duration-300 ease-out hover:border-l-foreground/40 hover:bg-foreground/[0.035] hover:shadow-sm rounded-r-lg focus-visible:outline-2 focus-visible:outline-foreground focus-visible:outline-offset-2"
           >
             <div className="w-full md:w-1/3">
-              <h3 className="font-serif text-xl font-medium text-foreground">{project.title}</h3>
+              <h3 className="font-serif text-xl font-medium text-foreground flex items-center gap-2">
+                {project.title}
+                <span className="text-muted-foreground opacity-0 -translate-x-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">&rarr;</span>
+              </h3>
               <div className="flex gap-4 mt-4">
                 <a href={project.github} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5">
                   <FaGithub className="w-4 h-4" /> Code
@@ -87,7 +91,7 @@ export default function Projects() {
               
               <div className="flex flex-wrap gap-x-3 gap-y-2">
                 {project.technologies.map(tech => (
-                  <span key={tech} className="text-xs font-mono text-emerald-400/90 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">
+                  <span key={tech} className={`text-xs font-mono px-2 py-0.5 rounded border ${techColor(tech)}`}>
                     {tech}
                   </span>
                 ))}
@@ -144,7 +148,7 @@ export default function Projects() {
                 <div className="p-6 border-t border-border bg-foreground/[0.02] flex items-center justify-between mt-auto">
                   <div className="flex flex-wrap gap-2">
                     {selectedProject.technologies.map(tech => (
-                       <span key={tech} className="text-xs font-mono text-emerald-400/90 bg-emerald-500/10 border border-emerald-500/20 px-2 py-1 rounded">{tech}</span>
+                       <span key={tech} className={`text-xs font-mono px-2 py-1 rounded border ${techColor(tech)}`}>{tech}</span>
                     ))}
                   </div>
                   <div className="flex items-center gap-4">

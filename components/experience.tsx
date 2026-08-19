@@ -5,6 +5,7 @@ import { ShieldCheck, Bot, Activity } from 'lucide-react'
 import { SiReact, SiNestjs, SiTypescript, SiNodedotjs } from 'react-icons/si'
 import type { IconType } from 'react-icons'
 import type { LucideIcon } from 'lucide-react'
+import { techColor } from '@/lib/tech-colors'
 
 type AnyIcon = IconType | LucideIcon
 
@@ -90,7 +91,18 @@ export default function Experience() {
                 <div key={exp.index} className="flex flex-col">
                   <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-2 gap-2">
                     <h4 className="text-base font-medium text-foreground">{exp.role}</h4>
-                    <span className="text-sm font-mono text-muted-foreground">{exp.period}</span>
+                    <span
+                      className={`inline-flex w-fit items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-mono ${
+                        exp.status === 'Current'
+                          ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20'
+                          : 'text-muted-foreground bg-foreground/5 border-border'
+                      }`}
+                    >
+                      {exp.status === 'Current' && (
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      )}
+                      {exp.period}
+                    </span>
                   </div>
                   
                   <p className="text-sm font-body text-muted-foreground italic mb-4">{exp.product}</p>
@@ -105,8 +117,9 @@ export default function Experience() {
                   </ul>
 
                   <div className="flex flex-wrap gap-x-3 gap-y-2">
-                    {exp.tech.map(({ label }) => (
-                      <span key={label} className="text-xs font-mono text-muted-foreground">
+                    {exp.tech.map(({ icon: Icon, label }) => (
+                      <span key={label} className={`inline-flex items-center gap-1.5 text-xs font-mono px-2 py-0.5 rounded border ${techColor(label)}`}>
+                        <Icon className="w-3 h-3" />
                         {label}
                       </span>
                     ))}
