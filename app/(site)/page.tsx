@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Lenis from 'lenis'
 import Introduction from '@/components/introduction'
 import ProjectsSection from '@/components/work'
 import Experience from '@/components/experience'
@@ -26,6 +27,25 @@ function SectionContent({ id }: { id: string }) {
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<SectionId>('home')
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const wrapper = scrollRef.current
+    if (!wrapper) return
+    const content = wrapper.firstElementChild as HTMLElement | null
+    if (!content) return
+
+    const lenis = new Lenis({
+      wrapper,
+      content,
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      autoRaf: true,
+    })
+
+    return () => lenis.destroy()
+  }, [activeSection])
 
   useEffect(() => {
     const applyHash = () => {
@@ -53,6 +73,7 @@ export default function Home() {
     <AnimatePresence mode="wait">
       <motion.div
         key={activeSection}
+        ref={scrollRef}
         className="absolute inset-0 h-full overflow-y-auto pb-32 hide-scrollbar"
         initial={{ opacity: 0, y: 20, scale: 0.98, filter: "blur(2px)" }}
         animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}

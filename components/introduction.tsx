@@ -23,7 +23,7 @@ const itemVariants = {
 
 export default function Introduction() {
   return (
-    <section className="container mx-auto px-6 lg:px-12 max-w-4xl pt-32 pb-16">
+    <section className="container mx-auto px-6 lg:px-12 max-w-4xl pb-16">
       <motion.div
         variants={containerVariants}
         initial="hidden"
