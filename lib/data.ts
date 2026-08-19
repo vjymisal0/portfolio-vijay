@@ -245,6 +245,18 @@ export const packages = [
   },
 ]
 
+// The most-starred repos among `contributions`, snapshotted 2026-08-19 via
+// `gh api repos/{repo} --jq .stargazers_count`. Star counts drift — refresh
+// periodically rather than treating these as live.
+export const notableRepos = [
+  { repo: 'apache/superset', stars: 74311, url: 'https://github.com/apache/superset/pull/42881' },
+  { repo: 'chatwoot/chatwoot', stars: 35987, url: 'https://github.com/chatwoot/chatwoot/pull/15418' },
+  { repo: 'alibaba/open-code-review', stars: 20839, url: 'https://github.com/alibaba/open-code-review/pull/766' },
+  { repo: 'tj/git-extras', stars: 18094, url: 'https://github.com/tj/git-extras/pull/1266' },
+  { repo: 'benoitc/gunicorn', stars: 10654, url: 'https://github.com/benoitc/gunicorn/pull/3684' },
+  { repo: 'h3js/h3', stars: 5410, url: 'https://github.com/h3js/h3/pull/1528' },
+] as const
+
 export type Contribution = (typeof contributions)[number]
 export type Kind = Contribution['kind']
 

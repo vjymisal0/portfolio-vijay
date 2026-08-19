@@ -7,7 +7,7 @@ import ProjectsSection from '@/components/work'
 import Experience from '@/components/experience'
 import OpenSource from '@/components/open-source'
 
-const SECTIONS = ['home', 'experience', 'projects', 'oss'] as const
+const SECTIONS = ['home', 'oss', 'experience', 'projects'] as const
 type SectionId = (typeof SECTIONS)[number]
 
 function isSection(id: string): id is SectionId {
