@@ -26,26 +26,27 @@ const educationData = [
 export default function Education() {
   return (
     <div className="pt-8">
-      <h2 className="font-serif text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-foreground mb-6">Education</h2>
+      <h2 className="font-serif text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-foreground mb-12">Education</h2>
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col border-t border-border">
         {educationData.map((edu) => (
-          <div key={edu.index} className="group rounded-xl border border-border bg-card/10 transition-colors hover:border-foreground/30 p-4 sm:p-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-              <h3 className="font-serif text-lg text-foreground">{edu.institution}</h3>
-              <span className="text-xs font-mono text-muted-foreground">{edu.year}</span>
+          <div key={edu.index} className="flex flex-col md:flex-row gap-6 py-8 border-b border-border">
+            <div className="w-full md:w-1/3">
+              <h3 className="font-serif text-xl font-medium text-foreground">{edu.institution}</h3>
+              <div className="flex items-center gap-1.5 text-sm text-muted-foreground mt-2">
+                <MapPin className="w-3.5 h-3.5" /> {edu.location}
+              </div>
             </div>
             
-            <p className="text-sm text-foreground/80 mb-4">{edu.degree}</p>
-            
-            <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
-              <span className="flex items-center gap-1.5">
-                <MapPin className="w-3 h-3" />
-                {edu.location}
-              </span>
-              <span className="px-2 py-0.5 rounded font-mono bg-foreground/5 text-foreground/70 border border-transparent">
-                {edu.score}
-              </span>
+            <div className="w-full md:w-2/3">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-4 gap-2">
+                <h4 className="text-base font-medium text-foreground">{edu.degree}</h4>
+                <span className="text-sm font-mono text-muted-foreground">{edu.year}</span>
+              </div>
+              
+              <div className="inline-block px-3 py-1 rounded-full font-mono text-xs bg-foreground/5 text-foreground/80">
+                Score: {edu.score}
+              </div>
             </div>
           </div>
         ))}

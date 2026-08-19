@@ -75,70 +75,46 @@ for (const exp of experiences) {
 export default function Experience() {
   return (
     <section className="container mx-auto px-6 lg:px-12 max-w-4xl">
-      <h2 className="font-serif text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-foreground mb-8">Experience</h2>
+      <h2 className="font-serif text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-foreground mb-12">Experience</h2>
 
-      <div className="flex flex-col gap-3">
-        {groups.map((group, groupIdx) => (
-          <details key={group.company} open={groupIdx === 0} className="group rounded-xl border border-border bg-card/10 transition-colors hover:border-foreground/30">
-            <summary className="flex cursor-pointer list-none items-center gap-4 p-4 sm:gap-6 sm:p-5 [&::-webkit-details-marker]:hidden">
-              <div className="w-10 h-10 rounded-lg bg-foreground/5 border border-foreground/10 flex items-center justify-center flex-shrink-0">
-                <Briefcase className="w-4 h-4 text-foreground/70" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-serif text-lg text-foreground">{group.company}</span>
-                <span className="font-mono text-xs text-muted-foreground">{group.roles[0].role}</span>
-              </div>
-              <span className="ml-auto whitespace-nowrap font-mono text-[0.7rem] text-muted-foreground sm:text-xs">
-                {group.roles[group.roles.length - 1].period.split(' – ')[0]} – {group.roles[0].period.split(' – ')[1]}
-              </span>
-              <ChevronDown className="size-5 shrink-0 text-muted-foreground transition-transform duration-200 group-open:rotate-180" />
-            </summary>
-            
-            <div className="px-4 pb-4 sm:px-5 sm:pb-5 pl-14 sm:pl-16">
-              <div className="relative">
-                {group.roles.length > 1 && (
-                  <div className="absolute left-[7px] top-2 bottom-2 w-px bg-border" />
-                )}
-                <div className="space-y-8">
-                  {group.roles.map((exp) => (
-                    <div key={exp.index} className="relative pl-6">
-                      <span className="absolute left-0 top-1.5 w-[15px] h-[15px] rounded-full border-2 border-foreground/30 bg-background z-10" />
-
-                      <div className="flex flex-col mb-4">
-                        <h4 className="text-sm font-semibold leading-snug text-foreground">
-                          {exp.role}
-                        </h4>
-                        <p className="text-[11px] text-muted-foreground mt-0.5">
-                          {exp.product}
-                        </p>
-                      </div>
-
-                      <ul className="space-y-2 mb-4">
-                        {exp.bullets.map((b, i) => (
-                          <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground leading-relaxed">
-                            <span className="mt-[0.65em] h-1 w-1 shrink-0 rounded-full bg-foreground/60" />
-                            {b}
-                          </li>
-                        ))}
-                      </ul>
-
-                      <div className="flex flex-wrap gap-1.5 pt-3">
-                        {exp.tech.map(({ icon: Icon, label }) => (
-                          <span
-                            key={label}
-                            className="flex items-center gap-1 text-[11px] px-2 py-0.5 rounded font-mono text-muted-foreground bg-foreground/5 border border-transparent"
-                          >
-                            <Icon className="w-3 h-3" />
-                            {label}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+      <div className="flex flex-col border-t border-border">
+        {groups.map((group) => (
+          <div key={group.company} className="flex flex-col md:flex-row gap-6 py-8 border-b border-border">
+            <div className="w-full md:w-1/3">
+              <h3 className="font-serif text-xl font-medium text-foreground">{group.company}</h3>
+              <p className="text-sm text-muted-foreground mt-1">{group.location}</p>
             </div>
-          </details>
+            
+            <div className="w-full md:w-2/3 space-y-10">
+              {group.roles.map((exp) => (
+                <div key={exp.index} className="flex flex-col">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-2 gap-2">
+                    <h4 className="text-base font-medium text-foreground">{exp.role}</h4>
+                    <span className="text-sm font-mono text-muted-foreground">{exp.period}</span>
+                  </div>
+                  
+                  <p className="text-sm text-muted-foreground italic mb-4">{exp.product}</p>
+
+                  <ul className="space-y-3 mb-6">
+                    {exp.bullets.map((b, i) => (
+                      <li key={i} className="text-sm text-muted-foreground leading-relaxed pl-4 relative">
+                        <span className="absolute left-0 top-2 h-1 w-1 rounded-full bg-foreground/40" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex flex-wrap gap-x-3 gap-y-2">
+                    {exp.tech.map(({ label }) => (
+                      <span key={label} className="text-xs font-mono text-muted-foreground">
+                        {label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </section>

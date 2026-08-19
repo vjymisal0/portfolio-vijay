@@ -1,162 +1,77 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FaGithub, FaLinkedin, FaEnvelope, FaDownload } from 'react-icons/fa'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import AuroraBackground from '@/components/ui/aurora-background'
-import { useSmoothScroll } from '@/lib/use-smooth-scroll'
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    transition: { staggerChildren: 0.1 },
   },
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, x: -30 },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
-    x: 0,
-    transition: { type: 'spring', damping: 14, stiffness: 100 },
-  },
-}
-
-const photoVariants = {
-  hidden: { opacity: 0, scale: 0.85 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { type: 'spring', damping: 14, stiffness: 80, delay: 0.3 },
+    y: 0,
+    transition: { duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] },
   },
 }
 
 export default function Introduction() {
   return (
-    <section className="relative py-20 lg:py-32 bg-gradient-to-br from-background via-background to-secondary/10">
-      <AuroraBackground />
-      <div className="relative min-h-[70vh] flex items-center">
-        <div className="container mx-auto px-6 lg:px-12 py-10 pb-28 lg:pb-10">
-          <div className="flex flex-col-reverse lg:flex-row items-center gap-6 sm:gap-8 lg:gap-16">
+    <section className="container mx-auto px-6 lg:px-12 max-w-4xl pt-32 pb-16">
+      <motion.div
+        className="flex flex-col items-start gap-6"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.h1
+          className="text-6xl sm:text-7xl lg:text-8xl font-serif font-medium tracking-tight leading-none text-foreground"
+          variants={itemVariants}
+        >
+          Vijay Misal
+        </motion.h1>
 
-          {/* Text content */}
-          <motion.div
-            className="flex-1 text-center lg:text-left"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+        <motion.p
+          className="text-lg sm:text-xl text-muted-foreground max-w-2xl mt-4"
+          variants={itemVariants}
+        >
+          SDE 1 at Loopr AI. I move quickly from rough ideas to working systems, then do the engineering needed to make them reliable.
+        </motion.p>
+
+        <motion.div variants={itemVariants} className="mt-6 flex flex-wrap gap-4">
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-lg bg-foreground px-6 py-3 text-sm font-medium text-background transition hover:opacity-90"
           >
-            <motion.span
-              variants={itemVariants}
-              className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-4"
-            >
-              SOFTWARE ENGINEER
-            </motion.span>
-
-            <motion.h1
-              className="text-5xl sm:text-6xl lg:text-7xl font-serif font-medium tracking-tight mb-3 sm:mb-5 leading-[1.1]"
-              variants={itemVariants}
-            >
-              Vijay{' '}
-              <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                Misal
-              </span>
-            </motion.h1>
-
-            <motion.p
-              className="text-base sm:text-lg text-muted-foreground mb-2"
-              variants={itemVariants}
-            >
-              SDE 1 at{' '}
-              <span className="font-semibold text-foreground tracking-tight">
-                Loopr AI
-              </span>
-            </motion.p>
-
-            <motion.p
-              className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-8 max-w-md mx-auto lg:mx-0"
-              variants={itemVariants}
-            >
-              I build and ship full-stack features for LooprIQ Inspect, an AI-powered
-              visual inspection platform — from secure APIs to feature flags, telemetry,
-              and workflow automation. I like turning ambiguous problems into reliable,
-              well-crafted software.
-            </motion.p>
-
-            <motion.div
-              className="flex items-center justify-center lg:justify-start gap-3 flex-wrap"
-              variants={itemVariants}
-            >
-              <a
-                href="/resume.pdf"
-                download
-                className="inline-flex items-center gap-2 h-11 px-4 rounded-xl bg-primary text-primary-foreground text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
-              >
-                <FaDownload className="w-4 h-4" /> Download CV
-              </a>
-              {[
-                {
-                  icon: FaGithub,
-                  href: 'https://github.com/vjymisal0',
-                  label: 'GitHub',
-                  hover: 'hover:bg-foreground hover:text-background hover:border-foreground',
-                  external: true,
-                },
-                {
-                  icon: FaLinkedin,
-                  href: 'https://www.linkedin.com/in/vijaymisal/',
-                  label: 'LinkedIn',
-                  hover: 'hover:bg-blue-600 hover:text-white hover:border-blue-600',
-                  external: true,
-                },
-                {
-                  icon: FaEnvelope,
-                  href: 'mailto:misalvijay153@gmail.com',
-                  label: 'Email',
-                  hover: 'hover:bg-primary hover:text-primary-foreground hover:border-primary',
-                  external: false,
-                },
-              ].map(({ icon: Icon, href, label, hover, external }) => (
-                <motion.a
-                  key={label}
-                  href={href}
-                  {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                  title={label}
-                  className={`w-11 h-11 rounded-xl border border-border flex items-center justify-center text-muted-foreground transition-all duration-200 ${hover}`}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Icon className="w-5 h-5" />
-                </motion.a>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Photo */}
-          <motion.div
-            className="relative flex-shrink-0"
-            variants={photoVariants}
-            initial="hidden"
-            animate="visible"
+            Download Resume
+          </a>
+          <a
+            href="#projects"
+            className="rounded-lg border border-border px-6 py-3 text-sm font-medium text-foreground transition hover:border-foreground/40"
           >
-            <div className="relative w-40 h-40 sm:w-52 sm:h-52 lg:w-64 lg:h-64">
-              <div className="absolute inset-0 rounded-full border border-primary/20 scale-110 animate-pulse" />
-              <div className="absolute inset-0 rounded-full border border-primary/10 scale-125" />
-              <Avatar className="w-full h-full border-4 border-primary/25 shadow-2xl overflow-hidden rounded-full">
-                <AvatarImage
-                  src="/vjy.png"
-                  alt="Vijay Misal"
-                  className="w-full h-full object-cover brightness-90 contrast-[1.02] saturate-110"
-                />
-                <AvatarFallback className="text-4xl font-bold">VM</AvatarFallback>
-              </Avatar>
-            </div>
-          </motion.div>
+            View work
+          </a>
+        </motion.div>
 
-          </div>
-        </div>
-      </div>
+        <motion.nav variants={itemVariants} className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
+          <a href="https://github.com/vjymisal0" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition hover:text-foreground">
+            <FaGithub className="h-[18px] w-[18px]" /> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/vijaymisal/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition hover:text-foreground">
+            <FaLinkedin className="h-[18px] w-[18px]" /> LinkedIn
+          </a>
+          <a href="mailto:misalvijay153@gmail.com" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition hover:text-foreground">
+            <FaEnvelope className="h-[18px] w-[18px]" /> Email
+          </a>
+        </motion.nav>
+      </motion.div>
     </section>
   )
 }
