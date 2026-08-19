@@ -1,5 +1,5 @@
 import './globals.css'
-import { Manrope, Outfit, Inter } from 'next/font/google'
+import { Manrope, Outfit, Inter, Space_Grotesk } from 'next/font/google'
 import { Metadata } from 'next'
 
 const inter = Inter({
@@ -18,6 +18,12 @@ const outfit = Outfit({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-display',
+})
+
+const grotesk = Space_Grotesk({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-grotesk',
 })
 
 const siteUrl = 'https://vijaymisal.vercel.app'
@@ -93,7 +99,7 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" className={`dark ${inter.variable} ${outfit.variable} ${manrope.variable}`}>
+    <html lang="en" className={`dark ${inter.variable} ${outfit.variable} ${manrope.variable} ${grotesk.variable}`}>
       <body className={`${inter.className} bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
         {children}
