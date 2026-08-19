@@ -5,6 +5,7 @@ import Introduction from '@/components/introduction'
 import ProjectsSection from '@/components/work'
 import Experience from '@/components/experience'
 import OpenSource from '@/components/open-source'
+import GitHubStats from '@/components/github-stats'
 
 function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   return (
@@ -21,7 +22,7 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 export default function Home() {
   return (
-    <main className="flex flex-col min-h-screen pb-32">
+    <div className="flex flex-col pb-32">
       <FadeIn>
         <div id="home">
           <Introduction />
@@ -29,22 +30,28 @@ export default function Home() {
       </FadeIn>
       
       <FadeIn delay={0.1}>
-        <div id="experience" className="pt-24 border-t border-border/40">
+        <div id="experience" className="pt-24">
           <Experience />
         </div>
       </FadeIn>
       
       <FadeIn delay={0.1}>
-        <div id="projects" className="pt-24 border-t border-border/40">
+        <div id="projects" className="pt-24">
           <ProjectsSection />
         </div>
       </FadeIn>
       
       <FadeIn delay={0.1}>
-        <div id="oss" className="pt-24 border-t border-border/40">
+        <div id="oss" className="pt-24">
           <OpenSource />
         </div>
       </FadeIn>
-    </main>
+
+      <FadeIn delay={0.1}>
+        <div id="stats">
+          <GitHubStats />
+        </div>
+      </FadeIn>
+    </div>
   )
 }
