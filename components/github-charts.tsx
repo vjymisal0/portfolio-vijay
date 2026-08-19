@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import {
   AreaChart,
   Area,
@@ -16,6 +17,7 @@ import {
   PolarAngleAxis,
   PolarRadiusAxis
 } from 'recharts'
+import { getLiveGitHubStats } from '@/app/actions/github'
 
 const velocityData = [
   { month: 'Jan', commits: 25 },
@@ -27,7 +29,7 @@ const velocityData = [
   { month: 'Jul', commits: 90 },
 ]
 
-const languageData = [
+const fallbackLanguageData = [
   { name: 'TypeScript', value: 65 },
   { name: 'JavaScript', value: 20 },
   { name: 'Python', value: 10 },
@@ -52,6 +54,17 @@ const COLORS = [
 ]
 
 export default function GitHubCharts() {
+  const [languageData, setLanguageData] = useState(fallbackLanguageData)
+
+  useEffect(() => {
+    async function loadStats() {
+      const { success, languageData } = await getLiveGitHubStats()
+      if (success && languageData) {
+        setLanguageData(languageData)
+      }
+    }
+    loadStats()
+  }, [])
   return (
     <div className="pt-12 pb-8">
       <h2 className="font-serif text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-foreground mb-12">Developer Analytics</h2>
