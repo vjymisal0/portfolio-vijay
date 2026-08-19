@@ -5,7 +5,6 @@ import Introduction from '@/components/introduction'
 import ProjectsSection from '@/components/work'
 import Experience from '@/components/experience'
 import OpenSource from '@/components/open-source'
-import GitHubStats from '@/components/github-stats'
 
 function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   return (
@@ -44,12 +43,6 @@ export default function Home() {
       <FadeIn delay={0.1}>
         <div id="oss" className="pt-24">
           <OpenSource />
-        </div>
-      </FadeIn>
-
-      <FadeIn delay={0.1}>
-        <div id="stats">
-          <GitHubStats />
         </div>
       </FadeIn>
     </div>
