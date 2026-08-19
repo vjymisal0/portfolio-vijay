@@ -60,7 +60,7 @@ export default function Projects() {
             </div>
             
             <div className="w-full md:w-2/3">
-              <p className="text-base text-muted-foreground leading-relaxed mb-6">
+              <p className="text-base font-body text-muted-foreground leading-relaxed mb-6">
                 {project.description}
               </p>
               

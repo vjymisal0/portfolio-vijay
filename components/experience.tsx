@@ -93,11 +93,11 @@ export default function Experience() {
                     <span className="text-sm font-mono text-muted-foreground">{exp.period}</span>
                   </div>
                   
-                  <p className="text-sm text-muted-foreground italic mb-4">{exp.product}</p>
+                  <p className="text-sm font-body text-muted-foreground italic mb-4">{exp.product}</p>
 
                   <ul className="space-y-3 mb-6">
                     {exp.bullets.map((b, i) => (
-                      <li key={i} className="text-sm text-muted-foreground leading-relaxed pl-4 relative">
+                      <li key={i} className="text-sm font-body text-muted-foreground leading-relaxed pl-4 relative">
                         <span className="absolute left-0 top-2 h-1 w-1 rounded-full bg-foreground/40" />
                         {b}
                       </li>

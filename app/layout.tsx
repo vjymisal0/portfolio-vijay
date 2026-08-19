@@ -1,11 +1,17 @@
 import './globals.css'
-import { Inter, Outfit } from 'next/font/google'
+import { Manrope, Outfit, Inter } from 'next/font/google'
 import { Metadata } from 'next'
 
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-sans',
+})
+
+const manrope = Manrope({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-body',
 })
 
 const outfit = Outfit({
@@ -91,7 +97,7 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" className={`dark ${inter.variable} ${outfit.variable}`}>
+    <html lang="en" className={`dark ${inter.variable} ${outfit.variable} ${manrope.variable}`}>
       <body className={`${inter.className} bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
         {children}

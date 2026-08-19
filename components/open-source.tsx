@@ -323,7 +323,7 @@ export default function OpenSource() {
                   </div>
 
                   <div className="w-full sm:w-2/3 flex flex-col gap-3">
-                    <p className="text-sm text-foreground/90 leading-relaxed group-hover:text-foreground transition-colors">
+                    <p className="text-sm font-body text-foreground/90 leading-relaxed group-hover:text-foreground transition-colors">
                       {c.title}
                     </p>
                     <div className="flex flex-wrap items-center gap-4">
@@ -373,7 +373,7 @@ export default function OpenSource() {
                 </div>
 
                 <div className="w-full sm:w-2/3 flex flex-col gap-3">
-                  <p className="text-sm text-foreground/90 leading-relaxed">
+                  <p className="text-sm font-body text-foreground/90 leading-relaxed">
                     {pkg.description}
                   </p>
                   <code className="inline-block self-start text-[11px] font-mono text-muted-foreground bg-foreground/5 rounded px-2 py-1">
