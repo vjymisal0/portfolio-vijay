@@ -6,7 +6,6 @@ import { onSpotlightMove, SpotlightOverlay } from '@/components/ui/spotlight'
 import { ExternalLink, GitPullRequest, Bug, Sparkles, FileText, TestTube2, Eraser, Package, Download } from 'lucide-react'
 import { FaGithub, FaNpm } from 'react-icons/fa'
 import { useState } from 'react'
-import { useSmoothScroll } from '@/lib/use-smooth-scroll'
 
 // Real merged PRs, newest first. Add a new entry here whenever one lands —
 // same pattern as the `projects` array in components/projects.tsx.
@@ -284,157 +283,148 @@ function CardFooterLink({
 export default function OpenSource() {
   const [showAllPRs, setShowAllPRs] = useState(false)
   const repoCount = new Set(contributions.map((c) => c.repo)).size
-  const { wrapperRef, contentRef } = useSmoothScroll()
 
   const visibleContributions = showAllPRs ? contributions : contributions.slice(0, 6)
 
-
   return (
-    <section className="h-full">
-      <div ref={wrapperRef} className="scroll-reliable h-full py-8 pb-28 lg:pb-10">
-        <div ref={contentRef} className="container mx-auto max-w-4xl px-4 sm:px-6 space-y-10">
-          <div>
-            <SectionTitle className="mb-1.5">Open Source</SectionTitle>
-            <p className="text-center text-xs text-muted-foreground/60 mb-6">
-              {contributions.length} pull requests merged across {repoCount} public repositories &middot; {packages.length} packages published
-            </p>
-          </div>
+    <section className="container mx-auto px-6 lg:px-12 max-w-4xl">
+      <div className="mb-8">
+        <h2 className="font-serif text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-foreground mb-1.5">Open Source</h2>
+        <p className="text-xs text-muted-foreground">
+          {contributions.length} pull requests merged across {repoCount} public repositories &middot; {packages.length} packages published
+        </p>
+      </div>
 
-          {/* Pull requests */}
-          <div>
-            <SubHeading icon={GitPullRequest}>Contributions</SubHeading>
-            <motion.div
-              className="grid gap-3 md:grid-cols-2 lg:grid-cols-3"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {visibleContributions.map((c) => {
-                const meta = kindMeta[c.kind]
-                const Icon = meta.icon
-                return (
-                  <motion.a
-                    key={c.url}
-                    href={c.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variants={cardVariants}
-                    onMouseMove={onSpotlightMove}
-                    className={CARD_CLASS}
-                  >
-                    <SpotlightOverlay />
-                    {/* Top row */}
-                    <div className="flex items-start justify-between gap-2">
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        <IconBadge icon={FaGithub} />
-                        <h3 className="text-sm font-semibold leading-snug group-hover:text-primary transition-colors line-clamp-1">
-                          {c.repo}
-                        </h3>
-                      </div>
-                      <span className="flex-shrink-0 text-[11px] font-mono text-muted-foreground/40 mt-0.5">
-                        #{c.number}
-                      </span>
-                    </div>
-
-                    {/* PR title */}
-                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 flex-grow">
-                      {c.title}
-                    </p>
-
-                    {/* Kind badge */}
-                    <div className="flex flex-wrap gap-1">
-                      <span className={`inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded font-medium ${meta.color}`}>
-                        <Icon className="w-2.5 h-2.5" /> {meta.label}
-                      </span>
-                    </div>
-
-                    {/* Footer */}
-                    <div className="flex items-center gap-3 pt-2 border-t border-border/50">
-                      <span className="flex items-center gap-1 text-[11px] text-muted-foreground">
-                        <GitPullRequest className="w-3 h-3" /> {formatDate(c.date)}
-                      </span>
-                      <span className="ml-auto flex items-center gap-1 text-[11px] text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                        <ExternalLink className="w-3 h-3" /> View PR
-                      </span>
-                    </div>
-                  </motion.a>
-                )
-              })}
-            </motion.div>
-            
-            {contributions.length > 6 && (
-              <div className="mt-4 text-center">
-                <button
-                  onClick={() => setShowAllPRs(!showAllPRs)}
-                  className="text-xs font-medium text-muted-foreground hover:text-primary transition-colors cursor-pointer border border-border/50 bg-card/20 hover:bg-card/40 px-4 py-2 rounded-full"
-                >
-                  {showAllPRs ? 'Show less' : `Show all ${contributions.length} contributions`}
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* Published packages */}
-          <div>
-            <SubHeading icon={Package}>Packages</SubHeading>
-            <motion.div
-              className="grid gap-3 md:grid-cols-2"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {packages.map((pkg) => (
-                <motion.div
-                  key={pkg.name}
+      <div className="space-y-12">
+        {/* Pull requests */}
+        <div>
+          <SubHeading icon={GitPullRequest}>Contributions</SubHeading>
+          <motion.div
+            className="grid gap-3 md:grid-cols-2 lg:grid-cols-3"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {visibleContributions.map((c) => {
+              const meta = kindMeta[c.kind]
+              const Icon = meta.icon
+              return (
+                <motion.a
+                  key={c.url}
+                  href={c.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   variants={cardVariants}
-                  onMouseMove={onSpotlightMove}
                   className={CARD_CLASS}
                 >
-                  <SpotlightOverlay />
                   {/* Top row */}
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <IconBadge icon={FaNpm} />
-                    <h3 className="text-sm font-semibold leading-snug group-hover:text-primary transition-colors truncate">
-                      {pkg.name}
-                    </h3>
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <IconBadge icon={FaGithub} />
+                      <h3 className="text-sm font-semibold leading-snug group-hover:text-foreground transition-colors line-clamp-1">
+                        {c.repo}
+                      </h3>
+                    </div>
+                    <span className="flex-shrink-0 text-[11px] font-mono text-muted-foreground/40 mt-0.5">
+                      #{c.number}
+                    </span>
                   </div>
 
-                  {/* Description */}
-                  <p className="text-xs text-muted-foreground leading-relaxed flex-grow">
-                    {pkg.description}
+                  {/* PR title */}
+                  <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 flex-grow">
+                    {c.title}
                   </p>
 
-                  {/* Install snippet */}
-                  <code className="text-[11px] font-mono text-muted-foreground/70 bg-muted/50 rounded-md px-2 py-1.5 truncate">
-                    {pkg.install}
-                  </code>
-
-                  {/* Footer links */}
-                  <div className="flex items-center gap-3 pt-2 border-t border-border/50">
-                    <CardFooterLink href={pkg.npm} icon={Download}>npm</CardFooterLink>
-                    <CardFooterLink href={pkg.github} icon={FaGithub}>Code</CardFooterLink>
+                  {/* Kind badge */}
+                  <div className="flex flex-wrap gap-1">
+                    <span className={`inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded font-medium bg-foreground/5 text-foreground/70 border border-transparent`}>
+                      <Icon className="w-2.5 h-2.5" /> {meta.label}
+                    </span>
                   </div>
-                </motion.div>
-              ))}
-            </motion.div>
 
-          </div>
-          {/* Let's Connect CTA */}
-          <div className="pt-12 mt-12 border-t border-border/30">
-            <div className="relative rounded-2xl border border-border bg-card/20 p-8 sm:p-10 text-center overflow-hidden group/cta">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover/cta:opacity-100 transition-opacity duration-500" />
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Let's Connect!</h2>
-              <p className="text-sm text-muted-foreground mb-8 max-w-md mx-auto">
-                I'm always open to discussing new projects, open-source collaborations, or creative ideas.
-              </p>
-              <div className="flex flex-wrap justify-center items-center gap-4">
-                <a href="mailto:misalvijay153@gmail.com" className="inline-flex items-center gap-2 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 px-5 py-2.5 rounded-full transition-colors relative z-10">
-                  <FileText className="w-4 h-4" /> Send an Email
-                </a>
-                <a href="https://www.linkedin.com/in/vijaymisal/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium bg-secondary text-secondary-foreground hover:bg-secondary/80 px-5 py-2.5 rounded-full transition-colors relative z-10">
-                   LinkedIn Profile
-                </a>
-              </div>
+                  {/* Footer */}
+                  <div className="flex items-center gap-3 pt-2 border-t border-border/50 mt-auto">
+                    <span className="flex items-center gap-1 text-[11px] text-muted-foreground">
+                      <GitPullRequest className="w-3 h-3" /> {formatDate(c.date)}
+                    </span>
+                    <span className="ml-auto flex items-center gap-1 text-[11px] text-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+                      <ExternalLink className="w-3 h-3" /> View PR
+                    </span>
+                  </div>
+                </motion.a>
+              )
+            })}
+          </motion.div>
+          
+          {contributions.length > 6 && (
+            <div className="mt-6 text-center">
+              <button
+                onClick={() => setShowAllPRs(!showAllPRs)}
+                className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border bg-card/10 hover:bg-card/30 px-4 py-2 rounded-full"
+              >
+                {showAllPRs ? 'Show less' : `Show all ${contributions.length} contributions`}
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Published packages */}
+        <div>
+          <SubHeading icon={Package}>Packages</SubHeading>
+          <motion.div
+            className="grid gap-3 md:grid-cols-2"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {packages.map((pkg) => (
+              <motion.div
+                key={pkg.name}
+                variants={cardVariants}
+                className={CARD_CLASS}
+              >
+                {/* Top row */}
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <IconBadge icon={FaNpm} />
+                  <h3 className="text-sm font-semibold leading-snug group-hover:text-foreground transition-colors truncate">
+                    {pkg.name}
+                  </h3>
+                </div>
+
+                {/* Description */}
+                <p className="text-xs text-muted-foreground leading-relaxed flex-grow">
+                  {pkg.description}
+                </p>
+
+                {/* Install snippet */}
+                <code className="text-[11px] font-mono text-muted-foreground/70 bg-foreground/5 rounded-md px-2 py-1.5 truncate border border-transparent">
+                  {pkg.install}
+                </code>
+
+                {/* Footer links */}
+                <div className="flex items-center gap-3 pt-2 border-t border-border/50 mt-auto">
+                  <CardFooterLink href={pkg.npm} icon={Download}>npm</CardFooterLink>
+                  <CardFooterLink href={pkg.github} icon={FaGithub}>Code</CardFooterLink>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Let's Connect CTA */}
+        <div className="pt-12 mt-12 border-t border-border/30">
+          <div className="relative rounded-2xl border border-border bg-card/10 p-8 sm:p-10 text-center overflow-hidden group/cta">
+            <h2 className="text-2xl sm:text-3xl font-serif text-foreground mb-3">Let's Connect!</h2>
+            <p className="text-sm text-muted-foreground mb-8 max-w-md mx-auto">
+              I'm always open to discussing new projects, open-source collaborations, or creative ideas.
+            </p>
+            <div className="flex flex-wrap justify-center items-center gap-4">
+              <a href="mailto:misalvijay153@gmail.com" className="inline-flex items-center gap-2 text-sm font-medium bg-foreground text-background hover:opacity-90 px-5 py-2.5 rounded-full transition-opacity relative z-10">
+                <FileText className="w-4 h-4" /> Send an Email
+              </a>
+              <a href="https://www.linkedin.com/in/vijaymisal/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium border border-border hover:border-foreground/30 px-5 py-2.5 rounded-full transition-colors relative z-10 text-foreground">
+                 LinkedIn Profile
+              </a>
             </div>
           </div>
         </div>
