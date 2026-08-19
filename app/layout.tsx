@@ -1,12 +1,17 @@
 import './globals.css'
-import { Poppins } from 'next/font/google'
+import { Inter, Fraunces } from 'next/font/google'
 import { Metadata } from 'next'
 
-const poppins = Poppins({
-  weight: ['400', '600', '700'],
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-sans',
+})
+
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-serif',
 })
 
 const siteUrl = 'https://vijaymisal.vercel.app'
@@ -65,9 +70,32 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Vijay Misal",
+    "url": siteUrl,
+    "jobTitle": "Software Engineer",
+    "description": "I move quickly from rough ideas to working systems, then do the engineering needed to make them reliable.",
+    "sameAs": [
+      "https://github.com/vjymisal0",
+      "https://www.linkedin.com/in/vijaymisal"
+    ],
+    "knowsAbout": [
+      "React",
+      "Node.js",
+      "NestJS",
+      "TypeScript",
+      "Full-Stack Development"
+    ]
+  }
+
   return (
-    <html lang="en" className={`dark ${poppins.variable}`}>
-      <body className={poppins.className}>{children}</body>
+    <html lang="en" className={`dark ${inter.variable} ${fraunces.variable}`}>
+      <body className={`${inter.className} bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary`}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
+        {children}
+      </body>
     </html>
   )
 }
