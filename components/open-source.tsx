@@ -1,127 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ExternalLink, GitPullRequest, Bug, Sparkles, FileText, TestTube2, Eraser, Package, Download } from 'lucide-react'
+import { ExternalLink, GitPullRequest, Package, Download } from 'lucide-react'
 import { FaGithub, FaNpm } from 'react-icons/fa'
 import { useState } from 'react'
-
-// Real merged PRs, newest first. Add a new entry here whenever one lands —
-// same pattern as the `projects` array in components/projects.tsx.
-const contributions = [
-  {
-    repo: 'apache/superset',
-    title: 'fix(explore): stacked Timeseries Bar total excludes the sort-only metric',
-    url: 'https://github.com/apache/superset/pull/42881',
-    number: 42881,
-    date: '2026-08-07',
-    kind: 'fix',
-    techs: ['React', 'TypeScript', 'Python']
-  },
-  {
-    repo: 'chatwoot/chatwoot',
-    title: "fix: Alt+E resolve shortcut also opens Chrome's built-in menu on Windows",
-    url: 'https://github.com/chatwoot/chatwoot/pull/15418',
-    number: 15418,
-    date: '2026-08-11',
-    kind: 'fix',
-    techs: ['Vue', 'Ruby']
-  },
-  {
-    repo: 'reticlehq/reticle',
-    title: 'docs: list every package and app in the architecture docs',
-    url: 'https://github.com/reticlehq/reticle/pull/389',
-    number: 389,
-    date: '2026-08-18',
-    kind: 'docs',
-    techs: ['Go', 'TypeScript']
-  },
-  {
-    repo: 'moov-io/metro2',
-    title: 'fix(utils): marshal zero-value date fields as empty JSON string',
-    url: 'https://github.com/moov-io/metro2/pull/256',
-    number: 256,
-    date: '2026-08-17',
-    kind: 'fix',
-    techs: ['Go']
-  },
-  {
-    repo: 'h3js/h3',
-    title: 'fix(request): compare methods case-insensitively in isMethod',
-    url: 'https://github.com/h3js/h3/pull/1528',
-    number: 1528,
-    date: '2026-08-15',
-    kind: 'fix',
-    techs: ['JavaScript', 'Node.js']
-  },
-  {
-    repo: 'benoitc/gunicorn',
-    title: "fix: don't warn about dropped body bytes when sendfile has none",
-    url: 'https://github.com/benoitc/gunicorn/pull/3684',
-    number: 3684,
-    date: '2026-08-15',
-    kind: 'fix',
-    techs: ['Python']
-  },
-  {
-    repo: 'collective/icalendar',
-    title: 'Remove unreachable branches from vOrg.from_ical and vOrg.from_jcal',
-    url: 'https://github.com/collective/icalendar/pull/1643',
-    number: 1643,
-    date: '2026-08-07',
-    kind: 'cleanup',
-    techs: ['Python']
-  },
-  {
-    repo: 'mercadona/rele',
-    title: 'fix: publish() reports the wrong error when settings has no RELE dict',
-    url: 'https://github.com/mercadona/rele/pull/343',
-    number: 343,
-    date: '2026-08-06',
-    kind: 'fix',
-    techs: ['Python', 'Django']
-  }
-]
-
-const packages = [  {
-    name: '@vijayishere/photo-hash',
-    description: 'Detect near-duplicate photos using a perceptual difference hash (dHash), robust to resizing and recompression.',
-    install: 'npm i @vijayishere/photo-hash',
-    npm: 'https://www.npmjs.com/package/@vijayishere/photo-hash',
-    github: 'https://github.com/vjymisal0/photo-hash',
-  },
-  {
-    name: 'exposure-score',
-    description: 'Detect over- or under-exposed photos (0-1 score) using luminance histogram analysis.',
-    install: 'npm i exposure-score',
-    npm: 'https://www.npmjs.com/package/exposure-score',
-    github: 'https://github.com/vjymisal0/exposure-score',
-  },
-  {
-    name: '@vijayishere/strip-exif',
-    description: 'Strip EXIF/GPS/IPTC metadata from images before upload or storage, with an optional read-only inspector.',
-    install: 'npm i @vijayishere/strip-exif',
-    npm: 'https://www.npmjs.com/package/@vijayishere/strip-exif',
-    github: 'https://github.com/vjymisal0/strip-exif',
-  },
-  {
-    name: '@vijayishere/pan-validator',
-    description: 'Validate and parse Indian PAN (Permanent Account Number) card numbers.',
-    install: 'npm i @vijayishere/pan-validator',
-    npm: 'https://www.npmjs.com/package/@vijayishere/pan-validator',
-    github: 'https://github.com/vjymisal0/pan-validator',
-  },
-]
-
-type Contribution = (typeof contributions)[number]
-type Kind = Contribution['kind']
-
-const kindMeta: Record<Kind, { label: string; icon: typeof Bug; color: string }> = {
-  fix: { label: 'Fix', icon: Bug, color: 'bg-red-500/15 text-red-400' },
-  feature: { label: 'Feature', icon: Sparkles, color: 'bg-emerald-500/15 text-emerald-400' },
-  docs: { label: 'Docs', icon: FileText, color: 'bg-blue-500/15 text-blue-400' },
-  tests: { label: 'Tests', icon: TestTube2, color: 'bg-violet-500/15 text-violet-400' },
-  cleanup: { label: 'Cleanup', icon: Eraser, color: 'bg-orange-500/15 text-orange-400' },
-}
+import { techColor } from '@/lib/tech-colors'
+import { contributions, packages, kindMeta } from '@/lib/data'
+import OpenSourceCharts from './open-source-charts'
 
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
@@ -167,12 +52,23 @@ export default function OpenSource() {
 
   return (
     <section className="container mx-auto px-6 lg:px-12 max-w-4xl">
-      <div className="mb-8">
-        <h2 className="font-serif text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-foreground mb-1.5">Open Source</h2>
-        <p className="text-xs text-muted-foreground">
-          {contributions.length} pull requests merged across {repoCount} public repositories &middot; {packages.length} packages published
-        </p>
+      <div className="mb-10">
+        <h2 className="font-serif text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-foreground mb-6">Open Source</h2>
+        <div className="grid grid-cols-3 border-t border-l border-border rounded-lg overflow-hidden">
+          {[
+            { label: 'Pull requests merged', value: contributions.length },
+            { label: 'Public repositories', value: repoCount },
+            { label: 'Packages published', value: packages.length },
+          ].map((stat) => (
+            <div key={stat.label} className="border-b border-r border-border px-4 py-5 sm:px-6 sm:py-6">
+              <div className="font-serif text-3xl sm:text-4xl font-medium text-foreground">{stat.value}</div>
+              <div className="text-[11px] sm:text-xs text-muted-foreground mt-1 leading-snug">{stat.label}</div>
+            </div>
+          ))}
+        </div>
       </div>
+
+      <OpenSourceCharts />
 
       <div className="space-y-12">
         {/* Pull requests */}
@@ -188,7 +84,7 @@ export default function OpenSource() {
                   href={c.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col sm:flex-row gap-4 sm:gap-6 py-6 border-b border-border hover:bg-foreground/5 transition-colors"
+                  className="group relative flex flex-col sm:flex-row gap-4 sm:gap-6 py-6 pl-4 -ml-4 pr-4 border-b border-l-2 border-l-transparent border-border transition-all duration-300 ease-out hover:border-l-foreground/40 hover:bg-foreground/[0.035] hover:shadow-sm rounded-r-lg"
                 >
                   <div className="w-full sm:w-1/3 flex flex-col gap-2">
                     <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
@@ -211,7 +107,7 @@ export default function OpenSource() {
                       {c.techs?.length > 0 && (
                         <div className="flex items-center gap-2">
                           {c.techs.map(tech => (
-                            <span key={tech} className="text-[10px] font-mono text-emerald-400/90 bg-emerald-500/10 border border-emerald-500/20 px-1.5 py-0.5 rounded-sm">
+                            <span key={tech} className={`text-[10px] font-mono px-1.5 py-0.5 rounded-sm border ${techColor(tech)}`}>
                               {tech}
                             </span>
                           ))}
@@ -246,7 +142,7 @@ export default function OpenSource() {
             {packages.map((pkg) => (
               <div
                 key={pkg.name}
-                className="flex flex-col sm:flex-row gap-4 sm:gap-6 py-6 border-b border-border hover:bg-foreground/5 transition-colors"
+                className="flex flex-col sm:flex-row gap-4 sm:gap-6 py-6 pl-4 -ml-4 pr-4 border-b border-l-2 border-l-transparent border-border transition-all duration-300 ease-out hover:border-l-foreground/40 hover:bg-foreground/[0.035] hover:shadow-sm rounded-r-lg"
               >
                 <div className="w-full sm:w-1/3 flex flex-col gap-2">
                   <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
@@ -287,6 +183,9 @@ export default function OpenSource() {
                  LinkedIn Profile
               </a>
             </div>
+            <p className="text-xs text-muted-foreground/70 mt-16">
+              This entire portfolio was vibe-coded and is maintained end-to-end with AI coding tools.
+            </p>
           </div>
         </div>
       </div>
