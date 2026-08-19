@@ -17,6 +17,7 @@ export default {
   			display: ['var(--font-display)', 'Outfit', 'sans-serif'],
   			reading: ['var(--font-display)', 'Outfit', 'sans-serif'],
   			mono: ['var(--font-mono-notes)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+  			grotesk: ['var(--font-grotesk)', 'ui-sans-serif', 'sans-serif'],
   		},
   		colors: {
   			ink: 'hsl(var(--ink))',
