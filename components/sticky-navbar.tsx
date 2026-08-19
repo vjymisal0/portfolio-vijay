@@ -9,7 +9,6 @@ const navItems = [
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
   { id: 'oss', label: 'Open Source' },
-  { id: 'blog', label: 'Thoughts' },
 ]
 
 export default function StickyNavbar() {

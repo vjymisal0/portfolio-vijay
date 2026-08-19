@@ -11,6 +11,7 @@ export default {
   	extend: {
   		fontFamily: {
   			sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+  			body: ['var(--font-body)', 'sans-serif'],
   			serif: ['var(--font-display)', 'Outfit', 'sans-serif'],
   			display: ['var(--font-display)', 'Outfit', 'sans-serif'],
   			reading: ['var(--font-display)', 'Outfit', 'sans-serif'],
