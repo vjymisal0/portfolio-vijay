@@ -5,10 +5,10 @@ import { motion } from 'framer-motion'
 import { FaGithub } from 'react-icons/fa'
 
 const navItems = [
-  { id: 'home', label: 'Home' },
-  { id: 'oss', label: 'Open Source' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'projects', label: 'Projects' },
+  { id: 'home', label: 'Home', short: 'Home' },
+  { id: 'oss', label: 'Open Source', short: 'OSS' },
+  { id: 'experience', label: 'Experience', short: 'Exp' },
+  { id: 'projects', label: 'Projects', short: 'Work' },
 ]
 
 export default function StickyNavbar() {
@@ -24,8 +24,8 @@ export default function StickyNavbar() {
   }, [])
 
   return (
-    <header className="fixed top-6 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
-      <nav className="flex items-center gap-1 sm:gap-2 px-3 py-2 bg-background/80 backdrop-blur-xl border border-border rounded-full shadow-sm pointer-events-auto">
+    <header className="fixed top-3 sm:top-6 inset-x-0 z-50 flex justify-center px-3 sm:px-4 pointer-events-none">
+      <nav className="flex items-center gap-0.5 sm:gap-2 px-1.5 sm:px-3 py-1.5 sm:py-2 max-w-full overflow-x-auto hide-scrollbar bg-background/80 backdrop-blur-xl border border-border rounded-full shadow-sm pointer-events-auto">
         {navItems.map((item) => {
           const isActive = activeId === item.id
 
@@ -33,9 +33,10 @@ export default function StickyNavbar() {
             <a
               key={item.id}
               href={`/#${item.id}`}
-              className="relative px-3 sm:px-4 py-1.5 text-[13px] font-medium transition-colors hover:text-foreground outline-none text-muted-foreground z-10"
+              className="relative shrink-0 px-2.5 sm:px-4 py-2 sm:py-1.5 text-[12px] sm:text-[13px] font-medium transition-colors hover:text-foreground outline-none text-muted-foreground z-10"
             >
-              <span className="relative z-10">{item.label}</span>
+              <span className="relative z-10 sm:hidden">{item.short}</span>
+              <span className="relative z-10 hidden sm:inline">{item.label}</span>
               {isActive && (
                 <motion.span
                   layoutId="active-nav-pill"
@@ -47,12 +48,12 @@ export default function StickyNavbar() {
           )
         })}
 
-        <div className="ml-2 sm:ml-4 pl-3 sm:pl-4 border-l border-border flex items-center">
+        <div className="ml-1 sm:ml-4 pl-2 sm:pl-4 border-l border-border flex items-center shrink-0">
           <a
             href="https://github.com/vjymisal0"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors p-1.5"
+            className="text-muted-foreground hover:text-foreground transition-colors p-2 sm:p-1.5"
             aria-label="GitHub"
           >
             <FaGithub className="h-4 w-4" />
