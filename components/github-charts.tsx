@@ -5,7 +5,6 @@ import { FaGithub } from 'react-icons/fa'
 import { Star } from 'lucide-react'
 import { contributions, packages, notableRepos } from '@/lib/data'
 import { projects } from './projects'
-import ContributionHeatmap from './contribution-heatmap'
 
 const formatStars = (n: number) =>
   n >= 1000 ? `${(n / 1000).toFixed(n % 1000 >= 100 ? 1 : 0)}k` : `${n}`
@@ -48,17 +47,6 @@ export default function GitHubCharts() {
             <div className="text-[11px] sm:text-xs text-muted-foreground mt-1 leading-snug">{s.label}</div>
           </div>
         ))}
-      </div>
-
-      {/* Live contribution calendar */}
-      <div className="flex flex-col gap-6 mb-16">
-        <div>
-          <h3 className="font-serif text-xl font-medium text-foreground">Contribution Calendar</h3>
-          <p className="text-sm font-body text-muted-foreground mt-1">Live from GitHub, updated hourly</p>
-        </div>
-        <div className="overflow-x-auto hide-scrollbar">
-          <ContributionHeatmap variant="full" />
-        </div>
       </div>
 
       {/* Notable repositories */}
