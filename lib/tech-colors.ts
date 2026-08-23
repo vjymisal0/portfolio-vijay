@@ -31,6 +31,8 @@ const TECH_COLORS_HEX: Record<string, string> = {
   "n8n": "#ea580c",
   "JWT": "#c026d3",
   "PostHog": "#d97706",
+  "CSS": "#38bdf8",
+  "Vite": "#646cff",
 }
 
 const FALLBACK_PALETTE_HEX = ["#9333ea", "#0891b2", "#65a30d", "#d97706", "#e11d48", "#0d9488"]
