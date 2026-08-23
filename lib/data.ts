@@ -6,6 +6,24 @@ import { Bug, Sparkles, FileText, TestTube2, Eraser } from 'lucide-react'
 // components/github-charts.tsx both read from here.
 export const contributions = [
   {
+    repo: 'vitejs/vite',
+    title: 'fix(css): keep newline-separated srcset candidates intact',
+    url: 'https://github.com/vitejs/vite/pull/23265',
+    number: 23265,
+    date: '2026-08-23',
+    kind: 'fix',
+    techs: ['TypeScript', 'CSS']
+  },
+  {
+    repo: 'carlos-emr/carlos',
+    title: 'fix: align lab results empty-state colspan with rendered column count',
+    url: 'https://github.com/carlos-emr/carlos/pull/3374',
+    number: 3374,
+    date: '2026-08-22',
+    kind: 'fix',
+    techs: ['Java', 'JavaScript']
+  },
+  {
     repo: 'mautic/user-documentation',
     title: 'docs: update points documentation for 7.0',
     url: 'https://github.com/mautic/user-documentation/pull/927',
@@ -249,6 +267,7 @@ export const packages = [
 // `gh api repos/{repo} --jq .stargazers_count`. Star counts drift — refresh
 // periodically rather than treating these as live.
 export const notableRepos = [
+  { repo: 'vitejs/vite', stars: 82488, url: 'https://github.com/vitejs/vite/pull/23265' },
   { repo: 'apache/superset', stars: 74311, url: 'https://github.com/apache/superset/pull/42881' },
   { repo: 'chatwoot/chatwoot', stars: 35987, url: 'https://github.com/chatwoot/chatwoot/pull/15418' },
   { repo: 'alibaba/open-code-review', stars: 20839, url: 'https://github.com/alibaba/open-code-review/pull/766' },
