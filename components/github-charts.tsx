@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import {
   ResponsiveContainer,
   PieChart,
@@ -14,21 +14,12 @@ import {
 } from 'recharts'
 import { FaGithub } from 'react-icons/fa'
 import { Star } from 'lucide-react'
-import { getLiveGitHubStats } from '@/app/actions/github'
 import { contributions, packages, kindMeta, notableRepos, type Kind } from '@/lib/data'
 import { projects } from './projects'
-import { techColorHex } from '@/lib/tech-colors'
 import ContributionHeatmap from './contribution-heatmap'
 
 const formatStars = (n: number) =>
   n >= 1000 ? `${(n / 1000).toFixed(n % 1000 >= 100 ? 1 : 0)}k` : `${n}`
-
-const fallbackLanguageData = [
-  { name: 'TypeScript', value: 45 },
-  { name: 'Python', value: 25 },
-  { name: 'Go', value: 15 },
-  { name: 'JavaScript', value: 15 },
-]
 
 const formatDay = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
@@ -53,18 +44,6 @@ function useKindData() {
   }, [])
 }
 
-function useTechFrequency() {
-  return useMemo(() => {
-    const counts = new Map<string, number>()
-    for (const c of contributions) for (const t of c.techs) counts.set(t, (counts.get(t) || 0) + 1)
-    for (const p of projects) for (const t of p.technologies) counts.set(t, (counts.get(t) || 0) + 1)
-    return Array.from(counts.entries())
-      .map(([name, count]) => ({ name, count }))
-      .sort((a, b) => b.count - a.count)
-      .slice(0, 8)
-  }, [])
-}
-
 function useRepoList() {
   return useMemo(() => {
     const seen = new Map<string, string>()
@@ -74,16 +53,6 @@ function useRepoList() {
     }
     return Array.from(seen.entries()).map(([repo, owner]) => ({ repo, owner }))
   }, [])
-}
-
-function ChartTooltip({ active, payload, label, suffix = '' }: any) {
-  if (!active || !payload?.length) return null
-  return (
-    <div className="rounded-lg border border-border bg-background px-3 py-2 shadow-lg text-xs">
-      {label && <div className="font-medium text-foreground">{label}</div>}
-      <div className="text-muted-foreground mt-0.5">{payload[0].value}{suffix}</div>
-    </div>
-  )
 }
 
 function ActivityTooltip({ active, payload }: any) {
@@ -98,22 +67,10 @@ function ActivityTooltip({ active, payload }: any) {
 }
 
 export default function GitHubCharts() {
-  const [languageData, setLanguageData] = useState(fallbackLanguageData)
   const activity = useActivityData()
   const kinds = useKindData()
-  const techFrequency = useTechFrequency()
   const repos = useRepoList()
   const [hoverKind, setHoverKind] = useState<string | null>(null)
-
-  useEffect(() => {
-    async function loadStats() {
-      const { success, languageData } = await getLiveGitHubStats()
-      if (success && languageData) {
-        setLanguageData(languageData)
-      }
-    }
-    loadStats()
-  }, [])
 
   const uniqueTechCount = new Set([
     ...contributions.flatMap((c) => c.techs),
@@ -276,74 +233,8 @@ export default function GitHubCharts() {
           </div>
         </div>
 
-        {/* Tech stack frequency */}
-        <div className="flex flex-col gap-6 lg:col-span-5">
-          <div>
-            <h3 className="font-serif text-xl font-medium text-foreground">Tech Stack</h3>
-            <p className="text-sm font-body text-muted-foreground mt-1">Most-used technologies across projects &amp; contributions</p>
-          </div>
-          <div className="h-64 w-full -ml-4">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={techFrequency} layout="vertical" margin={{ top: 0, right: 24, left: 8, bottom: 0 }} barCategoryGap={10}>
-                <XAxis type="number" allowDecimals={false} hide />
-                <YAxis
-                  type="category"
-                  dataKey="name"
-                  tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 12 }}
-                  tickLine={false}
-                  axisLine={false}
-                  width={110}
-                />
-                <Tooltip content={<ChartTooltip suffix=" uses" />} cursor={{ fill: 'hsl(var(--foreground) / 0.04)' }} />
-                <Bar dataKey="count" radius={[0, 4, 4, 0]} maxBarSize={18}>
-                  {techFrequency.map((t) => (
-                    <Cell key={t.name} fill={techColorHex(t.name)} />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-
-        {/* Languages Pie Chart */}
-        <div className="lg:col-span-2 flex flex-col gap-6">
-          <div>
-            <h3 className="font-serif text-xl font-medium text-foreground">Languages</h3>
-            <p className="text-sm font-body text-muted-foreground mt-1">Live from public GitHub repos</p>
-          </div>
-          <div className="h-52 w-full flex items-center justify-center mt-4">
-             <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={languageData}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={60}
-                  outerRadius={80}
-                  paddingAngle={5}
-                  dataKey="value"
-                  stroke="none"
-                >
-                  {languageData.map((entry) => (
-                    <Cell key={entry.name} fill={techColorHex(entry.name)} />
-                  ))}
-                </Pie>
-                <Tooltip content={<ChartTooltip suffix="%" />} />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="flex justify-center gap-x-6 gap-y-3 flex-wrap mt-auto pt-4">
-            {languageData.map((entry) => (
-              <div key={entry.name} className="flex items-center gap-2 text-sm text-muted-foreground">
-                <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: techColorHex(entry.name) }} />
-                <span className="font-body text-xs">{entry.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Repos shipped to */}
-        <div className="lg:col-span-3 flex flex-col gap-6">
+        <div className="lg:col-span-5 flex flex-col gap-6">
           <div>
             <h3 className="font-serif text-xl font-medium text-foreground">Shipped To</h3>
             <p className="text-sm font-body text-muted-foreground mt-1">{repos.length} public repositories with a merged PR</p>
