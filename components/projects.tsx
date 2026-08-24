@@ -54,7 +54,7 @@ export default function Projects() {
 
   return (
     <div>
-      <h2 className="font-serif text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-foreground mb-12">Projects</h2>
+      <h2 className="font-serif text-4xl sm:text-5xl font-medium tracking-tight text-foreground mb-12">Projects</h2>
       
       <div className="flex flex-col border-t border-border">
         {projects.map((project) => (
