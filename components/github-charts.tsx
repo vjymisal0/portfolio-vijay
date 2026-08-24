@@ -3,8 +3,7 @@
 import { useMemo } from 'react'
 import { FaGithub } from 'react-icons/fa'
 import { Star } from 'lucide-react'
-import { contributions, packages, notableRepos } from '@/lib/data'
-import { projects } from './projects'
+import { contributions, notableRepos } from '@/lib/data'
 
 const formatStars = (n: number) =>
   n >= 1000 ? `${(n / 1000).toFixed(n % 1000 >= 100 ? 1 : 0)}k` : `${n}`
@@ -23,31 +22,9 @@ function useRepoList() {
 export default function GitHubCharts() {
   const repos = useRepoList()
 
-  const uniqueTechCount = new Set([
-    ...contributions.flatMap((c) => c.techs),
-    ...projects.flatMap((p) => p.technologies),
-  ]).size
-
-  const stats = [
-    { label: 'PRs merged', value: contributions.length },
-    { label: 'Repos contributed to', value: repos.length },
-    { label: 'Packages published', value: packages.length },
-    { label: 'Technologies used', value: uniqueTechCount },
-  ]
-
   return (
     <div className="pt-12 pb-8">
       <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-foreground mb-12">Developer Analytics</h2>
-
-      {/* Stat tiles */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 border-t border-l border-border rounded-lg overflow-hidden mb-16">
-        {stats.map((s) => (
-          <div key={s.label} className="border-b border-r border-border px-4 py-5 sm:px-5 sm:py-6">
-            <div className="font-serif text-3xl sm:text-4xl font-medium text-foreground">{s.value}</div>
-            <div className="text-[11px] sm:text-xs text-muted-foreground mt-1 leading-snug">{s.label}</div>
-          </div>
-        ))}
-      </div>
 
       {/* Notable repositories */}
       <div className="flex flex-col gap-6 mb-16">
