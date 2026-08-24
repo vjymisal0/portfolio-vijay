@@ -45,14 +45,14 @@ export default function Introduction() {
           </motion.p>
 
           <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-lg bg-foreground px-6 py-3 text-sm font-medium text-background transition hover:opacity-90"
+            <button
+              type="button"
+              disabled
+              className="rounded-lg bg-muted text-muted-foreground px-6 py-3 text-sm font-medium cursor-not-allowed opacity-60 border border-border"
+              title="Resume updating soon"
             >
               Download Resume
-            </a>
+            </button>
             <a
               href="/#oss"
               className="rounded-lg border border-border px-6 py-3 text-sm font-medium text-foreground transition hover:border-foreground/40"
