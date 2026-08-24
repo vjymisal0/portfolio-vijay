@@ -6,6 +6,15 @@ import { Bug, Sparkles, FileText, TestTube2, Eraser } from 'lucide-react'
 // components/github-charts.tsx both read from here.
 export const contributions = [
   {
+    repo: 'PostHog/posthog-rs',
+    title: 'feat: add group_identify helper for creating and updating group properties',
+    url: 'https://github.com/PostHog/posthog-rs/pull/232',
+    number: 232,
+    date: '2026-08-24',
+    kind: 'feature',
+    techs: ['Rust', 'PostHog']
+  },
+  {
     repo: 'vitejs/vite',
     title: 'fix(css): keep newline-separated srcset candidates intact',
     url: 'https://github.com/vitejs/vite/pull/23265',
