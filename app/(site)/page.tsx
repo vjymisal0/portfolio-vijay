@@ -38,43 +38,60 @@ export default function Home() {
     const lenis = new Lenis({
       wrapper,
       content,
-      duration: 1.1,
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
       smoothWheel: true,
-      autoRaf: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
     })
 
-    return () => lenis.destroy()
+    let rafId: number
+    function raf(time: number) {
+      lenis.raf(time)
+      rafId = requestAnimationFrame(raf)
+    }
+    rafId = requestAnimationFrame(raf)
+
+    return () => {
+      cancelAnimationFrame(rafId)
+      lenis.destroy()
+    }
   }, [activeSection])
 
   useEffect(() => {
     const applyHash = () => {
-      const id = window.location.hash.replace('#', '')
-      if (isSection(id)) setActiveSection(id)
-    }
-
-    const handoff = sessionStorage.getItem('goto-section')
-    if (handoff && isSection(handoff)) {
-      sessionStorage.removeItem('goto-section')
-      setActiveSection(handoff)
-      if (window.location.hash !== `#${handoff}`) {
-        history.replaceState(null, '', `/#${handoff}`)
+      const hash = window.location.hash.replace('#', '')
+      if (isSection(hash)) {
+        setActiveSection(hash)
+        sessionStorage.setItem('current-section', hash)
+      } else {
+        const saved = sessionStorage.getItem('current-section')
+        if (saved && isSection(saved)) {
+          setActiveSection(saved)
+          history.replaceState(null, '', `/#${saved}`)
+        } else {
+          setActiveSection('home')
+        }
       }
-      window.dispatchEvent(new Event('hashchange'))
-    } else {
-      applyHash()
     }
 
+    applyHash()
     window.addEventListener('hashchange', applyHash)
     return () => window.removeEventListener('hashchange', applyHash)
   }, [])
+
+  useEffect(() => {
+    sessionStorage.setItem('current-section', activeSection)
+  }, [activeSection])
 
   return (
     <AnimatePresence mode="wait">
       <motion.div
         key={activeSection}
         ref={scrollRef}
-        className="absolute inset-0 h-full overflow-y-auto pb-32 hide-scrollbar"
+        className="absolute inset-0 h-full overflow-y-auto pb-32"
         initial={{ opacity: 0, y: 20, scale: 0.98, filter: "blur(2px)" }}
         animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
         exit={{ opacity: 0, y: -20, scale: 0.98, filter: "blur(2px)" }}

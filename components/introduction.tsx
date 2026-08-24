@@ -31,14 +31,14 @@ export default function Introduction() {
       >
         <div className="flex flex-col items-start gap-6 min-w-0">
           <motion.h1
-            className="text-6xl sm:text-7xl lg:text-8xl font-serif font-medium tracking-tight leading-none text-foreground"
+            className="text-7xl sm:text-8xl lg:text-9xl font-serif font-medium tracking-tight leading-none text-foreground"
             variants={itemVariants}
           >
             Vijay Misal
           </motion.h1>
 
           <motion.p
-            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mt-4 leading-relaxed font-grotesk"
+            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mt-4 leading-relaxed font-body"
             variants={itemVariants}
           >
             SDE 1 at Loopr AI, where I build full-stack features for LooprIQ Inspect — an AI-powered visual inspection platform for industrial quality control. My work spans secure APIs, feature flags, telemetry, and workflow automation. I enjoy taking ambiguous problems and shaping them into reliable, well-crafted software.

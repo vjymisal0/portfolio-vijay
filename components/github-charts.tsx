@@ -24,7 +24,7 @@ export default function GitHubCharts() {
 
   return (
     <div className="pt-12 pb-8">
-      <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-foreground mb-12">Developer Analytics</h2>
+      <h2 className="font-serif text-4xl sm:text-5xl font-medium tracking-tight text-foreground mb-12">Developer Analytics</h2>
 
       {/* Notable repositories */}
       <div className="flex flex-col gap-6 mb-16">

@@ -1,5 +1,5 @@
 import './globals.css'
-import { Manrope, Outfit, Inter, Space_Grotesk } from 'next/font/google'
+import { Geist, Outfit, Inter, Space_Grotesk } from 'next/font/google'
 import { Metadata } from 'next'
 
 const inter = Inter({
@@ -8,7 +8,7 @@ const inter = Inter({
   variable: '--font-sans',
 })
 
-const manrope = Manrope({
+const geist = Geist({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-body',
@@ -99,8 +99,8 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" className={`dark ${inter.variable} ${outfit.variable} ${manrope.variable} ${grotesk.variable}`}>
-      <body className={`${inter.className} bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary`}>
+    <html lang="en" className={`dark ${inter.variable} ${outfit.variable} ${geist.variable} ${grotesk.variable}`}>
+      <body className={`${geist.className} bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
         {children}
       </body>
