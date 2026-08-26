@@ -6,6 +6,15 @@ import { Bug, Sparkles, FileText, TestTube2, Eraser } from 'lucide-react'
 // components/github-charts.tsx both read from here.
 export const contributions = [
   {
+    repo: 'Automattic/mongoose',
+    title: 'docs(schema): clarify duplicate index warning to note index is not created',
+    url: 'https://github.com/Automattic/mongoose/pull/16478',
+    number: 16478,
+    date: '2026-08-25',
+    kind: 'docs',
+    techs: ['MongoDB', 'JavaScript', 'Docs']
+  },
+  {
     repo: 'PostHog/posthog-rs',
     title: 'feat: add group_identify helper for creating and updating group properties',
     url: 'https://github.com/PostHog/posthog-rs/pull/232',
