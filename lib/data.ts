@@ -6,6 +6,24 @@ import { Bug, Sparkles, FileText, TestTube2, Eraser } from 'lucide-react'
 // components/github-charts.tsx both read from here.
 export const contributions = [
   {
+    repo: 'tj/git-extras',
+    title: 'feat(mr): support Forgejo/Codeberg pull request URLs',
+    url: 'https://github.com/tj/git-extras/pull/1267',
+    number: 1267,
+    date: '2026-08-27',
+    kind: 'feature',
+    techs: ['Shell', 'Git']
+  },
+  {
+    repo: 'rclone/rclone',
+    title: 'vfscache: fix log message growing without bound on repeated write errors',
+    url: 'https://github.com/rclone/rclone/pull/9776',
+    number: 9776,
+    date: '2026-08-27',
+    kind: 'fix',
+    techs: ['Go']
+  },
+  {
     repo: 'Automattic/mongoose',
     title: 'docs(schema): clarify duplicate index warning to note index is not created',
     url: 'https://github.com/Automattic/mongoose/pull/16478',
@@ -287,6 +305,7 @@ export const packages = [
 export const notableRepos = [
   { repo: 'vitejs/vite', stars: 82488, url: 'https://github.com/vitejs/vite/pull/23265' },
   { repo: 'apache/superset', stars: 74311, url: 'https://github.com/apache/superset/pull/42881' },
+  { repo: 'rclone/rclone', stars: 59425, url: 'https://github.com/rclone/rclone/pull/9776' },
   { repo: 'chatwoot/chatwoot', stars: 35987, url: 'https://github.com/chatwoot/chatwoot/pull/15418' },
   { repo: 'alibaba/open-code-review', stars: 20839, url: 'https://github.com/alibaba/open-code-review/pull/766' },
   { repo: 'tj/git-extras', stars: 18094, url: 'https://github.com/tj/git-extras/pull/1266' },
