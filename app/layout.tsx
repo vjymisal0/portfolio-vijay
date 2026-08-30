@@ -26,7 +26,7 @@ const grotesk = Space_Grotesk({
   variable: '--font-grotesk',
 })
 
-const siteUrl = 'https://vijaymisal.vercel.app'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vijaymisal.vercel.app'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
