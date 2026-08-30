@@ -1,6 +1,6 @@
 "use client"
 
-import { MapPin } from 'lucide-react'
+import { MapPin, Calendar, Award } from 'lucide-react'
 
 const educationData = [
   {
@@ -10,6 +10,8 @@ const educationData = [
     location: "Pune, Maharashtra",
     score: "8.44 CGPA",
     year: "2023 – 2026",
+    status: "Completed",
+    coursework: ["Data Structures & Algorithms", "Database Management", "Distributed Systems", "Operating Systems", "Cloud Computing"],
     index: "01",
   },
   {
@@ -17,8 +19,10 @@ const educationData = [
     short: "Diploma — CS",
     institution: "Government Polytechnic, Solapur",
     location: "Solapur, Maharashtra",
-    score: "91.43%",
+    score: "91.43% (First Class with Dist.)",
     year: "2021 – 2023",
+    status: "Completed",
+    coursework: ["Object-Oriented Programming", "Computer Networks", "Software Engineering", "Java & C++"],
     index: "02",
   },
 ]
@@ -34,19 +38,41 @@ export default function Education() {
             <div className="w-full md:w-1/3">
               <h3 className="font-serif text-xl font-medium text-foreground">{edu.institution}</h3>
               <div className="flex items-center gap-1.5 text-sm text-muted-foreground mt-2">
-                <MapPin className="w-3.5 h-3.5" /> {edu.location}
+                <MapPin className="w-3.5 h-3.5 shrink-0" /> {edu.location}
               </div>
             </div>
             
-            <div className="w-full md:w-2/3">
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-4 gap-2">
+            <div className="w-full md:w-2/3 space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
                 <h4 className="text-base font-medium text-foreground">{edu.degree}</h4>
-                <span className="text-sm font-mono text-muted-foreground">{edu.year}</span>
+                <span className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground shrink-0">
+                  <Calendar className="w-3.5 h-3.5" />
+                  {edu.year}
+                </span>
               </div>
               
-              <div className="inline-block px-3 py-1 rounded-full font-mono text-xs bg-foreground/5 text-foreground/80">
-                Score: {edu.score}
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-mono text-xs bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                  <Award className="w-3.5 h-3.5" />
+                  {edu.score}
+                </span>
               </div>
+
+              {edu.coursework && (
+                <div className="pt-1">
+                  <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-2">Key Coursework</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {edu.coursework.map((course) => (
+                      <span
+                        key={course}
+                        className="text-xs font-body px-2.5 py-0.5 rounded-md border border-border bg-foreground/[0.03] text-muted-foreground"
+                      >
+                        {course}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         ))}
