@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { ExternalLink, GitPullRequest, Package, Download } from 'lucide-react'
 import { FaGithub, FaNpm } from 'react-icons/fa'
 import { useState } from 'react'
@@ -55,7 +56,7 @@ export default function OpenSource() {
         <h2 className="font-serif text-4xl sm:text-5xl font-medium tracking-tight text-foreground mb-3">Open Source</h2>
         <p className="text-sm sm:text-base font-body text-muted-foreground leading-relaxed">
           {contributions.length} pull requests merged across {repoCount} public repositories, plus {packages.length} npm packages published.{' '}
-          <a href="/#home" className="underline underline-offset-2 hover:text-foreground transition-colors">See the full breakdown in Developer Analytics &rarr;</a>
+          <Link href="/#home" className="underline underline-offset-2 hover:text-foreground transition-colors">See the full breakdown in Developer Analytics &rarr;</Link>
         </p>
       </div>
 
