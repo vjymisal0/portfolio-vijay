@@ -2,12 +2,13 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ExternalLink, MessageCircle, Syringe, Activity, X } from "lucide-react"
+import { ExternalLink, MessageCircle, Syringe, Activity, X, BookOpen } from "lucide-react"
 import { FaGithub } from "react-icons/fa"
 import { TechBadge } from './tech-badge'
 
 type Project = {
   title: string
+  category: string
   description: string
   technologies: string[]
   link: string
@@ -19,6 +20,7 @@ type Project = {
 export const projects: Project[] = [
   {
     title: "Chat + Sentiment Analysis",
+    category: "Full-Stack Web App",
     description:
       "Real-time chat app with React, Node.js, and Firebase. Categorises messages as positive, negative, or neutral using sentiment.js with visual analytics.",
     technologies: ["React", "Node.js", "Express.js", "Firebase", "sentiment.js"],
@@ -29,6 +31,7 @@ export const projects: Project[] = [
   },
   {
     title: "Vaccine Management",
+    category: "Desktop Application",
     description:
       "Java Swing desktop app backed by MySQL via JDBC. Users can register, search vaccines, and book or cancel appointments with real-time availability.",
     technologies: ["Java", "Swing", "MySQL", "JDBC"],
@@ -39,6 +42,7 @@ export const projects: Project[] = [
   },
   {
     title: "Health Bites",
+    category: "AI & Full-Stack",
     description:
       "MERN wellness platform with Google Cloud Vision for AI food recognition, calorie tracking, meal planning, and Auth0 authentication.",
     technologies: ["React", "Node.js", "MongoDB", "Google Cloud Vision", "Auth0"],
@@ -67,18 +71,25 @@ export default function Projects() {
             className="group relative flex flex-col md:flex-row gap-6 py-8 pl-4 -ml-4 pr-4 border-b border-l-2 border-l-transparent border-border cursor-pointer transition-all duration-300 ease-out hover:border-l-foreground/40 hover:bg-foreground/[0.035] hover:shadow-sm rounded-r-lg focus-visible:outline-2 focus-visible:outline-foreground focus-visible:outline-offset-2"
           >
             <div className="w-full md:w-1/3">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground mb-1.5 block">
+                {project.category}
+              </span>
               <h3 className="font-serif text-xl font-medium text-foreground flex items-center gap-2">
                 {project.title}
                 <span className="text-muted-foreground opacity-0 -translate-x-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">&rarr;</span>
               </h3>
-              <div className="flex gap-4 mt-4">
-                <a href={project.github} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5">
-                  <FaGithub className="w-4 h-4" /> Code
+              <div className="flex flex-wrap items-center gap-3 mt-4">
+                <a href={project.github} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 border border-border px-2.5 py-1 rounded-md bg-foreground/[0.02]">
+                  <FaGithub className="w-3.5 h-3.5" /> Code
                 </a>
-                {project.link !== "#" && (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5">
-                    <ExternalLink className="w-4 h-4" /> Live
+                {project.link !== "#" ? (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 border border-border px-2.5 py-1 rounded-md bg-foreground/[0.02]">
+                    <ExternalLink className="w-3.5 h-3.5" /> Live
                   </a>
+                ) : (
+                  <span className="text-xs font-mono text-muted-foreground/70 border border-border/50 px-2 py-0.5 rounded-md">
+                    Desktop
+                  </span>
                 )}
               </div>
             </div>
@@ -88,10 +99,16 @@ export default function Projects() {
                 {project.description}
               </p>
               
-              <div className="flex flex-wrap gap-x-3 gap-y-2">
-                {project.technologies.map(tech => (
-                  <TechBadge key={tech} tech={tech} />
-                ))}
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="flex flex-wrap gap-x-3 gap-y-2">
+                  {project.technologies.map(tech => (
+                    <TechBadge key={tech} tech={tech} />
+                  ))}
+                </div>
+
+                <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors flex items-center gap-1 opacity-0 group-hover:opacity-100 shrink-0">
+                  <BookOpen className="w-3 h-3" /> Case Study
+                </span>
               </div>
             </div>
           </div>
@@ -123,7 +140,12 @@ export default function Projects() {
                 className="w-full max-w-2xl bg-background border border-border shadow-2xl rounded-2xl overflow-hidden pointer-events-auto flex flex-col max-h-[85vh]"
               >
                 <div className="flex items-center justify-between p-6 border-b border-border">
-                  <h3 id="case-study-title" className="font-serif text-2xl font-medium text-foreground">{selectedProject.title}</h3>
+                  <div>
+                    <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider block mb-1">
+                      {selectedProject.category}
+                    </span>
+                    <h3 id="case-study-title" className="font-serif text-2xl font-medium text-foreground">{selectedProject.title}</h3>
+                  </div>
                   <button onClick={() => setSelectedProject(null)} className="p-2 text-muted-foreground hover:text-foreground hover:bg-foreground/5 rounded-full transition-colors" aria-label="Close case study">
                     <X className="w-5 h-5" />
                   </button>
@@ -142,16 +164,21 @@ export default function Projects() {
                   )}
                 </div>
                 
-                <div className="p-6 border-t border-border bg-foreground/[0.02] flex items-center justify-between mt-auto">
+                <div className="p-6 border-t border-border bg-foreground/[0.02] flex flex-wrap items-center justify-between gap-4 mt-auto">
                   <div className="flex flex-wrap gap-2">
                     {selectedProject.technologies.map(tech => (
                        <TechBadge key={tech} tech={tech} />
                     ))}
                   </div>
-                  <div className="flex items-center gap-4">
-                     <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5">
+                  <div className="flex items-center gap-3">
+                     <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 border border-border px-3 py-1.5 rounded-lg">
                        <FaGithub className="w-4 h-4" /> View Code
                      </a>
+                     {selectedProject.link !== "#" && (
+                       <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className="text-xs font-medium bg-foreground text-background hover:opacity-90 transition-opacity flex items-center gap-1.5 px-3 py-1.5 rounded-lg">
+                         <ExternalLink className="w-4 h-4" /> Live Demo
+                       </a>
+                     )}
                   </div>
                 </div>
               </motion.div>
