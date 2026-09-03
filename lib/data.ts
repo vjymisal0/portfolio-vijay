@@ -6,6 +6,168 @@ import { Bug, Sparkles, FileText, TestTube2, Eraser } from 'lucide-react'
 // components/github-charts.tsx both read from here.
 export const contributions = [
   {
+    repo: 'collective/icalendar',
+    title: 'ci: pin GitHub Action steps by commit hash',
+    url: 'https://github.com/collective/icalendar/pull/1688',
+    number: 1688,
+    date: '2026-09-02',
+    kind: 'cleanup',
+    techs: ['GitHub Actions', 'Python']
+  },
+  {
+    repo: 'PostHog/posthog.com',
+    title: 'fix(security): add RFC 9116 Expires field to security.txt',
+    url: 'https://github.com/PostHog/posthog.com/pull/19830',
+    number: 19830,
+    date: '2026-09-01',
+    kind: 'fix',
+    techs: ['TypeScript', 'Security']
+  },
+  {
+    repo: 'milvus-io/milvus-docs',
+    title: 'docs: fix dense vector index link',
+    url: 'https://github.com/milvus-io/milvus-docs/pull/3629',
+    number: 3629,
+    date: '2026-08-31',
+    kind: 'docs',
+    techs: ['Milvus', 'Docs']
+  },
+  {
+    repo: 'backstage/community-plugins',
+    title: 'docs: enhance kafka workspace README',
+    url: 'https://github.com/backstage/community-plugins/pull/10268',
+    number: 10268,
+    date: '2026-08-31',
+    kind: 'docs',
+    techs: ['Backstage', 'Kafka', 'TypeScript']
+  },
+  {
+    repo: 'qdrant/qdrant',
+    title: 'fix(strict-mode): enforce max_query_limit on scroll requests when limit is omitted',
+    url: 'https://github.com/qdrant/qdrant/pull/10382',
+    number: 10382,
+    date: '2026-08-30',
+    kind: 'fix',
+    techs: ['Rust']
+  },
+  {
+    repo: 'apache/superset',
+    title: "test(explore): zero-value stacked bar segment no longer overlaps neighbor's label",
+    url: 'https://github.com/apache/superset/pull/42882',
+    number: 42882,
+    date: '2026-08-30',
+    kind: 'tests',
+    techs: ['React', 'TypeScript', 'Jest']
+  },
+  {
+    repo: 'sraodev/universal-bluetooth-sdk',
+    title: 'fix(cli): make help and --help exit successfully without a daemon',
+    url: 'https://github.com/sraodev/universal-bluetooth-sdk/pull/15',
+    number: 15,
+    date: '2026-08-30',
+    kind: 'fix',
+    techs: ['Rust', 'CLI']
+  },
+  {
+    repo: 'anoopcodehack/DevBoard',
+    title: 'feat(board): add focus mode toggle to hide done tasks',
+    url: 'https://github.com/anoopcodehack/DevBoard/pull/472',
+    number: 472,
+    date: '2026-08-30',
+    kind: 'feature',
+    techs: ['React', 'TypeScript', 'Tailwind']
+  },
+  {
+    repo: 'Rohan-Shridhar/gridcraft',
+    title: 'fix(grid): make 64 and 128 grid sizes selectable and align default grid size',
+    url: 'https://github.com/Rohan-Shridhar/gridcraft/pull/117',
+    number: 117,
+    date: '2026-08-30',
+    kind: 'fix',
+    techs: ['TypeScript']
+  },
+  {
+    repo: 'eljulians/skillfile',
+    title: 'fix: handle tab-separated install lines during init re-run',
+    url: 'https://github.com/eljulians/skillfile/pull/220',
+    number: 220,
+    date: '2026-08-30',
+    kind: 'fix',
+    techs: ['Go']
+  },
+  {
+    repo: 'kubestellar/console',
+    title: 'feat(a11y): allow dismissing Tooltip with Escape key on keyboard focus',
+    url: 'https://github.com/kubestellar/console/pull/22905',
+    number: 22905,
+    date: '2026-08-29',
+    kind: 'feature',
+    techs: ['React', 'TypeScript', 'Accessibility']
+  },
+  {
+    repo: 'kubestellar/console',
+    title: 'feat(a11y): add keyboard navigation to onboarding tour',
+    url: 'https://github.com/kubestellar/console/pull/22904',
+    number: 22904,
+    date: '2026-08-29',
+    kind: 'feature',
+    techs: ['React', 'TypeScript', 'Accessibility']
+  },
+  {
+    repo: 'kubestellar/docs',
+    title: 'fix(hive): sync correct ADR knowledge-system path and restore internal links',
+    url: 'https://github.com/kubestellar/docs/pull/6618',
+    number: 6618,
+    date: '2026-08-29',
+    kind: 'docs',
+    techs: ['Docs', 'Markdown']
+  },
+  {
+    repo: 'openslop/openslop',
+    title: 'fix(loading): add 4th RailItemSkeleton in left rail for History panel',
+    url: 'https://github.com/openslop/openslop/pull/679',
+    number: 679,
+    date: '2026-08-29',
+    kind: 'fix',
+    techs: ['React', 'TypeScript', 'Tailwind']
+  },
+  {
+    repo: 'MuhammadNiazAli/nextjs-supabase-starter',
+    title: 'feat(security): configure comprehensive security headers in next.config.js',
+    url: 'https://github.com/MuhammadNiazAli/nextjs-supabase-starter/pull/109',
+    number: 109,
+    date: '2026-08-29',
+    kind: 'feature',
+    techs: ['Next.js', 'Security', 'TypeScript']
+  },
+  {
+    repo: 'MuhammadNiazAli/nextjs-supabase-starter',
+    title: 'test(auth): add unit tests for authSchemas validation edge cases',
+    url: 'https://github.com/MuhammadNiazAli/nextjs-supabase-starter/pull/105',
+    number: 105,
+    date: '2026-08-29',
+    kind: 'tests',
+    techs: ['TypeScript', 'Zod', 'Jest']
+  },
+  {
+    repo: 'anoopcodehack/DevBoard',
+    title: 'feat(board): add animated empty state when board has no tasks',
+    url: 'https://github.com/anoopcodehack/DevBoard/pull/449',
+    number: 449,
+    date: '2026-08-28',
+    kind: 'feature',
+    techs: ['React', 'TypeScript', 'Framer Motion']
+  },
+  {
+    repo: 'r-lib/actions',
+    title: 'fix(setup-r): export correct RTOOLS HOME env vars on Windows ARM64 and x64',
+    url: 'https://github.com/r-lib/actions/pull/1104',
+    number: 1104,
+    date: '2026-08-28',
+    kind: 'fix',
+    techs: ['GitHub Actions', 'YAML']
+  },
+  {
     repo: 'tj/git-extras',
     title: 'feat(mr): support Forgejo/Codeberg pull request URLs',
     url: 'https://github.com/tj/git-extras/pull/1267',
@@ -307,6 +469,7 @@ export const notableRepos = [
   { repo: 'apache/superset', stars: 74539, url: 'https://github.com/apache/superset/pull/42881' },
   { repo: 'rclone/rclone', stars: 59457, url: 'https://github.com/rclone/rclone/pull/9776' },
   { repo: 'chatwoot/chatwoot', stars: 36306, url: 'https://github.com/chatwoot/chatwoot/pull/15418' },
+  { repo: 'qdrant/qdrant', stars: 34362, url: 'https://github.com/qdrant/qdrant/pull/10382' },
   { repo: 'Automattic/mongoose', stars: 27478, url: 'https://github.com/Automattic/mongoose/pull/16478' },
   { repo: 'alibaba/open-code-review', stars: 21659, url: 'https://github.com/alibaba/open-code-review/pull/766' },
   { repo: 'tj/git-extras', stars: 18099, url: 'https://github.com/tj/git-extras/pull/1267' },
