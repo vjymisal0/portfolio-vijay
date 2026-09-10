@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ExternalLink, MessageCircle, Syringe, Activity, X, BookOpen } from "lucide-react"
+import { ExternalLink, MessageCircle, Syringe, Activity, X, BookOpen, Compass, CreditCard, Crosshair, ShieldCheck, StickyNote } from "lucide-react"
 import { FaGithub } from "react-icons/fa"
 import { TechBadge } from './tech-badge'
 
@@ -19,6 +19,50 @@ type Project = {
 
 export const projects: Project[] = [
   {
+    title: "Pune Metro 3D",
+    category: "3D & Geospatial Simulation",
+    description:
+      "Interactive 3D digital twin and route visualizer of the Pune Metro rail system, featuring realistic terrain elevation, route tracing, and 3D station discovery.",
+    technologies: ["Three.js", "MapLibre GL JS", "TypeScript", "Tailwind CSS"],
+    link: "https://pune-metro-3d.vijaymisal.tech",
+    github: "https://github.com/vjymisal0",
+    icon: Compass,
+    caseStudy: "### The Challenge\nVisualizing urban transit systems in 2D often fails to convey elevation changes, accurate topographic layouts, and immersive spatial orientation. I wanted to build an interactive, high-performance 3D visualization of the Pune Metro rail system accessible directly in modern web browsers.\n\n### The Solution\nI combined MapLibre GL JS with Three.js custom WebGL layers to render 3D terrain elevation models, layered track alignments, and detailed 3D station markers. Optimized vector tiles and LOD (level of detail) mesh rendering maintain 60 FPS across desktop and mobile browsers.\n\n### The Result\nUsers can freely explore the full Pune Metro line in 3D, inspect station coordinates and transit routes with fluid camera controls and zero external plugins."
+  },
+  {
+    title: "The Card Ledger",
+    category: "Fintech & Web App",
+    description:
+      "Interactive comparison and reward-optimization engine for Indian credit cards. Calculates net rewards, annual fee ROI, and category cashback across spending profiles.",
+    technologies: ["React", "TypeScript", "Tailwind CSS"],
+    link: "https://credit-cards.vijaymisal.tech",
+    github: "https://github.com/vjymisal0",
+    icon: CreditCard,
+    caseStudy: "### The Challenge\nNavigating reward structures, annual fee waivers, accelerated reward points, and lounge access rules across dozens of Indian credit cards is opaque and confusing for consumers.\n\n### The Solution\nBuilt an intuitive comparison engine that parses complex reward rates, milestones, and forex markup fees into actionable metrics. Includes interactive spend-simulation sliders where users enter their monthly spending patterns to view calculated net annual returns.\n\n### The Result\nProvides consumers with transparent, unbiased side-by-side card comparisons, helping users maximize cashback and milestone benefits on their monthly spends."
+  },
+  {
+    title: "Quickdraw",
+    category: "Browser Game & Canvas",
+    description:
+      "A fast-paced 60-second Wild-West click-to-shoot browser mini-game engineered with zero external dependencies using raw HTML5 Canvas and the Web Audio API.",
+    technologies: ["JavaScript", "HTML5 Canvas", "Web Audio API", "CSS3"],
+    link: "https://quickdraw.vijaymisal.tech",
+    github: "https://github.com/vjymisal0/quickdraw",
+    icon: Crosshair,
+    caseStudy: "### The Challenge\nModern web games often rely on bulky third-party game engines, resulting in slow load times and heavy asset overhead for casual mini-games.\n\n### The Solution\nEngineered a zero-dependency arcade game using pure HTML5 Canvas rendering loops (requestAnimationFrame) and synthesized audio generated directly through the browser's Web Audio API. Built custom hit-detection algorithms and particle systems for sparks and explosions.\n\n### The Result\nLoads instantly under 50KB total bundle size, runs at a locked 60 FPS on all devices, and provides snappy audio-visual feedback within a tight 60-second gameplay loop."
+  },
+  {
+    title: "STAMPED",
+    category: "Developer Tooling",
+    description:
+      "Quality control and package verification console designed for auditing build artifacts, checking integrity checksums, and validating software release health.",
+    technologies: ["TypeScript", "Next.js", "Tailwind CSS"],
+    link: "https://stamped.vijaymisal.tech",
+    github: "https://github.com/vjymisal0",
+    icon: ShieldCheck,
+    caseStudy: "### The Challenge\nEnsuring consistent software release artifacts and verifying integrity checklists before public distribution can be error-prone when performed manually.\n\n### The Solution\nSTAMPED acts as a dedicated release QC console, offering interactive audit tables, cryptographic hash cross-checks, and automated release readiness validation in a streamlined dashboard.\n\n### The Result\nReduces pre-release verification time and gives developers a single interface for release health checks and artifact validation."
+  },
+  {
     title: "Chat + Sentiment Analysis",
     category: "Full-Stack Web App",
     description:
@@ -30,17 +74,6 @@ export const projects: Project[] = [
     caseStudy: "### The Challenge\nBuilding a real-time chat application often leads to UI stuttering and unoptimized database reads if not handled properly. I needed a way to instantly process incoming messages and determine their sentiment without blocking the main event loop.\n\n### The Solution\nI utilized Firebase's real-time listeners for instant synchronization across clients. For sentiment analysis, I integrated `sentiment.js` on the Node backend, exposing a WebSocket stream that categorizes and scores each message. The front-end renders these insights as an interactive dashboard showing the overall mood of the conversation.\n\n### The Result\nUsers experience zero perceived latency when chatting, and the real-time sentiment graph updates dynamically at 60fps, providing immediate feedback on the conversation's tone."
   },
   {
-    title: "Vaccine Management",
-    category: "Desktop Application",
-    description:
-      "Java Swing desktop app backed by MySQL via JDBC. Users can register, search vaccines, and book or cancel appointments with real-time availability.",
-    technologies: ["Java", "Swing", "MySQL", "JDBC"],
-    link: "#",
-    github: "https://github.com/ITR-project-group/Vaccine_management_system",
-    icon: Syringe,
-    caseStudy: "### The Challenge\nManaging vaccine distribution requires strict concurrency control to prevent double-booking of limited appointment slots. The system also needed a robust, easy-to-deploy desktop interface for medical staff.\n\n### The Solution\nI built a standalone Java Swing application connected directly to a strictly normalized MySQL database using JDBC. To handle concurrency, I implemented row-level locking (SELECT ... FOR UPDATE) during the appointment booking transaction to guarantee data integrity. The UI uses custom Swing components to provide a responsive, grid-based dashboard.\n\n### The Result\nThe application completely eliminates race conditions during high-traffic booking events and provides staff with a seamless offline-capable interface for managing patient records."
-  },
-  {
     title: "Health Bites",
     category: "AI & Full-Stack",
     description:
@@ -50,6 +83,28 @@ export const projects: Project[] = [
     github: "https://github.com/vjymisal0/Health-Bites-Stunner",
     icon: Activity,
     caseStudy: "### The Challenge\nUsers often struggle to manually log their daily food intake due to the tedious nature of searching for ingredients and estimating calories. I wanted to build an AI-first approach to dietary tracking.\n\n### The Solution\nHealth Bites uses the Google Cloud Vision API to analyze uploaded images of meals. The Node.js backend processes the labels returned by the AI, cross-references them against a nutritional MongoDB database, and automatically calculates the caloric and macronutrient breakdown. The entire application is secured with Auth0 and features a responsive React frontend.\n\n### The Result\nUsers can log a meal in under 3 seconds simply by snapping a photo. The app correctly identifies complex meals with 85%+ accuracy, significantly improving user retention compared to traditional manual-entry calorie trackers."
+  },
+  {
+    title: "My E-Notes",
+    category: "Productivity & Offline App",
+    description:
+      "Ultra-fast, distraction-free note-taking utility that runs entirely client-side with offline-first persistence via LocalStorage and instant search.",
+    technologies: ["JavaScript", "LocalStorage", "HTML5", "CSS3"],
+    link: "https://getnotes.vijaymisal.tech",
+    github: "https://github.com/vjymisal0/GetNotes",
+    icon: StickyNote,
+    caseStudy: "### The Challenge\nMany modern note-taking apps suffer from bloated sync architectures, long startup delays, and required account registrations for simple daily scratchpads.\n\n### The Solution\nDesigned an instant-launch, offline-first notes editor leveraging browser `localStorage` and reactive state synchronization. Features live search filtering, markdown preview, and zero network latency.\n\n### The Result\nA dependable, instant-open scratchpad with 0ms load overhead that keeps notes private and accessible even when completely offline."
+  },
+  {
+    title: "Vaccine Management",
+    category: "Desktop Application",
+    description:
+      "Java Swing desktop app backed by MySQL via JDBC. Users can register, search vaccines, and book or cancel appointments with real-time availability.",
+    technologies: ["Java", "Swing", "MySQL", "JDBC"],
+    link: "#",
+    github: "https://github.com/ITR-project-group/Vaccine_management_system",
+    icon: Syringe,
+    caseStudy: "### The Challenge\nManaging vaccine distribution requires strict concurrency control to prevent double-booking of limited appointment slots. The system also needed a robust, easy-to-deploy desktop interface for medical staff.\n\n### The Solution\nI built a standalone Java Swing application connected directly to a strictly normalized MySQL database using JDBC. To handle concurrency, I implemented row-level locking (SELECT ... FOR UPDATE) during the appointment booking transaction to guarantee data integrity. The UI uses custom Swing components to provide a responsive, grid-based dashboard.\n\n### The Result\nThe application completely eliminates race conditions during high-traffic booking events and provides staff with a seamless offline-capable interface for managing patient records."
   },
 ]
 
