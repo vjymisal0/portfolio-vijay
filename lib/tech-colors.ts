@@ -32,15 +32,6 @@ const TECH_COLORS_HEX: Record<string, string> = {
   "JWT": "#c026d3",
   "PostHog": "#d97706",
   "CSS": "#38bdf8",
-  "CSS3": "#38bdf8",
-  "Tailwind CSS": "#06b6d4",
-  "Next.js": "#000000",
-  "Three.js": "#14b8a6",
-  "MapLibre GL JS": "#3b82f6",
-  "HTML5 Canvas": "#e34f26",
-  "HTML5": "#e34f26",
-  "Web Audio API": "#a855f7",
-  "LocalStorage": "#eab308",
   "Vite": "#646cff",
 }
 
