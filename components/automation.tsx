@@ -4,10 +4,10 @@ import { Bot, Clock3, GitBranch, Webhook, ArrowRight, Server } from 'lucide-reac
 
 const workflows = [
   {
-    name: 'Autonomous media production',
-    description: 'A scheduled content pipeline that coordinates topic generation, media production, text-to-speech, and publishing from a self-hosted VM.',
+    name: 'Autonomous media pipeline',
+    description: 'A scheduled workflow that coordinates AI processing, media generation, and publishing from a self-hosted VM without exposing private channel or content details.',
     trigger: 'Scheduled execution',
-    nodes: ['Schedule', 'AI agent', 'Media pipeline', 'YouTube publish'],
+    nodes: ['Schedule', 'AI agent', 'Media pipeline', 'Publishing service'],
     icon: Server,
   },
   {
@@ -33,7 +33,7 @@ export default function Automation() {
         <p className="mb-2 text-[11px] font-mono uppercase tracking-[0.2em] text-primary">05 / Systems</p>
         <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground">Automation & workflows</h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          I design automation architectures that connect infrastructure, APIs, and AI agents into dependable workflows. These systems run on my Oracle Cloud VM using self-hosted n8n, cron jobs, Docker services, and monitoring.
+          I design automation architectures that connect infrastructure, APIs, and AI agents into dependable workflows. These systems run on a self-hosted VM using n8n, cron jobs, Docker services, and monitoring.
         </p>
       </div>
 
