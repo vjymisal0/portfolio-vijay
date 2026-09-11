@@ -1,9 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
-import { ArrowUpRight, Mail } from 'lucide-react'
+import { Mail } from 'lucide-react'
 import GitHubCharts from './github-charts'
 
 const containerVariants = {
@@ -52,15 +51,9 @@ export default function Introduction() {
           </motion.p>
 
           <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/#projects"
-              className="rounded-lg bg-foreground text-background px-6 py-3 text-sm font-medium transition hover:opacity-85"
-            >
-              Explore selected work <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
             <a
               href="mailto:misalvijay153@gmail.com"
-              className="rounded-lg border border-border px-6 py-3 text-sm font-medium text-foreground transition hover:border-foreground/40"
+              className="group inline-flex items-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-5 py-3 text-sm font-medium text-primary transition hover:bg-primary hover:text-primary-foreground hover:shadow-[0_8px_24px_hsl(var(--primary)/0.2)]"
             >
               <Mail className="h-4 w-4" aria-hidden="true" /> Get in touch
             </a>
