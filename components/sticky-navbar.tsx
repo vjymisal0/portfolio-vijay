@@ -10,6 +10,7 @@ const navItems = [
   { id: 'oss', label: 'Open Source', short: 'OSS' },
   { id: 'experience', label: 'Experience', short: 'Exp' },
   { id: 'projects', label: 'Projects', short: 'Work' },
+  { id: 'automation', label: 'Automation', short: 'Auto' },
 ]
 
 export default function StickyNavbar() {
