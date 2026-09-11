@@ -1,4 +1,0 @@
-# Automation Workflows — Sanitized Diagrams
-
-
-
