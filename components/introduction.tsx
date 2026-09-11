@@ -74,20 +74,6 @@ export default function Introduction() {
             ))}
           </motion.div>
 
-          <motion.div variants={itemVariants} className="mt-12 grid w-full max-w-2xl grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-4">
-            {[
-              ['01', 'Current role'],
-              ['04', 'Published packages'],
-              ['05+', 'Core technologies'],
-              ['∞', 'Curiosity'],
-            ].map(([value, label]) => (
-              <div key={label} className="bg-background px-4 py-4 sm:px-5">
-                <p className="font-mono text-xl text-primary">{value}</p>
-                <p className="mt-1 text-[11px] font-mono uppercase tracking-wider text-muted-foreground">{label}</p>
-              </div>
-            ))}
-          </motion.div>
-
           <motion.nav variants={itemVariants} className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
             <a href="https://github.com/vjymisal0" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition hover:text-foreground">
               <FaGithub className="h-[18px] w-[18px]" /> GitHub
