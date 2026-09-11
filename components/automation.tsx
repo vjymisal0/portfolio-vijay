@@ -5,7 +5,7 @@ import { Bot, Clock3, GitBranch, Webhook, ArrowRight, Server } from 'lucide-reac
 const workflows = [
   {
     name: 'Autonomous media pipeline',
-    description: 'A scheduled workflow that coordinates AI processing, media generation, and publishing from a self-hosted VM without exposing private channel or content details.',
+    description: 'A scheduled workflow that coordinates AI processing, media generation, and publishing from a self-hosted VM with privacy-safe inputs and outputs.',
     trigger: 'Scheduled execution',
     nodes: ['Schedule', 'AI agent', 'Media pipeline', 'Publishing service'],
     icon: Server,
@@ -33,13 +33,16 @@ function ArchitectureDiagram({ title, description, nodes }: { title: string; des
         <h3 className="text-sm font-semibold text-foreground">{title}</h3>
         <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{description}</p>
       </div>
-      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-primary/30 bg-primary/[0.04] p-4" aria-label={`${title} architecture diagram`}>
-        {nodes.map((node, index) => (
-          <span key={node} className="flex items-center gap-2">
-            <span className="rounded-lg border border-border bg-background px-3 py-2 text-[10px] font-medium text-foreground shadow-sm">{node}</span>
-            {index < nodes.length - 1 && <ArrowRight className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />}
-          </span>
-        ))}
+      <div className="rounded-xl border border-dashed border-primary/30 bg-primary/[0.04] p-4" aria-label={`${title} architecture diagram`}>
+        <div className="relative space-y-2 pl-6">
+          <span className="absolute bottom-5 left-[0.55rem] top-5 w-px bg-primary/30" aria-hidden="true" />
+          {nodes.map((node, index) => (
+            <div key={node} className="relative flex items-center gap-3">
+              <span className="absolute -left-6 flex h-4 w-4 items-center justify-center rounded-full border border-primary/50 bg-background text-[9px] font-bold text-primary">{index + 1}</span>
+              <span className="w-full rounded-lg border border-border bg-background px-3 py-2 text-[10px] font-medium text-foreground shadow-sm">{node}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </article>
   )
