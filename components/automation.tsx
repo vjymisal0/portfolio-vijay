@@ -26,28 +26,6 @@ const capabilities = [
   ['Reliability', 'Health checks, logs, failure handling, and alerting'],
 ]
 
-function ArchitectureDiagram({ title, description, nodes }: { title: string; description: string; nodes: string[] }) {
-  return (
-    <article className="rounded-2xl border border-border bg-card p-5">
-      <div className="mb-4">
-        <h3 className="text-sm font-semibold text-foreground">{title}</h3>
-        <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{description}</p>
-      </div>
-      <div className="rounded-xl border border-dashed border-primary/30 bg-primary/[0.04] p-4" aria-label={`${title} architecture diagram`}>
-        <div className="relative space-y-2 pl-6">
-          <span className="absolute bottom-5 left-[0.55rem] top-5 w-px bg-primary/30" aria-hidden="true" />
-          {nodes.map((node, index) => (
-            <div key={node} className="relative flex items-center gap-3">
-              <span className="absolute -left-6 flex h-4 w-4 items-center justify-center rounded-full border border-primary/50 bg-background text-[9px] font-bold text-primary">{index + 1}</span>
-              <span className="w-full rounded-lg border border-border bg-background px-3 py-2 text-[10px] font-medium text-foreground shadow-sm">{node}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </article>
-  )
-}
-
 export default function Automation() {
   return (
     <section className="container mx-auto max-w-4xl px-6 lg:px-12">
@@ -55,7 +33,7 @@ export default function Automation() {
         <p className="mb-2 text-[11px] font-mono uppercase tracking-[0.2em] text-primary">05 / Systems</p>
         <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground">Automation & workflows</h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          I design automation architectures that connect infrastructure, APIs, and AI agents into dependable workflows. These systems run on a self-hosted VM using n8n, cron jobs, Docker services, and monitoring.
+          I won a cloud VM and turned it into a personal lab for learning by building. I use it to self-host n8n workflows, run scheduled jobs, experiment with AI agents, connect APIs, and explore the systems that make automation reliable.
         </p>
       </div>
 
@@ -68,11 +46,6 @@ export default function Automation() {
           <object data="/vm-health-failover.svg" type="image/svg+xml" aria-label="VM health monitoring and failover flowchart" className="h-auto min-h-[280px] w-full min-w-[760px]" />
         </div>
       </figure>
-
-      <div className="mb-6 grid gap-5 md:grid-cols-2">
-        <ArchitectureDiagram title="Workflow orchestration" description="How scheduled and event-driven work moves through an automation pipeline." nodes={['Cron / webhook', 'n8n trigger', 'AI processing', 'API / database', 'Notification']} />
-        <ArchitectureDiagram title="Reliability layer" description="The feedback loop used to detect failures, recover safely, and surface incidents." nodes={['Health check', 'Decision branch', 'Retry / recovery', 'Error handler', 'Alert']} />
-      </div>
 
       <div className="grid gap-5 md:grid-cols-2">
         {workflows.map(({ name, description, trigger, nodes, icon: Icon }) => (
