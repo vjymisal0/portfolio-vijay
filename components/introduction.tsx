@@ -40,7 +40,7 @@ export default function Introduction() {
             className="max-w-3xl text-4xl sm:text-6xl lg:text-7xl font-mono font-medium tracking-[-0.04em] leading-[0.98] text-foreground"
             variants={itemVariants}
           >
-            Building useful software, thoughtfully.
+            Turning complex problems into dependable software.
           </motion.h1>
 
           <motion.p
