@@ -37,14 +37,14 @@ export default function Introduction() {
           </motion.div>
 
           <motion.h1
-            className="max-w-4xl text-6xl sm:text-8xl lg:text-9xl font-serif font-medium tracking-tight leading-[0.92] text-foreground"
+            className="max-w-3xl text-4xl sm:text-6xl lg:text-7xl font-mono font-medium tracking-[-0.04em] leading-[0.98] text-foreground"
             variants={itemVariants}
           >
             Building useful software, thoughtfully.
           </motion.h1>
 
           <motion.p
-            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mt-4 leading-relaxed font-body"
+            className="text-sm sm:text-base text-muted-foreground max-w-2xl mt-4 leading-relaxed font-mono"
             variants={itemVariants}
           >
             I&apos;m Vijay, an SDE 1 at Loopr AI. I build reliable full-stack features for AI-powered industrial quality control — from secure APIs and telemetry to workflow automation.
@@ -73,7 +73,7 @@ export default function Introduction() {
               ['∞', 'Curiosity'],
             ].map(([value, label]) => (
               <div key={label} className="bg-background px-4 py-4 sm:px-5">
-                <p className="font-serif text-2xl text-foreground">{value}</p>
+                <p className="font-mono text-xl text-primary">{value}</p>
                 <p className="mt-1 text-[11px] font-mono uppercase tracking-wider text-muted-foreground">{label}</p>
               </div>
             ))}

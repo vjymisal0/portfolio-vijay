@@ -1,5 +1,5 @@
 import './globals.css'
-import { Geist, Outfit, Inter, Space_Grotesk } from 'next/font/google'
+import { Geist, Geist_Mono, Outfit, Inter, Space_Grotesk } from 'next/font/google'
 import { Metadata } from 'next'
 
 const inter = Inter({
@@ -24,6 +24,12 @@ const grotesk = Space_Grotesk({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-grotesk',
+})
+
+const mono = Geist_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono',
 })
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vijaymisal.vercel.app'
@@ -99,8 +105,8 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable} ${geist.variable} ${grotesk.variable}`}>
-      <body className={`${grotesk.className} bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary`}>
+    <html lang="en" className={`${inter.variable} ${outfit.variable} ${geist.variable} ${grotesk.variable} ${mono.variable}`}>
+      <body className={`${mono.className} bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
         {children}
       </body>
