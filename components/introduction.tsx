@@ -1,8 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
+import { Mail } from 'lucide-react'
 import GitHubCharts from './github-charts'
 
 const containerVariants = {
@@ -31,35 +31,40 @@ export default function Introduction() {
         animate="visible"
       >
         <div className="flex flex-col items-start gap-6 min-w-0">
+          <motion.div variants={itemVariants} className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
+            <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.7)]" />
+            Software engineer · Pune, India
+          </motion.div>
+
           <motion.h1
-            className="text-7xl sm:text-8xl lg:text-9xl font-serif font-medium tracking-tight leading-none text-foreground"
+            className="max-w-3xl text-4xl sm:text-6xl lg:text-7xl font-mono font-medium tracking-[-0.04em] leading-[0.98] text-foreground"
             variants={itemVariants}
           >
-            Vijay Misal
+            Software engineer, building with AI.
           </motion.h1>
 
           <motion.p
-            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mt-4 leading-relaxed font-body"
+            className="text-sm sm:text-base text-muted-foreground max-w-2xl mt-4 leading-relaxed font-mono"
             variants={itemVariants}
           >
-            SDE 1 at Loopr AI, where I build full-stack features for LooprIQ Inspect — an AI-powered visual inspection platform for industrial quality control. My work spans secure APIs, feature flags, telemetry, and workflow automation. I enjoy taking ambiguous problems and shaping them into reliable, well-crafted software.
+            I&apos;m Vijay, an SDE 1 at Loopr AI. I build full-stack software and automated workflows, combining AI tools such as Hermes Agent, Pi Agent, Claude, and ChatGPT with reliable engineering practices.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-4">
-            <button
-              type="button"
-              disabled
-              className="rounded-lg bg-muted text-muted-foreground px-6 py-3 text-sm font-medium cursor-not-allowed opacity-60 border border-border"
-              title="Resume updating soon"
+          <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-3">
+            <a
+              href="mailto:misalvijay153@gmail.com"
+              className="group inline-flex items-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-5 py-3 text-sm font-medium text-primary transition hover:bg-primary hover:text-primary-foreground hover:shadow-[0_8px_24px_hsl(var(--primary)/0.2)]"
             >
-              Download Resume
-            </button>
-            <Link
-              href="/#oss"
-              className="rounded-lg border border-border px-6 py-3 text-sm font-medium text-foreground transition hover:border-foreground/40"
-            >
-              View work
-            </Link>
+              <Mail className="h-4 w-4" aria-hidden="true" /> Get in touch
+            </a>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="mt-8 flex max-w-3xl flex-wrap gap-2">
+            {['Workflow automation', 'Scheduled jobs & cron', 'AI agent orchestration', 'API & webhook integrations', 'Monitoring & alerts'].map((skill) => (
+              <span key={skill} className="rounded-full border border-border bg-card px-3 py-1.5 text-[11px] text-muted-foreground">
+                {skill}
+              </span>
+            ))}
           </motion.div>
 
           <motion.nav variants={itemVariants} className="mt-8 flex flex-wrap gap-x-6 gap-y-3">

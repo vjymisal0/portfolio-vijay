@@ -30,7 +30,7 @@ const educationData = [
 export default function Education() {
   return (
     <div className="pt-8">
-      <h2 className="font-serif text-4xl sm:text-5xl font-medium tracking-tight text-foreground mb-12">Education</h2>
+      <div className="mb-10"><p className="mb-2 text-[11px] font-mono uppercase tracking-[0.2em] text-primary">04 / Foundations</p><h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground">Education</h2></div>
 
       <div className="flex flex-col border-t border-border">
         {educationData.map((edu) => (
