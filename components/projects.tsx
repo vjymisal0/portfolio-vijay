@@ -58,7 +58,7 @@ export default function Projects() {
 
   return (
     <div>
-      <h2 className="font-serif text-4xl sm:text-5xl font-medium tracking-tight text-foreground mb-12">Projects</h2>
+      <div className="mb-10"><p className="mb-2 text-[11px] font-mono uppercase tracking-[0.2em] text-primary">02 / Selected work</p><h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground">Projects</h2><p className="mt-3 max-w-xl text-sm text-muted-foreground">Small products and experiments built from first principles.</p></div>
       
       <div className="flex flex-col border-t border-border">
         {projects.map((project) => (
