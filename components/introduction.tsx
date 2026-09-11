@@ -31,35 +31,52 @@ export default function Introduction() {
         animate="visible"
       >
         <div className="flex flex-col items-start gap-6 min-w-0">
+          <motion.div variants={itemVariants} className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
+            <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.7)]" />
+            Software engineer · Pune, India
+          </motion.div>
+
           <motion.h1
-            className="text-7xl sm:text-8xl lg:text-9xl font-serif font-medium tracking-tight leading-none text-foreground"
+            className="max-w-4xl text-6xl sm:text-8xl lg:text-9xl font-serif font-medium tracking-tight leading-[0.92] text-foreground"
             variants={itemVariants}
           >
-            Vijay Misal
+            Building useful software, thoughtfully.
           </motion.h1>
 
           <motion.p
             className="text-lg sm:text-xl text-muted-foreground max-w-2xl mt-4 leading-relaxed font-body"
             variants={itemVariants}
           >
-            SDE 1 at Loopr AI, where I build full-stack features for LooprIQ Inspect — an AI-powered visual inspection platform for industrial quality control. My work spans secure APIs, feature flags, telemetry, and workflow automation. I enjoy taking ambiguous problems and shaping them into reliable, well-crafted software.
+            I&apos;m Vijay, an SDE 1 at Loopr AI. I build reliable full-stack features for AI-powered industrial quality control — from secure APIs and telemetry to workflow automation.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-4">
-            <button
-              type="button"
-              disabled
-              className="rounded-lg bg-muted text-muted-foreground px-6 py-3 text-sm font-medium cursor-not-allowed opacity-60 border border-border"
-              title="Resume updating soon"
-            >
-              Download Resume
-            </button>
+          <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-3">
             <Link
-              href="/#oss"
+              href="/#projects"
+              className="rounded-lg bg-foreground text-background px-6 py-3 text-sm font-medium transition hover:opacity-85"
+            >
+              Explore selected work <span aria-hidden="true">↗</span>
+            </Link>
+            <a
+              href="mailto:misalvijay153@gmail.com"
               className="rounded-lg border border-border px-6 py-3 text-sm font-medium text-foreground transition hover:border-foreground/40"
             >
-              View work
-            </Link>
+              Get in touch
+            </a>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="mt-12 grid w-full max-w-2xl grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-4">
+            {[
+              ['01', 'Current role'],
+              ['04', 'Published packages'],
+              ['05+', 'Core technologies'],
+              ['∞', 'Curiosity'],
+            ].map(([value, label]) => (
+              <div key={label} className="bg-background px-4 py-4 sm:px-5">
+                <p className="font-serif text-2xl text-foreground">{value}</p>
+                <p className="mt-1 text-[11px] font-mono uppercase tracking-wider text-muted-foreground">{label}</p>
+              </div>
+            ))}
           </motion.div>
 
           <motion.nav variants={itemVariants} className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
