@@ -4,17 +4,17 @@ import { Bot, Clock3, GitBranch, Webhook, ArrowRight, Server } from 'lucide-reac
 
 const workflows = [
   {
-    name: 'Virtual machine operations',
-    description: 'Automated health checks, scheduled maintenance, and operational notifications for a virtual machine environment.',
-    trigger: 'Cron / schedule',
-    nodes: ['Schedule trigger', 'VM health check', 'Decision branch', 'Action / alert'],
+    name: 'Autonomous media production',
+    description: 'A scheduled content pipeline that coordinates topic generation, media production, text-to-speech, and publishing from a self-hosted VM.',
+    trigger: 'Scheduled execution',
+    nodes: ['Schedule', 'AI agent', 'Media pipeline', 'YouTube publish'],
     icon: Server,
   },
   {
-    name: 'AI-assisted task pipeline',
-    description: 'A repeatable workflow that receives an event, enriches the context with AI, and routes the result to the right destination.',
-    trigger: 'Webhook / event',
-    nodes: ['Webhook', 'AI agent', 'Validation', 'API response'],
+    name: 'Health & failover architecture',
+    description: 'A resilient monitoring layer that checks services, captures failures, and dispatches actionable diagnostics before an issue becomes invisible.',
+    trigger: 'Cron + error event',
+    nodes: ['Health check', 'Decision branch', 'Recovery', 'Telegram alert'],
     icon: Bot,
   },
 ]
@@ -33,7 +33,7 @@ export default function Automation() {
         <p className="mb-2 text-[11px] font-mono uppercase tracking-[0.2em] text-primary">05 / Systems</p>
         <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground">Automation & workflows</h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          I design automation architectures that connect infrastructure, APIs, and AI tools into dependable workflows — including n8n systems running on my virtual machine.
+          I design automation architectures that connect infrastructure, APIs, and AI agents into dependable workflows. These systems run on my Oracle Cloud VM using self-hosted n8n, cron jobs, Docker services, and monitoring.
         </p>
       </div>
 

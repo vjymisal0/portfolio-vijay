@@ -8,9 +8,8 @@ import { FaGithub } from 'react-icons/fa'
 const navItems = [
   { id: 'home', label: 'Home', short: 'Home' },
   { id: 'experience', label: 'Experience', short: 'Exp' },
-  { id: 'projects', label: 'Projects', short: 'Work' },
+  { id: 'builds', label: 'Build Systems', short: 'Builds' },
   { id: 'oss', label: 'Open Source', short: 'OSS' },
-  { id: 'automation', label: 'Automation', short: 'Auto' },
 ]
 
 export default function StickyNavbar() {
