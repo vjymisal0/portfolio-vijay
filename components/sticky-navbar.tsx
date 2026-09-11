@@ -7,9 +7,9 @@ import { FaGithub } from 'react-icons/fa'
 
 const navItems = [
   { id: 'home', label: 'Home', short: 'Home' },
-  { id: 'oss', label: 'Open Source', short: 'OSS' },
   { id: 'experience', label: 'Experience', short: 'Exp' },
   { id: 'projects', label: 'Projects', short: 'Work' },
+  { id: 'oss', label: 'Open Source', short: 'OSS' },
   { id: 'automation', label: 'Automation', short: 'Auto' },
 ]
 
