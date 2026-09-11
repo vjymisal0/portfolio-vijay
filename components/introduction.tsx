@@ -47,7 +47,7 @@ export default function Introduction() {
             className="text-sm sm:text-base text-muted-foreground max-w-2xl mt-4 leading-relaxed font-mono"
             variants={itemVariants}
           >
-            I&apos;m Vijay, an SDE 1 at Loopr AI. I build full-stack software with AI-assisted workflows using tools like Hermes Agent, Pi Agent, Claude, and ChatGPT — turning ideas into useful, reliable products.
+            I&apos;m Vijay, an SDE 1 at Loopr AI. I build full-stack software and automated workflows, combining AI tools such as Hermes Agent, Pi Agent, Claude, and ChatGPT with reliable engineering practices.
           </motion.p>
 
           <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-3">
@@ -63,6 +63,14 @@ export default function Introduction() {
             >
               Get in touch
             </a>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="mt-8 flex max-w-3xl flex-wrap gap-2">
+            {['n8n workflows', 'Cron jobs', 'Scheduled tasks', 'AI agents', 'API integrations'].map((skill) => (
+              <span key={skill} className="rounded-full border border-border bg-card px-3 py-1.5 text-[11px] text-muted-foreground">
+                {skill}
+              </span>
+            ))}
           </motion.div>
 
           <motion.div variants={itemVariants} className="mt-12 grid w-full max-w-2xl grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-4">
