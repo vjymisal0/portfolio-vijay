@@ -53,7 +53,7 @@ export default function OpenSource() {
   return (
     <section className="container mx-auto px-6 lg:px-12 max-w-4xl">
       <div className="mb-12">
-        <h2 className="font-serif text-4xl sm:text-5xl font-medium tracking-tight text-foreground mb-3">Open Source</h2>
+        <p className="mb-2 text-[11px] font-mono uppercase tracking-[0.2em] text-primary">03 / Community</p><h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground mb-3">Open Source</h2>
         <p className="text-sm sm:text-base font-body text-muted-foreground leading-relaxed">
           {contributions.length} pull requests merged across {repoCount} public repositories, plus {packages.length} npm packages published.{' '}
           <Link href="/#home" className="underline underline-offset-2 hover:text-foreground transition-colors">See the full breakdown in Developer Analytics &rarr;</Link>
