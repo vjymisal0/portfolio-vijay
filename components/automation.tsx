@@ -43,7 +43,7 @@ export default function Automation() {
           <a href="/vm-health-failover.svg" target="_blank" rel="noopener noreferrer" className="text-[11px] text-primary hover:underline">Open full diagram ↗</a>
         </div>
         <div className="overflow-x-auto bg-white p-3 sm:p-5">
-          <object data="/vm-health-failover.svg" type="image/svg+xml" aria-label="VM health monitoring and failover flowchart" className="h-auto min-h-[280px] w-full min-w-[760px]" />
+          <object data="/vm-health-failover.svg" type="image/svg+xml" aria-label="VM health monitoring and failover flowchart" className="block h-auto min-h-[220px] w-full min-w-0 max-w-full object-contain object-left sm:min-h-[280px]" />
         </div>
       </figure>
 
