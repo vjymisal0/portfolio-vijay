@@ -56,6 +56,16 @@ export default function Automation() {
         </p>
       </div>
 
+      <figure className="mb-8 overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+        <div className="flex items-center justify-between border-b border-border px-4 py-3">
+          <figcaption className="text-xs font-semibold text-foreground">Workflow architecture overview</figcaption>
+          <a href="/automation-workflows.svg" target="_blank" rel="noopener noreferrer" className="text-[11px] text-primary hover:underline">Open full diagram ↗</a>
+        </div>
+        <div className="overflow-x-auto bg-white p-3 sm:p-5">
+          <object data="/automation-workflows.svg" type="image/svg+xml" aria-label="Sanitized automation workflow architecture diagrams" className="h-auto min-h-[280px] w-full min-w-[760px]" />
+        </div>
+      </figure>
+
       <div className="mb-6 grid gap-5 md:grid-cols-3">
         <ArchitectureDiagram title="VM infrastructure" description="A sanitized view of the self-hosted runtime and its supporting services." nodes={['Internet', 'Reverse proxy', 'Docker services', 'n8n + AI agents', 'Monitoring']} />
         <ArchitectureDiagram title="Workflow orchestration" description="How scheduled and event-driven work moves through an automation pipeline." nodes={['Cron / webhook', 'n8n trigger', 'AI processing', 'API / database', 'Notification']} />
