@@ -26,6 +26,25 @@ const capabilities = [
   ['Reliability', 'Health checks, logs, failure handling, and alerting'],
 ]
 
+function ArchitectureDiagram({ title, description, nodes }: { title: string; description: string; nodes: string[] }) {
+  return (
+    <article className="rounded-2xl border border-border bg-card p-5">
+      <div className="mb-4">
+        <h3 className="text-sm font-semibold text-foreground">{title}</h3>
+        <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{description}</p>
+      </div>
+      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-primary/30 bg-primary/[0.04] p-4" aria-label={`${title} architecture diagram`}>
+        {nodes.map((node, index) => (
+          <span key={node} className="flex items-center gap-2">
+            <span className="rounded-lg border border-border bg-background px-3 py-2 text-[10px] font-medium text-foreground shadow-sm">{node}</span>
+            {index < nodes.length - 1 && <ArrowRight className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />}
+          </span>
+        ))}
+      </div>
+    </article>
+  )
+}
+
 export default function Automation() {
   return (
     <section className="container mx-auto max-w-4xl px-6 lg:px-12">
@@ -35,6 +54,12 @@ export default function Automation() {
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
           I design automation architectures that connect infrastructure, APIs, and AI agents into dependable workflows. These systems run on a self-hosted VM using n8n, cron jobs, Docker services, and monitoring.
         </p>
+      </div>
+
+      <div className="mb-6 grid gap-5 md:grid-cols-3">
+        <ArchitectureDiagram title="VM infrastructure" description="A sanitized view of the self-hosted runtime and its supporting services." nodes={['Internet', 'Reverse proxy', 'Docker services', 'n8n + AI agents', 'Monitoring']} />
+        <ArchitectureDiagram title="Workflow orchestration" description="How scheduled and event-driven work moves through an automation pipeline." nodes={['Cron / webhook', 'n8n trigger', 'AI processing', 'API / database', 'Notification']} />
+        <ArchitectureDiagram title="Reliability layer" description="The feedback loop used to detect failures, recover safely, and surface incidents." nodes={['Health check', 'Decision branch', 'Retry / recovery', 'Error handler', 'Alert']} />
       </div>
 
       <div className="grid gap-5 md:grid-cols-2">
