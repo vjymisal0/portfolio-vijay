@@ -5,8 +5,8 @@ export default function BuildSystems() {
   return (
     <section>
       <div className="space-y-24">
-        <ProjectsSection />
         <Automation />
+        <ProjectsSection />
       </div>
     </section>
   )
