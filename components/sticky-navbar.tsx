@@ -33,14 +33,14 @@ export default function StickyNavbar() {
             <a
               key={item.id}
               href={`/#${item.id}`}
-              className="relative shrink-0 px-2.5 sm:px-4 py-2 sm:py-1.5 text-[12px] sm:text-[13px] font-medium transition-colors hover:text-foreground outline-none text-muted-foreground z-10"
+              className="relative shrink-0 px-2.5 sm:px-4 py-2 sm:py-1.5 text-[12px] sm:text-[13px] font-medium transition-colors hover:text-primary outline-none text-muted-foreground z-10"
             >
               <span className="relative z-10 sm:hidden">{item.short}</span>
               <span className="relative z-10 hidden sm:inline">{item.label}</span>
               {isActive && (
                 <motion.span
                   layoutId="active-nav-pill"
-                  className="absolute inset-0 rounded-full bg-foreground/10"
+                  className="absolute inset-0 rounded-full bg-primary/15"
                   transition={{ type: 'spring', bounce: 0.15, duration: 0.5 }}
                 />
               )}

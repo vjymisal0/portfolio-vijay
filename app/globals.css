@@ -60,43 +60,43 @@ html.lenis body {
 
 @layer base {
   :root {
-    --background: 34 33% 96%; /* #faf7f3 */
-    --foreground: 20 10% 8%; /* #151312 */
+    --background: 222 47% 7%;
+    --foreground: 210 40% 96%;
     --card: 0 0% 100%;
     --card-foreground: 20 10% 8%;
     --popover: 0 0% 100%;
     --popover-foreground: 20 10% 8%;
-    --primary: 20 10% 8%;
-    --primary-foreground: 34 33% 96%;
-    --secondary: 0 0% 90%;
-    --secondary-foreground: 20 10% 8%;
-    --muted: 0 0% 90%;
-    --muted-foreground: 20 10% 45%;
-    --accent: 0 0% 90%;
-    --accent-foreground: 20 10% 8%;
-    --border: 0 0% 85%;
-    --input: 0 0% 85%;
-    --ring: 20 10% 8%;
-    --radius: 0.5rem;
+    --primary: 32 95% 58%;
+    --primary-foreground: 222 47% 7%;
+    --secondary: 222 30% 17%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 222 30% 16%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 187 82% 53%;
+    --accent-foreground: 222 47% 7%;
+    --border: 215 28% 22%;
+    --input: 215 28% 22%;
+    --ring: 32 95% 58%;
+    --radius: 0.75rem;
   }
   .dark {
-    --background: 0 0% 0%; /* Pure black */
-    --foreground: 0 0% 100%; /* Pure white */
+    --background: 222 47% 7%;
+    --foreground: 210 40% 96%;
     --card: 0 0% 3%;
     --card-foreground: 0 0% 100%;
     --popover: 0 0% 3%;
     --popover-foreground: 0 0% 100%;
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 60%;
-    --accent: 0 0% 10%;
-    --accent-foreground: 0 0% 100%;
-    --border: 0 0% 12%; /* Very faint borders */
-    --input: 0 0% 12%;
-    --ring: 0 0% 80%;
+    --primary: 32 95% 58%;
+    --primary-foreground: 222 47% 7%;
+    --secondary: 222 30% 17%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 222 30% 16%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 187 82% 53%;
+    --accent-foreground: 222 47% 7%;
+    --border: 215 28% 22%;
+    --input: 215 28% 22%;
+    --ring: 32 95% 58%;
   }
 }
 

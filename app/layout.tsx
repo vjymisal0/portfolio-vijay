@@ -99,8 +99,8 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" className={`dark ${inter.variable} ${outfit.variable} ${geist.variable} ${grotesk.variable}`}>
-      <body className={`${geist.className} bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary`}>
+    <html lang="en" className={`${inter.variable} ${outfit.variable} ${geist.variable} ${grotesk.variable}`}>
+      <body className={`${grotesk.className} bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
         {children}
       </body>
