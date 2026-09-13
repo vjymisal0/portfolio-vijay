@@ -23,13 +23,13 @@ export default function GitHubCharts() {
   const repos = useRepoList()
 
   return (
-    <div className="pt-12 pb-8">
-      <h2 className="font-serif text-4xl sm:text-5xl font-medium tracking-tight text-foreground mb-12">Developer Analytics</h2>
+    <div className="pb-2">
+      <h2 className="text-3xl sm:text-4xl font-mono font-medium tracking-tight text-foreground mb-8">Developer Analytics</h2>
 
       {/* Notable repositories */}
-      <div className="flex flex-col gap-6 mb-16">
+      <div className="flex flex-col gap-6 mb-8">
         <div>
-          <h3 className="font-serif text-xl font-medium text-foreground">Notable Repositories</h3>
+          <h3 className="font-mono text-xl font-medium text-foreground">Notable Repositories</h3>
           <p className="text-sm font-body text-muted-foreground mt-1">Established, widely-used projects with a merged PR from me</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -66,7 +66,7 @@ export default function GitHubCharts() {
       {/* Repos shipped to */}
       <div className="flex flex-col gap-6">
         <div>
-          <h3 className="font-serif text-xl font-medium text-foreground">Shipped To</h3>
+          <h3 className="font-mono text-xl font-medium text-foreground">Shipped To</h3>
           <p className="text-sm font-body text-muted-foreground mt-1">{repos.length} public repositories with a merged PR</p>
         </div>
         <div className="flex flex-wrap gap-3">
@@ -77,6 +77,7 @@ export default function GitHubCharts() {
               target="_blank"
               rel="noopener noreferrer"
               title={repo}
+              aria-label={repo}
               className="group relative"
             >
               <img
