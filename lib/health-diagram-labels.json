@@ -1,0 +1,346 @@
+[
+  {
+    "x": 51.5,
+    "y": 55.5,
+    "width": 100.953125,
+    "height": 16.921875,
+    "text": "01 / MONITOR",
+    "branch": false
+  },
+  {
+    "x": 85.90625,
+    "y": 136.3015625,
+    "width": 84.1875,
+    "height": 17.796875,
+    "text": "Cron trigger",
+    "branch": false
+  },
+  {
+    "x": 74.8828125,
+    "y": 247.3015625,
+    "width": 106.234375,
+    "height": 17.796875,
+    "text": "Service checks",
+    "branch": false
+  },
+  {
+    "x": 97.4296875,
+    "y": 374.3015625,
+    "width": 61.140625,
+    "height": 17.796875,
+    "text": "Healthy?",
+    "branch": false
+  },
+  {
+    "x": 123.3984375,
+    "y": 556.8015625,
+    "width": 71.203125,
+    "height": 17.796875,
+    "text": "Health log",
+    "branch": false
+  },
+  {
+    "x": 147.81981658935547,
+    "y": 473.6715517241379,
+    "width": 20.625,
+    "height": 17.45689655172414,
+    "text": "Yes",
+    "branch": true
+  },
+  {
+    "x": 313.5,
+    "y": 55.5,
+    "width": 189.828125,
+    "height": 16.921875,
+    "text": "02 / DIAGNOSE & RECOVER",
+    "branch": false
+  },
+  {
+    "x": 649.2109375,
+    "y": 164.3015625,
+    "width": 81.578125,
+    "height": 17.796875,
+    "text": "Diagnostics",
+    "branch": false
+  },
+  {
+    "x": 16.78125,
+    "y": 231.27155172413794,
+    "width": 16.4375,
+    "height": 17.45689655172414,
+    "text": "No",
+    "branch": true
+  },
+  {
+    "x": 652.4759552001954,
+    "y": 291.3015625,
+    "width": 93.984375,
+    "height": 17.796875,
+    "text": "Recoverable?",
+    "branch": false
+  },
+  {
+    "x": 597.6409637451172,
+    "y": 462.5046875,
+    "width": 75.90625,
+    "height": 47.390625,
+    "text": "Attempts\nremaining?\n(max 3)",
+    "branch": false
+  },
+  {
+    "x": 646.9842880249023,
+    "y": 390.671551724138,
+    "width": 20.625,
+    "height": 17.45689655172414,
+    "text": "Yes",
+    "branch": true
+  },
+  {
+    "x": 526.3828125,
+    "y": 651.903125,
+    "width": 111.234375,
+    "height": 32.59375,
+    "text": "Restart service\n+ count attempt",
+    "branch": false
+  },
+  {
+    "x": 570.6487594604492,
+    "y": 590.671551724138,
+    "width": 20.625,
+    "height": 17.45689655172414,
+    "text": "Yes",
+    "branch": true
+  },
+  {
+    "x": 364.65625,
+    "y": 164.3015625,
+    "width": 78.6875,
+    "height": 17.796875,
+    "text": "Verification",
+    "branch": false
+  },
+  {
+    "x": 371.21964569091796,
+    "y": 291.3015625,
+    "width": 81.875,
+    "height": 17.796875,
+    "text": "Recovered?",
+    "branch": false
+  },
+  {
+    "x": 595.4069808959961,
+    "y": 390.671551724138,
+    "width": 16.4375,
+    "height": 17.45689655172414,
+    "text": "No",
+    "branch": true
+  },
+  {
+    "x": 444.5,
+    "y": 888.5,
+    "width": 173.078125,
+    "height": 16.921875,
+    "text": "03 / RESOLVE & RECORD",
+    "branch": false
+  },
+  {
+    "x": 488.3359375,
+    "y": 969.903125,
+    "width": 65.328125,
+    "height": 32.59375,
+    "text": "Recovery\nsuccess",
+    "branch": false
+  },
+  {
+    "x": 437.6875,
+    "y": 805.2715517241379,
+    "width": 20.625,
+    "height": 17.45689655172414,
+    "text": "Yes",
+    "branch": true
+  },
+  {
+    "x": 668.3046875,
+    "y": 977.3015625,
+    "width": 71.390625,
+    "height": 17.796875,
+    "text": "Escalation",
+    "branch": false
+  },
+  {
+    "x": 739.2231530761719,
+    "y": 805.171551724138,
+    "width": 16.4375,
+    "height": 17.45689655172414,
+    "text": "No",
+    "branch": true
+  },
+  {
+    "x": 638.3440719604492,
+    "y": 798.1672413793103,
+    "width": 83.234375,
+    "height": 31.46551724137931,
+    "text": "No\nexhausted",
+    "branch": true
+  },
+  {
+    "x": 662.296875,
+    "y": 1073.5046875,
+    "width": 83.40625,
+    "height": 47.390625,
+    "text": "Failover / manual\nintervention",
+    "branch": false
+  },
+  {
+    "x": 571.671875,
+    "y": 1218.3015625,
+    "width": 80.65625,
+    "height": 17.796875,
+    "text": "Notification",
+    "branch": false
+  },
+  {
+    "x": 571.1640625,
+    "y": 1343.8015625,
+    "width": 81.671875,
+    "height": 17.796875,
+    "text": "Incident log",
+    "branch": false
+  },
+  {
+    "x": 1277.5,
+    "y": 35.5,
+    "width": 218.515625,
+    "height": 16.921875,
+    "text": "AI WORKFLOW ORCHESTRATION",
+    "branch": false
+  },
+  {
+    "x": 1362.5205841064453,
+    "y": 154.903125,
+    "width": 83.4375,
+    "height": 32.59375,
+    "text": "Schedule or\nwebhook",
+    "branch": false
+  },
+  {
+    "x": 1391.0205841064453,
+    "y": 292.3015625,
+    "width": 26.4375,
+    "height": 17.796875,
+    "text": "n8n",
+    "branch": false
+  },
+  {
+    "x": 1360.1612091064453,
+    "y": 403.3015625,
+    "width": 88.15625,
+    "height": 17.796875,
+    "text": "Collect input",
+    "branch": false
+  },
+  {
+    "x": 1466.7002716064453,
+    "y": 529.3015625,
+    "width": 58.078125,
+    "height": 17.796875,
+    "text": "AI agent",
+    "branch": false
+  },
+  {
+    "x": 1465.7999893188478,
+    "y": 648.903125,
+    "width": 68.5,
+    "height": 32.59375,
+    "text": "Validation\npassed?",
+    "branch": false
+  },
+  {
+    "x": 1638.8399169921875,
+    "y": 142.903125,
+    "width": 68.53125,
+    "height": 32.59375,
+    "text": "Retry\navailable?",
+    "branch": false
+  },
+  {
+    "x": 1286.2212295532227,
+    "y": 403.2715517241379,
+    "width": 19.796875,
+    "height": 17.45689655172414,
+    "text": "Fail",
+    "branch": true
+  },
+  {
+    "x": 1568.5596466064453,
+    "y": 403.3015625,
+    "width": 37.359375,
+    "height": 17.796875,
+    "text": "Retry",
+    "branch": false
+  },
+  {
+    "x": 1575.9268341064453,
+    "y": 292.2715517241379,
+    "width": 20.625,
+    "height": 17.45689655172414,
+    "text": "Yes",
+    "branch": true
+  },
+  {
+    "x": 1681.7705841064453,
+    "y": 529.3015625,
+    "width": 69.9375,
+    "height": 17.796875,
+    "text": "Error alert",
+    "branch": false
+  },
+  {
+    "x": 1707.5205841064453,
+    "y": 292.2715517241379,
+    "width": 16.4375,
+    "height": 17.45689655172414,
+    "text": "No",
+    "branch": true
+  },
+  {
+    "x": 1470.3065012613934,
+    "y": 816.903125,
+    "width": 102,
+    "height": 32.59375,
+    "text": "API / database\naction",
+    "branch": false
+  },
+  {
+    "x": 1506.6346262613934,
+    "y": 755.7715517241379,
+    "width": 27.34375,
+    "height": 17.45689655172414,
+    "text": "Pass",
+    "branch": true
+  },
+  {
+    "x": 1497.1971262613934,
+    "y": 953.8015625,
+    "width": 48.21875,
+    "height": 17.796875,
+    "text": "Output",
+    "branch": false
+  },
+  {
+    "x": 1480.9783762613934,
+    "y": 1082.3015625,
+    "width": 80.65625,
+    "height": 17.796875,
+    "text": "Notification",
+    "branch": false
+  },
+  {
+    "x": 1565.508814900716,
+    "y": 1213.903125,
+    "width": 68.328125,
+    "height": 32.59375,
+    "text": "Execution\nlog",
+    "branch": false
+  }
+]
