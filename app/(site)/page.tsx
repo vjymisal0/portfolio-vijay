@@ -1,8 +1,7 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import Lenis from 'lenis'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import Introduction from '@/components/introduction'
 import BuildSystems from '@/components/build-systems'
 import Experience from '@/components/experience'
@@ -26,52 +25,12 @@ function SectionContent({ id }: { id: SectionId }) {
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<SectionId>('home')
-  const scrollRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const wrapper = scrollRef.current
-    if (!wrapper) return
-    const content = wrapper.firstElementChild as HTMLElement | null
-    if (!content) return
-
-    const lenis = new Lenis({
-      wrapper,
-      content,
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.5,
-    })
-
-    let rafId: number
-    const raf = (time: number) => {
-      lenis.raf(time)
-      rafId = requestAnimationFrame(raf)
-    }
-    rafId = requestAnimationFrame(raf)
-
-    return () => {
-      cancelAnimationFrame(rafId)
-      lenis.destroy()
-    }
-  }, [activeSection])
+  const reduceMotion = useReducedMotion()
 
   useEffect(() => {
     const applyHash = () => {
       const hash = window.location.hash.replace('#', '')
-      if (isSection(hash)) {
-        setActiveSection(hash)
-        sessionStorage.setItem('current-section', hash)
-        return
-      }
-
-      const saved = sessionStorage.getItem('current-section')
-      const next = saved && isSection(saved) ? saved : 'home'
-      setActiveSection(next)
-      if (!hash && next !== 'home') history.replaceState(null, '', `/#${next}`)
+      setActiveSection(isSection(hash) ? hash : 'home')
     }
 
     applyHash()
@@ -79,20 +38,18 @@ export default function Home() {
     return () => window.removeEventListener('hashchange', applyHash)
   }, [])
 
-  useEffect(() => {
-    sessionStorage.setItem('current-section', activeSection)
-  }, [activeSection])
-
   return (
     <AnimatePresence mode="wait">
       <motion.div
         key={activeSection}
-        ref={scrollRef}
+        role="region"
+        aria-label={`${activeSection} content`}
+        tabIndex={0}
         className="absolute inset-0 h-full overflow-y-auto pb-32"
-        initial={{ opacity: 0, y: 16, filter: 'blur(2px)' }}
-        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-        exit={{ opacity: 0, y: -16, filter: 'blur(2px)' }}
-        transition={{ duration: 0.25, ease: 'easeOut' }}
+        initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -16 }}
+        transition={{ duration: reduceMotion ? 0 : 0.25, ease: 'easeOut' }}
       >
         <div className="pt-24 lg:pt-32">
           <SectionContent id={activeSection} />

@@ -159,7 +159,7 @@ export default function OpenSource() {
         {/* Let's Connect CTA */}
         <div className="pt-24 mt-12">
           <div className="text-left border-t border-border pt-12">
-            <h2 className="text-4xl sm:text-5xl font-serif text-foreground mb-6">Let's Connect.</h2>
+            <h2 className="text-3xl sm:text-4xl font-mono font-medium tracking-tight text-foreground mb-6">Let's Connect.</h2>
             <p className="text-lg text-muted-foreground mb-10 max-w-xl">
               I'm always open to discussing new projects, open-source collaborations, or creative ideas.
             </p>

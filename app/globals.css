@@ -104,6 +104,11 @@ html.lenis body {
   * {
     @apply border-border;
   }
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 4px;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-mono), monospace;
