@@ -6,6 +6,33 @@ import { Bug, Sparkles, FileText, TestTube2, Eraser } from 'lucide-react'
 // components/github-charts.tsx both read from here.
 export const contributions = [
   {
+    repo: 'kubestellar/console',
+    title: 'fix(theme): use optional chaining for theme font and weight properties',
+    url: 'https://github.com/kubestellar/console/pull/23352',
+    number: 23352,
+    date: '2026-09-13',
+    kind: 'fix',
+    techs: ['React', 'TypeScript']
+  },
+  {
+    repo: 'kubestellar/console',
+    title: 'fix(hooks): upgrade swallowed parse error from console.warn to console.error in useDashboardCards',
+    url: 'https://github.com/kubestellar/console/pull/23351',
+    number: 23351,
+    date: '2026-09-13',
+    kind: 'fix',
+    techs: ['React', 'TypeScript']
+  },
+  {
+    repo: 'kubestellar/docs',
+    title: 'ci(vitest): add timeout-minutes, concurrency group, and self-trigger path',
+    url: 'https://github.com/kubestellar/docs/pull/6904',
+    number: 6904,
+    date: '2026-09-13',
+    kind: 'cleanup',
+    techs: ['GitHub Actions', 'Vitest', 'YAML']
+  },
+  {
     repo: 'collective/icalendar',
     title: 'ci: pin GitHub Action steps by commit hash',
     url: 'https://github.com/collective/icalendar/pull/1688',
