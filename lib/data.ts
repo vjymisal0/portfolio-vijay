@@ -6,6 +6,15 @@ import { Bug, Sparkles, FileText, TestTube2, Eraser } from 'lucide-react'
 // components/github-charts.tsx both read from here.
 export const contributions = [
   {
+    repo: 'kubestellar/docs',
+    title: 'ci(telemetry): add structured CI-observability summary to typecheck.yml',
+    url: 'https://github.com/kubestellar/docs/pull/6907',
+    number: 6907,
+    date: '2026-09-13',
+    kind: 'cleanup',
+    techs: ['GitHub Actions', 'TypeScript', 'YAML']
+  },
+  {
     repo: 'kubestellar/console',
     title: 'fix(theme): use optional chaining for theme font and weight properties',
     url: 'https://github.com/kubestellar/console/pull/23352',
@@ -31,6 +40,96 @@ export const contributions = [
     date: '2026-09-13',
     kind: 'cleanup',
     techs: ['GitHub Actions', 'Vitest', 'YAML']
+  },
+  {
+    repo: 'marcoroth/herb',
+    title: 'Formatter: fix attribute spacing lost on elements nested in ERB blocks',
+    url: 'https://github.com/marcoroth/herb/pull/2148',
+    number: 2148,
+    date: '2026-09-12',
+    kind: 'fix',
+    techs: ['Ruby', 'HTML', 'ERB']
+  },
+  {
+    repo: 'bats-core/bats-core',
+    title: 'fix(bats-preprocess): make test-name encoding locale-independent',
+    url: 'https://github.com/bats-core/bats-core/pull/1236',
+    number: 1236,
+    date: '2026-09-12',
+    kind: 'fix',
+    techs: ['Bash', 'Testing']
+  },
+  {
+    repo: 'Pawansingh3889/sql-sop',
+    title: 'fix: include dbt rules in SARIF descriptors',
+    url: 'https://github.com/Pawansingh3889/sql-sop/pull/85',
+    number: 85,
+    date: '2026-09-11',
+    kind: 'fix',
+    techs: ['Python', 'SQL']
+  },
+  {
+    repo: 'gamekeepers/sheshnag',
+    title: 'fix(worker): time-throttle progress reporting to reduce backend HTTP round trips',
+    url: 'https://github.com/gamekeepers/sheshnag/pull/87',
+    number: 87,
+    date: '2026-09-08',
+    kind: 'fix',
+    techs: ['Python', 'FastAPI']
+  },
+  {
+    repo: 'gamekeepers/sheshnag',
+    title: 'fix(ollama): add negative caching to version probe so failed probes run once',
+    url: 'https://github.com/gamekeepers/sheshnag/pull/86',
+    number: 86,
+    date: '2026-09-08',
+    kind: 'fix',
+    techs: ['Python', 'FastAPI']
+  },
+  {
+    repo: 'gamekeepers/sheshnag',
+    title: 'fix(daemon): log Server header and warn on non-Ollama server at startup',
+    url: 'https://github.com/gamekeepers/sheshnag/pull/85',
+    number: 85,
+    date: '2026-09-07',
+    kind: 'fix',
+    techs: ['Python', 'FastAPI']
+  },
+  {
+    repo: 'gamekeepers/sheshnag',
+    title: 'fix(ollama): return machine-readable EMPTY_RESPONSE prefix when choices is empty',
+    url: 'https://github.com/gamekeepers/sheshnag/pull/84',
+    number: 84,
+    date: '2026-09-08',
+    kind: 'fix',
+    techs: ['Python', 'FastAPI']
+  },
+  {
+    repo: 'securo-finance/securo',
+    title: 'fix(security): prevent path traversal prefix collision and add tomllib fallback',
+    url: 'https://github.com/securo-finance/securo/pull/784',
+    number: 784,
+    date: '2026-09-05',
+    kind: 'fix',
+    techs: ['Python', 'Security']
+  },
+  {
+    repo: 'Cyrax321/CONTINUUM',
+    title: 'fix(http): handle malformed Content-Length and chunked Transfer-Encoding in dashboard and gateway (#522)',
+    url: 'https://github.com/Cyrax321/CONTINUUM/pull/525',
+    number: 525,
+    date: '2026-09-05',
+    kind: 'fix',
+    techs: ['TypeScript', 'Node.js']
+  },
+  {
+    repo: 'medusajs/medusa',
+    title: 'fix(docs-ui): MainNav z-index overlap, duplicate GA key, and Windows broken-link-checker path bug',
+    url: 'https://github.com/medusajs/medusa/pull/16362',
+    number: 16362,
+    date: '2026-09-04',
+    kind: 'fix',
+    techs: ['TypeScript', 'Next.js']
   },
   {
     repo: 'collective/icalendar',
@@ -496,6 +595,7 @@ export const notableRepos = [
   { repo: 'apache/superset', stars: 74539, url: 'https://github.com/apache/superset/pull/42881' },
   { repo: 'rclone/rclone', stars: 59457, url: 'https://github.com/rclone/rclone/pull/9776' },
   { repo: 'chatwoot/chatwoot', stars: 36306, url: 'https://github.com/chatwoot/chatwoot/pull/15418' },
+  { repo: 'medusajs/medusa', stars: 36276, url: 'https://github.com/medusajs/medusa/pull/16362' },
   { repo: 'qdrant/qdrant', stars: 34362, url: 'https://github.com/qdrant/qdrant/pull/10382' },
   { repo: 'Automattic/mongoose', stars: 27478, url: 'https://github.com/Automattic/mongoose/pull/16478' },
   { repo: 'alibaba/open-code-review', stars: 21659, url: 'https://github.com/alibaba/open-code-review/pull/766' },

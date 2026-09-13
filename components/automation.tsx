@@ -1,5 +1,6 @@
 'use client'
 
+import HealthDiagram from '@/components/health-diagram'
 import { Bot, Clock3, GitBranch, Webhook, ArrowRight, Server } from 'lucide-react'
 
 const workflows = [
@@ -33,19 +34,11 @@ export default function Automation() {
         <p className="mb-2 text-[11px] font-mono uppercase tracking-[0.2em] text-primary">05 / Systems</p>
         <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground">Automation & workflows</h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          I won a cloud VM and turned it into a personal lab for learning by building. I use it to self-host n8n workflows, run scheduled jobs, experiment with AI agents, connect APIs, and explore the systems that make automation reliable.
+          I own a cloud VM & use it for learning by building. I use it to self-host n8n workflows, run scheduled jobs, experiment with AI agents, connect APIs, and explore the systems that make automation reliable.
         </p>
       </div>
 
-      <figure className="mb-8 overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-        <div className="flex items-center justify-between border-b border-border px-4 py-3">
-          <figcaption className="text-xs font-semibold text-foreground">VM health monitoring & failover</figcaption>
-          <a href="/vm-health-failover.svg" target="_blank" rel="noopener noreferrer" className="text-[11px] text-primary hover:underline">Open full diagram ↗</a>
-        </div>
-        <div className="overflow-x-auto bg-white p-3 sm:p-5">
-          <object data="/vm-health-failover.svg" type="image/svg+xml" aria-label="VM health monitoring and failover flowchart" className="block h-auto min-h-[220px] w-full min-w-0 max-w-full object-contain object-left sm:min-h-[280px]" />
-        </div>
-      </figure>
+      <HealthDiagram />
 
       <div className="grid gap-5 md:grid-cols-2">
         {workflows.map(({ name, description, trigger, nodes, icon: Icon }) => (
