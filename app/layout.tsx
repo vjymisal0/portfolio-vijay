@@ -72,7 +72,7 @@ export const metadata: Metadata = {
       'Software engineer building scalable web apps with React, Node.js, and cloud technologies.',
   },
   other: {
-    'theme-color': '#000000',
+    'theme-color': '#faf8f5',
   },
   icons: {
     icon: '/favicon.ico',
