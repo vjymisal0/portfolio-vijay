@@ -6,6 +6,60 @@ import { Bug, Sparkles, FileText, TestTube2, Eraser } from 'lucide-react'
 // components/github-charts.tsx both read from here.
 export const contributions = [
   {
+    repo: 'davila7/claude-code-templates',
+    title: 'feat(commands): add flaky-test-triage command',
+    url: 'https://github.com/davila7/claude-code-templates/pull/907',
+    number: 907,
+    date: '2026-09-17',
+    kind: 'feature',
+    techs: ['TypeScript', 'CLI', 'Testing']
+  },
+  {
+    repo: 'axios/axios',
+    title: 'fix(fetch): preserve response size errors across runtime wrappers',
+    url: 'https://github.com/axios/axios/pull/11179',
+    number: 11179,
+    date: '2026-09-16',
+    kind: 'fix',
+    techs: ['JavaScript', 'Node.js', 'Testing']
+  },
+  {
+    repo: 'davila7/claude-code-templates',
+    title: 'feat(commands): add regression triage command',
+    url: 'https://github.com/davila7/claude-code-templates/pull/904',
+    number: 904,
+    date: '2026-09-15',
+    kind: 'feature',
+    techs: ['TypeScript', 'CLI', 'Testing']
+  },
+  {
+    repo: 'gamekeepers/sheshnag',
+    title: 'fix(orgs): log warning when invite email fails',
+    url: 'https://github.com/gamekeepers/sheshnag/pull/108',
+    number: 108,
+    date: '2026-09-14',
+    kind: 'fix',
+    techs: ['Python', 'FastAPI']
+  },
+  {
+    repo: 'stephencelis/SQLite.swift',
+    title: 'Fix recurring crash when Connection deinitializes',
+    url: 'https://github.com/stephencelis/SQLite.swift/pull/1373',
+    number: 1373,
+    date: '2026-09-13',
+    kind: 'fix',
+    techs: ['Swift', 'SQLite']
+  },
+  {
+    repo: 'kubestellar/console',
+    title: 'refactor(updater): expose test seams for polling intervals and SHA detection',
+    url: 'https://github.com/kubestellar/console/pull/23356',
+    number: 23356,
+    date: '2026-09-13',
+    kind: 'cleanup',
+    techs: ['React', 'TypeScript']
+  },
+  {
     repo: 'kubestellar/docs',
     title: 'ci(telemetry): add structured CI-observability summary to typecheck.yml',
     url: 'https://github.com/kubestellar/docs/pull/6907',
@@ -585,18 +639,41 @@ export const packages = [
     npm: 'https://www.npmjs.com/package/@vijayishere/pan-validator',
     github: 'https://github.com/vjymisal0/pan-validator',
   },
+  {
+    name: '@vijayishere/aadhaar-mask',
+    description: 'Indian Aadhaar number validator, Verhoeff checksum verifier, and 8-digit secure masker for UIDAI/RBI compliance.',
+    install: 'npm i @vijayishere/aadhaar-mask',
+    npm: 'https://www.npmjs.com/package/@vijayishere/aadhaar-mask',
+    github: 'https://github.com/vjymisal0/aadhaar-mask',
+  },
+  {
+    name: '@vijayishere/gstin-validate',
+    description: 'Validate and parse Indian GSTIN numbers with state code detection and checksum verification.',
+    install: 'npm i @vijayishere/gstin-validate',
+    npm: 'https://www.npmjs.com/package/@vijayishere/gstin-validate',
+    github: 'https://github.com/vjymisal0/gstin-validate',
+  },
+  {
+    name: '@vijayishere/upi-validator',
+    description: 'Zero-dependency Indian UPI ID (VPA) validator, parser, bank-handle verifier, and QR URI generator.',
+    install: 'npm i @vijayishere/upi-validator',
+    npm: 'https://www.npmjs.com/package/@vijayishere/upi-validator',
+    github: 'https://github.com/vjymisal0/upi-validator',
+  },
 ]
 
 // The most-starred repos among `contributions`, snapshotted 2026-08-30 via
 // `gh api repos/{repo} --jq .stargazers_count`. Star counts drift — refresh
 // periodically rather than treating these as live.
 export const notableRepos = [
+  { repo: 'axios/axios', stars: 109207, url: 'https://github.com/axios/axios/pull/11179' },
   { repo: 'vitejs/vite', stars: 82605, url: 'https://github.com/vitejs/vite/pull/23265' },
   { repo: 'apache/superset', stars: 74539, url: 'https://github.com/apache/superset/pull/42881' },
   { repo: 'rclone/rclone', stars: 59457, url: 'https://github.com/rclone/rclone/pull/9776' },
   { repo: 'chatwoot/chatwoot', stars: 36306, url: 'https://github.com/chatwoot/chatwoot/pull/15418' },
   { repo: 'medusajs/medusa', stars: 36276, url: 'https://github.com/medusajs/medusa/pull/16362' },
   { repo: 'qdrant/qdrant', stars: 34362, url: 'https://github.com/qdrant/qdrant/pull/10382' },
+  { repo: 'davila7/claude-code-templates', stars: 30779, url: 'https://github.com/davila7/claude-code-templates/pull/907' },
   { repo: 'Automattic/mongoose', stars: 27478, url: 'https://github.com/Automattic/mongoose/pull/16478' },
   { repo: 'alibaba/open-code-review', stars: 21659, url: 'https://github.com/alibaba/open-code-review/pull/766' },
   { repo: 'tj/git-extras', stars: 18099, url: 'https://github.com/tj/git-extras/pull/1267' },
