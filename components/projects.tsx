@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ExternalLink, MessageCircle, Syringe, Activity, X, BookOpen } from "lucide-react"
+import { ExternalLink, MessageCircle, Syringe, Activity, X, BookOpen, GitPullRequest } from "lucide-react"
 import { FaGithub } from "react-icons/fa"
 import { TechBadge } from './tech-badge'
 
@@ -18,6 +18,17 @@ type Project = {
 }
 
 export const projects: Project[] = [
+  {
+    title: "OSS Tracker",
+    category: "Developer Infrastructure & Full-Stack",
+    description:
+      "Self-hosted, read-only GitHub command center for tracking repositories, pull requests, reviews, checks, and contributor activity with an explainable action inbox.",
+    technologies: ["TypeScript", "Next.js", "React", "PostgreSQL", "Redis", "Docker", "Tailwind CSS"],
+    link: "https://github.com/vjymisal0/oss-tracker",
+    github: "https://github.com/vjymisal0/oss-tracker",
+    icon: GitPullRequest,
+    caseStudy: "### The Challenge\nActive open-source contributors and maintainers managing dozens of concurrent pull requests across disparate organizations struggle with GitHub's notification noise, scattered review comments, and missed CI failures. Most tools either require write access or fail to provide a unified, actionable triage dashboard.\n\n### The Solution\nI engineered OSS Tracker as a high-performance, read-only command center. It features secure GitHub OAuth with encrypted PAT fallback, user-scoped repository and PR discovery, and an explainable action inbox that flags reviews requiring immediate attention. The architecture is decoupled into a Next.js web client, a Node.js API service, background sync workers, and Redis/PostgreSQL persistence, fully orchestratable via Docker Compose.\n\n### The Result\nOSS Tracker provides instantaneous triage across all authored and reviewed pull requests with sub-50ms query latency, zero security risk from write permissions, and automated webhook-driven state synchronization."
+  },
   {
     title: "Chat + Sentiment Analysis",
     category: "Full-Stack Web App",
