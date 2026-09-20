@@ -6,6 +6,24 @@ import { Bug, Sparkles, FileText, TestTube2, Eraser } from 'lucide-react'
 // components/github-charts.tsx both read from here.
 export const contributions = [
   {
+    repo: 'tj/git-extras',
+    title: 'feat(changelog): support excluding pathspecs',
+    url: 'https://github.com/tj/git-extras/pull/1275',
+    number: 1275,
+    date: '2026-09-20',
+    kind: 'feature',
+    techs: ['Bash', 'Git', 'CLI']
+  },
+  {
+    repo: 'tj/git-extras',
+    title: 'fix(ignore-io): use GitHub gitignore templates',
+    url: 'https://github.com/tj/git-extras/pull/1273',
+    number: 1273,
+    date: '2026-09-20',
+    kind: 'fix',
+    techs: ['Bash', 'Git', 'CLI']
+  },
+  {
     repo: 'davila7/claude-code-templates',
     title: 'feat(commands): add flaky-test-triage command',
     url: 'https://github.com/davila7/claude-code-templates/pull/907',
@@ -33,6 +51,15 @@ export const contributions = [
     techs: ['TypeScript', 'CLI', 'Testing']
   },
   {
+    repo: 'aaubry/YamlDotNet',
+    title: 'Fix IndexOutOfRangeException when applying a naming convention to an empty string',
+    url: 'https://github.com/aaubry/YamlDotNet/pull/1128',
+    number: 1128,
+    date: '2026-09-15',
+    kind: 'fix',
+    techs: ['C#', '.NET', 'YAML']
+  },
+  {
     repo: 'gamekeepers/sheshnag',
     title: 'fix(orgs): log warning when invite email fails',
     url: 'https://github.com/gamekeepers/sheshnag/pull/108',
@@ -42,10 +69,28 @@ export const contributions = [
     techs: ['Python', 'FastAPI']
   },
   {
+    repo: 'console-rs/indicatif',
+    title: 'Fix HumanFloatCount printing "-0" for values that round to zero',
+    url: 'https://github.com/console-rs/indicatif/pull/831',
+    number: 831,
+    date: '2026-09-14',
+    kind: 'fix',
+    techs: ['Rust', 'CLI']
+  },
+  {
     repo: 'stephencelis/SQLite.swift',
     title: 'Fix recurring crash when Connection deinitializes',
     url: 'https://github.com/stephencelis/SQLite.swift/pull/1373',
     number: 1373,
+    date: '2026-09-13',
+    kind: 'fix',
+    techs: ['Swift', 'SQLite']
+  },
+  {
+    repo: 'stephencelis/SQLite.swift',
+    title: 'Fix invalid SQL for column-level CHECK constraints using range/BETWEEN expressions',
+    url: 'https://github.com/stephencelis/SQLite.swift/pull/1371',
+    number: 1371,
     date: '2026-09-13',
     kind: 'fix',
     techs: ['Swift', 'SQLite']
@@ -612,11 +657,11 @@ export const contributions = [
 
 export const packages = [
   {
-    name: '@vijayishere/photo-hash',
-    description: 'Detect near-duplicate photos using a perceptual difference hash (dHash), robust to resizing and recompression.',
-    install: 'npm i @vijayishere/photo-hash',
-    npm: 'https://www.npmjs.com/package/@vijayishere/photo-hash',
-    github: 'https://github.com/vjymisal0/photo-hash',
+    name: 'blur-score',
+    description: 'Detect how blurry an image is (0-1 sharpness score) using Laplacian variance analysis with Sharp.',
+    install: 'npm i blur-score',
+    npm: 'https://www.npmjs.com/package/blur-score',
+    github: 'https://github.com/vjymisal0/blur-score',
   },
   {
     name: 'exposure-score',
@@ -626,39 +671,102 @@ export const packages = [
     github: 'https://github.com/vjymisal0/exposure-score',
   },
   {
-    name: '@vijayishere/strip-exif',
-    description: 'Strip EXIF/GPS/IPTC metadata from images before upload or storage, with an optional read-only inspector.',
-    install: 'npm i @vijayishere/strip-exif',
-    npm: 'https://www.npmjs.com/package/@vijayishere/strip-exif',
-    github: 'https://github.com/vjymisal0/strip-exif',
-  },
-  {
-    name: '@vijayishere/pan-validator',
-    description: 'Validate and parse Indian PAN (Permanent Account Number) card numbers.',
-    install: 'npm i @vijayishere/pan-validator',
-    npm: 'https://www.npmjs.com/package/@vijayishere/pan-validator',
+    name: 'pan-card-validator',
+    description: 'Validate and parse Indian PAN (Permanent Account Number) card numbers with entity structure detection.',
+    install: 'npm i pan-card-validator',
+    npm: 'https://www.npmjs.com/package/pan-card-validator',
     github: 'https://github.com/vjymisal0/pan-validator',
   },
   {
-    name: '@vijayishere/aadhaar-mask',
-    description: 'Indian Aadhaar number validator, Verhoeff checksum verifier, and 8-digit secure masker for UIDAI/RBI compliance.',
-    install: 'npm i @vijayishere/aadhaar-mask',
-    npm: 'https://www.npmjs.com/package/@vijayishere/aadhaar-mask',
-    github: 'https://github.com/vjymisal0/aadhaar-mask',
-  },
-  {
-    name: '@vijayishere/gstin-validate',
-    description: 'Validate and parse Indian GSTIN numbers with state code detection and checksum verification.',
-    install: 'npm i @vijayishere/gstin-validate',
-    npm: 'https://www.npmjs.com/package/@vijayishere/gstin-validate',
+    name: 'gst-validator',
+    description: 'Validate and parse Indian GSTIN numbers with state code detection, checksum verification, and embedded PAN extraction.',
+    install: 'npm i gst-validator',
+    npm: 'https://www.npmjs.com/package/gst-validator',
     github: 'https://github.com/vjymisal0/gstin-validate',
   },
   {
-    name: '@vijayishere/upi-validator',
+    name: 'exif-purge',
+    description: 'Strip EXIF/GPS/IPTC metadata from images before upload or storage, with an optional read-only inspector.',
+    install: 'npm i exif-purge',
+    npm: 'https://www.npmjs.com/package/exif-purge',
+    github: 'https://github.com/vjymisal0/strip-exif',
+  },
+  {
+    name: 'photo-hash',
+    description: 'Detect near-duplicate photos using a perceptual difference hash (dHash), robust to resizing and recompression.',
+    install: 'npm i photo-hash',
+    npm: 'https://www.npmjs.com/package/photo-hash',
+    github: 'https://github.com/vjymisal0/photo-hash',
+  },
+  {
+    name: '@vjymisal0/upi-link',
+    description: 'Create and parse UPI payment deep links (upi://pay) with zero runtime dependencies.',
+    install: 'npm i @vjymisal0/upi-link',
+    npm: 'https://www.npmjs.com/package/@vjymisal0/upi-link',
+    github: 'https://github.com/vjymisal0/upi-link',
+  },
+  {
+    name: 'glare-score',
+    description: 'Detect and quantify specular glare and flash reflection hotspots in documents and photos for KYC verification.',
+    install: 'npm i glare-score',
+    npm: 'https://www.npmjs.com/package/glare-score',
+    github: 'https://github.com/vjymisal0/glare-score',
+  },
+  {
+    name: 'pkg-bin-doctor',
+    description: 'Pre-publish CLI doctor that validates package.json bin entries, shebangs, and execution permissions.',
+    install: 'npm i pkg-bin-doctor',
+    npm: 'https://www.npmjs.com/package/pkg-bin-doctor',
+    github: 'https://github.com/vjymisal0/pkg-bin-doctor',
+  },
+  {
+    name: 'contrast-score',
+    description: 'Analyze document and photo contrast quality using Michelson contrast, RMS contrast, and luminance distribution.',
+    install: 'npm i contrast-score',
+    npm: 'https://www.npmjs.com/package/contrast-score',
+    github: 'https://github.com/vjymisal0/contrast-score',
+  },
+  {
+    name: '@vjymisal0/aadhaar-mask',
+    description: 'Zero-dependency, regulation-compliant Indian Aadhaar validator, Verhoeff checksum verifier, and 8-digit secure masker.',
+    install: 'npm i @vjymisal0/aadhaar-mask',
+    npm: 'https://www.npmjs.com/package/@vjymisal0/aadhaar-mask',
+    github: 'https://github.com/vjymisal0/aadhaar-mask',
+  },
+  {
+    name: 'env-example-drift',
+    description: 'Check that .env and .env.example contain the exact same variable definitions to prevent CI/CD runtime surprises.',
+    install: 'npm i env-example-drift',
+    npm: 'https://www.npmjs.com/package/env-example-drift',
+    github: 'https://github.com/vjymisal0/env-example-drift',
+  },
+  {
+    name: 'shadow-score',
+    description: 'Detect and quantify harsh directional shadows in document and face verification photos using Otsu luminance segmentation.',
+    install: 'npm i shadow-score',
+    npm: 'https://www.npmjs.com/package/shadow-score',
+    github: 'https://github.com/vjymisal0/shadow-score',
+  },
+  {
+    name: 'todo-expiry',
+    description: 'Zero-dependency CLI & CI tool that fails builds when dated TODO/FIXME comments expire.',
+    install: 'npm i todo-expiry',
+    npm: 'https://www.npmjs.com/package/todo-expiry',
+    github: 'https://github.com/vjymisal0/todo-expiry',
+  },
+  {
+    name: 'upi-validator',
     description: 'Zero-dependency Indian UPI ID (VPA) validator, parser, bank-handle verifier, and QR URI generator.',
-    install: 'npm i @vijayishere/upi-validator',
-    npm: 'https://www.npmjs.com/package/@vijayishere/upi-validator',
+    install: 'npm i upi-validator',
+    npm: 'https://www.npmjs.com/package/upi-validator',
     github: 'https://github.com/vjymisal0/upi-validator',
+  },
+  {
+    name: 'rupee-words',
+    description: 'Convert numeric Indian Rupee amounts into English words with Indian numbering scale (Lakhs/Crores) and paise handling.',
+    install: 'npm i rupee-words',
+    npm: 'https://www.npmjs.com/package/rupee-words',
+    github: 'https://github.com/vjymisal0/rupee-words',
   },
 ]
 
