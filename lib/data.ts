@@ -1009,9 +1009,9 @@ export type Contribution = (typeof contributions)[number]
 export type Kind = Contribution['kind']
 
 export const kindMeta: Record<Kind, { label: string; icon: typeof Bug; color: string; hex: string }> = {
-  fix: { label: 'Fix', icon: Bug, color: 'bg-red-500/15 text-red-400', hex: '#f87171' },
-  feature: { label: 'Feature', icon: Sparkles, color: 'bg-emerald-500/15 text-emerald-400', hex: '#34d399' },
-  docs: { label: 'Docs', icon: FileText, color: 'bg-blue-500/15 text-blue-400', hex: '#60a5fa' },
-  tests: { label: 'Tests', icon: TestTube2, color: 'bg-violet-500/15 text-violet-400', hex: '#a78bfa' },
-  cleanup: { label: 'Cleanup', icon: Eraser, color: 'bg-orange-500/15 text-orange-400', hex: '#fb923c' },
+  fix: { label: 'Fix', icon: Bug, color: 'bg-red-500/15 text-red-700 dark:text-red-400', hex: '#f87171' },
+  feature: { label: 'Feature', icon: Sparkles, color: 'bg-emerald-500/15 text-emerald-800 dark:text-emerald-400', hex: '#34d399' },
+  docs: { label: 'Docs', icon: FileText, color: 'bg-blue-500/15 text-blue-700 dark:text-blue-400', hex: '#60a5fa' },
+  tests: { label: 'Tests', icon: TestTube2, color: 'bg-violet-500/15 text-violet-700 dark:text-violet-400', hex: '#a78bfa' },
+  cleanup: { label: 'Cleanup', icon: Eraser, color: 'bg-orange-500/15 text-orange-800 dark:text-orange-400', hex: '#fb923c' },
 }

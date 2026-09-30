@@ -52,7 +52,7 @@ export default function GitHubCharts() {
                 <div className="min-w-0 flex-1">
                   <div className="text-sm font-medium text-foreground truncate group-hover:text-foreground transition-colors">{r.repo}</div>
                   <div className="flex items-center gap-1 text-xs text-muted-foreground mt-0.5">
-                    <Star className="w-3 h-3 fill-current text-amber-400" />
+                    <Star className="w-3 h-3 fill-current text-amber-500" />
                     {formatStars(r.stars)} stars
                   </div>
                 </div>

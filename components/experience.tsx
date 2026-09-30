@@ -86,7 +86,7 @@ export default function Experience() {
               <h3 className="font-serif text-xl font-medium text-foreground">{group.company}</h3>
               <p className="text-sm text-muted-foreground mt-1">{group.location}</p>
               {group.roles.find((r) => r.award)?.award && (
-                <p className="mt-3 inline-flex w-fit items-center rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-[11px] font-mono text-amber-600">
+                <p className="mt-3 inline-flex w-fit items-center rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-[11px] font-mono text-amber-800 dark:text-amber-400">
                   {group.roles.find((r) => r.award)?.award}
                 </p>
               )}
@@ -100,12 +100,12 @@ export default function Experience() {
                     <span
                       className={`inline-flex w-fit items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-mono ${
                         exp.status === 'Current'
-                          ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20'
+                          ? 'text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20'
                           : 'text-muted-foreground bg-foreground/5 border-border'
                       }`}
                     >
                       {exp.status === 'Current' && (
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
                       )}
                       {exp.period}
                     </span>
