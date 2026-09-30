@@ -1,6 +1,7 @@
 import { ArrowRight, Mail } from 'lucide-react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import GitHubCharts from './github-charts'
+import { TiltCard } from './ui/tilt-card'
 import { contributions, packages } from '@/lib/data'
 
 const highlights = [
@@ -72,7 +73,8 @@ export default function Introduction() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {highlights.map((item) => (
-            <a key={item.href} href={item.href} className="group flex flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/60">
+            <TiltCard key={item.href} className="flex">
+            <a href={item.href} className="group flex w-full flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/60">
               <span className="text-[10px] uppercase tracking-widest text-primary">{item.label}</span>
               <h3 className="mt-4 text-lg font-medium">{item.title}</h3>
               <p className="mb-6 mt-3 font-body text-sm leading-relaxed text-muted-foreground">{item.description}</p>
@@ -80,6 +82,7 @@ export default function Introduction() {
                 {item.action} <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
               </span>
             </a>
+            </TiltCard>
           ))}
         </div>
       </section>

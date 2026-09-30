@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { getContributionCalendar, type ContributionDay } from '@/app/actions/github'
 
 const LEVEL_COLORS = [
@@ -44,13 +44,12 @@ function monthLabels(weeks: (ContributionDay | null)[][]) {
 const formatDate = (iso: string) =>
   new Date(iso + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
 
-const LAST_YEAR = 'last'
-
 export default function ContributionHeatmap() {
   const [days, setDays] = useState<ContributionDay[]>([])
   const [totals, setTotals] = useState<Record<string, number>>({})
-  const [range, setRange] = useState<string>(LAST_YEAR)
-  const [hover, setHover] = useState<ContributionDay | null>(null)
+  const [range, setRange] = useState<string>('')
+  const [hover, setHover] = useState<{ day: ContributionDay; x: number; y: number } | null>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     getContributionCalendar().then((res) => {
@@ -64,13 +63,9 @@ export default function ContributionHeatmap() {
   const years = useMemo(() => Object.keys(totals).sort((a, b) => b.localeCompare(a)), [totals])
   const allTime = useMemo(() => Object.values(totals).reduce((a, b) => a + b, 0), [totals])
 
-  const visibleDays = useMemo(() => {
-    if (range !== LAST_YEAR) return days.filter((d) => d.date.startsWith(range))
-    const from = new Date()
-    from.setFullYear(from.getFullYear() - 1)
-    const cutoff = from.toISOString().slice(0, 10)
-    return days.filter((d) => d.date > cutoff)
-  }, [days, range])
+  // Default to the most recent year until the visitor picks one.
+  const year = range || years[0] || ''
+  const visibleDays = useMemo(() => days.filter((d) => d.date.startsWith(year)), [days, year])
 
   const rangeTotal = useMemo(() => visibleDays.reduce((sum, d) => sum + d.count, 0), [visibleDays])
   const weeks = useMemo(() => buildWeeks(visibleDays), [visibleDays])
@@ -81,31 +76,30 @@ export default function ContributionHeatmap() {
 
   if (days.length === 0) return null
 
-  const tabs = [LAST_YEAR, ...years]
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+      <div className="relative z-10 flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm text-muted-foreground">
           <span className="font-medium text-foreground">{allTime.toLocaleString()}</span> contributions since {years[years.length - 1]}
         </p>
         <div role="tablist" aria-label="Contribution year" className="flex flex-wrap gap-1">
-          {tabs.map((t) => (
+          {years.map((t) => (
             <button
               key={t}
               role="tab"
-              aria-selected={range === t}
+              aria-selected={year === t}
               onClick={() => setRange(t)}
-              className={`rounded-md px-2.5 py-1 text-xs font-mono transition-colors ${range === t ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-foreground/5 hover:text-foreground'}`}
+              className={`rounded-md px-2.5 py-1 text-xs font-mono transition-colors ${year === t ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-foreground/5 hover:text-foreground'}`}
             >
-              {t === LAST_YEAR ? 'Last year' : t}
+              {t}
             </button>
           ))}
         </div>
       </div>
 
-      <div className="overflow-x-auto pb-1">
-        <div className="w-max">
+      <div className="-mt-10 overflow-x-auto pb-1 pt-10">
+        <div ref={gridRef} className="relative w-max">
           <div className="flex text-[10px] text-muted-foreground mb-1" style={{ gap }}>
             {weeks.map((_, wi) => {
               const m = months.find((m) => m.week === wi)
@@ -122,7 +116,12 @@ export default function ContributionHeatmap() {
                 {week.map((day, di) => (
                   <div
                     key={di}
-                    onMouseEnter={() => day && setHover(day)}
+                    onMouseEnter={(e) => {
+                      if (!day || !gridRef.current) return
+                      const g = gridRef.current.getBoundingClientRect()
+                      const c = e.currentTarget.getBoundingClientRect()
+                      setHover({ day, x: c.left - g.left + c.width / 2, y: c.top - g.top })
+                    }}
                     onMouseLeave={() => setHover(null)}
                     style={{
                       width: cellSize,
@@ -136,14 +135,22 @@ export default function ContributionHeatmap() {
               </div>
             ))}
           </div>
+          {hover && (
+            <div
+              role="tooltip"
+              className="pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-md bg-foreground px-2.5 py-1.5 text-[11px] text-background shadow-lg"
+              style={{ left: hover.x, top: hover.y - 6 }}
+            >
+              <span className="font-semibold">{hover.day.count === 0 ? 'No' : hover.day.count} contribution{hover.day.count === 1 ? '' : 's'}</span> on {formatDate(hover.day.date)}
+              <span className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-foreground" aria-hidden="true" />
+            </div>
+          )}
         </div>
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-2">
         <span className="text-xs text-muted-foreground">
-          {hover
-            ? <><span className="font-medium text-foreground">{hover.count} contribution{hover.count === 1 ? '' : 's'}</span> &middot; {formatDate(hover.date)}</>
-            : <>{rangeTotal.toLocaleString()} contributions {range === LAST_YEAR ? 'in the last year' : `in ${range}`}</>}
+          {rangeTotal.toLocaleString()} contributions in {year}
         </span>
         <div className="flex items-center gap-1.5">
           <span className="text-[10px] text-muted-foreground">Less</span>

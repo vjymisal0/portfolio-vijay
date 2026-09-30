@@ -1,21 +1,32 @@
 'use client'
 
 import HealthDiagram from '@/components/health-diagram'
-import { Bot, Clock3, GitBranch, Webhook, ArrowRight, Server } from 'lucide-react'
+import { StepPlayer } from '@/components/ui/step-player'
+import { Bot, Clock3, GitBranch, Webhook, Server } from 'lucide-react'
 
 const workflows = [
   {
     name: 'Autonomous media pipeline',
     description: 'A scheduled workflow that coordinates AI processing, media generation, and publishing from a self-hosted VM with privacy-safe inputs and outputs.',
     trigger: 'Scheduled execution',
-    nodes: ['Schedule', 'AI agent', 'Media pipeline', 'Publishing service'],
+    nodes: [
+      { label: 'Schedule', detail: 'A cron trigger on the self-hosted VM starts the run, so nothing depends on someone being online.' },
+      { label: 'AI agent', detail: 'An AI step prepares the content for this run from privacy-safe inputs.' },
+      { label: 'Media pipeline', detail: 'The generated content is turned into publishable media assets.' },
+      { label: 'Publishing service', detail: 'The finished output is pushed to the publishing service and the run completes.' },
+    ],
     icon: Server,
   },
   {
     name: 'Health & failover architecture',
     description: 'A resilient monitoring layer that checks services, captures failures, and dispatches actionable diagnostics before an issue becomes invisible.',
     trigger: 'Cron + error event',
-    nodes: ['Health check', 'Decision branch', 'Recovery', 'Telegram alert'],
+    nodes: [
+      { label: 'Health check', detail: 'Scheduled checks and error events probe each service.' },
+      { label: 'Decision branch', detail: 'The workflow branches on the result: healthy runs end quietly, failures continue.' },
+      { label: 'Recovery', detail: 'Failure details are captured and a recovery path is attempted.' },
+      { label: 'Telegram alert', detail: 'Actionable diagnostics are sent to Telegram so the issue never goes unnoticed.' },
+    ],
     icon: Bot,
   },
 ]
@@ -51,14 +62,7 @@ export default function Automation() {
               <span className="rounded-full border border-border px-2 py-1 text-[10px] text-muted-foreground">{trigger}</span>
             </div>
             <p className="mb-5 text-xs leading-relaxed text-muted-foreground">{description}</p>
-            <div className="flex flex-wrap items-center gap-1.5" aria-label={`${name} architecture`}>
-              {nodes.map((node, index) => (
-                <span key={node} className="flex items-center gap-1.5">
-                  <span className="rounded-md bg-secondary px-2 py-1 text-[10px] text-secondary-foreground">{node}</span>
-                  {index < nodes.length - 1 && <ArrowRight className="h-3 w-3 text-primary" aria-hidden="true" />}
-                </span>
-              ))}
-            </div>
+            <StepPlayer steps={nodes} name={name} />
           </article>
         ))}
       </div>

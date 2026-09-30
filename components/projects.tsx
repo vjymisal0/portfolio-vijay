@@ -1,6 +1,8 @@
 import { Download, ExternalLink, GitPullRequest } from "lucide-react"
 import { FaGithub, FaNpm } from "react-icons/fa"
 import { TechBadge } from './tech-badge'
+import { TiltCard } from './ui/tilt-card'
+import NpmDownloadsChart from './npm-downloads-chart'
 import { packages, packageGroups, packagesSnapshotDate } from '@/lib/data'
 
 type ProjectStatus = 'Building' | 'Completed'
@@ -41,6 +43,8 @@ const featuredProjects: {
   },
 ]
 
+const packageNames = packages.map((p) => p.name)
+
 const formatCount = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(1)}k` : `${n}`)
 const snapshotLabel = new Date(packagesSnapshotDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
 
@@ -61,8 +65,9 @@ export default function Projects() {
       {/* Featured projects */}
       <div className="mb-14 grid gap-4">
         {featuredProjects.map((project) => (
-          <article
+          <TiltCard
             key={project.title}
+            max={4}
             className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary/60"
           >
             <div className="flex flex-wrap items-center justify-between gap-2">
@@ -89,9 +94,11 @@ export default function Projects() {
                 </a>
               )}
             </div>
-          </article>
+          </TiltCard>
         ))}
       </div>
+
+      <NpmDownloadsChart packages={packageNames} />
 
       {/* Packages, grouped by problem space */}
       <div className="space-y-12">
