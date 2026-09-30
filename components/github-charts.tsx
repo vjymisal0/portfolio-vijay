@@ -73,6 +73,23 @@ function RepoMarquee({ repos, reverse }: { repos: readonly NotableRepo[]; revers
   )
 }
 
+export function NotableRepos() {
+  return (
+    <div className="flex flex-col gap-6">
+      <div>
+        <h3 className="font-mono text-xl font-medium text-foreground">Notable Repositories</h3>
+        <p className="text-sm font-body text-muted-foreground mt-1">Established, widely-used projects with a merged PR from me</p>
+      </div>
+      <div
+        className="flex flex-col gap-4 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
+      >
+        <RepoMarquee repos={notableRepos.filter((_, i) => i % 2 === 0)} />
+        <RepoMarquee repos={notableRepos.filter((_, i) => i % 2 === 1)} reverse />
+      </div>
+    </div>
+  )
+}
+
 export default function GitHubCharts() {
   const repos = useRepoList()
 
@@ -84,20 +101,6 @@ export default function GitHubCharts() {
       {/* Contribution calendar */}
       <div className="mb-10">
         <ContributionHeatmap />
-      </div>
-
-      {/* Notable repositories */}
-      <div className="flex flex-col gap-6 mb-8">
-        <div>
-          <h3 className="font-mono text-xl font-medium text-foreground">Notable Repositories</h3>
-          <p className="text-sm font-body text-muted-foreground mt-1">Established, widely-used projects with a merged PR from me</p>
-        </div>
-        <div
-          className="flex flex-col gap-4 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
-        >
-          <RepoMarquee repos={notableRepos.filter((_, i) => i % 2 === 0)} />
-          <RepoMarquee repos={notableRepos.filter((_, i) => i % 2 === 1)} reverse />
-        </div>
       </div>
 
       {/* Repos shipped to */}

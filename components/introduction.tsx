@@ -1,10 +1,23 @@
 import { ArrowRight, Mail } from 'lucide-react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
-import GitHubCharts from './github-charts'
+import { NotableRepos } from './github-charts'
 import { TiltCard } from './ui/tilt-card'
-import { DitheredLogo } from '@/components/ui/dithered-logo'
-import { AnnotatedText } from '@/components/ui/annotated-text'
+import { TechBadge } from './tech-badge'
 import { contributions, packages } from '@/lib/data'
+import { AnnotatedText } from '@/components/ui/annotated-text'
+
+const repoCount = new Set(contributions.map((c) => c.repo)).size
+const monthlyDownloads = packages.reduce((sum, p) => sum + p.monthlyDownloads, 0)
+const formatCount = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(1)}k` : `${n}`)
+
+const stats = [
+  { value: `${contributions.length}`, label: 'PRs merged upstream' },
+  { value: `${repoCount}`, label: 'repositories contributed to' },
+  { value: `${packages.length}`, label: 'npm packages maintained' },
+  { value: `~${formatCount(monthlyDownloads)}`, label: 'monthly npm downloads' },
+]
+
+const stack = ['TypeScript', 'React', 'NestJS', 'Node.js', 'Python', 'Go', 'Rust', 'n8n']
 
 const highlights = [
   {
@@ -33,32 +46,21 @@ const highlights = [
 export default function Introduction() {
   return (
     <section aria-labelledby="intro-title" className="container mx-auto max-w-4xl px-6 pb-16 lg:px-12">
-      <div>
-        <div className="flex items-center justify-between gap-8 xl:-mr-40">
-          <div className="min-w-0">
-            <p className="mb-5 font-mono text-xs text-muted-foreground">
-              <span className="text-primary">~ whoami</span> <span aria-hidden="true" className="mx-2">&rarr;</span> Vijay Misal, Pune, India
-            </p>
-            <h1 id="intro-title" className="font-mono text-4xl font-medium leading-[1.08] tracking-tight text-foreground sm:text-6xl lg:text-5xl xl:text-6xl">
-              Software engineer,<br />
-              <span className="text-primary">building with AI.</span>
-            </h1>
-          </div>
-          <div className="hidden h-56 w-56 shrink-0 text-foreground lg:block xl:h-72 xl:w-72">
-            <DitheredLogo
-              imageSrc="/vijay_ascii.svg"
-              className="h-full w-full"
-              gridSize={120}
-              scale={0.95}
-              dotScale={1}
-              invert={true}
-              cornerRadius={0.2}
-              gamma={1.0}
-              blur={3.75}
-              diffusionStrength={1.0}
-            />
-          </div>
-        </div>
+      <div className="max-w-3xl">
+        <p className="mb-5 font-mono text-xs text-muted-foreground">
+          <span className="text-primary">~ whoami</span> <span aria-hidden="true" className="mx-2">&rarr;</span> Vijay Misal, Pune, India
+        </p>
+        <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
+          <span className="relative flex h-2 w-2" aria-hidden="true">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75 motion-reduce:animate-none" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+          </span>
+          Currently shipping at Loopr AI · open to interesting problems
+        </p>
+        <h1 id="intro-title" className="font-mono text-4xl font-medium leading-[1.08] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+          Software engineer,<br />
+          <span className="text-primary">building with AI.</span>
+        </h1>
         <p className="mt-6 max-w-xl font-body text-base leading-relaxed text-muted-foreground sm:text-lg">
           I&apos;m Vijay, an SDE 1 at Loopr AI, building full-stack features for an AI visual-inspection platform. Outside work I&apos;ve had <AnnotatedText variant="doubleUnderline" color="text-primary" delay={0.8}>{contributions.length} pull requests merged</AnnotatedText> into open-source projects over the last year, including Vite, axios, and Apache Superset, and I maintain {packages.length} npm packages.
         </p>
@@ -71,7 +73,7 @@ export default function Introduction() {
           </a>
         </div>
         <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-muted-foreground">
-          <p>TypeScript · React · NestJS · Node.js · Python · Go · Rust · n8n</p>
+          <ul aria-label="Tech stack" className="flex flex-wrap gap-2">{stack.map((t) => <li key={t}><TechBadge tech={t} /></li>)}</ul>
           <nav aria-label="Social profiles" className="flex gap-5">
             <a href="https://github.com/vjymisal0" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 transition-colors hover:text-primary">
               <FaGithub className="h-4 w-4" aria-hidden="true" /> GitHub
@@ -82,6 +84,16 @@ export default function Introduction() {
           </nav>
         </div>
       </div>
+
+      <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-4">
+        {stats.map(({ value, label }) => (
+          <div key={label} className="bg-card px-4 py-4">
+            <dt className="sr-only">{label}</dt>
+            <dd className="font-mono text-2xl font-medium tracking-tight text-foreground">{value}</dd>
+            <dd className="mt-1 text-[11px] leading-snug text-muted-foreground">{label}</dd>
+          </div>
+        ))}
+      </dl>
 
       <section aria-labelledby="selected-work-title" className="mt-12 border-t border-border pt-8">
         <div className="mb-5 flex flex-wrap items-baseline justify-between gap-2">
@@ -108,7 +120,7 @@ export default function Introduction() {
       </section>
 
       <div className="mt-12 border-t border-border pt-8">
-        <GitHubCharts />
+        <NotableRepos />
         <a href="#oss" className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-primary hover:underline">
           Explore my contributions <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </a>

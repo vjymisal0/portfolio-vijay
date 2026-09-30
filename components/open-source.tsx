@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { TechBadge } from './tech-badge'
 import { contributions, packages, kindMeta, featuredContributions } from '@/lib/data'
 import { AnnotatedText } from '@/components/ui/annotated-text'
+import GitHubCharts from './github-charts'
 
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
@@ -131,6 +132,8 @@ export default function OpenSource() {
             </div>
           )}
         </div>
+
+        <GitHubCharts />
 
         {/* Let's Connect CTA */}
         <div className="pt-24 mt-12">
