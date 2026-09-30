@@ -50,13 +50,6 @@ export default function Introduction() {
         <p className="mb-5 font-mono text-xs text-muted-foreground">
           <span className="text-primary">~ whoami</span> <span aria-hidden="true" className="mx-2">&rarr;</span> Vijay Misal, Pune, India
         </p>
-        <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
-          <span className="relative flex h-2 w-2" aria-hidden="true">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75 motion-reduce:animate-none" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-          </span>
-          Currently shipping at Loopr AI · open to interesting problems
-        </p>
         <h1 id="intro-title" className="font-mono text-4xl font-medium leading-[1.08] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
           Software engineer,<br />
           <span className="text-primary">building with AI.</span>
