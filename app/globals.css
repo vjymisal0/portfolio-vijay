@@ -227,3 +227,16 @@ html.lenis body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Theme switch: let the circular clip-path reveal do the work instead of the default cross-fade. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 0;
+}
+::view-transition-new(root) {
+  z-index: 1;
+}
