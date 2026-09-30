@@ -2,11 +2,11 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ExternalLink, GitPullRequest, Package, Download } from 'lucide-react'
-import { FaGithub, FaNpm } from 'react-icons/fa'
+import { ExternalLink, GitPullRequest, Package, Star } from 'lucide-react'
+import { FaGithub } from 'react-icons/fa'
 import { useState } from 'react'
 import { TechBadge } from './tech-badge'
-import { contributions, packages, kindMeta } from '@/lib/data'
+import { contributions, packages, kindMeta, featuredContributions } from '@/lib/data'
 
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
@@ -22,28 +22,6 @@ function SubHeading({ icon: Icon, children }: { icon: typeof Package; children: 
   )
 }
 
-function CardFooterLink({
-  href,
-  icon: Icon,
-  children,
-}: {
-  href: string
-  icon: typeof FaGithub
-  children: string
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={(e) => e.stopPropagation()}
-      className="flex items-center gap-1 text-[11px] text-muted-foreground hover:text-primary transition-colors"
-    >
-      <Icon className="w-3 h-3" /> {children}
-    </a>
-  )
-}
-
 export default function OpenSource() {
   const [showAllPRs, setShowAllPRs] = useState(false)
   const repoCount = new Set(contributions.map((c) => c.repo)).size
@@ -53,17 +31,47 @@ export default function OpenSource() {
   return (
     <section className="container mx-auto px-6 lg:px-12 max-w-4xl">
       <div className="mb-12">
-        <p className="mb-2 text-[11px] font-mono uppercase tracking-[0.2em] text-primary">03 / Community</p><h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground mb-3">Open Source</h2>
+        <p className="mb-2 text-[11px] font-mono uppercase tracking-[0.2em] text-primary">05 / Community</p><h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground mb-3">Open Source</h2>
         <p className="text-sm sm:text-base font-body text-muted-foreground leading-relaxed">
-          {contributions.length} pull requests merged across {repoCount} public repositories, plus {packages.length} npm packages published.{' '}
-          <Link href="/#home" className="underline underline-offset-2 hover:text-foreground transition-colors">See the full breakdown in Developer Analytics &rarr;</Link>
+          {contributions.length} pull requests merged into {repoCount} repositories I don&apos;t own over the last 12 months, from Vite, axios, and Apache Superset to small projects I found useful. I also maintain {packages.length} npm packages.{' '}
+          <Link href="/#builds" className="underline underline-offset-2 hover:text-foreground transition-colors">See the packages &rarr;</Link>
         </p>
       </div>
 
       <div className="space-y-12">
+        {/* Featured pull requests */}
+        <div>
+          <SubHeading icon={Star}>Featured</SubHeading>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            {featuredContributions.map(({ url, why }) => {
+              const c = contributions.find((x) => x.url === url)
+              if (!c) return null
+              return (
+                <a
+                  key={url}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col gap-3 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/60"
+                >
+                  <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                    <img src={`https://github.com/${c.repo.split('/')[0]}.png?size=48`} alt="" className="h-5 w-5 rounded-full" loading="lazy" />
+                    {c.repo}
+                    <span className="ml-auto text-xs font-mono font-normal text-muted-foreground">#{c.number}</span>
+                  </div>
+                  <p className="text-sm font-body leading-relaxed text-muted-foreground">{why}</p>
+                  <span className="mt-auto inline-flex items-center gap-1 text-xs font-medium text-primary">
+                    View PR <ExternalLink className="h-3 w-3" />
+                  </span>
+                </a>
+              )
+            })}
+          </div>
+        </div>
+
         {/* Pull requests */}
         <div>
-          <SubHeading icon={GitPullRequest}>Contributions</SubHeading>
+          <SubHeading icon={GitPullRequest}>All merged pull requests</SubHeading>
           <div className="flex flex-col border-t border-border mt-6">
             {visibleContributions.map((c) => {
               const meta = kindMeta[c.kind]
@@ -123,39 +131,6 @@ export default function OpenSource() {
           )}
         </div>
 
-        {/* Published packages */}
-        <div className="mt-20">
-          <SubHeading icon={Package}>Packages</SubHeading>
-          <div className="flex flex-col border-t border-border mt-6">
-            {packages.map((pkg) => (
-              <div
-                key={pkg.name}
-                className="flex flex-col sm:flex-row gap-4 sm:gap-6 py-6 pl-4 -ml-4 pr-4 border-b border-l-2 border-l-transparent border-border transition-all duration-300 ease-out hover:border-l-foreground/40 hover:bg-foreground/[0.035] hover:shadow-sm rounded-r-lg"
-              >
-                <div className="w-full sm:w-1/3 flex flex-col gap-2">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                    <FaNpm className="w-4 h-4 text-muted-foreground" />
-                    {pkg.name}
-                  </div>
-                  <div className="flex items-center gap-3 mt-1">
-                    <CardFooterLink href={pkg.npm} icon={Download}>npm</CardFooterLink>
-                    <CardFooterLink href={pkg.github} icon={FaGithub}>Code</CardFooterLink>
-                  </div>
-                </div>
-
-                <div className="w-full sm:w-2/3 flex flex-col gap-3">
-                  <p className="text-sm font-body text-foreground/90 leading-relaxed">
-                    {pkg.description}
-                  </p>
-                  <code className="inline-block self-start text-[11px] font-mono text-muted-foreground bg-foreground/5 rounded px-2 py-1">
-                    {pkg.install}
-                  </code>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Let's Connect CTA */}
         <div className="pt-24 mt-12">
           <div className="text-left border-t border-border pt-12">
@@ -172,7 +147,7 @@ export default function OpenSource() {
               </a>
             </div>
             <p className="text-xs text-muted-foreground/70 mt-16">
-              This entire portfolio was vibe-coded and is maintained end-to-end with AI coding tools.
+              Designed, built, and maintained with AI coding tools, including Claude Code.
             </p>
           </div>
         </div>

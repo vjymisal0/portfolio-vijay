@@ -1,6 +1,7 @@
 import { ArrowRight, Mail } from 'lucide-react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import GitHubCharts from './github-charts'
+import { contributions, packages } from '@/lib/data'
 
 const highlights = [
   {
@@ -17,6 +18,13 @@ const highlights = [
     href: '#builds',
     action: 'Explore build systems',
   },
+  {
+    label: '03 / Open source',
+    title: 'Fixes that ship upstream',
+    description: 'Merged bug fixes, features, and tests in projects like Vite, axios, Apache Superset, qdrant, and rclone.',
+    href: '#oss',
+    action: 'See contributions',
+  },
 ]
 
 export default function Introduction() {
@@ -31,7 +39,7 @@ export default function Introduction() {
           <span className="text-primary">building with AI.</span>
         </h1>
         <p className="mt-6 max-w-xl font-body text-base leading-relaxed text-muted-foreground sm:text-lg">
-          I&apos;m Vijay, an SDE 1 at Loopr AI. I build full-stack software and automated workflows, combining AI tools such as Hermes Agent, Pi Agent, Claude, and ChatGPT with reliable engineering practices.
+          I&apos;m Vijay, an SDE 1 at Loopr AI, building full-stack features for an AI visual-inspection platform. Outside work I&apos;ve had {contributions.length} pull requests merged into open-source projects over the last year, including Vite, axios, and Apache Superset, and I maintain {packages.length} npm packages.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <a href="#builds" className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
@@ -42,7 +50,7 @@ export default function Introduction() {
           </a>
         </div>
         <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-muted-foreground">
-          <p>React · TypeScript · NestJS · n8n</p>
+          <p>TypeScript · React · NestJS · Node.js · Python · Go · Rust · n8n</p>
           <nav aria-label="Social profiles" className="flex gap-5">
             <a href="https://github.com/vjymisal0" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 transition-colors hover:text-primary">
               <FaGithub className="h-4 w-4" aria-hidden="true" /> GitHub
@@ -59,7 +67,7 @@ export default function Introduction() {
           <h2 id="selected-work-title" className="text-xl font-medium tracking-tight">What I work on</h2>
           <span className="text-xs text-muted-foreground">Product code to production workflows</span>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {highlights.map((item) => (
             <a key={item.href} href={item.href} className="group flex flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/60">
               <span className="text-[10px] uppercase tracking-widest text-primary">{item.label}</span>

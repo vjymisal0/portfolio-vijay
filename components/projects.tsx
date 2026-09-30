@@ -1,202 +1,95 @@
-"use client"
-
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ExternalLink, MessageCircle, Syringe, Activity, X, BookOpen, GitPullRequest } from "lucide-react"
-import { FaGithub } from "react-icons/fa"
+import { Download, GitPullRequest } from "lucide-react"
+import { FaGithub, FaNpm } from "react-icons/fa"
 import { TechBadge } from './tech-badge'
+import { packages, packageGroups, packagesSnapshotDate } from '@/lib/data'
 
-type Project = {
-  title: string
-  category: string
-  description: string
-  technologies: string[]
-  link: string
-  github: string
-  icon: any
-  caseStudy?: string
+const featured = {
+  title: "OSS Tracker",
+  category: "Developer infrastructure",
+  description:
+    "Self-hosted, read-only GitHub command center for tracking repositories, pull requests, reviews, checks, and contributor activity, with an explainable action inbox for what needs attention next. Next.js client, Node.js API, background sync workers, PostgreSQL and Redis, all runnable with Docker Compose.",
+  technologies: ["TypeScript", "Next.js", "PostgreSQL", "Redis", "Docker"],
+  github: "https://github.com/vjymisal0/oss-tracker",
 }
 
-export const projects: Project[] = [
-  {
-    title: "OSS Tracker",
-    category: "Developer Infrastructure & Full-Stack",
-    description:
-      "Self-hosted, read-only GitHub command center for tracking repositories, pull requests, reviews, checks, and contributor activity with an explainable action inbox.",
-    technologies: ["TypeScript", "Next.js", "React", "PostgreSQL", "Redis", "Docker", "Tailwind CSS"],
-    link: "https://github.com/vjymisal0/oss-tracker",
-    github: "https://github.com/vjymisal0/oss-tracker",
-    icon: GitPullRequest,
-    caseStudy: "### The Challenge\nActive open-source contributors and maintainers managing dozens of concurrent pull requests across disparate organizations struggle with GitHub's notification noise, scattered review comments, and missed CI failures. Most tools either require write access or fail to provide a unified, actionable triage dashboard.\n\n### The Solution\nI engineered OSS Tracker as a high-performance, read-only command center. It features secure GitHub OAuth with encrypted PAT fallback, user-scoped repository and PR discovery, and an explainable action inbox that flags reviews requiring immediate attention. The architecture is decoupled into a Next.js web client, a Node.js API service, background sync workers, and Redis/PostgreSQL persistence, fully orchestratable via Docker Compose.\n\n### The Result\nOSS Tracker provides instantaneous triage across all authored and reviewed pull requests with sub-50ms query latency, zero security risk from write permissions, and automated webhook-driven state synchronization."
-  },
-  {
-    title: "Chat + Sentiment Analysis",
-    category: "Full-Stack Web App",
-    description:
-      "Real-time chat app with React, Node.js, and Firebase. Categorises messages as positive, negative, or neutral using sentiment.js with visual analytics.",
-    technologies: ["React", "Node.js", "Express.js", "Firebase", "sentiment.js"],
-    link: "https://chat-app-sentiment.netlify.app/",
-    github: "https://github.com/vjymisal0/Chat-App-with-Sentiment-Analysis",
-    icon: MessageCircle,
-    caseStudy: "### The Challenge\nBuilding a real-time chat application often leads to UI stuttering and unoptimized database reads if not handled properly. I needed a way to instantly process incoming messages and determine their sentiment without blocking the main event loop.\n\n### The Solution\nI utilized Firebase's real-time listeners for instant synchronization across clients. For sentiment analysis, I integrated `sentiment.js` on the Node backend, exposing a WebSocket stream that categorizes and scores each message. The front-end renders these insights as an interactive dashboard showing the overall mood of the conversation.\n\n### The Result\nUsers experience zero perceived latency when chatting, and the real-time sentiment graph updates dynamically at 60fps, providing immediate feedback on the conversation's tone."
-  },
-  {
-    title: "Vaccine Management",
-    category: "Desktop Application",
-    description:
-      "Java Swing desktop app backed by MySQL via JDBC. Users can register, search vaccines, and book or cancel appointments with real-time availability.",
-    technologies: ["Java", "Swing", "MySQL", "JDBC"],
-    link: "#",
-    github: "https://github.com/ITR-project-group/Vaccine_management_system",
-    icon: Syringe,
-    caseStudy: "### The Challenge\nManaging vaccine distribution requires strict concurrency control to prevent double-booking of limited appointment slots. The system also needed a robust, easy-to-deploy desktop interface for medical staff.\n\n### The Solution\nI built a standalone Java Swing application connected directly to a strictly normalized MySQL database using JDBC. To handle concurrency, I implemented row-level locking (SELECT ... FOR UPDATE) during the appointment booking transaction to guarantee data integrity. The UI uses custom Swing components to provide a responsive, grid-based dashboard.\n\n### The Result\nThe application completely eliminates race conditions during high-traffic booking events and provides staff with a seamless offline-capable interface for managing patient records."
-  },
-  {
-    title: "Health Bites",
-    category: "AI & Full-Stack",
-    description:
-      "MERN wellness platform with Google Cloud Vision for AI food recognition, calorie tracking, meal planning, and Auth0 authentication.",
-    technologies: ["React", "Node.js", "MongoDB", "Google Cloud Vision", "Auth0"],
-    link: "https://health-bites-app.netlify.app/",
-    github: "https://github.com/vjymisal0/Health-Bites-Stunner",
-    icon: Activity,
-    caseStudy: "### The Challenge\nUsers often struggle to manually log their daily food intake due to the tedious nature of searching for ingredients and estimating calories. I wanted to build an AI-first approach to dietary tracking.\n\n### The Solution\nHealth Bites uses the Google Cloud Vision API to analyze uploaded images of meals. The Node.js backend processes the labels returned by the AI, cross-references them against a nutritional MongoDB database, and automatically calculates the caloric and macronutrient breakdown. The entire application is secured with Auth0 and features a responsive React frontend.\n\n### The Result\nUsers can log a meal in under 3 seconds simply by snapping a photo. The app correctly identifies complex meals with 85%+ accuracy, significantly improving user retention compared to traditional manual-entry calorie trackers."
-  },
-]
+const formatCount = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(1)}k` : `${n}`)
+const snapshotLabel = new Date(packagesSnapshotDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
 
 export default function Projects() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const totalDownloads = packages.reduce((sum, p) => sum + p.monthlyDownloads, 0)
+  const groupIds = Object.keys(packageGroups) as (keyof typeof packageGroups)[]
 
   return (
     <div>
-      <div className="mb-10"><p className="mb-2 text-[11px] font-mono uppercase tracking-[0.2em] text-primary">02 / Selected work</p><h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground">Projects</h2><p className="mt-3 max-w-xl text-sm text-muted-foreground">Small products and experiments built from first principles.</p></div>
-      
-      <div className="flex flex-col border-t border-border">
-        {projects.map((project) => (
-          <div
-            key={project.title}
-            onClick={() => setSelectedProject(project)}
-            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedProject(project) } }}
-            role="button"
-            tabIndex={0}
-            className="group relative flex flex-col md:flex-row gap-6 py-8 pl-4 -ml-4 pr-4 border-b border-l-2 border-l-transparent border-border cursor-pointer transition-all duration-300 ease-out hover:border-l-foreground/40 hover:bg-foreground/[0.035] hover:shadow-sm rounded-r-lg focus-visible:outline-2 focus-visible:outline-foreground focus-visible:outline-offset-2"
-          >
-            <div className="w-full md:w-1/3">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground mb-1.5 block">
-                {project.category}
-              </span>
-              <h3 className="font-serif text-xl font-medium text-foreground flex items-center gap-2">
-                {project.title}
-                <span className="text-muted-foreground opacity-0 -translate-x-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">&rarr;</span>
-              </h3>
-              <div className="flex flex-wrap items-center gap-3 mt-4">
-                <a href={project.github} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 border border-border px-2.5 py-1 rounded-md bg-foreground/[0.02]">
-                  <FaGithub className="w-3.5 h-3.5" /> Code
-                </a>
-                {project.link !== "#" ? (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 border border-border px-2.5 py-1 rounded-md bg-foreground/[0.02]">
-                    <ExternalLink className="w-3.5 h-3.5" /> Live
-                  </a>
-                ) : (
-                  <span className="text-xs font-mono text-muted-foreground/70 border border-border/50 px-2 py-0.5 rounded-md">
-                    Desktop
-                  </span>
-                )}
-              </div>
-            </div>
-            
-            <div className="w-full md:w-2/3">
-              <p className="text-base font-body text-muted-foreground leading-relaxed mb-6">
-                {project.description}
-              </p>
-              
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <div className="flex flex-wrap gap-x-3 gap-y-2">
-                  {project.technologies.map(tech => (
-                    <TechBadge key={tech} tech={tech} />
-                  ))}
-                </div>
-
-                <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors flex items-center gap-1 opacity-0 group-hover:opacity-100 shrink-0">
-                  <BookOpen className="w-3 h-3" /> Case Study
-                </span>
-              </div>
-            </div>
-          </div>
-        ))}
+      <div className="mb-10">
+        <p className="mb-2 text-[11px] font-mono uppercase tracking-[0.2em] text-primary">04 / Selected work</p>
+        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground">Projects & packages</h2>
+        <p className="mt-3 max-w-xl text-sm text-muted-foreground">
+          {packages.length} npm packages I wrote and maintain, with ~{formatCount(totalDownloads)} combined monthly downloads ({snapshotLabel}), plus the tool I built to run my open-source workflow.
+        </p>
       </div>
 
-      <AnimatePresence>
-        {selectedProject && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedProject(null)}
-              className="fixed inset-0 z-[100] bg-background/80 backdrop-blur-sm"
-            />
-            <div
-              className="fixed inset-0 z-[101] flex items-center justify-center p-4 sm:p-6 pointer-events-none"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="case-study-title"
-              onKeyDown={(e) => { if (e.key === 'Escape') setSelectedProject(null) }}
-            >
-              <motion.div
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-                className="w-full max-w-2xl bg-background border border-border shadow-2xl rounded-2xl overflow-hidden pointer-events-auto flex flex-col max-h-[85vh]"
-              >
-                <div className="flex items-center justify-between p-6 border-b border-border">
-                  <div>
-                    <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider block mb-1">
-                      {selectedProject.category}
-                    </span>
-                    <h3 id="case-study-title" className="font-serif text-2xl font-medium text-foreground">{selectedProject.title}</h3>
+      {/* Featured project */}
+      <a
+        href={featured.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group mb-14 flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary/60"
+      >
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <span className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-primary">
+            <GitPullRequest className="h-3.5 w-3.5" /> {featured.category}
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground group-hover:text-foreground">
+            <FaGithub className="h-3.5 w-3.5" /> Code
+          </span>
+        </div>
+        <h3 className="font-serif text-2xl font-medium text-foreground">{featured.title}</h3>
+        <p className="font-body text-sm leading-relaxed text-muted-foreground">{featured.description}</p>
+        <div className="flex flex-wrap gap-2">
+          {featured.technologies.map((tech) => <TechBadge key={tech} tech={tech} />)}
+        </div>
+      </a>
+
+      {/* Packages, grouped by problem space */}
+      <div className="space-y-12">
+        {groupIds.map((id) => {
+          const group = packageGroups[id]
+          const items = packages
+            .filter((p) => p.group === id)
+            .sort((a, b) => b.monthlyDownloads - a.monthlyDownloads)
+          return (
+            <section key={id} aria-labelledby={`pkg-${id}`}>
+              <div className="mb-4">
+                <h3 id={`pkg-${id}`} className="font-serif text-xl font-medium text-foreground">{group.title}</h3>
+                <p className="mt-1 max-w-2xl text-sm font-body text-muted-foreground">{group.blurb}</p>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {items.map((pkg) => (
+                  <div key={pkg.name} className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4 transition-colors hover:border-foreground/30">
+                    <div className="flex items-start justify-between gap-3">
+                      <a href={pkg.npm} target="_blank" rel="noopener noreferrer" className="flex min-w-0 items-center gap-2 text-sm font-semibold text-foreground hover:text-primary">
+                        <FaNpm className="h-4 w-4 shrink-0 text-red-500" />
+                        <span className="truncate">{pkg.name}</span>
+                      </a>
+                      <span className="inline-flex shrink-0 items-center gap-1 text-[11px] font-mono text-muted-foreground" title="Downloads in the last month">
+                        <Download className="h-3 w-3" /> {formatCount(pkg.monthlyDownloads)}/mo
+                      </span>
+                    </div>
+                    <p className="text-xs font-body leading-relaxed text-muted-foreground">{pkg.description}</p>
+                    <div className="mt-auto flex items-center justify-between gap-3">
+                      <code className="truncate rounded bg-foreground/5 px-2 py-1 text-[11px] font-mono text-muted-foreground">{pkg.install}</code>
+                      <a href={pkg.github} target="_blank" rel="noopener noreferrer" className="inline-flex shrink-0 items-center gap-1 text-[11px] text-muted-foreground hover:text-primary">
+                        <FaGithub className="h-3 w-3" /> Code
+                      </a>
+                    </div>
                   </div>
-                  <button onClick={() => setSelectedProject(null)} className="p-2 text-muted-foreground hover:text-foreground hover:bg-foreground/5 rounded-full transition-colors" aria-label="Close case study">
-                    <X className="w-5 h-5" />
-                  </button>
-                </div>
-                
-                <div className="p-6 overflow-y-auto hide-scrollbar font-body text-foreground/90 leading-relaxed text-sm prose prose-sm dark:prose-invert max-w-none">
-                  {selectedProject.caseStudy ? (
-                    selectedProject.caseStudy.split('\n\n').map((paragraph, idx) => {
-                      if (paragraph.startsWith('### ')) {
-                        return <h4 key={idx} className="font-serif text-lg font-medium text-foreground mt-6 mb-3 first:mt-0">{paragraph.replace('### ', '')}</h4>
-                      }
-                      return <p key={idx} className="mb-4 text-muted-foreground">{paragraph}</p>
-                    })
-                  ) : (
-                    <p>Detailed case study coming soon.</p>
-                  )}
-                </div>
-                
-                <div className="p-6 border-t border-border bg-foreground/[0.02] flex flex-wrap items-center justify-between gap-4 mt-auto">
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.technologies.map(tech => (
-                       <TechBadge key={tech} tech={tech} />
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-3">
-                     <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 border border-border px-3 py-1.5 rounded-lg">
-                       <FaGithub className="w-4 h-4" /> View Code
-                     </a>
-                     {selectedProject.link !== "#" && (
-                       <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className="text-xs font-medium bg-foreground text-background hover:opacity-90 transition-opacity flex items-center gap-1.5 px-3 py-1.5 rounded-lg">
-                         <ExternalLink className="w-4 h-4" /> Live Demo
-                       </a>
-                     )}
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </>
-        )}
-      </AnimatePresence>
+                ))}
+              </div>
+            </section>
+          )
+        })}
+      </div>
     </div>
   )
 }

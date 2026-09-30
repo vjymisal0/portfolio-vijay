@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     template: '%s | Vijay Misal',
   },
   description:
-    'Vijay Misal is a software engineer (SDE 1 at Loopr AI) building scalable web apps with React, Node.js, NestJS, and cloud technologies. Explore his experience, skills, and projects.',
+    'Vijay Misal is a software engineer (SDE 1 at Loopr AI) building full-stack TypeScript, React, and NestJS systems, with 80+ merged open-source pull requests to projects like Vite, axios, and Apache Superset and 16 published npm packages.',
   keywords: [
     'Vijay Misal',
     'Software Engineer',
@@ -50,6 +50,12 @@ export const metadata: Metadata = {
     'Node.js',
     'NestJS',
     'TypeScript',
+    'Open Source Contributor',
+    'npm packages',
+    'Python',
+    'Go',
+    'Rust',
+    'n8n',
     'Portfolio',
     'Loopr AI',
   ],
@@ -62,14 +68,14 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: 'Vijay Misal — Software Engineer',
     description:
-      'Software engineer building scalable web apps with React, Node.js, and cloud technologies. Explore my experience, skills, and projects.',
+      'Software engineer at Loopr AI. 80+ merged open-source PRs (Vite, axios, Apache Superset) and 16 npm packages.',
     siteName: 'Vijay Misal',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Vijay Misal — Software Engineer',
     description:
-      'Software engineer building scalable web apps with React, Node.js, and cloud technologies.',
+      'Software engineer at Loopr AI. 80+ merged open-source PRs and 16 npm packages.',
   },
   other: {
     'theme-color': '#faf8f5',
@@ -90,17 +96,29 @@ export default function RootLayout({
     "name": "Vijay Misal",
     "url": siteUrl,
     "jobTitle": "Software Engineer",
-    "description": "I move quickly from rough ideas to working systems, then do the engineering needed to make them reliable.",
+    "worksFor": { "@type": "Organization", "name": "Loopr AI" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Pune", "addressCountry": "IN" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "Vishwakarma Institute of Information Technology" },
+      { "@type": "CollegeOrUniversity", "name": "Government Polytechnic, Solapur" }
+    ],
+    "description": "Software engineer building full-stack TypeScript systems and automated workflows, and an active open-source contributor.",
     "sameAs": [
       "https://github.com/vjymisal0",
-      "https://www.linkedin.com/in/vijaymisal"
+      "https://www.linkedin.com/in/vijaymisal",
+      "https://www.npmjs.com/~vjymisal0"
     ],
     "knowsAbout": [
       "React",
       "Node.js",
       "NestJS",
       "TypeScript",
-      "Full-Stack Development"
+      "Python",
+      "Go",
+      "Rust",
+      "Full-Stack Development",
+      "Open Source Software",
+      "Workflow Automation"
     ]
   }
 

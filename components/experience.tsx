@@ -6,6 +6,7 @@ import { SiReact, SiNestjs, SiTypescript, SiNodedotjs } from 'react-icons/si'
 import type { IconType } from 'react-icons'
 import type { LucideIcon } from 'lucide-react'
 import { techColorHex } from '@/lib/tech-colors'
+import Education from '@/components/education'
 
 type AnyIcon = IconType | LucideIcon
 
@@ -84,6 +85,11 @@ export default function Experience() {
             <div className="w-full md:w-1/3">
               <h3 className="font-serif text-xl font-medium text-foreground">{group.company}</h3>
               <p className="text-sm text-muted-foreground mt-1">{group.location}</p>
+              {group.roles.find((r) => r.award)?.award && (
+                <p className="mt-3 inline-flex w-fit items-center rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-[11px] font-mono text-amber-600">
+                  {group.roles.find((r) => r.award)?.award}
+                </p>
+              )}
             </div>
             
             <div className="w-full md:w-2/3 space-y-10">
@@ -129,6 +135,10 @@ export default function Experience() {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="mt-16">
+        <Education />
       </div>
     </section>
   )
