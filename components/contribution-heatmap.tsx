@@ -44,90 +44,115 @@ function monthLabels(weeks: (ContributionDay | null)[][]) {
 const formatDate = (iso: string) =>
   new Date(iso + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
 
-export default function ContributionHeatmap({ variant = 'full' }: { variant?: 'full' | 'compact' }) {
+const LAST_YEAR = 'last'
+
+export default function ContributionHeatmap() {
   const [days, setDays] = useState<ContributionDay[]>([])
-  const [total, setTotal] = useState(0)
+  const [totals, setTotals] = useState<Record<string, number>>({})
+  const [range, setRange] = useState<string>(LAST_YEAR)
   const [hover, setHover] = useState<ContributionDay | null>(null)
 
   useEffect(() => {
     getContributionCalendar().then((res) => {
       if (res.success) {
         setDays(res.days)
-        setTotal(res.total)
+        setTotals(res.totals)
       }
     })
   }, [])
 
+  const years = useMemo(() => Object.keys(totals).sort((a, b) => b.localeCompare(a)), [totals])
+  const allTime = useMemo(() => Object.values(totals).reduce((a, b) => a + b, 0), [totals])
+
   const visibleDays = useMemo(() => {
-    if (variant === 'full') return days
-    return days.slice(-105) // ~15 weeks for the compact teaser
-  }, [days, variant])
+    if (range !== LAST_YEAR) return days.filter((d) => d.date.startsWith(range))
+    const from = new Date()
+    from.setFullYear(from.getFullYear() - 1)
+    const cutoff = from.toISOString().slice(0, 10)
+    return days.filter((d) => d.date > cutoff)
+  }, [days, range])
 
+  const rangeTotal = useMemo(() => visibleDays.reduce((sum, d) => sum + d.count, 0), [visibleDays])
   const weeks = useMemo(() => buildWeeks(visibleDays), [visibleDays])
-  const months = useMemo(() => (variant === 'full' ? monthLabels(weeks) : []), [weeks, variant])
+  const months = useMemo(() => monthLabels(weeks), [weeks])
 
-  const cellSize = variant === 'full' ? 11 : 9
-  const gap = variant === 'full' ? 3 : 2
+  const cellSize = 11
+  const gap = 3
 
   if (days.length === 0) return null
 
+  const tabs = [LAST_YEAR, ...years]
+
   return (
-    <div className="flex flex-col gap-2">
-      {variant === 'full' && (
-        <div
-          className="flex text-[10px] text-muted-foreground mb-1"
-          style={{ paddingLeft: 0, gap }}
-        >
-          {weeks.map((_, wi) => {
-            const m = months.find((m) => m.week === wi)
-            return (
-              <div key={wi} style={{ width: cellSize }}>
-                {m?.label}
-              </div>
-            )
-          })}
-        </div>
-      )}
-      <div className="relative">
-        <div className="flex" style={{ gap }}>
-          {weeks.map((week, wi) => (
-            <div key={wi} className="flex flex-col" style={{ gap }}>
-              {week.map((day, di) => (
-                <div
-                  key={di}
-                  onMouseEnter={() => day && setHover(day)}
-                  onMouseLeave={() => setHover(null)}
-                  style={{
-                    width: cellSize,
-                    height: cellSize,
-                    borderRadius: 2,
-                    backgroundColor: day ? LEVEL_COLORS[day.level] : 'transparent',
-                  }}
-                  className={day ? 'cursor-pointer transition-transform hover:scale-125' : ''}
-                />
-              ))}
-            </div>
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <p className="text-sm text-muted-foreground">
+          <span className="font-medium text-foreground">{allTime.toLocaleString()}</span> contributions since {years[years.length - 1]}
+        </p>
+        <div role="tablist" aria-label="Contribution year" className="flex flex-wrap gap-1">
+          {tabs.map((t) => (
+            <button
+              key={t}
+              role="tab"
+              aria-selected={range === t}
+              onClick={() => setRange(t)}
+              className={`rounded-md px-2.5 py-1 text-xs font-mono transition-colors ${range === t ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-foreground/5 hover:text-foreground'}`}
+            >
+              {t === LAST_YEAR ? 'Last year' : t}
+            </button>
           ))}
         </div>
-        {hover && (
-          <div className="absolute -top-9 left-0 rounded-lg border border-border bg-background px-2.5 py-1.5 shadow-lg text-xs whitespace-nowrap z-10 pointer-events-none">
-            <span className="font-medium text-foreground">{hover.count} contribution{hover.count === 1 ? '' : 's'}</span>
-            <span className="text-muted-foreground"> &middot; {formatDate(hover.date)}</span>
-          </div>
-        )}
       </div>
-      {variant === 'full' && (
-        <div className="flex items-center justify-between mt-2">
-          <span className="text-xs text-muted-foreground">{total} contributions in the last year</span>
-          <div className="flex items-center gap-1.5">
-            <span className="text-[10px] text-muted-foreground">Less</span>
-            {LEVEL_COLORS.map((c, i) => (
-              <span key={i} className="w-2.5 h-2.5 rounded-[2px]" style={{ backgroundColor: c }} />
+
+      <div className="overflow-x-auto pb-1">
+        <div className="w-max">
+          <div className="flex text-[10px] text-muted-foreground mb-1" style={{ gap }}>
+            {weeks.map((_, wi) => {
+              const m = months.find((m) => m.week === wi)
+              return (
+                <div key={wi} className="whitespace-nowrap" style={{ width: cellSize }}>
+                  {m?.label}
+                </div>
+              )
+            })}
+          </div>
+          <div className="flex" style={{ gap }}>
+            {weeks.map((week, wi) => (
+              <div key={wi} className="flex flex-col" style={{ gap }}>
+                {week.map((day, di) => (
+                  <div
+                    key={di}
+                    onMouseEnter={() => day && setHover(day)}
+                    onMouseLeave={() => setHover(null)}
+                    style={{
+                      width: cellSize,
+                      height: cellSize,
+                      borderRadius: 2,
+                      backgroundColor: day ? LEVEL_COLORS[day.level] : 'transparent',
+                    }}
+                    className={day ? 'cursor-pointer transition-transform hover:scale-125' : ''}
+                  />
+                ))}
+              </div>
             ))}
-            <span className="text-[10px] text-muted-foreground">More</span>
           </div>
         </div>
-      )}
+      </div>
+
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <span className="text-xs text-muted-foreground">
+          {hover
+            ? <><span className="font-medium text-foreground">{hover.count} contribution{hover.count === 1 ? '' : 's'}</span> &middot; {formatDate(hover.date)}</>
+            : <>{rangeTotal.toLocaleString()} contributions {range === LAST_YEAR ? 'in the last year' : `in ${range}`}</>}
+        </span>
+        <div className="flex items-center gap-1.5">
+          <span className="text-[10px] text-muted-foreground">Less</span>
+          {LEVEL_COLORS.map((c, i) => (
+            <span key={i} className="w-2.5 h-2.5 rounded-[2px]" style={{ backgroundColor: c }} />
+          ))}
+          <span className="text-[10px] text-muted-foreground">More</span>
+        </div>
+      </div>
     </div>
   )
 }

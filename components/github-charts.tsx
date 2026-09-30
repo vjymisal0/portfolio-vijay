@@ -4,6 +4,7 @@ import { useMemo } from 'react'
 import { FaGithub } from 'react-icons/fa'
 import { Star } from 'lucide-react'
 import { contributions, notableRepos } from '@/lib/data'
+import ContributionHeatmap from './contribution-heatmap'
 
 const formatStars = (n: number) =>
   n >= 1000 ? `${(n / 1000).toFixed(n % 1000 >= 100 ? 1 : 0)}k` : `${n}`
@@ -77,7 +78,13 @@ export default function GitHubCharts() {
 
   return (
     <div className="pb-2">
+      <p className="mb-2 text-[11px] font-mono text-primary">$ gh stats --since 2022</p>
       <h2 className="text-3xl sm:text-4xl font-mono font-medium tracking-tight text-foreground mb-8">Developer Analytics</h2>
+
+      {/* Contribution calendar */}
+      <div className="mb-10">
+        <ContributionHeatmap />
+      </div>
 
       {/* Notable repositories */}
       <div className="flex flex-col gap-6 mb-8">

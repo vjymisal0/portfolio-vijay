@@ -31,7 +31,7 @@ export default function Automation() {
   return (
     <section className="container mx-auto max-w-4xl px-6 lg:px-12">
       <div className="mb-10">
-        <p className="mb-2 text-[11px] font-mono uppercase tracking-[0.2em] text-primary">03 / Systems</p>
+        <p className="mb-2 text-[11px] font-mono text-primary">$ ls ./systems</p>
         <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground">Automation & workflows</h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
           I own a cloud VM & use it for learning by building. I use it to self-host n8n workflows, run scheduled jobs, experiment with AI agents, connect APIs, and explore the systems that make automation reliable.

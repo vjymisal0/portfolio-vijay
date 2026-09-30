@@ -31,8 +31,8 @@ export default function Introduction() {
   return (
     <section aria-labelledby="intro-title" className="container mx-auto max-w-4xl px-6 pb-16 lg:px-12">
       <div className="max-w-3xl">
-        <p className="mb-5 text-xs uppercase tracking-[0.16em] text-muted-foreground">
-          Vijay Misal <span aria-hidden="true" className="mx-2 text-primary">/</span> Pune, India
+        <p className="mb-5 font-mono text-xs text-muted-foreground">
+          <span className="text-primary">~ whoami</span> <span aria-hidden="true" className="mx-2">&rarr;</span> Vijay Misal, Pune, India
         </p>
         <h1 id="intro-title" className="font-mono text-4xl font-medium leading-[1.08] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
           Software engineer,<br />
@@ -64,7 +64,10 @@ export default function Introduction() {
 
       <section aria-labelledby="selected-work-title" className="mt-12 border-t border-border pt-8">
         <div className="mb-5 flex flex-wrap items-baseline justify-between gap-2">
-          <h2 id="selected-work-title" className="text-xl font-medium tracking-tight">What I work on</h2>
+          <div>
+            <p className="mb-1 text-[11px] font-mono text-primary">$ ls ./focus</p>
+            <h2 id="selected-work-title" className="text-xl font-medium tracking-tight">What I work on</h2>
+          </div>
           <span className="text-xs text-muted-foreground">Product code to production workflows</span>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
