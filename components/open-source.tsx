@@ -7,6 +7,7 @@ import { FaGithub } from 'react-icons/fa'
 import { useState } from 'react'
 import { TechBadge } from './tech-badge'
 import { contributions, packages, kindMeta, featuredContributions } from '@/lib/data'
+import { AnnotatedText } from '@/components/ui/annotated-text'
 
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
@@ -33,7 +34,7 @@ export default function OpenSource() {
       <div className="mb-12">
         <p className="mb-2 text-[11px] font-mono text-primary">$ cat contributions.md</p><h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground mb-3">Open Source</h2>
         <p className="text-sm sm:text-base font-body text-muted-foreground leading-relaxed">
-          {contributions.length} pull requests merged into {repoCount} repositories I don&apos;t own over the last 12 months, from Vite, axios, and Apache Superset to small projects I found useful. I also maintain {packages.length} npm packages.{' '}
+          {contributions.length} pull requests merged into {repoCount} repositories <AnnotatedText variant="box" color="text-primary">I don&apos;t own</AnnotatedText> over the last 12 months, from Vite, axios, and Apache Superset to small projects I found useful. I also maintain {packages.length} npm packages.{' '}
           <Link href="/#builds" className="underline underline-offset-2 hover:text-foreground transition-colors">See the packages &rarr;</Link>
         </p>
       </div>
@@ -134,7 +135,7 @@ export default function OpenSource() {
         {/* Let's Connect CTA */}
         <div className="pt-24 mt-12">
           <div className="text-left border-t border-border pt-12">
-            <h2 className="text-3xl sm:text-4xl font-mono font-medium tracking-tight text-foreground mb-6">Let's Connect.</h2>
+            <h2 className="text-3xl sm:text-4xl font-mono font-medium tracking-tight text-foreground mb-6"><AnnotatedText variant="doubleUnderline" color="text-primary">Let's Connect.</AnnotatedText></h2>
             <p className="text-lg text-muted-foreground mb-10 max-w-xl">
               I'm always open to discussing new projects, open-source collaborations, or creative ideas.
             </p>

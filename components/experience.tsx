@@ -5,6 +5,7 @@ import { ShieldCheck, Bot, Activity } from 'lucide-react'
 import { SiReact, SiNestjs, SiTypescript, SiNodedotjs } from 'react-icons/si'
 import type { IconType } from 'react-icons'
 import type { LucideIcon } from 'lucide-react'
+import { AnnotatedText } from '@/components/ui/annotated-text'
 import { techColorHex } from '@/lib/tech-colors'
 import Education from '@/components/education'
 
@@ -77,7 +78,7 @@ for (const exp of experiences) {
 export default function Experience() {
   return (
     <section className="container mx-auto px-6 lg:px-12 max-w-4xl">
-      <div className="mb-10"><p className="mb-2 text-[11px] font-mono text-primary">$ cat experience.log</p><h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground">Experience</h2><p className="mt-3 max-w-xl text-sm text-muted-foreground">A timeline of shipping, learning, and making systems more dependable.</p></div>
+      <div className="mb-10"><p className="mb-2 text-[11px] font-mono text-primary">$ cat experience.log</p><h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground">Experience</h2><p className="mt-3 max-w-xl text-sm text-muted-foreground">A timeline of shipping, learning, and making systems <AnnotatedText variant="underline" color="text-primary">more dependable</AnnotatedText>.</p></div>
 
       <div className="flex flex-col border-t border-border">
         {groups.map((group) => (

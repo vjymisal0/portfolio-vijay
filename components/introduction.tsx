@@ -2,6 +2,8 @@ import { ArrowRight, Mail } from 'lucide-react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import GitHubCharts from './github-charts'
 import { TiltCard } from './ui/tilt-card'
+import { DitheredLogo } from '@/components/ui/dithered-logo'
+import { AnnotatedText } from '@/components/ui/annotated-text'
 import { contributions, packages } from '@/lib/data'
 
 const highlights = [
@@ -31,16 +33,34 @@ const highlights = [
 export default function Introduction() {
   return (
     <section aria-labelledby="intro-title" className="container mx-auto max-w-4xl px-6 pb-16 lg:px-12">
-      <div className="max-w-3xl">
-        <p className="mb-5 font-mono text-xs text-muted-foreground">
-          <span className="text-primary">~ whoami</span> <span aria-hidden="true" className="mx-2">&rarr;</span> Vijay Misal, Pune, India
-        </p>
-        <h1 id="intro-title" className="font-mono text-4xl font-medium leading-[1.08] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-          Software engineer,<br />
-          <span className="text-primary">building with AI.</span>
-        </h1>
+      <div>
+        <div className="flex items-center justify-between gap-8 xl:-mr-40">
+          <div className="min-w-0">
+            <p className="mb-5 font-mono text-xs text-muted-foreground">
+              <span className="text-primary">~ whoami</span> <span aria-hidden="true" className="mx-2">&rarr;</span> Vijay Misal, Pune, India
+            </p>
+            <h1 id="intro-title" className="font-mono text-4xl font-medium leading-[1.08] tracking-tight text-foreground sm:text-6xl lg:text-5xl xl:text-6xl">
+              Software engineer,<br />
+              <span className="text-primary">building with AI.</span>
+            </h1>
+          </div>
+          <div className="hidden h-56 w-56 shrink-0 text-foreground lg:block xl:h-72 xl:w-72">
+            <DitheredLogo
+              imageSrc="/vijay_ascii.svg"
+              className="h-full w-full"
+              gridSize={120}
+              scale={0.95}
+              dotScale={1}
+              invert={true}
+              cornerRadius={0.2}
+              gamma={1.0}
+              blur={3.75}
+              diffusionStrength={1.0}
+            />
+          </div>
+        </div>
         <p className="mt-6 max-w-xl font-body text-base leading-relaxed text-muted-foreground sm:text-lg">
-          I&apos;m Vijay, an SDE 1 at Loopr AI, building full-stack features for an AI visual-inspection platform. Outside work I&apos;ve had {contributions.length} pull requests merged into open-source projects over the last year, including Vite, axios, and Apache Superset, and I maintain {packages.length} npm packages.
+          I&apos;m Vijay, an SDE 1 at Loopr AI, building full-stack features for an AI visual-inspection platform. Outside work I&apos;ve had <AnnotatedText variant="doubleUnderline" color="text-primary" delay={0.8}>{contributions.length} pull requests merged</AnnotatedText> into open-source projects over the last year, including Vite, axios, and Apache Superset, and I maintain {packages.length} npm packages.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <a href="#builds" className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
