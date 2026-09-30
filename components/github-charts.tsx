@@ -19,6 +19,59 @@ function useRepoList() {
   }, [])
 }
 
+type NotableRepo = (typeof notableRepos)[number]
+
+function RepoCard({ r, hidden }: { r: NotableRepo; hidden?: boolean }) {
+  const owner = r.repo.split('/')[0]
+  return (
+    <a
+      href={r.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-hidden={hidden || undefined}
+      tabIndex={hidden ? -1 : undefined}
+      className="group flex w-64 shrink-0 items-center gap-3 rounded-lg border border-border bg-background px-4 py-3.5 transition-all duration-200 hover:border-foreground/30 hover:bg-foreground/[0.03]"
+    >
+      <img
+        src={`https://github.com/${owner}.png?size=64`}
+        alt={hidden ? '' : owner}
+        className="w-8 h-8 rounded-full shrink-0"
+        loading="lazy"
+      />
+      <div className="min-w-0 flex-1">
+        <div className="text-sm font-medium text-foreground truncate">{r.repo}</div>
+        <div className="flex items-center gap-1 text-xs text-muted-foreground mt-0.5">
+          <Star className="w-3 h-3 fill-current text-amber-500" />
+          {formatStars(r.stars)} stars
+        </div>
+      </div>
+      <FaGithub className="w-4 h-4 text-muted-foreground shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+    </a>
+  )
+}
+
+// Infinite horizontal loop: the track is rendered twice and each copy slides
+// by its own width plus the gap, so the seam is invisible. Pauses on hover or
+// keyboard focus; reduced-motion users get a static, wrapping row instead.
+function RepoMarquee({ repos, reverse }: { repos: readonly NotableRepo[]; reverse?: boolean }) {
+  return (
+    <div
+      className="group/marquee flex overflow-hidden [--duration:40s] [--gap:1rem] gap-[var(--gap)] motion-reduce:flex-wrap"
+    >
+      {[0, 1].map((copy) => (
+        <div
+          key={copy}
+          className={`flex shrink-0 gap-[var(--gap)] animate-marquee group-hover/marquee:[animation-play-state:paused] group-focus-within/marquee:[animation-play-state:paused] motion-reduce:animate-none motion-reduce:flex-wrap motion-reduce:shrink ${reverse ? '[animation-direction:reverse]' : ''} ${copy === 1 ? 'motion-reduce:hidden' : ''}`}
+        >
+          {repos.map((r) => (
+            <RepoCard key={r.repo} r={r} hidden={copy === 1} />
+          ))}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export default function GitHubCharts() {
   const repos = useRepoList()
 
@@ -32,34 +85,11 @@ export default function GitHubCharts() {
           <h3 className="font-mono text-xl font-medium text-foreground">Notable Repositories</h3>
           <p className="text-sm font-body text-muted-foreground mt-1">Established, widely-used projects with a merged PR from me</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {notableRepos.map((r) => {
-            const owner = r.repo.split('/')[0]
-            return (
-              <a
-                key={r.repo}
-                href={r.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-3 rounded-lg border border-border px-4 py-3.5 transition-all duration-200 hover:border-foreground/30 hover:bg-foreground/[0.03]"
-              >
-                <img
-                  src={`https://github.com/${owner}.png?size=64`}
-                  alt={owner}
-                  className="w-8 h-8 rounded-full shrink-0"
-                  loading="lazy"
-                />
-                <div className="min-w-0 flex-1">
-                  <div className="text-sm font-medium text-foreground truncate group-hover:text-foreground transition-colors">{r.repo}</div>
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground mt-0.5">
-                    <Star className="w-3 h-3 fill-current text-amber-500" />
-                    {formatStars(r.stars)} stars
-                  </div>
-                </div>
-                <FaGithub className="w-4 h-4 text-muted-foreground shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
-            )
-          })}
+        <div
+          className="flex flex-col gap-4 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
+        >
+          <RepoMarquee repos={notableRepos.filter((_, i) => i % 2 === 0)} />
+          <RepoMarquee repos={notableRepos.filter((_, i) => i % 2 === 1)} reverse />
         </div>
       </div>
 
