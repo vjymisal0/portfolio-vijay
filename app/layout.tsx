@@ -85,7 +85,7 @@ export const metadata: Metadata = {
   },
 }
 
-const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}var d=document.documentElement;if(t==='dark')d.classList.add('dark');d.style.colorScheme=t}catch(e){}})()`
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}var d=document.documentElement;if(t==='dark')d.classList.add('dark');var p=localStorage.getItem('palette');if(p)d.setAttribute('data-palette',p);d.style.colorScheme=t}catch(e){}})()`
 
 export default function RootLayout({
   children,
