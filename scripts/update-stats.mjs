@@ -198,13 +198,20 @@ async function main() {
 
     if (!langCache.has(repo)) {
       try {
-        langCache.set(repo, (await gh(item.repository_url)).language ?? null)
+        const r = await gh(item.repository_url)
+        langCache.set(repo, { language: r.language ?? null, private: !!r.private })
       } catch (err) {
         console.warn(`[warn] repo ${repo}: ${err.message}`)
-        langCache.set(repo, null)
+        langCache.set(repo, { language: null, private: false })
       }
     }
-    const lang = langCache.get(repo)
+    const { language: lang, private: isPrivate } = langCache.get(repo)
+    // The token may see private repos (e.g. as a collaborator); visitors can't,
+    // so those links would 404 on the site.
+    if (isPrivate) {
+      console.warn(`[warn] skipping ${url}: private repo`)
+      continue
+    }
 
     added.push({
       repo,

@@ -86,7 +86,7 @@ authgit pull --rebase --quiet origin "$GIT_BRANCH" >"$OUT" 2>&1
 STEP="npm run stats:update"
 log "$STEP"
 NOTIFY_DEFER=1 npm run --silent stats:update 2>&1 | tee "$OUT"
-SUMMARY="$(cat "$OUT")"
+SUMMARY="$(grep -v "^\[warn\] skipping" "$OUT" || true)"
 
 if git diff --quiet -- lib/generated/stats.json && \
    [ -z "$(git ls-files --others --exclude-standard -- lib/generated/stats.json)" ]; then
