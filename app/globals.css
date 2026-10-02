@@ -60,45 +60,24 @@ html.lenis body {
 
 @layer base {
   :root {
-    /* Periwinkle */
-    --background: 230 60% 97%;
-    --foreground: 232 40% 18%;
+    --background: 42 33% 97%;
+    --foreground: 222 35% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 232 40% 18%;
+    --card-foreground: 222 35% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 232 40% 18%;
-    --primary: 234 62% 52%;
+    --popover-foreground: 222 35% 12%;
+    --primary: 221 70% 35%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 230 50% 92%;
-    --secondary-foreground: 232 40% 18%;
-    --muted: 230 50% 92%;
-    --muted-foreground: 232 15% 45%;
-    --accent: 190 80% 34%;
+    --secondary: 42 25% 91%;
+    --secondary-foreground: 222 35% 12%;
+    --muted: 42 25% 91%;
+    --muted-foreground: 222 12% 42%;
+    --accent: 17 85% 54%;
     --accent-foreground: 0 0% 100%;
-    --border: 230 35% 86%;
-    --input: 230 35% 86%;
-    --ring: 234 62% 52%;
+    --border: 222 16% 82%;
+    --input: 222 16% 82%;
+    --ring: 221 70% 35%;
     --radius: 0.75rem;
-  }
-  .dark {
-    /* Graphite & Lime */
-    --background: 220 6% 7%;
-    --foreground: 60 9% 94%;
-    --card: 220 6% 10%;
-    --card-foreground: 60 9% 94%;
-    --popover: 220 6% 10%;
-    --popover-foreground: 60 9% 94%;
-    --primary: 84 81% 58%;
-    --primary-foreground: 220 6% 7%;
-    --secondary: 220 5% 15%;
-    --secondary-foreground: 60 9% 94%;
-    --muted: 220 5% 14%;
-    --muted-foreground: 220 5% 62%;
-    --accent: 160 70% 50%;
-    --accent-foreground: 220 6% 7%;
-    --border: 220 5% 20%;
-    --input: 220 5% 20%;
-    --ring: 84 81% 58%;
   }
 }
 
@@ -228,17 +207,4 @@ html.lenis body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-/* Theme switch: let the circular clip-path reveal do the work instead of the default cross-fade. */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-}
-::view-transition-old(root) {
-  z-index: 0;
-}
-::view-transition-new(root) {
-  z-index: 1;
 }

@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
-import ThemeToggle from '@/components/theme-toggle'
 
 const navItems = [
   { id: 'home', label: 'Home', short: 'Home' },
@@ -55,7 +54,6 @@ export default function StickyNavbar() {
         })}
 
         <div className="ml-1 sm:ml-4 pl-2 sm:pl-4 border-l border-border flex items-center gap-1 shrink-0">
-          <ThemeToggle />
           <a
             href="https://github.com/vjymisal0"
             target="_blank"

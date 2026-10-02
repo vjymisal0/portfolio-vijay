@@ -78,14 +78,12 @@ export const metadata: Metadata = {
       'Software engineer at Loopr AI. 80+ merged open-source PRs and 16 npm packages.',
   },
   other: {
-    'theme-color': '#f3f5fd',
+    'theme-color': '#faf8f5',
   },
   icons: {
     icon: '/favicon.ico',
   },
 }
-
-const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}var d=document.documentElement;if(t==='dark')d.classList.add('dark');d.style.colorScheme=t}catch(e){}})()`
 
 export default function RootLayout({
   children,
@@ -127,7 +125,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${outfit.variable} ${geist.variable} ${grotesk.variable} ${mono.variable}`}>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className={`${mono.className} bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
