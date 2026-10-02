@@ -1,7 +1,7 @@
 # Stats automation (npm downloads + merged PRs)
 
 A daily job refreshes `lib/generated/stats.json`, commits it, and pushes to
-`master`. Netlify auto-deploys on push.
+`master`. Vercel auto-deploys on push (the commit author must be the GitHub account linked to your Vercel login: vjymisal0).
 
 - `scripts/update-stats.mjs` (`npm run stats:update`) fetches:
   - npm last-month downloads for every package in `lib/data.ts`

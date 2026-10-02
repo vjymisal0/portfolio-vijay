@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Daily stats refresh: pull, regenerate lib/generated/stats.json, commit + push
-# if it changed. Netlify rebuilds on push. Sends ONE notification per run to
+# if it changed. Vercel deploys on push. Sends ONE notification per run to
 # NOTIFY_WEBHOOK_URL (if set): the data summary plus the git result, or the error.
 #
 # Auth: GITHUB_TOKEN from .env is passed to git via an inline credential helper
@@ -111,7 +111,7 @@ SHA="$(git rev-parse HEAD)"
 log "done: ${SHA:0:7}"
 
 REMOTE="$(git remote get-url origin | sed -e 's#\.git$##' -e 's#^git@github.com:#https://github.com/#')"
-notify "✅ Portfolio updated and pushed. Netlify is rebuilding.
+notify "✅ Portfolio updated and pushed. Vercel is deploying.
 Commit: $REMOTE/commit/${SHA:0:7}
 
 $SUMMARY"
