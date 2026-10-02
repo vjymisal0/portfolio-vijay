@@ -60,44 +60,45 @@ html.lenis body {
 
 @layer base {
   :root {
-    --background: 204 60% 97%;
-    --foreground: 210 40% 12%;
+    /* Periwinkle */
+    --background: 230 60% 97%;
+    --foreground: 232 40% 18%;
     --card: 0 0% 100%;
-    --card-foreground: 210 40% 12%;
+    --card-foreground: 232 40% 18%;
     --popover: 0 0% 100%;
-    --popover-foreground: 210 40% 12%;
-    --primary: 201 90% 34%;
+    --popover-foreground: 232 40% 18%;
+    --primary: 234 62% 52%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 204 40% 92%;
-    --secondary-foreground: 210 40% 12%;
-    --muted: 204 40% 92%;
-    --muted-foreground: 208 15% 42%;
-    --accent: 32 95% 44%;
+    --secondary: 230 50% 92%;
+    --secondary-foreground: 232 40% 18%;
+    --muted: 230 50% 92%;
+    --muted-foreground: 232 15% 45%;
+    --accent: 190 80% 34%;
     --accent-foreground: 0 0% 100%;
-    --border: 204 30% 85%;
-    --input: 204 30% 85%;
-    --ring: 201 90% 34%;
+    --border: 230 35% 86%;
+    --input: 230 35% 86%;
+    --ring: 234 62% 52%;
     --radius: 0.75rem;
   }
-  /* Dark mode: Violet & Mint. */
   .dark {
-    --background: 250 30% 7%;
-    --foreground: 240 20% 95%;
-    --card: 250 28% 11%;
-    --card-foreground: 240 20% 95%;
-    --popover: 250 28% 11%;
-    --popover-foreground: 240 20% 95%;
-    --primary: 160 70% 55%;
-    --primary-foreground: 250 30% 7%;
-    --secondary: 250 22% 17%;
-    --secondary-foreground: 240 20% 95%;
-    --muted: 250 22% 15%;
-    --muted-foreground: 245 14% 68%;
-    --accent: 330 85% 68%;
-    --accent-foreground: 250 30% 7%;
-    --border: 250 20% 20%;
-    --input: 250 20% 20%;
-    --ring: 160 70% 55%;
+    /* Graphite & Lime */
+    --background: 220 6% 7%;
+    --foreground: 60 9% 94%;
+    --card: 220 6% 10%;
+    --card-foreground: 60 9% 94%;
+    --popover: 220 6% 10%;
+    --popover-foreground: 60 9% 94%;
+    --primary: 84 81% 58%;
+    --primary-foreground: 220 6% 7%;
+    --secondary: 220 5% 15%;
+    --secondary-foreground: 60 9% 94%;
+    --muted: 220 5% 14%;
+    --muted-foreground: 220 5% 62%;
+    --accent: 160 70% 50%;
+    --accent-foreground: 220 6% 7%;
+    --border: 220 5% 20%;
+    --input: 220 5% 20%;
+    --ring: 84 81% 58%;
   }
 }
 

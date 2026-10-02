@@ -78,7 +78,7 @@ export const metadata: Metadata = {
       'Software engineer at Loopr AI. 80+ merged open-source PRs and 16 npm packages.',
   },
   other: {
-    'theme-color': '#f3f8fc',
+    'theme-color': '#f3f5fd',
   },
   icons: {
     icon: '/favicon.ico',
