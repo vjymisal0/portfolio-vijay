@@ -1,10 +1,33 @@
 import { Bug, Sparkles, FileText, TestTube2, Eraser } from 'lucide-react'
+import generatedStats from './generated/stats.json'
 
-// Real merged PRs, newest first. Add a new entry here whenever one lands —
-// same pattern as the `projects` array in components/projects.tsx. This is
-// the single source of truth: components/open-source.tsx and
-// components/github-charts.tsx both read from here.
-export const contributions = [
+export type Kind = 'fix' | 'feature' | 'docs' | 'tests' | 'cleanup'
+
+export type Contribution = {
+  repo: string
+  title: string
+  url: string
+  number: number
+  date: string // YYYY-MM-DD (merge date)
+  kind: Kind
+  techs: readonly string[]
+  /** true when added by scripts/update-stats.mjs rather than by hand */
+  auto?: boolean
+}
+
+type GeneratedStats = {
+  updatedAt: string
+  packages: Record<string, { monthlyDownloads: number }>
+  contributions: Contribution[]
+}
+
+const stats = generatedStats as GeneratedStats
+
+// Hand-curated merged PRs, newest first. scripts/update-stats.mjs adds new
+// merged PRs to lib/generated/stats.json daily; they are merged in below.
+// To fix an auto-added PR's kind/techs, copy it here — hand-written entries
+// win over auto entries with the same url.
+const handContributions: readonly Contribution[] = [
   {
     repo: 'StellarCanary/ProtocolCanary-Action',
     title: "test(version): cover whitespace-only token",
@@ -788,10 +811,20 @@ export const contributions = [
     kind: 'feature',
     techs: ['Python']
   }
-] as const
+]
 
-// Monthly downloads snapshotted 2026-09-30 from api.npmjs.org/downloads/point/last-month.
-export const packagesSnapshotDate = '2026-09-30'
+const handUrls = new Set(handContributions.map((c) => c.url))
+
+// Hand-written + auto entries, de-duplicated by url, newest first.
+export const contributions: readonly Contribution[] = [
+  ...handContributions,
+  ...stats.contributions.filter((c) => !handUrls.has(c.url)),
+].sort((a, b) => b.date.localeCompare(a.date))
+
+// Monthly downloads come from lib/generated/stats.json (refreshed daily from
+// api.npmjs.org/downloads/point/last-month); the hardcoded values in
+// `basePackages` are the fallback.
+export const packagesSnapshotDate = stats.updatedAt.slice(0, 10)
 
 export const packageGroups = {
   vision: {
@@ -808,7 +841,7 @@ export const packageGroups = {
   },
 } as const
 
-export const packages = [
+const basePackages = [
   {
     name: 'blur-score',
     group: 'vision',
@@ -955,6 +988,11 @@ export const packages = [
   },
 ] as const
 
+export const packages = basePackages.map((p) => ({
+  ...p,
+  monthlyDownloads: stats.packages[p.name]?.monthlyDownloads ?? (p.monthlyDownloads as number),
+}))
+
 // The most-starred repos among `contributions`, snapshotted 2026-09-30 via
 // the GitHub GraphQL API. Star counts drift — refresh periodically rather
 // than treating these as live.
@@ -1004,9 +1042,6 @@ export const featuredContributions = [
     why: 'Fixed stacked Timeseries Bar totals so a metric used only for sorting is no longer counted in the total.',
   },
 ] as const
-
-export type Contribution = (typeof contributions)[number]
-export type Kind = Contribution['kind']
 
 export const kindMeta: Record<Kind, { label: string; icon: typeof Bug; color: string; hex: string }> = {
   fix: { label: 'Fix', icon: Bug, color: 'bg-red-500/15 text-red-700 dark:text-red-400', hex: '#f87171' },

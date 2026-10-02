@@ -1,6 +1,11 @@
 import './globals.css'
 import { Geist, Geist_Mono, Outfit, Inter, Space_Grotesk } from 'next/font/google'
 import { Metadata } from 'next'
+import { contributions, packages } from '@/lib/data'
+
+// Rounded down to the nearest 10 so the description doesn't churn daily (87 → "80+").
+const prCount = `${Math.floor(contributions.length / 10) * 10}+`
+const packageCount = packages.length
 
 const inter = Inter({
   subsets: ['latin'],
@@ -41,7 +46,7 @@ export const metadata: Metadata = {
     template: '%s | Vijay Misal',
   },
   description:
-    'Vijay Misal is a software engineer (SDE 1 at Loopr AI) building full-stack TypeScript, React, and NestJS systems, with 80+ merged open-source pull requests to projects like Vite, axios, and Apache Superset and 16 published npm packages.',
+    `Vijay Misal is a software engineer (SDE 1 at Loopr AI) building full-stack TypeScript, React, and NestJS systems, with ${prCount} merged open-source pull requests to projects like Vite, axios, and Apache Superset and ${packageCount} published npm packages.`,
   keywords: [
     'Vijay Misal',
     'Software Engineer',
@@ -68,14 +73,14 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: 'Vijay Misal — Software Engineer',
     description:
-      'Software engineer at Loopr AI. 80+ merged open-source PRs (Vite, axios, Apache Superset) and 16 npm packages.',
+      `Software engineer at Loopr AI. ${prCount} merged open-source PRs (Vite, axios, Apache Superset) and ${packageCount} npm packages.`,
     siteName: 'Vijay Misal',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Vijay Misal — Software Engineer',
     description:
-      'Software engineer at Loopr AI. 80+ merged open-source PRs and 16 npm packages.',
+      `Software engineer at Loopr AI. ${prCount} merged open-source PRs and ${packageCount} npm packages.`,
   },
   other: {
     'theme-color': '#faf8f5',
