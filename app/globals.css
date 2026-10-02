@@ -60,46 +60,27 @@ html.lenis body {
 
 @layer base {
   :root {
-    --background: 42 33% 97%;
-    --foreground: 222 35% 12%;
+    --background: 204 60% 97%;
+    --foreground: 210 40% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 222 35% 12%;
+    --card-foreground: 210 40% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 35% 12%;
-    --primary: 221 70% 35%;
+    --popover-foreground: 210 40% 12%;
+    --primary: 201 90% 34%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 42 25% 91%;
-    --secondary-foreground: 222 35% 12%;
-    --muted: 42 25% 91%;
-    --muted-foreground: 222 12% 42%;
-    --accent: 17 85% 54%;
+    --secondary: 204 40% 92%;
+    --secondary-foreground: 210 40% 12%;
+    --muted: 204 40% 92%;
+    --muted-foreground: 208 15% 42%;
+    --accent: 32 95% 44%;
     --accent-foreground: 0 0% 100%;
-    --border: 222 16% 82%;
-    --input: 222 16% 82%;
-    --ring: 221 70% 35%;
+    --border: 204 30% 85%;
+    --input: 204 30% 85%;
+    --ring: 201 90% 34%;
     --radius: 0.75rem;
   }
-  /* Dark-mode palettes, picked via data-palette on <html> (see palette-picker.tsx). */
+  /* Dark mode: Violet & Mint. */
   .dark {
-    --background: 222 47% 7%;
-    --foreground: 210 40% 96%;
-    --card: 0 0% 3%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 3%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 32 95% 58%;
-    --primary-foreground: 222 47% 7%;
-    --secondary: 222 30% 17%;
-    --secondary-foreground: 210 40% 96%;
-    --muted: 222 30% 16%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 187 82% 53%;
-    --accent-foreground: 222 47% 7%;
-    --border: 215 28% 22%;
-    --input: 215 28% 22%;
-    --ring: 32 95% 58%;
-  }
-  .dark[data-palette="violet"] {
     --background: 250 30% 7%;
     --foreground: 240 20% 95%;
     --card: 250 28% 11%;
@@ -117,82 +98,6 @@ html.lenis body {
     --border: 250 20% 20%;
     --input: 250 20% 20%;
     --ring: 160 70% 55%;
-  }
-  .dark[data-palette="mono"] {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 94%;
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 94%;
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 94%;
-    --primary: 212 100% 62%;
-    --primary-foreground: 0 0% 4%;
-    --secondary: 0 0% 13%;
-    --secondary-foreground: 0 0% 94%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 62%;
-    --accent: 84 85% 58%;
-    --accent-foreground: 0 0% 4%;
-    --border: 0 0% 17%;
-    --input: 0 0% 17%;
-    --ring: 212 100% 62%;
-  }
-  .dark[data-palette="charcoal"] {
-    --background: 30 8% 7%;
-    --foreground: 40 30% 92%;
-    --card: 30 7% 11%;
-    --card-foreground: 40 30% 92%;
-    --popover: 30 7% 11%;
-    --popover-foreground: 40 30% 92%;
-    --primary: 43 90% 58%;
-    --primary-foreground: 30 8% 7%;
-    --secondary: 30 6% 16%;
-    --secondary-foreground: 40 30% 92%;
-    --muted: 30 6% 14%;
-    --muted-foreground: 35 10% 64%;
-    --accent: 172 55% 50%;
-    --accent-foreground: 30 8% 7%;
-    --border: 30 6% 20%;
-    --input: 30 6% 20%;
-    --ring: 43 90% 58%;
-  }
-  .dark[data-palette="forest"] {
-    --background: 160 25% 6%;
-    --foreground: 45 25% 90%;
-    --card: 160 20% 10%;
-    --card-foreground: 45 25% 90%;
-    --popover: 160 20% 10%;
-    --popover-foreground: 45 25% 90%;
-    --primary: 38 55% 68%;
-    --primary-foreground: 160 25% 6%;
-    --secondary: 160 15% 15%;
-    --secondary-foreground: 45 25% 90%;
-    --muted: 160 15% 13%;
-    --muted-foreground: 150 8% 62%;
-    --accent: 12 70% 62%;
-    --accent-foreground: 160 25% 6%;
-    --border: 160 14% 19%;
-    --input: 160 14% 19%;
-    --ring: 38 55% 68%;
-  }
-  .dark[data-palette="midnight"] {
-    --background: 215 50% 8%;
-    --foreground: 210 30% 94%;
-    --card: 215 42% 12%;
-    --card-foreground: 210 30% 94%;
-    --popover: 215 42% 12%;
-    --popover-foreground: 210 30% 94%;
-    --primary: 8 90% 66%;
-    --primary-foreground: 215 50% 8%;
-    --secondary: 215 32% 18%;
-    --secondary-foreground: 210 30% 94%;
-    --muted: 215 32% 16%;
-    --muted-foreground: 212 18% 66%;
-    --accent: 45 95% 62%;
-    --accent-foreground: 215 50% 8%;
-    --border: 215 30% 21%;
-    --input: 215 30% 21%;
-    --ring: 8 90% 66%;
   }
 }
 

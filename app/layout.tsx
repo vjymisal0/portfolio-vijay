@@ -78,14 +78,14 @@ export const metadata: Metadata = {
       'Software engineer at Loopr AI. 80+ merged open-source PRs and 16 npm packages.',
   },
   other: {
-    'theme-color': '#faf8f5',
+    'theme-color': '#f3f8fc',
   },
   icons: {
     icon: '/favicon.ico',
   },
 }
 
-const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}var d=document.documentElement;if(t==='dark')d.classList.add('dark');var p=localStorage.getItem('palette');if(p)d.setAttribute('data-palette',p);d.style.colorScheme=t}catch(e){}})()`
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}var d=document.documentElement;if(t==='dark')d.classList.add('dark');d.style.colorScheme=t}catch(e){}})()`
 
 export default function RootLayout({
   children,
