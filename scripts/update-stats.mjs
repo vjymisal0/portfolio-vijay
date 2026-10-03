@@ -264,8 +264,30 @@ async function main() {
     `PRs on site: ${handUrls.size + contributions.length} (${handUrls.size} hand-written + ${contributions.length} auto)`,
   ].join('\n')
   console.log(summary)
+
+  // Compact chat message: totals, biggest movers, new PRs only.
+  const moves = packageNames
+    .filter((n) => packages[n] && prev.packages?.[n] !== undefined)
+    .map((n) => [n, packages[n].monthlyDownloads - prev.packages[n].monthlyDownloads])
+    .filter(([, d]) => d !== 0)
+  const ups = moves.filter(([, d]) => d > 0).sort((a, b) => b[1] - a[1]).slice(0, 3)
+  const downs = moves.filter(([, d]) => d < 0).sort((a, b) => a[1] - b[1]).slice(0, 2)
+  const totalPRs = handUrls.size + contributions.length
+  const body = [
+    `📦 npm (30d): ${fmt(totalDownloads)}${prevTotal ? ` (${delta(totalDownloads - prevTotal)})` : ''} · ${pkgUpdated}/${packageNames.length} pkgs changed`,
+    ups.length ? `▲ ${ups.map(([n, d]) => `${n} ${delta(d)}`).join(', ')}` : null,
+    downs.length ? `▼ ${downs.map(([n, d]) => `${n} ${delta(d)}`).join(', ')}` : null,
+    pkgFailed.length ? `⚠️ npm fetch failed (kept old value): ${pkgFailed.join(', ')}` : null,
+    `🔀 PRs on site: ${totalPRs} · ${added.length ? `${added.length} new` : 'none new'}`,
+    ...added.slice(0, 5).map((c) => `+ ${c.repo}#${c.number} (${c.kind}): ${c.title}`),
+    added.length > 5 ? `…and ${added.length - 5} more` : null,
+  ]
+    .filter(Boolean)
+    .join('\n')
+  if (process.env.NOTIFY_BODY_FILE) await writeFile(process.env.NOTIFY_BODY_FILE, body + '\n')
+
   // update-stats.sh sets NOTIFY_DEFER=1 and sends one combined message with the git result.
-  if (!process.env.NOTIFY_DEFER) await notify(summary)
+  if (!process.env.NOTIFY_DEFER) await notify(`${changed ? '✅ Portfolio stats updated' : 'ℹ️ Portfolio stats unchanged'}\n${body}`)
 }
 
 main().catch(async (err) => {

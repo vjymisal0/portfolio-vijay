@@ -49,9 +49,9 @@ STEP="startup"
 on_error() {
   local code=$?
   log "FAILED during: $STEP (exit $code)"
-  notify "❌ Portfolio stats job FAILED during: $STEP (exit $code)
+  notify "❌ Portfolio stats · FAILED at: $STEP (exit $code)
 
-$(tail -n 15 "$OUT" 2>/dev/null)
+$(tail -n 8 "$OUT" 2>/dev/null)
 
 Log: ~/stats-cron.log on the VM"
   exit "$code"
@@ -85,15 +85,18 @@ authgit pull --rebase --quiet origin "$GIT_BRANCH" >"$OUT" 2>&1
 
 STEP="npm run stats:update"
 log "$STEP"
-NOTIFY_DEFER=1 npm run --silent stats:update 2>&1 | tee "$OUT"
-SUMMARY="$(grep -v "^\[warn\] skipping" "$OUT" || true)"
+BODY_FILE="$(mktemp)"; trap 'rm -f "$OUT" "$BODY_FILE"' EXIT
+NOTIFY_DEFER=1 NOTIFY_BODY_FILE="$BODY_FILE" npm run --silent stats:update 2>&1 | tee "$OUT"
+BODY="$(cat "$BODY_FILE")"
+TODAY="$(date -u '+%-d %b')"
 
 if git diff --quiet -- lib/generated/stats.json && \
    [ -z "$(git ls-files --others --exclude-standard -- lib/generated/stats.json)" ]; then
   log "stats.json unchanged, nothing to commit"
-  notify "ℹ️ Portfolio: no changes today, nothing pushed.
+  notify "ℹ️ Portfolio stats · $TODAY
+No changes, nothing pushed.
 
-$SUMMARY"
+$BODY"
   exit 0
 fi
 
@@ -111,7 +114,8 @@ SHA="$(git rev-parse HEAD)"
 log "done: ${SHA:0:7}"
 
 REMOTE="$(git remote get-url origin | sed -e 's#\.git$##' -e 's#^git@github.com:#https://github.com/#')"
-notify "✅ Portfolio updated and pushed. Vercel is deploying.
-Commit: $REMOTE/commit/${SHA:0:7}
+notify "✅ Portfolio stats · $TODAY
+Pushed ${SHA:0:7} → Vercel deploying
+$REMOTE/commit/${SHA:0:7}
 
-$SUMMARY"
+$BODY"
