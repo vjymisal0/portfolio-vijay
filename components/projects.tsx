@@ -3,6 +3,7 @@ import { FaGithub, FaNpm } from "react-icons/fa"
 import { TechBadge } from './tech-badge'
 import { TiltCard } from './ui/tilt-card'
 import NpmDownloadsChart from './npm-downloads-chart'
+import CollapsibleSection from './ui/collapsible-section'
 import { packages, packageGroups, packagesSnapshotDate } from '@/lib/data'
 
 type ProjectStatus = 'Building' | 'Completed'
@@ -101,7 +102,7 @@ export default function Projects() {
       <NpmDownloadsChart packages={packageNames} />
 
       {/* Packages, grouped by problem space */}
-      <div className="space-y-12">
+      <div className="space-y-4">
         {groupIds.map((id) => {
           const group = packageGroups[id]
           const items = packages
@@ -109,10 +110,10 @@ export default function Projects() {
             .sort((a, b) => b.monthlyDownloads - a.monthlyDownloads)
           return (
             <section key={id} aria-labelledby={`pkg-${id}`}>
-              <div className="mb-4">
-                <h3 id={`pkg-${id}`} className="font-serif text-xl font-medium text-foreground">{group.title}</h3>
-                <p className="mt-1 max-w-2xl text-sm font-body text-muted-foreground">{group.blurb}</p>
-              </div>
+              <CollapsibleSection
+                header={<h3 id={`pkg-${id}`} className="font-serif text-xl font-medium text-foreground">{group.title}</h3>}
+                summary={<span className="block max-w-2xl">{items.length} packages · {group.blurb}</span>}
+              >
               <div className="grid gap-3 sm:grid-cols-2">
                 {items.map((pkg) => (
                   <div key={pkg.name} className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4 transition-colors hover:border-foreground/30">
@@ -135,6 +136,7 @@ export default function Projects() {
                   </div>
                 ))}
               </div>
+              </CollapsibleSection>
             </section>
           )
         })}
