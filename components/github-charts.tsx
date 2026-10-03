@@ -5,6 +5,7 @@ import { FaGithub } from 'react-icons/fa'
 import { Star } from 'lucide-react'
 import { contributions, notableRepos } from '@/lib/data'
 import ContributionHeatmap from './contribution-heatmap'
+import CollapsibleSection from '@/components/ui/collapsible-section'
 
 const formatStars = (n: number) =>
   n >= 1000 ? `${(n / 1000).toFixed(n % 1000 >= 100 ? 1 : 0)}k` : `${n}`
@@ -104,11 +105,10 @@ export default function GitHubCharts() {
       </div>
 
       {/* Repos shipped to */}
-      <div className="flex flex-col gap-6">
-        <div>
-          <h3 className="font-mono text-xl font-medium text-foreground">Shipped To</h3>
-          <p className="text-sm font-body text-muted-foreground mt-1">{repos.length} public repositories with a merged PR</p>
-        </div>
+      <CollapsibleSection
+        header={<h3 className="font-mono text-xl font-medium text-foreground">Shipped To</h3>}
+        summary={`${repos.length} public repositories with a merged PR`}
+      >
         <div className="flex flex-wrap gap-3">
           {repos.map(({ repo, owner }) => (
             <a
@@ -129,7 +129,7 @@ export default function GitHubCharts() {
             </a>
           ))}
         </div>
-      </div>
+      </CollapsibleSection>
     </div>
   )
 }

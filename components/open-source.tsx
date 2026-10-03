@@ -9,13 +9,14 @@ import { TechBadge } from './tech-badge'
 import { contributions, packages, kindMeta, featuredContributions } from '@/lib/data'
 import { AnnotatedText } from '@/components/ui/annotated-text'
 import GitHubCharts from './github-charts'
+import CollapsibleSection from '@/components/ui/collapsible-section'
 
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
 
 function SubHeading({ icon: Icon, children }: { icon: typeof Package; children: string }) {
   return (
-    <div className="flex items-center gap-2 mb-3">
+    <div className="flex items-center gap-2">
       <Icon className="w-3.5 h-3.5 text-primary" />
       <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
         {children}
@@ -73,8 +74,11 @@ export default function OpenSource() {
 
         {/* Pull requests */}
         <div>
-          <SubHeading icon={GitPullRequest}>All merged pull requests</SubHeading>
-          <div className="flex flex-col border-t border-border mt-6">
+          <CollapsibleSection
+            header={<SubHeading icon={GitPullRequest}>All merged pull requests</SubHeading>}
+            summary={`${contributions.length} pull requests across ${repoCount} repositories`}
+          >
+          <div className="flex flex-col border-t border-border">
             {visibleContributions.map((c) => {
               const meta = kindMeta[c.kind]
               const Icon = meta.icon
@@ -131,6 +135,7 @@ export default function OpenSource() {
               </button>
             </div>
           )}
+          </CollapsibleSection>
         </div>
 
         <GitHubCharts />

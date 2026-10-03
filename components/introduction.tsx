@@ -1,3 +1,6 @@
+'use client'
+
+import { useEffect, useState } from 'react'
 import { ArrowRight, Mail } from 'lucide-react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { NotableRepos } from './github-charts'
@@ -5,17 +8,26 @@ import { TiltCard } from './ui/tilt-card'
 import { TechBadge } from './tech-badge'
 import { contributions, packages } from '@/lib/data'
 import { AnnotatedText } from '@/components/ui/annotated-text'
+import { getNpmLastMonthTotal } from '@/app/actions/npm'
 
 const repoCount = new Set(contributions.map((c) => c.repo)).size
-const monthlyDownloads = packages.reduce((sum, p) => sum + p.monthlyDownloads, 0)
-const formatCount = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(1)}k` : `${n}`)
+// Snapshot fallback, replaced by the live npm total once it loads.
+const snapshotDownloads = packages.reduce((sum, p) => sum + p.monthlyDownloads, 0)
+const packageNames = packages.map((p) => p.name)
 
 const stats = [
   { value: `${contributions.length}`, label: 'PRs merged upstream' },
   { value: `${repoCount}`, label: 'repositories contributed to' },
   { value: `${packages.length}`, label: 'npm packages maintained' },
-  { value: `~${formatCount(monthlyDownloads)}`, label: 'monthly npm downloads' },
 ]
+
+function useLiveMonthlyDownloads() {
+  const [live, setLive] = useState<number | null>(null)
+  useEffect(() => {
+    getNpmLastMonthTotal(packageNames).then((res) => res.success && setLive(res.total))
+  }, [])
+  return live
+}
 
 const stack = ['TypeScript', 'React', 'NestJS', 'Node.js', 'Python', 'Go', 'Rust', 'n8n']
 
@@ -44,6 +56,8 @@ const highlights = [
 ]
 
 export default function Introduction() {
+  const liveDownloads = useLiveMonthlyDownloads()
+
   return (
     <section aria-labelledby="intro-title" className="container mx-auto max-w-4xl px-6 pb-16 lg:px-12">
       <div className="max-w-3xl">
@@ -86,6 +100,21 @@ export default function Introduction() {
             <dd className="mt-1 text-[11px] leading-snug text-muted-foreground">{label}</dd>
           </div>
         ))}
+        <div className="bg-card px-4 py-4">
+          <dt className="sr-only">monthly npm downloads</dt>
+          <dd className="font-mono text-2xl font-medium tracking-tight text-foreground tabular-nums">
+            {(liveDownloads ?? snapshotDownloads).toLocaleString('en-US')}
+          </dd>
+          <dd className="mt-1 flex items-center gap-1.5 text-[11px] leading-snug text-muted-foreground">
+            {liveDownloads !== null && (
+              <span className="relative flex h-1.5 w-1.5" title="Live from the npm registry">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60 motion-reduce:hidden" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              </span>
+            )}
+            monthly npm downloads
+          </dd>
+        </div>
       </dl>
 
       <section aria-labelledby="selected-work-title" className="mt-12 border-t border-border pt-8">
