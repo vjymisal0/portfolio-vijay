@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-05T15:00:22.233Z",
+  "updatedAt": "2026-10-06T03:00:22.502Z",
   "packages": {
     "blur-score": {
       "monthlyDownloads": 1008
@@ -50,5 +50,18 @@
       "monthlyDownloads": 566
     }
   },
-  "contributions": []
+  "contributions": [
+    {
+      "repo": "temporalio/sdk-python",
+      "title": "Warn when activity method is registered without an instance",
+      "url": "https://github.com/temporalio/sdk-python/pull/1918",
+      "number": 1918,
+      "date": "2026-10-05",
+      "kind": "cleanup",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    }
+  ]
 }
