@@ -1,54 +1,67 @@
 {
-  "updatedAt": "2026-10-04T15:00:22.196Z",
+  "updatedAt": "2026-10-06T03:00:22.502Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 1002
+      "monthlyDownloads": 1008
     },
     "exposure-score": {
-      "monthlyDownloads": 885
+      "monthlyDownloads": 887
     },
     "pan-card-validator": {
-      "monthlyDownloads": 1124
+      "monthlyDownloads": 1130
     },
     "gst-validator": {
-      "monthlyDownloads": 1012
+      "monthlyDownloads": 1014
     },
     "exif-purge": {
-      "monthlyDownloads": 974
+      "monthlyDownloads": 980
     },
     "photo-hash": {
-      "monthlyDownloads": 953
+      "monthlyDownloads": 958
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 911
+      "monthlyDownloads": 920
     },
     "glare-score": {
-      "monthlyDownloads": 679
+      "monthlyDownloads": 689
     },
     "pkg-bin-doctor": {
-      "monthlyDownloads": 423
+      "monthlyDownloads": 426
     },
     "contrast-score": {
-      "monthlyDownloads": 684
+      "monthlyDownloads": 712
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 568
+      "monthlyDownloads": 579
     },
     "env-example-drift": {
-      "monthlyDownloads": 413
+      "monthlyDownloads": 422
     },
     "shadow-score": {
-      "monthlyDownloads": 652
+      "monthlyDownloads": 665
     },
     "todo-expiry": {
-      "monthlyDownloads": 389
+      "monthlyDownloads": 391
     },
     "upi-validator": {
-      "monthlyDownloads": 525
+      "monthlyDownloads": 539
     },
     "rupee-words": {
-      "monthlyDownloads": 553
+      "monthlyDownloads": 566
     }
   },
-  "contributions": []
+  "contributions": [
+    {
+      "repo": "temporalio/sdk-python",
+      "title": "Warn when activity method is registered without an instance",
+      "url": "https://github.com/temporalio/sdk-python/pull/1918",
+      "number": 1918,
+      "date": "2026-10-05",
+      "kind": "cleanup",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    }
+  ]
 }
