@@ -7,14 +7,16 @@ import { Server } from 'lucide-react'
 
 const workflows = [
   {
-    name: 'Autonomous media pipeline',
-    description: 'A scheduled workflow that coordinates AI processing, media generation, and publishing from a self-hosted VM with privacy-safe inputs and outputs.',
-    trigger: 'Scheduled execution',
+    name: 'Scheduled AI media pipeline',
+    description: 'Turns approved input into a narrated video and publishes it on a schedule. The AI output is validated before anything is rendered, and every run is logged.',
+    trigger: 'Cron · n8n',
     nodes: [
-      { label: 'Schedule', detail: 'A cron trigger on the self-hosted VM starts the run, so nothing depends on someone being online.' },
-      { label: 'AI agent', detail: 'An AI step prepares the content for this run from privacy-safe inputs.' },
-      { label: 'Media pipeline', detail: 'The generated content is turned into publishable media assets.' },
-      { label: 'Publishing service', detail: 'The finished output is pushed to the publishing service and the run completes.' },
+      { label: 'Schedule', detail: 'A cron trigger in n8n starts the run on the VM, so publishing never waits on me.' },
+      { label: 'Collect input', detail: 'Pulls the next approved topic from the queue. Nothing unreviewed goes in.' },
+      { label: 'AI plan', detail: 'An AI agent writes a structured plan: script, scenes, and metadata as JSON.' },
+      { label: 'Validate', detail: 'The plan is checked against a schema. A bad plan retries, and repeated failures send a Telegram alert.' },
+      { label: 'Render', detail: 'Text-to-speech narrates the script and the media step assembles the video.' },
+      { label: 'Publish & log', detail: 'The video is uploaded through the publishing API and the run is written to an execution log.' },
     ],
     icon: Server,
   },
@@ -27,7 +29,7 @@ export default function Automation() {
         <p className="mb-2 text-[11px] font-mono text-primary">$ ls ./systems</p>
         <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground">Automation & workflows</h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          I own a cloud VM & use it for learning by building. I use it to self-host n8n workflows, run scheduled jobs, experiment with AI agents, connect APIs, and explore the systems that make automation reliable.
+          I run a self-hosted VM where I build and operate n8n workflows: scheduled jobs, webhook integrations, and AI agents. It is also where I practice the unglamorous parts of automation: health checks, retries, and alerts.
         </p>
       </div>
 

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ExternalLink, GitPullRequest, Package, Star } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
 import { useState } from 'react'
@@ -36,8 +37,8 @@ export default function OpenSource() {
       <div className="mb-12">
         <p className="mb-2 text-[11px] font-mono text-primary">$ cat contributions.md</p><h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground mb-3">Open Source</h2>
         <p className="text-sm sm:text-base font-body text-muted-foreground leading-relaxed">
-          {contributions.length} pull requests merged into {repoCount} repositories <AnnotatedText variant="box" color="text-primary">I don&apos;t own</AnnotatedText> over the last 12 months, from Vite, axios, and Apache Superset to small projects I found useful. I also maintain {packages.length} npm packages.{' '}
-          <Link href="/#builds" className="underline underline-offset-2 hover:text-foreground transition-colors">See the packages &rarr;</Link>
+          Pull requests merged across {repoCount} repositories <AnnotatedText variant="box" color="text-primary">I don&apos;t own</AnnotatedText>, from large projects to small tools I found useful. The featured ones explain what each change fixed.{' '}
+          <Link href="/#builds" className="underline underline-offset-2 hover:text-foreground transition-colors">My own npm packages &rarr;</Link>
         </p>
       </div>
 
@@ -58,7 +59,7 @@ export default function OpenSource() {
                   className="group flex flex-col gap-3 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/60"
                 >
                   <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                    <img src={`https://github.com/${c.repo.split('/')[0]}.png?size=48`} alt="" className="h-5 w-5 rounded-full" loading="lazy" />
+                    <Image src={`https://avatars.githubusercontent.com/${c.repo.split('/')[0]}?s=48`} alt="" width={20} height={20} className="h-5 w-5 rounded-full" />
                     {c.repo}
                     <span className="ml-auto text-xs font-mono font-normal text-muted-foreground">#{c.number}</span>
                   </div>

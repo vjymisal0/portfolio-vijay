@@ -34,8 +34,8 @@ const stack = ['TypeScript', 'React', 'NestJS', 'Node.js', 'Python', 'Go', 'Rust
 const highlights = [
   {
     label: '01 / Product engineering',
-    title: 'Shipping at Loopr AI',
-    description: 'Full-stack platform features, API authentication, and production fixes for AI-powered visual inspection.',
+    title: 'AI engineering at Loopr AI',
+    description: 'Defect-detection models, the inference pipeline that serves them, and the product features built on top.',
     href: '#experience',
     action: 'See my experience',
   },
@@ -49,7 +49,7 @@ const highlights = [
   {
     label: '03 / Open source',
     title: 'Fixes that ship upstream',
-    description: 'Merged bug fixes, features, and tests in projects like Vite, axios, Apache Superset, qdrant, and rclone.',
+    description: 'Bug fixes, features, and tests merged into projects maintained by other people, with notes on what each one changed.',
     href: '#oss',
     action: 'See contributions',
   },
@@ -69,7 +69,7 @@ export default function Introduction() {
           <span className="text-primary">building with AI.</span>
         </h1>
         <p className="mt-6 max-w-xl font-body text-base leading-relaxed text-muted-foreground sm:text-lg">
-          I&apos;m Vijay, an SDE 1 at Loopr AI, building full-stack features for an AI visual-inspection platform. Outside work I&apos;ve had <AnnotatedText variant="doubleUnderline" color="text-primary" delay={0.8}>{contributions.length} pull requests merged</AnnotatedText> into open-source projects over the last year, including Vite, axios, and Apache Superset, and I maintain {packages.length} npm packages.
+          I&apos;m Vijay, an AI Engineer at Loopr AI. I train defect-detection models and ship the product around them for an industrial visual-inspection platform. Outside work I&apos;ve had <AnnotatedText variant="doubleUnderline" color="text-primary" delay={0.8}>{contributions.length} pull requests merged</AnnotatedText> into open-source projects over the last year, including Vite, axios, and Apache Superset, and I maintain {packages.length} npm packages.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <a href="#builds" className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">

@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     template: '%s | Vijay Misal',
   },
   description:
-    `Vijay Misal is a software engineer (SDE 1 at Loopr AI) building full-stack TypeScript, React, and NestJS systems, with ${prCount} merged open-source pull requests to projects like Vite, axios, and Apache Superset and ${packageCount} published npm packages.`,
+    `Vijay Misal is a AI engineer at Loopr AI who trains defect-detection models and builds full-stack TypeScript, React, and NestJS systems, with ${prCount} merged open-source pull requests to projects like Vite, axios, and Apache Superset and ${packageCount} published npm packages.`,
   keywords: [
     'Vijay Misal',
     'Software Engineer',
