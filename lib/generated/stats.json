@@ -1,56 +1,68 @@
 {
-  "updatedAt": "2026-10-11T15:00:22.520Z",
+  "updatedAt": "2026-10-12T15:00:24.939Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 1171
+      "monthlyDownloads": 1202
     },
     "exposure-score": {
-      "monthlyDownloads": 1059
+      "monthlyDownloads": 1081
     },
     "pan-card-validator": {
-      "monthlyDownloads": 1145
+      "monthlyDownloads": 1147
     },
     "gst-validator": {
       "monthlyDownloads": 1032
     },
     "exif-purge": {
-      "monthlyDownloads": 1160
+      "monthlyDownloads": 1179
     },
     "photo-hash": {
-      "monthlyDownloads": 1133
+      "monthlyDownloads": 1160
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 1100
+      "monthlyDownloads": 1114
     },
     "glare-score": {
-      "monthlyDownloads": 862
+      "monthlyDownloads": 880
     },
     "pkg-bin-doctor": {
-      "monthlyDownloads": 429
+      "monthlyDownloads": 430
     },
     "contrast-score": {
-      "monthlyDownloads": 885
+      "monthlyDownloads": 902
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 591
+      "monthlyDownloads": 592
     },
     "env-example-drift": {
-      "monthlyDownloads": 426
+      "monthlyDownloads": 428
     },
     "shadow-score": {
-      "monthlyDownloads": 830
+      "monthlyDownloads": 846
     },
     "todo-expiry": {
-      "monthlyDownloads": 393
+      "monthlyDownloads": 394
     },
     "upi-validator": {
-      "monthlyDownloads": 719
+      "monthlyDownloads": 739
     },
     "rupee-words": {
-      "monthlyDownloads": 584
+      "monthlyDownloads": 586
     }
   },
   "contributions": [
+    {
+      "repo": "yusufaf/quizaroni",
+      "title": "fix(ui): replace blocking native alert with react-toastify error toast",
+      "url": "https://github.com/yusufaf/quizaroni/pull/51",
+      "number": 51,
+      "date": "2026-10-12",
+      "kind": "fix",
+      "techs": [
+        "TypeScript"
+      ],
+      "auto": true
+    },
     {
       "repo": "temporalio/sdk-python",
       "title": "Warn when activity method is registered without an instance",
