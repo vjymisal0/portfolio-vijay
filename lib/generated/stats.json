@@ -1,56 +1,68 @@
 {
-  "updatedAt": "2026-10-12T15:00:24.939Z",
+  "updatedAt": "2026-10-14T03:00:23.493Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 1202
+      "monthlyDownloads": 1206
     },
     "exposure-score": {
-      "monthlyDownloads": 1081
+      "monthlyDownloads": 1088
     },
     "pan-card-validator": {
-      "monthlyDownloads": 1147
+      "monthlyDownloads": 1149
     },
     "gst-validator": {
-      "monthlyDownloads": 1032
+      "monthlyDownloads": 1037
     },
     "exif-purge": {
-      "monthlyDownloads": 1179
+      "monthlyDownloads": 1188
     },
     "photo-hash": {
-      "monthlyDownloads": 1160
+      "monthlyDownloads": 1171
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 1114
+      "monthlyDownloads": 1122
     },
     "glare-score": {
-      "monthlyDownloads": 880
+      "monthlyDownloads": 889
     },
     "pkg-bin-doctor": {
       "monthlyDownloads": 430
     },
     "contrast-score": {
-      "monthlyDownloads": 902
+      "monthlyDownloads": 909
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 592
+      "monthlyDownloads": 595
     },
     "env-example-drift": {
-      "monthlyDownloads": 428
+      "monthlyDownloads": 434
     },
     "shadow-score": {
-      "monthlyDownloads": 846
+      "monthlyDownloads": 854
     },
     "todo-expiry": {
-      "monthlyDownloads": 394
+      "monthlyDownloads": 396
     },
     "upi-validator": {
-      "monthlyDownloads": 739
+      "monthlyDownloads": 749
     },
     "rupee-words": {
-      "monthlyDownloads": 586
+      "monthlyDownloads": 587
     }
   },
   "contributions": [
+    {
+      "repo": "reflex-dev/reflex",
+      "title": "fix(cli): validate an existing app's app_name, not its directory, on reflex init",
+      "url": "https://github.com/reflex-dev/reflex/pull/7556",
+      "number": 7556,
+      "date": "2026-10-13",
+      "kind": "fix",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
     {
       "repo": "yusufaf/quizaroni",
       "title": "fix(ui): replace blocking native alert with react-toastify error toast",
