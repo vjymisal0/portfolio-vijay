@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-14T03:00:23.493Z",
+  "updatedAt": "2026-10-14T15:00:25.688Z",
   "packages": {
     "blur-score": {
       "monthlyDownloads": 1206
@@ -51,6 +51,18 @@
     }
   },
   "contributions": [
+    {
+      "repo": "yusufaf/quizaroni",
+      "title": "fix(a11y): add accessible aria-label attributes to icon-only buttons",
+      "url": "https://github.com/yusufaf/quizaroni/pull/50",
+      "number": 50,
+      "date": "2026-10-14",
+      "kind": "fix",
+      "techs": [
+        "TypeScript"
+      ],
+      "auto": true
+    },
     {
       "repo": "reflex-dev/reflex",
       "title": "fix(cli): validate an existing app's app_name, not its directory, on reflex init",
