@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-14T15:00:25.688Z",
+  "updatedAt": "2026-10-15T03:00:24.873Z",
   "packages": {
     "blur-score": {
       "monthlyDownloads": 1206
@@ -51,6 +51,30 @@
     }
   },
   "contributions": [
+    {
+      "repo": "woocommerce/woocommerce",
+      "title": "Fix email review drawer claiming structural changes were applied",
+      "url": "https://github.com/woocommerce/woocommerce/pull/69340",
+      "number": 69340,
+      "date": "2026-10-14",
+      "kind": "fix",
+      "techs": [
+        "PHP"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "SkriptLang/Skript",
+      "title": "fix: midpoint expression rejects Block values it should convert to Location",
+      "url": "https://github.com/SkriptLang/Skript/pull/8825",
+      "number": 8825,
+      "date": "2026-10-14",
+      "kind": "fix",
+      "techs": [
+        "Java"
+      ],
+      "auto": true
+    },
     {
       "repo": "yusufaf/quizaroni",
       "title": "fix(a11y): add accessible aria-label attributes to icon-only buttons",
