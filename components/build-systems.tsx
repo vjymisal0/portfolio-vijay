@@ -40,10 +40,6 @@ export default function BuildSystems() {
           status="Building"
           title="OSS Tracker"
           summary="One dashboard that shows an open-source contributor what needs their attention next, across every repository they work in."
-          problem="Active contributors juggle pull requests, reviews, and failing checks across many repositories. GitHub's notifications show everything at once, so the important items get buried."
-          built="A self-hosted command center: background workers sync GitHub activity into a database, and an action inbox ranks what to do next and explains why each item is there."
-          decision="Read-only by design. It never needs permission to change anything on GitHub, which makes it safe to connect and easy to trust. Every inbox item says why it was flagged instead of hiding behind a score."
-          result="Live and publicly reachable. The full stack (web app, API, workers, PostgreSQL, Redis) starts with one Docker Compose command."
           technologies={['TypeScript', 'Next.js', 'PostgreSQL', 'Redis', 'Docker']}
           github="https://github.com/vjymisal0/oss-tracker"
           live="https://osstracker.vijaymisal.tech"

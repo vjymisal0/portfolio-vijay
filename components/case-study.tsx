@@ -9,11 +9,12 @@ export type CaseStudyProps = {
   title: string
   // One sentence a non-technical reader understands.
   summary: string
-  problem: string
-  built: string
+  // The four detail boxes are optional; omit them for a summary-only card.
+  problem?: string
+  built?: string
   // The call that shaped it, including what was ruled out.
-  decision: string
-  result: string
+  decision?: string
+  result?: string
   technologies: string[]
   github?: string
   live?: string
@@ -35,6 +36,7 @@ const ROWS = [
 ] as const
 
 export default function CaseStudy(props: CaseStudyProps) {
+  const rows = ROWS.filter(([, key]) => props[key])
   const { category, status, title, summary, technologies, github, live, details } = props
   return (
     <article className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary/50">
@@ -48,14 +50,16 @@ export default function CaseStudy(props: CaseStudyProps) {
       <h3 className="font-serif text-2xl font-medium text-foreground">{title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-foreground/90">{summary}</p>
 
+      {rows.length > 0 && (
       <dl className="mt-6 grid gap-4 sm:grid-cols-2">
-        {ROWS.map(([label, key]) => (
+        {rows.map(([label, key]) => (
           <div key={key} className="rounded-xl border border-border/70 p-4">
             <dt className="mb-1.5 text-[11px] font-mono uppercase tracking-wider text-muted-foreground">{label}</dt>
             <dd className="text-sm leading-relaxed text-foreground/85">{props[key]}</dd>
           </div>
         ))}
       </dl>
+      )}
 
       <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap gap-2">
