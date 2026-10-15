@@ -1,28 +1,30 @@
 'use client'
 
-import { Bot, Clock3, Server, Webhook, Activity, Send } from 'lucide-react'
+import { Bot, Clock3, Instagram, Send, Server, Youtube } from 'lucide-react'
 import { CircuitBoard, type CircuitConnection, type CircuitNodeType } from '@/components/ui/circuit-board'
 
+// Public page: keep this at the level of what flows where. No hosts,
+// providers, schedules, or access paths.
 const nodes: CircuitNodeType[] = [
-  { id: 'cron', x: 90, y: 60, label: 'Cron', icon: <Clock3 className="h-4 w-4" />, status: 'active' },
-  { id: 'webhook', x: 90, y: 200, label: 'Webhooks', icon: <Webhook className="h-4 w-4" />, status: 'active' },
-  { id: 'vm', x: 360, y: 130, label: 'Self-hosted VM · n8n', icon: <Server className="h-5 w-5" />, status: 'processing', size: 'lg' },
-  { id: 'agent', x: 630, y: 60, label: 'AI agent', icon: <Bot className="h-4 w-4" />, status: 'active' },
-  { id: 'health', x: 630, y: 200, label: 'Health check', icon: <Activity className="h-4 w-4" />, status: 'active' },
-  { id: 'alert', x: 360, y: 250, label: 'Telegram alert', icon: <Send className="h-3.5 w-3.5" />, status: 'inactive', size: 'sm' },
+  { id: 'scheduler', x: 90, y: 60, label: 'Scheduler (n8n)', icon: <Clock3 className="h-4 w-4" />, status: 'active' },
+  { id: 'ai', x: 90, y: 200, label: 'AI models', icon: <Bot className="h-4 w-4" />, status: 'active' },
+  { id: 'server', x: 360, y: 130, label: 'Automation server', icon: <Server className="h-5 w-5" />, status: 'processing', size: 'lg' },
+  { id: 'youtube', x: 630, y: 50, label: 'YouTube Shorts', icon: <Youtube className="h-4 w-4" />, status: 'active' },
+  { id: 'instagram', x: 630, y: 140, label: 'Instagram', icon: <Instagram className="h-4 w-4" />, status: 'active' },
+  { id: 'alert', x: 630, y: 230, label: 'Alerts', icon: <Send className="h-4 w-4" />, status: 'inactive' },
 ]
 
 const connections: CircuitConnection[] = [
-  { from: 'cron', to: 'vm', animated: true },
-  { from: 'webhook', to: 'vm', animated: true },
-  { from: 'vm', to: 'agent', animated: true },
-  { from: 'vm', to: 'health', animated: true, bidirectional: true },
-  { from: 'health', to: 'alert', animated: true },
+  { from: 'scheduler', to: 'server', animated: true },
+  { from: 'ai', to: 'server', animated: true, bidirectional: true },
+  { from: 'server', to: 'youtube', animated: true },
+  { from: 'server', to: 'instagram', animated: true },
+  { from: 'server', to: 'alert', animated: true },
 ]
 
 export default function SystemMap() {
   return (
-    <figure className="mb-8 overflow-x-auto rounded-2xl border border-border bg-card" aria-label="Map of the self-hosted automation stack">
+    <figure className="mb-8 overflow-x-auto rounded-2xl border border-border bg-card" aria-label="Map of the automations: a scheduler and AI models feed an automation server that publishes to YouTube and Instagram and sends alerts">
       <CircuitBoard nodes={nodes} connections={connections} width={720} height={290} className="mx-auto" />
     </figure>
   )

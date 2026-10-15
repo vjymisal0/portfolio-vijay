@@ -42,7 +42,7 @@ const highlights = [
   {
     label: '02 / Automation',
     title: 'Systems beyond the demo',
-    description: 'Self-hosted workflows, scheduled jobs, and health checks with recovery paths and actionable alerts.',
+    description: 'Self-hosted automations that publish daily to YouTube and Instagram.',
     href: '#builds',
     action: 'Explore build systems',
   },

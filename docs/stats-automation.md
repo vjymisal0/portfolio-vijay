@@ -74,7 +74,7 @@ The body is `{"content": "...", "text": "..."}`:
 `crontab -e`, then add this line for daily at 03:00 (server time):
 
 ```cron
-0 3 * * * /bin/bash /home/ubuntu/portfolio-vijay/scripts/update-stats.sh >> $HOME/stats-cron.log 2>&1
+0 3 * * * /bin/bash $HOME/portfolio-vijay/scripts/update-stats.sh >> $HOME/stats-cron.log 2>&1
 ```
 
 The script adds the usual node paths and nvm itself. If node lives somewhere
@@ -86,7 +86,7 @@ else, add `PATH=...` above the line. Check the log with
 Workflow: **Schedule Trigger** (daily 03:00) → **Execute Command** →
 **IF** (exit code ≠ 0) → notification node (Telegram / email / Discord).
 
-- Execute Command: `bash /home/ubuntu/portfolio-vijay/scripts/update-stats.sh 2>&1; echo "EXIT=$?"`
+- Execute Command: `bash /path/to/portfolio-vijay/scripts/update-stats.sh 2>&1; echo "EXIT=$?"`
   - Turn on the node's *Continue On Fail* setting, or use the trailing echo,
     so a failure still reaches the IF node.
   - IF condition: `{{ $json.stdout }}` does not contain `EXIT=0`, or
@@ -95,15 +95,12 @@ Workflow: **Schedule Trigger** (daily 03:00) → **Execute Command** →
 - In n8n 2.x the Execute Command node is disabled by default. Enable it by
   removing `n8n-nodes-base.executeCommand` from `NODES_EXCLUDE`.
 - **n8n in Docker:** the command runs *inside the container*, which has no
-  repo, no git credentials, and a different node. Either:
-  1. Mount the repo, e.g. `- /home/ubuntu/portfolio-vijay:/repos/portfolio-vijay`
-     in `docker-compose.yml`, and use that path. The container still needs
-     git, bash, and Node 20.12+; the stock n8n image is Alpine with node but
-     without git. You may also need `git config --global --add safe.directory`
-     because of differing UIDs. Or:
-  2. (simpler) Use an **SSH** node pointed at the VM host (credentials stored
-     in n8n) running the same `bash /home/ubuntu/portfolio-vijay/scripts/update-stats.sh`.
-     The SSH node returns `code`/`stdout`, so branch on `code ≠ 0`.
+  repo, no git credentials, and a different node. Mount the repo, e.g.
+  `- /path/to/portfolio-vijay:/repos/portfolio-vijay` in `docker-compose.yml`,
+  and use that path. The container still needs git, bash, and Node 20.12+;
+  the stock n8n image is Alpine with node but without git. You may also need
+  `git config --global --add safe.directory` because of differing UIDs. If
+  that is more setup than it is worth, use cron (3a) instead.
 
 ## 4. Correcting an auto-added PR
 
