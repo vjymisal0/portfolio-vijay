@@ -70,7 +70,7 @@ export const workflows: Workflow[] = [
     ],
     scenarios: [
       {
-        name: 'Published',
+        name: 'Normal day',
         steps: [
           { node: 'trigger', log: 'run started' },
           { node: 'topic', log: 'grounded source found' },
@@ -87,7 +87,7 @@ export const workflows: Workflow[] = [
         ],
       },
       {
-        name: 'Model fallback',
+        name: 'AI mistake caught',
         steps: [
           { node: 'trigger', log: 'run started' },
           { node: 'topic', log: 'grounded source found' },
@@ -106,7 +106,7 @@ export const workflows: Workflow[] = [
         ],
       },
       {
-        name: 'Duplicate',
+        name: 'Duplicate avoided',
         steps: [
           { node: 'trigger', log: 'run started' },
           { node: 'topic', log: 'grounded source found' },
@@ -122,7 +122,7 @@ export const workflows: Workflow[] = [
         ],
       },
       {
-        name: 'No grounded source',
+        name: 'Nothing reliable to post',
         steps: [
           { node: 'trigger', log: 'run started' },
           { node: 'topic', log: 'no grounded source for today' },
@@ -133,7 +133,7 @@ export const workflows: Workflow[] = [
         ],
       },
       {
-        name: 'Publish fails',
+        name: 'Publish fails, recovers',
         steps: [
           { node: 'trigger', log: 'run started' },
           { node: 'topic', log: 'grounded source found' },

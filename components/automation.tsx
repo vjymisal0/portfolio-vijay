@@ -11,14 +11,14 @@ import { Workflow } from 'lucide-react'
 const workflows = [
   {
     name: 'Scheduled content publishing workflow',
-    description: 'Generates content with AI, checks it, and publishes it on a schedule. Every run reports what actually happened instead of trusting an exit code.',
+    description: 'Every day it finds trustworthy material, has AI turn it into content, double-checks the result, and publishes it. Running daily for months with almost no manual work. Built with n8n, Python, and AI models on a self-hosted server.',
     trigger: 'Scheduled',
     nodes: [
-      { label: 'Source', detail: 'Starts only when there is grounded source material. With nothing grounded, the run is skipped rather than filled with invented content.' },
-      { label: 'Generate', detail: 'An LLM produces structured output. It is validated against a schema and checked against its source. A failing model falls back to the next one.' },
-      { label: 'Produce', detail: 'Turns the validated output into the final asset.' },
-      { label: 'Publish', detail: 'Skips anything already published. A failed publish is queued and retried automatically.' },
-      { label: 'Report', detail: 'Each run reports a status: published, skipped, or failed. Only a real failure sends an alert; a deliberate skip does not.' },
+      { label: 'Source', detail: 'Starts from real, reliable source material. If there is none that day, it skips instead of letting the AI make something up.' },
+      { label: 'Generate', detail: 'An AI model drafts the content. A second check compares it with the source to catch errors. If one AI model fails, it switches to a backup automatically.' },
+      { label: 'Produce', detail: 'Turns the approved draft into the finished piece, ready to publish.' },
+      { label: 'Publish', detail: 'Never posts the same thing twice. If publishing fails, it saves the work and retries on its own.' },
+      { label: 'Report', detail: 'Every run records what happened: published, skipped, or failed. I only get an alert for real problems, so there is no noise.' },
     ],
     icon: Workflow,
   },
@@ -31,7 +31,7 @@ export default function Automation() {
         <p className="mb-2 text-[11px] font-mono text-primary">$ ls ./systems</p>
         <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground">Automation & workflows</h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          I run self-hosted automations that publish content every day without me touching them, built with n8n, Python, and AI models. They are designed to skip rather than publish something wrong, retry what is safe to retry, and alert me only when something really failed.
+          I build systems that do a daily job on their own: AI creates the content, the system checks it, and it gets published on schedule with no one at the keyboard. The hard part is not the AI, it is trust. These systems would rather skip a day than publish something wrong, fix their own small hiccups, and only call me when something truly needs a human.
         </p>
       </div>
 
@@ -54,9 +54,9 @@ export default function Automation() {
       </div>
 
       <div className="mb-6">
-        <h3 className="text-xl font-medium tracking-tight text-foreground">How a run actually goes</h3>
+        <h3 className="text-xl font-medium tracking-tight text-foreground">See it handle a bad day</h3>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          The branches follow the production pipeline: what happens on a duplicate, bad AI output, no grounded source, or a failed publish.
+          Pick a scenario and press play to watch a run step by step: a normal day, an AI mistake caught, a duplicate avoided, a day with nothing reliable to post, and a failed publish that recovers.
         </p>
       </div>
 
