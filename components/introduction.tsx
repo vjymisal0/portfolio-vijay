@@ -42,7 +42,7 @@ const highlights = [
   {
     label: '02 / Automation',
     title: 'Systems beyond the demo',
-    description: 'Self-hosted automations that publish daily to YouTube and Instagram.',
+    description: 'Self-hosted automations that publish content every day without me touching them.',
     href: '#builds',
     action: 'Explore build systems',
   },

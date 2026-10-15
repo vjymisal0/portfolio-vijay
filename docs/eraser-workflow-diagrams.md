@@ -1,6 +1,6 @@
 # Eraser workflow diagrams
 
-These sanitized flowcharts can be pasted into Eraser using **Diagram as Code**. Replace the text labels with Eraser icons from the icon library where available: `n8n`, `Docker`, `AI`, `cron`, `webhook`, `database`, `YouTube`, and `Telegram`.
+These sanitized flowcharts can be pasted into Eraser using **Diagram as Code**. Replace the text labels with Eraser icons from the icon library where available: `n8n`, `Docker`, `AI`, `cron`, `webhook`, `database`, `video`, and `Telegram`.
 
 ## 1. Autonomous media pipeline
 

@@ -1,7 +1,8 @@
 // Workflow diagrams as data. components/health-diagram.tsx lays these out and
 // replays each scenario step by step. The branches mirror the production
 // pipeline; the runs themselves are simulated, not live service status.
-// Keep this public-safe: no hosts, schedules, file names, or credentials.
+// Keep this public-safe: no hosts, schedules, file names, credentials,
+// platform names, or content niches.
 
 export type NodeKind = 'trigger' | 'step' | 'decision' | 'end'
 
@@ -31,8 +32,8 @@ export type Workflow = {
 
 export const workflows: Workflow[] = [
   {
-    id: 'shorts-publish',
-    title: 'Shorts publish run',
+    id: 'video-publish',
+    title: 'Video publish run',
     summary: 'Topic → AI script → narration → render → upload → report',
     stages: [
       {
@@ -42,13 +43,13 @@ export const workflows: Workflow[] = [
           { id: 'topic', label: 'Grounded topic for today?', kind: 'decision', next: [{ to: 'script', label: 'Yes' }, { to: 'skip', label: 'No' }] },
           { id: 'script', label: 'LLM writes script (JSON)', kind: 'step', next: [{ to: 'valid' }] },
           { id: 'valid', label: 'Valid and faithful to source?', kind: 'decision', next: [{ to: 'tts', label: 'Yes' }, { to: 'fallback', label: 'No' }] },
-          { id: 'fallback', label: 'Next model, then story corpus', kind: 'step', next: [{ to: 'valid' }] },
+          { id: 'fallback', label: 'Next model, then curated corpus', kind: 'step', next: [{ to: 'valid' }] },
         ],
       },
       {
         title: '02 / Produce & upload',
         nodes: [
-          { id: 'tts', label: 'Local Hindi narration', kind: 'step', next: [{ to: 'render' }] },
+          { id: 'tts', label: 'Local TTS narration', kind: 'step', next: [{ to: 'render' }] },
           { id: 'render', label: 'Render video, captions, thumbnail', kind: 'step', next: [{ to: 'dup' }] },
           { id: 'dup', label: 'Topic already uploaded?', kind: 'decision', next: [{ to: 'skip', label: 'Yes' }, { to: 'upload', label: 'No' }] },
           { id: 'upload', label: 'Upload into next free publish slot', kind: 'step', next: [{ to: 'uploaded' }] },
@@ -72,9 +73,9 @@ export const workflows: Workflow[] = [
         name: 'Published',
         steps: [
           { node: 'trigger', log: 'run started' },
-          { node: 'topic', log: 'grounded topic picked for today\'s deity' },
+          { node: 'topic', log: 'grounded topic picked for today' },
           { node: 'script', log: 'LLM returned title, script, hashtags' },
-          { node: 'valid', log: 'schema ok, matches the source story' },
+          { node: 'valid', log: 'schema ok, matches the source' },
           { node: 'tts', log: 'narration synthesized locally' },
           { node: 'render', log: 'video, captions, thumbnail rendered' },
           { node: 'dup', log: 'topic not published before' },
@@ -91,9 +92,9 @@ export const workflows: Workflow[] = [
           { node: 'trigger', log: 'run started' },
           { node: 'topic', log: 'grounded topic picked' },
           { node: 'script', log: 'first model returned a script' },
-          { node: 'valid', log: 'adds events that are not in the source story' },
+          { node: 'valid', log: 'adds claims that are not in the source' },
           { node: 'fallback', log: 'trying the next model' },
-          { node: 'valid', log: 'schema ok, matches the source story' },
+          { node: 'valid', log: 'schema ok, matches the source' },
           { node: 'tts', log: 'narration synthesized locally' },
           { node: 'render', log: 'video, captions, thumbnail rendered' },
           { node: 'dup', log: 'topic not published before' },
@@ -110,10 +111,10 @@ export const workflows: Workflow[] = [
           { node: 'trigger', log: 'run started' },
           { node: 'topic', log: 'grounded topic picked' },
           { node: 'script', log: 'LLM returned a script' },
-          { node: 'valid', log: 'schema ok, matches the source story' },
+          { node: 'valid', log: 'schema ok, matches the source' },
           { node: 'tts', log: 'narration synthesized locally' },
           { node: 'render', log: 'video, captions, thumbnail rendered' },
-          { node: 'dup', log: 'same title already on the channel' },
+          { node: 'dup', log: 'same title already published' },
           { node: 'skip', log: 'skipped as duplicate, nothing uploaded' },
           { node: 'result', log: 'status: skipped_duplicate' },
           { node: 'failure', log: 'a skip is not a failure' },
@@ -124,7 +125,7 @@ export const workflows: Workflow[] = [
         name: 'No grounded topic',
         steps: [
           { node: 'trigger', log: 'run started' },
-          { node: 'topic', log: 'no topic with a source story for today' },
+          { node: 'topic', log: 'no topic with source material for today' },
           { node: 'skip', log: 'slot skipped instead of publishing an ungrounded script' },
           { node: 'result', log: 'status: skipped' },
           { node: 'failure', log: 'a skip is not a failure' },
@@ -137,7 +138,7 @@ export const workflows: Workflow[] = [
           { node: 'trigger', log: 'run started' },
           { node: 'topic', log: 'grounded topic picked' },
           { node: 'script', log: 'LLM returned a script' },
-          { node: 'valid', log: 'schema ok, matches the source story' },
+          { node: 'valid', log: 'schema ok, matches the source' },
           { node: 'tts', log: 'narration synthesized locally' },
           { node: 'render', log: 'video, captions, thumbnail rendered' },
           { node: 'dup', log: 'topic not published before' },
