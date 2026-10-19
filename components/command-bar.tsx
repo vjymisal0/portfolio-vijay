@@ -146,7 +146,7 @@ export default function CommandBar() {
                           className={`relative flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors ${selected ? 'text-foreground' : 'text-muted-foreground'}`}
                         >
                           {selected && (
-                            <motion.span layoutId="command-highlight" className="absolute inset-0 rounded-lg bg-primary/10" transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }} />
+                            <span className="absolute inset-0 rounded-lg bg-primary/10" />
                           )}
                           <Icon className={`relative h-4 w-4 ${selected ? 'text-primary' : ''}`} />
                           <span className="relative flex-1">{cmd.id === 'email' && copied ? 'Copied!' : cmd.label}</span>
