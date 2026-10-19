@@ -1,56 +1,68 @@
 {
-  "updatedAt": "2026-10-18T03:00:24.535Z",
+  "updatedAt": "2026-10-19T15:00:24.493Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 1158
+      "monthlyDownloads": 335
     },
     "exposure-score": {
-      "monthlyDownloads": 1034
+      "monthlyDownloads": 301
     },
     "pan-card-validator": {
-      "monthlyDownloads": 1013
+      "monthlyDownloads": 146
     },
     "gst-validator": {
-      "monthlyDownloads": 905
+      "monthlyDownloads": 134
     },
     "exif-purge": {
-      "monthlyDownloads": 1071
+      "monthlyDownloads": 308
     },
     "photo-hash": {
-      "monthlyDownloads": 1066
+      "monthlyDownloads": 313
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 1125
+      "monthlyDownloads": 320
     },
     "glare-score": {
-      "monthlyDownloads": 881
+      "monthlyDownloads": 447
     },
     "pkg-bin-doctor": {
-      "monthlyDownloads": 412
+      "monthlyDownloads": 71
     },
     "contrast-score": {
-      "monthlyDownloads": 900
+      "monthlyDownloads": 461
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 582
+      "monthlyDownloads": 251
     },
     "env-example-drift": {
-      "monthlyDownloads": 416
+      "monthlyDownloads": 95
     },
     "shadow-score": {
-      "monthlyDownloads": 849
+      "monthlyDownloads": 448
     },
     "todo-expiry": {
-      "monthlyDownloads": 381
+      "monthlyDownloads": 65
     },
     "upi-validator": {
-      "monthlyDownloads": 743
+      "monthlyDownloads": 450
     },
     "rupee-words": {
-      "monthlyDownloads": 582
+      "monthlyDownloads": 268
     }
   },
   "contributions": [
+    {
+      "repo": "reflex-dev/reflex",
+      "title": "fix(radix): drop as_child from radio_cards root and item",
+      "url": "https://github.com/reflex-dev/reflex/pull/7593",
+      "number": 7593,
+      "date": "2026-10-19",
+      "kind": "fix",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
     {
       "repo": "woocommerce/woocommerce",
       "title": "Fix email review drawer claiming structural changes were applied",
