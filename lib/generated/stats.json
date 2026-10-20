@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T15:00:24.493Z",
+  "updatedAt": "2026-10-20T15:00:27.739Z",
   "packages": {
     "blur-score": {
       "monthlyDownloads": 335
@@ -51,6 +51,42 @@
     }
   },
   "contributions": [
+    {
+      "repo": "securo-finance/securo",
+      "title": "fix(accounts): stop presenting 1:1 fallback balances as converted across accounts and dashboard",
+      "url": "https://github.com/securo-finance/securo/pull/1195",
+      "number": 1195,
+      "date": "2026-10-20",
+      "kind": "fix",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "securo-finance/securo",
+      "title": "feat: add Hong Kong dollar (HKD) and New Taiwan dollar (TWD) currency support",
+      "url": "https://github.com/securo-finance/securo/pull/1190",
+      "number": 1190,
+      "date": "2026-10-20",
+      "kind": "feature",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "all-contributors/cli",
+      "title": "fix: sort contributors alphabetically case-insensitively with login fallback",
+      "url": "https://github.com/all-contributors/cli/pull/531",
+      "number": 531,
+      "date": "2026-10-20",
+      "kind": "fix",
+      "techs": [
+        "JavaScript"
+      ],
+      "auto": true
+    },
     {
       "repo": "reflex-dev/reflex",
       "title": "fix(radix): drop as_child from radio_cards root and item",
