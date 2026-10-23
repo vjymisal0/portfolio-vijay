@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T15:00:27.739Z",
+  "updatedAt": "2026-10-23T03:00:23.173Z",
   "packages": {
     "blur-score": {
       "monthlyDownloads": 335
@@ -51,6 +51,18 @@
     }
   },
   "contributions": [
+    {
+      "repo": "lit/lit",
+      "title": "Make asyncAppend generic",
+      "url": "https://github.com/lit/lit/pull/5375",
+      "number": 5375,
+      "date": "2026-10-22",
+      "kind": "cleanup",
+      "techs": [
+        "TypeScript"
+      ],
+      "auto": true
+    },
     {
       "repo": "securo-finance/securo",
       "title": "fix(accounts): stop presenting 1:1 fallback balances as converted across accounts and dashboard",
