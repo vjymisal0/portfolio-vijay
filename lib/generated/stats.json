@@ -1,53 +1,53 @@
 {
-  "updatedAt": "2026-10-23T03:00:23.173Z",
+  "updatedAt": "2026-10-24T03:00:23.263Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 335
+      "monthlyDownloads": 266
     },
     "exposure-score": {
-      "monthlyDownloads": 301
+      "monthlyDownloads": 255
     },
     "pan-card-validator": {
-      "monthlyDownloads": 146
+      "monthlyDownloads": 76
     },
     "gst-validator": {
-      "monthlyDownloads": 134
+      "monthlyDownloads": 72
     },
     "exif-purge": {
-      "monthlyDownloads": 308
+      "monthlyDownloads": 256
     },
     "photo-hash": {
-      "monthlyDownloads": 313
+      "monthlyDownloads": 259
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 320
+      "monthlyDownloads": 265
     },
     "glare-score": {
-      "monthlyDownloads": 447
+      "monthlyDownloads": 411
     },
     "pkg-bin-doctor": {
-      "monthlyDownloads": 71
+      "monthlyDownloads": 40
     },
     "contrast-score": {
-      "monthlyDownloads": 461
+      "monthlyDownloads": 427
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 251
+      "monthlyDownloads": 220
     },
     "env-example-drift": {
-      "monthlyDownloads": 95
+      "monthlyDownloads": 74
     },
     "shadow-score": {
-      "monthlyDownloads": 448
+      "monthlyDownloads": 417
     },
     "todo-expiry": {
-      "monthlyDownloads": 65
+      "monthlyDownloads": 37
     },
     "upi-validator": {
-      "monthlyDownloads": 450
+      "monthlyDownloads": 427
     },
     "rupee-words": {
-      "monthlyDownloads": 268
+      "monthlyDownloads": 241
     }
   },
   "contributions": [
