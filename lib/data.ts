@@ -17,7 +17,7 @@ export type Contribution = {
 
 type GeneratedStats = {
   updatedAt: string
-  packages: Record<string, { monthlyDownloads: number }>
+  packages: Record<string, { monthlyDownloads: number; allTimeDownloads?: number; firstPublished?: string }>
   contributions: Contribution[]
 }
 
@@ -821,9 +821,9 @@ export const contributions: readonly Contribution[] = [
   ...stats.contributions.filter((c) => !handUrls.has(c.url)),
 ].sort((a, b) => b.date.localeCompare(a.date))
 
-// Monthly downloads come from lib/generated/stats.json (refreshed daily from
-// api.npmjs.org/downloads/point/last-month); the hardcoded values in
-// `basePackages` are the fallback.
+// 30-day and all-time downloads come from lib/generated/stats.json (refreshed
+// daily by scripts/update-stats.mjs); the hardcoded values in `basePackages`
+// are the fallback.
 export const packagesSnapshotDate = stats.updatedAt.slice(0, 10)
 
 export const packageGroups = {
@@ -991,7 +991,12 @@ const basePackages = [
 export const packages = basePackages.map((p) => ({
   ...p,
   monthlyDownloads: stats.packages[p.name]?.monthlyDownloads ?? (p.monthlyDownloads as number),
+  allTimeDownloads: stats.packages[p.name]?.allTimeDownloads ?? (p.monthlyDownloads as number),
 }))
+
+// Day the first package went to npm (YYYY-MM-DD); "overall" figures start here.
+export const firstPublishedDate =
+  Object.values(stats.packages).map((p) => p.firstPublished).filter((d): d is string => !!d).sort()[0] ?? '2026-08-03'
 
 // The most-starred repos among `contributions`, snapshotted 2026-09-30 via
 // the GitHub GraphQL API. Star counts drift — refresh periodically rather

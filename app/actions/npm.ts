@@ -1,100 +1,88 @@
 'use server'
 
-export type MonthlyDownloads = { month: string; downloads: number }
 export type DailyDownloads = { day: string; downloads: number }
 
 type RangeResponse = { downloads: { day: string; downloads: number }[] }
+type PointResponse = { downloads: number; end: string }
 
-// Total downloads per calendar month across the given packages, for the last
-// 12 months (npm's range API caps a query at 18 months). The bulk endpoint
-// rejects scoped names, so those are fetched one by one.
-export async function getNpmMonthlyDownloads(names: string[]) {
+const opts = { next: { revalidate: 21600 } } // 6 hours
+const day = (d: Date) => d.toISOString().slice(0, 10)
+// Yesterday (UTC): npm publishes a day's counts some hours after it ends.
+const yesterday = () => day(new Date(Date.now() - 864e5))
+
+// npm caps one range/point query at 18 months, so longer spans are split
+// into consecutive chunks.
+function rangeChunks(start: string, end: string) {
+  const out: string[] = []
+  for (let from = Date.parse(start); from <= Date.parse(end); from += 540 * 864e5) {
+    out.push(`${day(new Date(from))}:${day(new Date(Math.min(from + 539 * 864e5, Date.parse(end))))}`)
+  }
+  return out
+}
+
+// The bulk endpoint rejects scoped names, so those are fetched one by one.
+// Returns one response per package (bulk responses are keyed by name, except
+// for a single-package query, which returns the body directly).
+async function fetchPerPackage<T>(kind: 'range' | 'point', range: string, names: string[]) {
+  const unscoped = names.filter((n) => !n.startsWith('@'))
+  const scoped = names.filter((n) => n.startsWith('@'))
+  const out: T[] = []
+  if (unscoped.length) {
+    const res = await fetch(`https://api.npmjs.org/downloads/${kind}/${range}/${unscoped.join(',')}`, opts)
+    if (!res.ok) throw new Error(`npm responded ${res.status}`)
+    const data = await res.json()
+    if (unscoped.length === 1) out.push(data)
+    else for (const n of unscoped) if (data[n]) out.push(data[n])
+  }
+  for (const n of scoped) {
+    const res = await fetch(`https://api.npmjs.org/downloads/${kind}/${range}/${n}`, opts)
+    if (res.ok) out.push(await res.json())
+  }
+  return out
+}
+
+// Combined daily downloads across the given packages from `since` (the first
+// publish) through yesterday.
+export async function getNpmDailyDownloads(names: string[], since: string) {
   try {
-    const end = new Date()
-    end.setUTCDate(end.getUTCDate() - 1)
-    const start = new Date(Date.UTC(end.getUTCFullYear() - 1, end.getUTCMonth() + 1, 1))
-    const range = `${start.toISOString().slice(0, 10)}:${end.toISOString().slice(0, 10)}`
-    const opts = { next: { revalidate: 21600 } } // 6 hours
-
-    const unscoped = names.filter((n) => !n.startsWith('@'))
-    const scoped = names.filter((n) => n.startsWith('@'))
-
-    const series: RangeResponse[] = []
-    if (unscoped.length) {
-      const res = await fetch(`https://api.npmjs.org/downloads/range/${range}/${unscoped.join(',')}`, opts)
-      if (!res.ok) throw new Error(`npm responded ${res.status}`)
-      const data = await res.json()
-      // A single-package query returns the series directly, not keyed by name.
-      if (unscoped.length === 1) series.push(data)
-      else for (const n of unscoped) if (data[n]) series.push(data[n])
-    }
-    for (const n of scoped) {
-      const res = await fetch(`https://api.npmjs.org/downloads/range/${range}/${n}`, opts)
-      if (res.ok) series.push(await res.json())
-    }
-
     const byDay = new Map<string, number>()
-    for (const s of series) {
-      for (const d of s.downloads ?? []) {
-        byDay.set(d.day, (byDay.get(d.day) ?? 0) + d.downloads)
+    for (const range of rangeChunks(since, yesterday())) {
+      for (const s of await fetchPerPackage<RangeResponse>('range', range, names)) {
+        for (const d of s.downloads ?? []) byDay.set(d.day, (byDay.get(d.day) ?? 0) + d.downloads)
       }
     }
 
     const days: DailyDownloads[] = Array.from(byDay, ([day, downloads]) => ({ day, downloads }))
       .sort((a, b) => a.day.localeCompare(b.day))
-    // npm publishes a day's counts some hours after it ends, so the newest
-    // day can still read 0. Drop up to two trailing unpublished days.
-    for (let i = 0; i < 2 && days.length > 1 && days[days.length - 1].downloads === 0; i++) days.pop()
 
-    const byMonth = new Map<string, number>()
-    for (const d of days) {
-      const month = d.day.slice(0, 7)
-      byMonth.set(month, (byMonth.get(month) ?? 0) + d.downloads)
-    }
-    const months: MonthlyDownloads[] = Array.from(byMonth, ([month, downloads]) => ({ month, downloads }))
-
-    return { success: true, months, days }
+    return { success: true, days }
   } catch (error) {
     console.error('npm downloads error:', error)
-    return { success: false, months: [] as MonthlyDownloads[], days: [] as DailyDownloads[] }
+    return { success: false, days: [] as DailyDownloads[] }
   }
 }
 
-type PointResponse = { downloads: number; end: string }
-
-// Combined downloads over the 30 days ending yesterday (UTC), the same window
-// scripts/update-stats.mjs bakes into the snapshot, so the live value matches
-// it instead of jumping on load. npm's `last-month` alias is not used: it froze
-// at 2026-06-02:2026-07-01 and reads 0 for every package.
-export async function getNpmLastMonthTotal(names: string[]) {
+// Combined downloads over the 30 days ending yesterday (UTC) and since the
+// first publish, the same windows scripts/update-stats.mjs bakes into the
+// snapshot, so the live values match it instead of jumping on load. npm's
+// `last-month` alias is not used: it froze at 2026-06-02:2026-07-01 and reads
+// 0 for every package.
+export async function getNpmTotals(names: string[], since: string) {
   try {
-    const opts = { next: { revalidate: 21600 } } // 6 hours
-    const day = (d: Date) => d.toISOString().slice(0, 10)
-    const end = day(new Date(Date.now() - 864e5))
-    const range = `${day(new Date(Date.now() - 30 * 864e5))}:${end}`
-    const unscoped = names.filter((n) => !n.startsWith('@'))
-    const scoped = names.filter((n) => n.startsWith('@'))
-
-    const points: PointResponse[] = []
-    if (unscoped.length) {
-      const res = await fetch(`https://api.npmjs.org/downloads/point/${range}/${unscoped.join(',')}`, opts)
-      if (!res.ok) throw new Error(`npm responded ${res.status}`)
-      const data = await res.json()
-      if (unscoped.length === 1) points.push(data)
-      else for (const n of unscoped) if (data[n]) points.push(data[n])
-    }
-    for (const n of scoped) {
-      const res = await fetch(`https://api.npmjs.org/downloads/point/${range}/${n}`, opts)
-      if (res.ok) points.push(await res.json())
-    }
-    if (points.length === 0) throw new Error('no npm data')
+    const end = yesterday()
+    const month = await fetchPerPackage<PointResponse>('point', `${day(new Date(Date.now() - 30 * 864e5))}:${end}`, names)
+    if (month.length === 0) throw new Error('no npm data')
     // a window ending days short of the one asked for is stale data, not zero downloads
-    if (points.some((p) => Date.parse(end) - Date.parse(p.end) > 3 * 864e5)) throw new Error(`stale npm window ending ${points[0].end}`)
+    if (month.some((p) => Date.parse(end) - Date.parse(p.end) > 3 * 864e5)) throw new Error(`stale npm window ending ${month[0].end}`)
 
-    const total = points.reduce((sum, p) => sum + (p.downloads ?? 0), 0)
-    return { success: true, total, end: points[0].end }
+    let allTime = 0
+    for (const range of rangeChunks(since, end)) {
+      for (const p of await fetchPerPackage<PointResponse>('point', range, names)) allTime += p.downloads ?? 0
+    }
+
+    return { success: true, month: month.reduce((sum, p) => sum + (p.downloads ?? 0), 0), allTime, end: month[0].end }
   } catch (error) {
-    console.error('npm last-month error:', error)
-    return { success: false, total: 0, end: '' }
+    console.error('npm totals error:', error)
+    return { success: false, month: 0, allTime: 0, end: '' }
   }
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Refreshes lib/generated/stats.json with npm monthly downloads and newly
+// Refreshes lib/generated/stats.json with npm 30-day and all-time downloads and newly
 // merged upstream PRs. Never touches lib/data.ts (it only reads it).
 //
 // Usage: npm run stats:update   (loads .env via node --env-file)
@@ -88,6 +88,38 @@ async function fetchMonthlyDownloads(name) {
   return body.downloads
 }
 
+// npm's range/point APIs cap one query at 18 months, so longer spans are
+// summed from consecutive chunks.
+function rangeChunks(start, end) {
+  const out = []
+  for (let from = Date.parse(start); from <= Date.parse(end); from += 540 * 864e5) {
+    out.push(`${day(new Date(from))}:${day(new Date(Math.min(from + 539 * 864e5, Date.parse(end))))}`)
+  }
+  return out
+}
+
+async function fetchFirstPublished(name) {
+  const res = await fetch(`https://registry.npmjs.org/${name.replace('/', '%2F')}`)
+  if (!res.ok) throw new Error(`registry HTTP ${res.status}`)
+  const created = (await res.json()).time?.created
+  if (!created) throw new Error('no time.created')
+  return created.slice(0, 10)
+}
+
+// Downloads from the first publish through RANGE_END, the same end day as the
+// 30-day figure, so the site's live totals match this snapshot.
+async function fetchAllTimeDownloads(name, since) {
+  let total = 0
+  for (const range of rangeChunks(since, RANGE_END)) {
+    const res = await fetch(`https://api.npmjs.org/downloads/point/${range}/${encodeURIComponent(name)}`)
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const body = await res.json()
+    if (typeof body.downloads !== 'number') throw new Error('no downloads field')
+    total += body.downloads
+  }
+  return total
+}
+
 // --- GitHub ---
 
 async function gh(url) {
@@ -169,17 +201,30 @@ async function main() {
   let pkgUpdated = 0
   const pkgFailed = []
   for (const name of packageNames) {
+    const was = prev.packages?.[name]
     try {
       const downloads = await fetchMonthlyDownloads(name)
       packages[name] = { monthlyDownloads: downloads }
-      if (prev.packages?.[name]?.monthlyDownloads !== downloads) pkgUpdated++
+      if (was?.monthlyDownloads !== downloads) pkgUpdated++
     } catch (err) {
       pkgFailed.push(name)
       console.warn(`[warn] npm ${name}: ${err.message} (keeping previous value)`)
-      if (prev.packages?.[name]) packages[name] = prev.packages[name]
+      if (was) packages[name] = { monthlyDownloads: was.monthlyDownloads }
+    }
+    if (!packages[name]) continue
+    try {
+      const firstPublished = was?.firstPublished ?? (await fetchFirstPublished(name))
+      packages[name].firstPublished = firstPublished
+      packages[name].allTimeDownloads = await fetchAllTimeDownloads(name, firstPublished)
+    } catch (err) {
+      console.warn(`[warn] npm all-time ${name}: ${err.message} (keeping previous value)`)
+      if (was?.firstPublished) packages[name].firstPublished = was.firstPublished
+      if (was?.allTimeDownloads !== undefined) packages[name].allTimeDownloads = was.allTimeDownloads
     }
   }
   const totalDownloads = Object.values(packages).reduce((s, p) => s + p.monthlyDownloads, 0)
+  const allTimeTotal = Object.values(packages).reduce((s, p) => s + (p.allTimeDownloads ?? 0), 0)
+  const firstPublished = Object.values(packages).map((p) => p.firstPublished).filter(Boolean).sort()[0]
 
   // GitHub
   await gh('/user') // fails fast with a clear message on bad tokens
@@ -264,6 +309,7 @@ async function main() {
     `Portfolio stats: ${changed ? 'UPDATED' : 'no changes'}`,
     ``,
     `npm, last 30 days: ${fmt(totalDownloads)} total${prevTotal ? ` (${delta(totalDownloads - prevTotal)})` : ''}`,
+    `npm, all time (since ${firstPublished}): ${fmt(allTimeTotal)} total`,
     `packages changed: ${pkgUpdated}/${packageNames.length}${pkgFailed.length ? ` | failed, kept old value: ${pkgFailed.join(', ')}` : ''}`,
     ...pkgLines,
     ``,
@@ -283,6 +329,7 @@ async function main() {
   const totalPRs = handUrls.size + contributions.length
   const body = [
     `📦 npm (30d): ${fmt(totalDownloads)}${prevTotal ? ` (${delta(totalDownloads - prevTotal)})` : ''} · ${pkgUpdated}/${packageNames.length} pkgs changed`,
+    `📦 npm (all time): ${fmt(allTimeTotal)}`,
     ups.length ? `▲ ${ups.map(([n, d]) => `${n} ${delta(d)}`).join(', ')}` : null,
     downs.length ? `▼ ${downs.map(([n, d]) => `${n} ${delta(d)}`).join(', ')}` : null,
     pkgFailed.length ? `⚠️ npm fetch failed (kept old value): ${pkgFailed.join(', ')}` : null,

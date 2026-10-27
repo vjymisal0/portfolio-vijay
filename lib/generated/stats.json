@@ -1,53 +1,85 @@
 {
-  "updatedAt": "2026-10-27T13:38:57.495Z",
+  "updatedAt": "2026-10-27T13:49:01.399Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 240
+      "monthlyDownloads": 240,
+      "firstPublished": "2026-08-03",
+      "allTimeDownloads": 1540
     },
     "exposure-score": {
-      "monthlyDownloads": 238
+      "monthlyDownloads": 238,
+      "firstPublished": "2026-08-03",
+      "allTimeDownloads": 1274
     },
     "pan-card-validator": {
-      "monthlyDownloads": 60
+      "monthlyDownloads": 60,
+      "firstPublished": "2026-09-16",
+      "allTimeDownloads": 1165
     },
     "gst-validator": {
-      "monthlyDownloads": 46
+      "monthlyDownloads": 46,
+      "firstPublished": "2026-09-16",
+      "allTimeDownloads": 1045
     },
     "exif-purge": {
-      "monthlyDownloads": 249
+      "monthlyDownloads": 249,
+      "firstPublished": "2026-09-16",
+      "allTimeDownloads": 1211
     },
     "photo-hash": {
-      "monthlyDownloads": 243
+      "monthlyDownloads": 243,
+      "firstPublished": "2026-09-16",
+      "allTimeDownloads": 1183
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 236
+      "monthlyDownloads": 236,
+      "firstPublished": "2026-09-17",
+      "allTimeDownloads": 1137
     },
     "glare-score": {
-      "monthlyDownloads": 388
+      "monthlyDownloads": 388,
+      "firstPublished": "2026-09-15",
+      "allTimeDownloads": 901
     },
     "pkg-bin-doctor": {
-      "monthlyDownloads": 20
+      "monthlyDownloads": 20,
+      "firstPublished": "2026-09-15",
+      "allTimeDownloads": 434
     },
     "contrast-score": {
-      "monthlyDownloads": 411
+      "monthlyDownloads": 411,
+      "firstPublished": "2026-09-15",
+      "allTimeDownloads": 929
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 208
+      "monthlyDownloads": 208,
+      "firstPublished": "2026-09-15",
+      "allTimeDownloads": 611
     },
     "env-example-drift": {
-      "monthlyDownloads": 61
+      "monthlyDownloads": 61,
+      "firstPublished": "2026-09-15",
+      "allTimeDownloads": 445
     },
     "shadow-score": {
-      "monthlyDownloads": 403
+      "monthlyDownloads": 403,
+      "firstPublished": "2026-09-15",
+      "allTimeDownloads": 874
     },
     "todo-expiry": {
-      "monthlyDownloads": 21
+      "monthlyDownloads": 21,
+      "firstPublished": "2026-09-15",
+      "allTimeDownloads": 401
     },
     "upi-validator": {
-      "monthlyDownloads": 415
+      "monthlyDownloads": 415,
+      "firstPublished": "2026-09-15",
+      "allTimeDownloads": 773
     },
     "rupee-words": {
-      "monthlyDownloads": 228
+      "monthlyDownloads": 228,
+      "firstPublished": "2026-09-15",
+      "allTimeDownloads": 602
     }
   },
   "contributions": [

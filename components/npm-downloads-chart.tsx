@@ -3,9 +3,13 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { animate, useInView } from 'framer-motion'
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
-import { getNpmMonthlyDownloads, type DailyDownloads, type MonthlyDownloads } from '@/app/actions/npm'
+import { getNpmDailyDownloads, type DailyDownloads } from '@/app/actions/npm'
+import { firstPublishedDate } from '@/lib/data'
 
-type Range = 'daily' | 'monthly'
+type Range = '30d' | 'overall'
+// How the overall view groups days: daily while the history is short, then
+// weekly, then monthly, so the chart never gets too dense to read.
+type Bucket = 'day' | 'week' | 'month'
 type Point = { key: string; downloads: number }
 
 const monthLabel = (m: string, withYear = false) =>
@@ -17,6 +21,32 @@ const dayLabel = (d: string, withWeekday = false) =>
 const compact = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(n >= 10000 ? 0 : 1)}k` : `${n}`)
 
 const sum = (days: DailyDownloads[]) => days.reduce((s, d) => s + d.downloads, 0)
+
+const sinceLabel = dayLabel(firstPublishedDate) + ', ' + firstPublishedDate.slice(0, 4)
+
+function bucketFor(days: DailyDownloads[]): Bucket {
+  return days.length <= 120 ? 'day' : days.length <= 730 ? 'week' : 'month'
+}
+
+// Monday of the day's week, as YYYY-MM-DD.
+function weekStart(d: string) {
+  const date = new Date(d + 'T00:00:00Z')
+  date.setUTCDate(date.getUTCDate() - ((date.getUTCDay() + 6) % 7))
+  return date.toISOString().slice(0, 10)
+}
+
+function group(days: DailyDownloads[], bucket: Bucket): Point[] {
+  if (bucket === 'day') return days.map((d) => ({ key: d.day, downloads: d.downloads }))
+  const byKey = new Map<string, number>()
+  for (const d of days) {
+    const key = bucket === 'week' ? weekStart(d.day) : d.day.slice(0, 7)
+    byKey.set(key, (byKey.get(key) ?? 0) + d.downloads)
+  }
+  return Array.from(byKey, ([key, downloads]) => ({ key, downloads }))
+}
+
+const pointLabel = (key: string, bucket: Bucket, long = false) =>
+  bucket === 'month' ? monthLabel(key, long) : bucket === 'week' ? `${long ? 'Week of ' : ''}${dayLabel(key)}` : dayLabel(key, long)
 
 // Counts up from 0 the first time it scrolls into view.
 function CountUp({ value, className }: { value: number; className?: string }) {
@@ -65,12 +95,12 @@ function Stat({ label, value, note }: { label: string; value: number; note?: str
   )
 }
 
-function ChartTooltip({ active, payload, range }: { active?: boolean; payload?: { payload: Point }[]; range: Range }) {
+function ChartTooltip({ active, payload, bucket }: { active?: boolean; payload?: { payload: Point }[]; bucket: Bucket }) {
   if (!active || !payload?.length) return null
   const { key, downloads } = payload[0].payload
   return (
     <div className="rounded-lg border border-border bg-background/95 px-3 py-2 text-xs shadow-lg backdrop-blur">
-      <p className="text-muted-foreground">{range === 'daily' ? dayLabel(key, true) : monthLabel(key, true)}</p>
+      <p className="text-muted-foreground">{pointLabel(key, bucket, true)}</p>
       <p className="mt-0.5 font-mono font-medium text-foreground">{downloads.toLocaleString()} downloads</p>
     </div>
   )
@@ -78,42 +108,41 @@ function ChartTooltip({ active, payload, range }: { active?: boolean; payload?: 
 
 // Live npm stats: headline counters derived from npm's daily download
 // series, plus a glowing area chart that switches between the last 30 days
-// and the last 12 months.
+// and everything since the first package was published.
 export default function NpmDownloadsChart({ packages }: { packages: readonly string[] }) {
-  const [months, setMonths] = useState<MonthlyDownloads[]>([])
   const [days, setDays] = useState<DailyDownloads[]>([])
-  const [range, setRange] = useState<Range>('daily')
+  const [range, setRange] = useState<Range>('30d')
   const id = useId().replace(/:/g, '')
 
   useEffect(() => {
-    getNpmMonthlyDownloads([...packages]).then((res) => {
-      if (!res.success) return
-      setMonths(res.months)
-      setDays(res.days)
+    getNpmDailyDownloads([...packages], firstPublishedDate).then((res) => {
+      if (res.success) setDays(res.days)
     })
   }, [packages])
 
   if (days.length < 14) return null
 
-  const latest = days[days.length - 1]
+  // Sums cover every day through yesterday, matching the home page totals.
+  // Only the "latest day" tile skips up to two trailing zeros, which can be
+  // days npm has not published yet.
+  let latestIdx = days.length - 1
+  for (let i = 0; i < 2 && latestIdx > 0 && days[latestIdx].downloads === 0; i++) latestIdx--
+  const latest = days[latestIdx]
   const last7 = sum(days.slice(-7))
   const last30 = sum(days.slice(-30))
-  const allYear = sum(days)
+  const overall = sum(days)
 
-  // Skip the empty months before the first package was published, but keep
-  // at least six months so the trend has some context.
-  const firstActive = months.findIndex((m) => m.downloads > 0)
-  const shownMonths = firstActive < 0 ? months : months.slice(Math.max(0, Math.min(firstActive, months.length - 6)))
-
-  // Same idea for the daily view: start at the first day with downloads,
-  // keeping at least two weeks.
+  // The 30-day view starts at the first day with downloads, keeping at least
+  // two weeks.
   const recent = days.slice(-30)
   const firstDay = recent.findIndex((d) => d.downloads > 0)
   const shownDays = firstDay < 0 ? recent : recent.slice(Math.max(0, Math.min(firstDay, recent.length - 14)))
 
-  const data: Point[] = range === 'daily'
-    ? shownDays.map((d) => ({ key: d.day, downloads: d.downloads }))
-    : shownMonths.map((m) => ({ key: m.month, downloads: m.downloads }))
+  const bucket: Bucket = range === '30d' ? 'day' : bucketFor(days)
+  const data = group(range === '30d' ? shownDays : days, bucket)
+  const caption = range === '30d'
+    ? `Daily downloads, last ${shownDays.length} days`
+    : `${bucket === 'day' ? 'Daily' : bucket === 'week' ? 'Weekly' : 'Monthly'} downloads since ${sinceLabel}`
 
   return (
     <div className="mb-14 rounded-2xl border border-border bg-card p-5 sm:p-6">
@@ -123,22 +152,22 @@ export default function NpmDownloadsChart({ packages }: { packages: readonly str
           <h3 className="mt-1 font-serif text-xl font-medium text-foreground">npm downloads</h3>
           <p className="mt-1 text-xs text-muted-foreground">All {packages.length} packages combined</p>
         </div>
-        <LiveBadge through={latest.day} />
+        <LiveBadge through={days[days.length - 1].day} />
       </div>
 
       <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <Stat label={`Latest day · ${dayLabel(latest.day)}`} value={latest.downloads} />
         <Stat label="Last 7 days" value={last7} note={`~${Math.round(last7 / 7).toLocaleString()}/day avg`} />
         <Stat label="Last 30 days" value={last30} />
-        <Stat label="Last 12 months" value={allYear} />
+        <Stat label="Overall" value={overall} note={`since ${sinceLabel}`} />
       </div>
 
       <div className="mb-3 flex items-center justify-between gap-3">
         <p className="text-[11px] text-muted-foreground">
-          {range === 'daily' ? `Daily downloads, last ${shownDays.length} days` : `Monthly downloads, last ${shownMonths.length} months`}
+          {caption}
         </p>
         <div className="inline-flex rounded-lg border border-border bg-background/60 p-0.5 font-mono text-[11px]" role="tablist" aria-label="Chart range">
-          {(['daily', 'monthly'] as const).map((r) => (
+          {(['30d', 'overall'] as const).map((r) => (
             <button
               key={r}
               role="tab"
@@ -146,7 +175,7 @@ export default function NpmDownloadsChart({ packages }: { packages: readonly str
               onClick={() => setRange(r)}
               className={`rounded-md px-2.5 py-1 transition-colors ${range === r ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}`}
             >
-              {r === 'daily' ? '30d' : '12m'}
+              {r}
             </button>
           ))}
         </div>
@@ -171,7 +200,7 @@ export default function NpmDownloadsChart({ packages }: { packages: readonly str
             <CartesianGrid vertical={false} strokeDasharray="3 4" stroke="hsl(var(--border))" />
             <XAxis
               dataKey="key"
-              tickFormatter={(k) => (range === 'daily' ? dayLabel(k) : monthLabel(k))}
+              tickFormatter={(k) => pointLabel(k, bucket)}
               tickLine={false}
               axisLine={false}
               minTickGap={24}
@@ -185,7 +214,7 @@ export default function NpmDownloadsChart({ packages }: { packages: readonly str
               width={48}
               tick={{ fontSize: 11, fill: 'hsl(var(--muted-foreground))' }}
             />
-            <Tooltip content={<ChartTooltip range={range} />} cursor={{ stroke: 'hsl(var(--primary))', strokeOpacity: 0.3, strokeDasharray: '4 4' }} />
+            <Tooltip content={<ChartTooltip bucket={bucket} />} cursor={{ stroke: 'hsl(var(--primary))', strokeOpacity: 0.3, strokeDasharray: '4 4' }} />
             <Area
               type="monotone"
               dataKey="downloads"
