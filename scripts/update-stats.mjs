@@ -64,8 +64,14 @@ async function readDataTs() {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
+// npm's `last-month` alias froze on 2026-06-02:2026-07-01 (every package read
+// 0 on 2026-10-27), so ask for the explicit 30 days ending yesterday (UTC).
+const day = (d) => d.toISOString().slice(0, 10)
+const RANGE_END = day(new Date(Date.now() - 864e5))
+const RANGE = `${day(new Date(Date.now() - 30 * 864e5))}:${RANGE_END}`
+
 async function fetchMonthlyDownloads(name) {
-  const url = `https://api.npmjs.org/downloads/point/last-month/${encodeURIComponent(name)}`
+  const url = `https://api.npmjs.org/downloads/point/${RANGE}/${encodeURIComponent(name)}`
   let res
   for (let attempt = 1; attempt <= 4; attempt++) {
     res = await fetch(url)
@@ -77,6 +83,8 @@ async function fetchMonthlyDownloads(name) {
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const body = await res.json()
   if (typeof body.downloads !== 'number') throw new Error('no downloads field')
+  // a window that stops days short of the one asked for is stale data, not zero downloads
+  if (Date.parse(RANGE_END) - Date.parse(body.end) > 3 * 864e5) throw new Error(`stale window ending ${body.end}`)
   return body.downloads
 }
 
