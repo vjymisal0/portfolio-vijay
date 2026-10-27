@@ -62,27 +62,34 @@ export async function getNpmMonthlyDownloads(names: string[]) {
 
 type PointResponse = { downloads: number; end: string }
 
-// Combined downloads over npm's rolling "last month" window (30 days ending
-// at the newest day npm has published).
+// Combined downloads over the 30 days ending yesterday (UTC), the same window
+// scripts/update-stats.mjs bakes into the snapshot, so the live value matches
+// it instead of jumping on load. npm's `last-month` alias is not used: it froze
+// at 2026-06-02:2026-07-01 and reads 0 for every package.
 export async function getNpmLastMonthTotal(names: string[]) {
   try {
     const opts = { next: { revalidate: 21600 } } // 6 hours
+    const day = (d: Date) => d.toISOString().slice(0, 10)
+    const end = day(new Date(Date.now() - 864e5))
+    const range = `${day(new Date(Date.now() - 30 * 864e5))}:${end}`
     const unscoped = names.filter((n) => !n.startsWith('@'))
     const scoped = names.filter((n) => n.startsWith('@'))
 
     const points: PointResponse[] = []
     if (unscoped.length) {
-      const res = await fetch(`https://api.npmjs.org/downloads/point/last-month/${unscoped.join(',')}`, opts)
+      const res = await fetch(`https://api.npmjs.org/downloads/point/${range}/${unscoped.join(',')}`, opts)
       if (!res.ok) throw new Error(`npm responded ${res.status}`)
       const data = await res.json()
       if (unscoped.length === 1) points.push(data)
       else for (const n of unscoped) if (data[n]) points.push(data[n])
     }
     for (const n of scoped) {
-      const res = await fetch(`https://api.npmjs.org/downloads/point/last-month/${n}`, opts)
+      const res = await fetch(`https://api.npmjs.org/downloads/point/${range}/${n}`, opts)
       if (res.ok) points.push(await res.json())
     }
     if (points.length === 0) throw new Error('no npm data')
+    // a window ending days short of the one asked for is stale data, not zero downloads
+    if (points.some((p) => Date.parse(end) - Date.parse(p.end) > 3 * 864e5)) throw new Error(`stale npm window ending ${points[0].end}`)
 
     const total = points.reduce((sum, p) => sum + (p.downloads ?? 0), 0)
     return { success: true, total, end: points[0].end }
