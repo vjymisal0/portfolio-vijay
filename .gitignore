@@ -40,5 +40,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-\claude-ref
-\ref
+/claude-ref
+/ref
+# playwright mcp
+/.playwright-mcp/

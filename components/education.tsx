@@ -10,6 +10,7 @@ const educationData = [
     location: "Pune, Maharashtra",
     score: "8.44 CGPA",
     year: "2023 – 2026",
+    note: "Joined directly in second year (lateral entry) after the diploma.",
     status: "Completed",
     coursework: ["Data Structures & Algorithms", "Database Management", "Distributed Systems", "Operating Systems", "Cloud Computing"],
     index: "01",
@@ -51,6 +52,8 @@ export default function Education() {
                 </span>
               </div>
               
+              {'note' in edu && <p className="text-sm font-body text-muted-foreground">{edu.note}</p>}
+
               <div className="flex items-center gap-2">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-mono text-xs bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400">
                   <Award className="w-3.5 h-3.5" />

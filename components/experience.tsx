@@ -1,8 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ShieldCheck, Bot, Activity } from 'lucide-react'
-import { SiReact, SiNestjs, SiTypescript, SiNodedotjs } from 'react-icons/si'
+import { ShieldCheck, Bot, Activity, ScanSearch } from 'lucide-react'
+import { SiReact, SiNestjs, SiTypescript, SiNodedotjs, SiPython } from 'react-icons/si'
 import type { IconType } from 'react-icons'
 import type { LucideIcon } from 'lucide-react'
 import { AnnotatedText } from '@/components/ui/annotated-text'
@@ -13,23 +13,24 @@ type AnyIcon = IconType | LucideIcon
 
 const experiences = [
   {
-    role: 'SDE 1',
+    role: 'AI Engineer',
     product: 'LooprIQ Inspect — AI-powered visual inspection for industrial quality control',
     company: 'Loopr AI',
-    award: 'GeekWire Startup of the Year 2026',
     location: 'Pune, India',
     period: 'July 2026 – Present',
     type: 'Full-time',
     status: 'Current',
     bullets: [
-      'Converted from intern to full-time SDE 1 — continuing to own and ship platform features across the LooprIQ Inspect stack.',
-      'Built an n8n workflow to automate performance monitoring of the platform — surfacing key metrics without manual checks.',
+      'Trained a YOLO11s defect detector (6 classes, Encord data) with leak-free splits, augmentation, and per-class thresholds, reaching ~89% inspection-level accuracy.',
+      'Extended the ML inference pipeline to handle two-image requests, and built n8n webhook integrations and performance monitoring.',
+      'Added blur-frame filtering and review-mode navigation; merged 20 PRs across two release lines.',
     ],
     tech: [
+      { icon: SiPython as AnyIcon,     label: 'Python' },
+      { icon: ScanSearch,              label: 'YOLO11' },
       { icon: SiReact as AnyIcon,      label: 'React' },
       { icon: SiNestjs as AnyIcon,     label: 'NestJS' },
       { icon: SiTypescript as AnyIcon, label: 'TypeScript' },
-      { icon: SiNodedotjs as AnyIcon,  label: 'Node.js' },
       { icon: Bot,                     label: 'n8n' },
     ],
     index: '01',
@@ -38,7 +39,6 @@ const experiences = [
     role: 'SDE Intern',
     product: 'LooprIQ Inspect — AI-powered visual inspection for industrial quality control',
     company: 'Loopr AI',
-    award: '',
     location: 'Pune, India',
     period: 'July 2025 – June 2026',
     type: 'Internship',
@@ -86,11 +86,6 @@ export default function Experience() {
             <div className="w-full md:w-1/3">
               <h3 className="font-serif text-xl font-medium text-foreground">{group.company}</h3>
               <p className="text-sm text-muted-foreground mt-1">{group.location}</p>
-              {group.roles.find((r) => r.award)?.award && (
-                <p className="mt-3 inline-flex w-fit items-center rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-[11px] font-mono text-amber-800 dark:text-amber-400">
-                  {group.roles.find((r) => r.award)?.award}
-                </p>
-              )}
             </div>
             
             <div className="w-full md:w-2/3 space-y-10">

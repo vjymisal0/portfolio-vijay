@@ -93,7 +93,7 @@ export default async function Image() {
               lineHeight: 1.4,
             }}
           >
-            SDE 1 at Loopr AI. Full-stack software, automated workflows, and production systems.
+            AI Engineer at Loopr AI. Computer vision, full-stack software, and automated workflows.
           </p>
         </div>
 

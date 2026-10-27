@@ -1,56 +1,176 @@
 {
-  "updatedAt": "2026-10-06T03:00:22.502Z",
+  "updatedAt": "2026-10-27T03:00:24.180Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 1008
+      "monthlyDownloads": 0
     },
     "exposure-score": {
-      "monthlyDownloads": 887
+      "monthlyDownloads": 0
     },
     "pan-card-validator": {
-      "monthlyDownloads": 1130
+      "monthlyDownloads": 0
     },
     "gst-validator": {
-      "monthlyDownloads": 1014
+      "monthlyDownloads": 0
     },
     "exif-purge": {
-      "monthlyDownloads": 980
+      "monthlyDownloads": 0
     },
     "photo-hash": {
-      "monthlyDownloads": 958
+      "monthlyDownloads": 0
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 920
+      "monthlyDownloads": 0
     },
     "glare-score": {
-      "monthlyDownloads": 689
+      "monthlyDownloads": 0
     },
     "pkg-bin-doctor": {
-      "monthlyDownloads": 426
+      "monthlyDownloads": 0
     },
     "contrast-score": {
-      "monthlyDownloads": 712
+      "monthlyDownloads": 0
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 579
+      "monthlyDownloads": 0
     },
     "env-example-drift": {
-      "monthlyDownloads": 422
+      "monthlyDownloads": 0
     },
     "shadow-score": {
-      "monthlyDownloads": 665
+      "monthlyDownloads": 0
     },
     "todo-expiry": {
-      "monthlyDownloads": 391
+      "monthlyDownloads": 0
     },
     "upi-validator": {
-      "monthlyDownloads": 539
+      "monthlyDownloads": 0
     },
     "rupee-words": {
-      "monthlyDownloads": 566
+      "monthlyDownloads": 0
     }
   },
   "contributions": [
+    {
+      "repo": "lit/lit",
+      "title": "Make asyncAppend generic",
+      "url": "https://github.com/lit/lit/pull/5375",
+      "number": 5375,
+      "date": "2026-10-22",
+      "kind": "cleanup",
+      "techs": [
+        "TypeScript"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "securo-finance/securo",
+      "title": "fix(accounts): stop presenting 1:1 fallback balances as converted across accounts and dashboard",
+      "url": "https://github.com/securo-finance/securo/pull/1195",
+      "number": 1195,
+      "date": "2026-10-20",
+      "kind": "fix",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "securo-finance/securo",
+      "title": "feat: add Hong Kong dollar (HKD) and New Taiwan dollar (TWD) currency support",
+      "url": "https://github.com/securo-finance/securo/pull/1190",
+      "number": 1190,
+      "date": "2026-10-20",
+      "kind": "feature",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "all-contributors/cli",
+      "title": "fix: sort contributors alphabetically case-insensitively with login fallback",
+      "url": "https://github.com/all-contributors/cli/pull/531",
+      "number": 531,
+      "date": "2026-10-20",
+      "kind": "fix",
+      "techs": [
+        "JavaScript"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "reflex-dev/reflex",
+      "title": "fix(radix): drop as_child from radio_cards root and item",
+      "url": "https://github.com/reflex-dev/reflex/pull/7593",
+      "number": 7593,
+      "date": "2026-10-19",
+      "kind": "fix",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "woocommerce/woocommerce",
+      "title": "Fix email review drawer claiming structural changes were applied",
+      "url": "https://github.com/woocommerce/woocommerce/pull/69340",
+      "number": 69340,
+      "date": "2026-10-14",
+      "kind": "fix",
+      "techs": [
+        "PHP"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "SkriptLang/Skript",
+      "title": "fix: midpoint expression rejects Block values it should convert to Location",
+      "url": "https://github.com/SkriptLang/Skript/pull/8825",
+      "number": 8825,
+      "date": "2026-10-14",
+      "kind": "fix",
+      "techs": [
+        "Java"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "yusufaf/quizaroni",
+      "title": "fix(a11y): add accessible aria-label attributes to icon-only buttons",
+      "url": "https://github.com/yusufaf/quizaroni/pull/50",
+      "number": 50,
+      "date": "2026-10-14",
+      "kind": "fix",
+      "techs": [
+        "TypeScript"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "reflex-dev/reflex",
+      "title": "fix(cli): validate an existing app's app_name, not its directory, on reflex init",
+      "url": "https://github.com/reflex-dev/reflex/pull/7556",
+      "number": 7556,
+      "date": "2026-10-13",
+      "kind": "fix",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "yusufaf/quizaroni",
+      "title": "fix(ui): replace blocking native alert with react-toastify error toast",
+      "url": "https://github.com/yusufaf/quizaroni/pull/51",
+      "number": 51,
+      "date": "2026-10-12",
+      "kind": "fix",
+      "techs": [
+        "TypeScript"
+      ],
+      "auto": true
+    },
     {
       "repo": "temporalio/sdk-python",
       "title": "Warn when activity method is registered without an instance",
