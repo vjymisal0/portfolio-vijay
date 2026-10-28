@@ -829,15 +829,15 @@ export const packagesSnapshotDate = stats.updatedAt.slice(0, 10)
 export const packageGroups = {
   vision: {
     title: 'Image quality & computer vision',
-    blurb: 'Pre-OCR and KYC photo checks: blur, exposure, glare, contrast, shadows, near-duplicates, and metadata stripping. The same problem space as the visual-inspection work I do at Loopr AI.',
+    blurb: 'Pre-OCR and KYC photo checks: blur, exposure, glare, contrast, shadows, skew, near-duplicates, and metadata stripping. The same problem space as the visual-inspection work I do at Loopr AI.',
   },
   india: {
     title: 'Indian fintech & compliance',
-    blurb: 'Zero-dependency validators and formatters for PAN, GSTIN, Aadhaar, UPI, and rupee amounts, with checksum verification and masking.',
+    blurb: 'Zero-dependency validators and formatters for PAN, GSTIN, Aadhaar, UPI, IFSC, vehicle registration numbers, and rupee amounts, with checksum verification and masking.',
   },
   devtools: {
     title: 'Developer tooling',
-    blurb: 'Small CLIs that catch release and CI mistakes before they ship.',
+    blurb: 'Small CLIs and libraries that catch release, CI, and secret-leak mistakes before they ship, plus tooling for LLM prompts, MCP servers, and agent rules.',
   },
 } as const
 
@@ -986,6 +986,78 @@ const basePackages = [
     npm: 'https://www.npmjs.com/package/rupee-words',
     github: 'https://github.com/vjymisal0/rupee-words',
   },
+  {
+    name: 'skew-score',
+    group: 'vision',
+    monthlyDownloads: 378,
+    description: 'Measure document and image tilt (-45° to +45°) using Radon projection profiles, for pre-OCR scanning and KYC ID checks.',
+    install: 'npm i skew-score',
+    npm: 'https://www.npmjs.com/package/skew-score',
+    github: 'https://github.com/vjymisal0/skew-score',
+  },
+  {
+    name: 'ifsc-code-validator',
+    group: 'india',
+    monthlyDownloads: 209,
+    description: 'Zero-dependency validator, parser, and bank lookup for Indian IFSC (Indian Financial System Code) numbers.',
+    install: 'npm i ifsc-code-validator',
+    npm: 'https://www.npmjs.com/package/ifsc-code-validator',
+    github: 'https://github.com/vjymisal0/ifsc-code-validator',
+  },
+  {
+    name: 'indian-vehicle-number',
+    group: 'india',
+    monthlyDownloads: 366,
+    description: 'Validate, parse, and format Indian vehicle registration numbers, including BH series, with zero runtime dependencies.',
+    install: 'npm i indian-vehicle-number',
+    npm: 'https://www.npmjs.com/package/indian-vehicle-number',
+    github: 'https://github.com/vjymisal0/indian-vehicle-number',
+  },
+  {
+    name: 'inkwire',
+    group: 'devtools',
+    monthlyDownloads: 532,
+    description: 'Hand-drawn text annotations, animated circuit/system maps, tilt cards, and step players for React.',
+    install: 'npm i inkwire',
+    npm: 'https://www.npmjs.com/package/inkwire',
+    github: 'https://github.com/vjymisal0/inkwire',
+  },
+  {
+    name: 'mcp-tool-schema-lint',
+    group: 'devtools',
+    monthlyDownloads: 378,
+    description: 'Lint MCP server tool definitions against the JSON Schema limits of Claude, OpenAI, and Gemini before they fail at runtime.',
+    install: 'npm i mcp-tool-schema-lint',
+    npm: 'https://www.npmjs.com/package/mcp-tool-schema-lint',
+    github: 'https://github.com/vjymisal0/mcp-tool-schema-lint',
+  },
+  {
+    name: 'env-leak-guard',
+    group: 'devtools',
+    monthlyDownloads: 255,
+    description: 'Zero-dependency scanner that catches leaked API keys, tokens, and credentials in source, build output, and git staging.',
+    install: 'npm i env-leak-guard',
+    npm: 'https://www.npmjs.com/package/env-leak-guard',
+    github: 'https://github.com/vjymisal0/env-leak-guard',
+  },
+  {
+    name: 'prompt-token-meter',
+    group: 'devtools',
+    monthlyDownloads: 225,
+    description: 'Zero-dependency token estimator and budget calculator for OpenAI, Claude, and Gemini prompts, without WASM binaries.',
+    install: 'npm i prompt-token-meter',
+    npm: 'https://www.npmjs.com/package/prompt-token-meter',
+    github: 'https://github.com/vjymisal0/prompt-token-meter',
+  },
+  {
+    name: '@vjymisal0/agentrules',
+    group: 'devtools',
+    monthlyDownloads: 221,
+    description: 'Sync one set of AI context and rules files across Claude Code, Cursor, Copilot, Gemini, Windsurf, and custom agents.',
+    install: 'npm i @vjymisal0/agentrules',
+    npm: 'https://www.npmjs.com/package/@vjymisal0/agentrules',
+    github: 'https://github.com/vjymisal0/agentrules',
+  },
 ] as const
 
 export const packages = basePackages.map((p) => ({
@@ -998,25 +1070,25 @@ export const packages = basePackages.map((p) => ({
 export const firstPublishedDate =
   Object.values(stats.packages).map((p) => p.firstPublished).filter((d): d is string => !!d).sort()[0] ?? '2026-08-03'
 
-// The most-starred repos among `contributions`, snapshotted 2026-09-30 via
+// The most-starred repos among `contributions`, snapshotted 2026-10-28 via
 // the GitHub GraphQL API. Star counts drift — refresh periodically rather
 // than treating these as live.
 export const notableRepos = [
-  { repo: 'axios/axios', stars: 109249, url: 'https://github.com/axios/axios/pull/11179' },
-  { repo: 'vitejs/vite', stars: 83079, url: 'https://github.com/vitejs/vite/pull/23511' },
-  { repo: 'apache/superset', stars: 74978, url: 'https://github.com/apache/superset/pull/42881' },
-  { repo: 'rclone/rclone', stars: 60021, url: 'https://github.com/rclone/rclone/pull/9776' },
-  { repo: 'alibaba/open-code-review', stars: 42722, url: 'https://github.com/alibaba/open-code-review/pull/766' },
-  { repo: 'chatwoot/chatwoot', stars: 37351, url: 'https://github.com/chatwoot/chatwoot/pull/15418' },
-  { repo: 'medusajs/medusa', stars: 36515, url: 'https://github.com/medusajs/medusa/pull/16362' },
-  { repo: 'qdrant/qdrant', stars: 34885, url: 'https://github.com/qdrant/qdrant/pull/10382' },
-  { repo: 'davila7/claude-code-templates', stars: 32200, url: 'https://github.com/davila7/claude-code-templates/pull/907' },
-  { repo: 'Automattic/mongoose', stars: 27469, url: 'https://github.com/Automattic/mongoose/pull/16478' },
-  { repo: 'tj/git-extras', stars: 18118, url: 'https://github.com/tj/git-extras/pull/1267' },
-  { repo: 'Automattic/harper', stars: 16046, url: 'https://github.com/Automattic/harper/pull/4212' },
-  { repo: 'modelcontextprotocol/typescript-sdk', stars: 13489, url: 'https://github.com/modelcontextprotocol/typescript-sdk/pull/2778' },
-  { repo: 'benoitc/gunicorn', stars: 10688, url: 'https://github.com/benoitc/gunicorn/pull/3684' },
-  { repo: 'stephencelis/SQLite.swift', stars: 10187, url: 'https://github.com/stephencelis/SQLite.swift/pull/1373' },
+  { repo: 'axios/axios', stars: 109310, url: 'https://github.com/axios/axios/pull/11179' },
+  { repo: 'vitejs/vite', stars: 83616, url: 'https://github.com/vitejs/vite/pull/23511' },
+  { repo: 'apache/superset', stars: 75338, url: 'https://github.com/apache/superset/pull/42881' },
+  { repo: 'rclone/rclone', stars: 60591, url: 'https://github.com/rclone/rclone/pull/9776' },
+  { repo: 'alibaba/open-code-review', stars: 48764, url: 'https://github.com/alibaba/open-code-review/pull/766' },
+  { repo: 'chatwoot/chatwoot', stars: 38479, url: 'https://github.com/chatwoot/chatwoot/pull/15418' },
+  { repo: 'medusajs/medusa', stars: 36978, url: 'https://github.com/medusajs/medusa/pull/16362' },
+  { repo: 'qdrant/qdrant', stars: 35291, url: 'https://github.com/qdrant/qdrant/pull/10382' },
+  { repo: 'davila7/claude-code-templates', stars: 32949, url: 'https://github.com/davila7/claude-code-templates/pull/907' },
+  { repo: 'reflex-dev/reflex', stars: 28980, url: 'https://github.com/reflex-dev/reflex/pull/7593' },
+  { repo: 'Automattic/mongoose', stars: 27461, url: 'https://github.com/Automattic/mongoose/pull/16478' },
+  { repo: 'lit/lit', stars: 21868, url: 'https://github.com/lit/lit/pull/5375' },
+  { repo: 'tj/git-extras', stars: 18123, url: 'https://github.com/tj/git-extras/pull/1267' },
+  { repo: 'Automattic/harper', stars: 17216, url: 'https://github.com/Automattic/harper/pull/4212' },
+  { repo: 'modelcontextprotocol/typescript-sdk', stars: 13669, url: 'https://github.com/modelcontextprotocol/typescript-sdk/pull/2778' },
 ] as const
 
 // Hand-picked PRs shown above the full list. `why` explains what the change

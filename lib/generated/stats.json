@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T03:00:38.874Z",
+  "updatedAt": "2026-10-28T11:49:25.618Z",
   "packages": {
     "blur-score": {
       "monthlyDownloads": 232,
@@ -80,6 +80,46 @@
       "monthlyDownloads": 226,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 603
+    },
+    "skew-score": {
+      "monthlyDownloads": 375,
+      "firstPublished": "2026-09-25",
+      "allTimeDownloads": 524
+    },
+    "ifsc-code-validator": {
+      "monthlyDownloads": 207,
+      "firstPublished": "2026-09-25",
+      "allTimeDownloads": 372
+    },
+    "indian-vehicle-number": {
+      "monthlyDownloads": 366,
+      "firstPublished": "2026-10-02",
+      "allTimeDownloads": 366
+    },
+    "inkwire": {
+      "monthlyDownloads": 532,
+      "firstPublished": "2026-10-01",
+      "allTimeDownloads": 532
+    },
+    "mcp-tool-schema-lint": {
+      "monthlyDownloads": 378,
+      "firstPublished": "2026-09-30",
+      "allTimeDownloads": 378
+    },
+    "env-leak-guard": {
+      "monthlyDownloads": 253,
+      "firstPublished": "2026-09-25",
+      "allTimeDownloads": 399
+    },
+    "prompt-token-meter": {
+      "monthlyDownloads": 223,
+      "firstPublished": "2026-09-25",
+      "allTimeDownloads": 360
+    },
+    "@vjymisal0/agentrules": {
+      "monthlyDownloads": 218,
+      "firstPublished": "2026-09-25",
+      "allTimeDownloads": 313
     }
   },
   "contributions": [
