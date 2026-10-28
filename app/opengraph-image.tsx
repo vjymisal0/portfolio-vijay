@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
 
-export const alt = 'Vijay Misal - Software Engineer'
+export const alt = 'Vijay Misal - AI Engineer'
 export const size = {
   width: 1200,
   height: 630,

@@ -37,18 +37,19 @@ const mono = Geist_Mono({
   variable: '--font-mono',
 })
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vijaymisal.vercel.app'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vijaymisal.tech'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Vijay Misal — Software Engineer',
+    default: 'Vijay Misal — AI Engineer',
     template: '%s | Vijay Misal',
   },
   description:
-    `Vijay Misal is a AI engineer at Loopr AI who trains defect-detection models and builds full-stack TypeScript, React, and NestJS systems, with ${prCount} merged open-source pull requests to projects like Vite, axios, and Apache Superset and ${packageCount} published npm packages.`,
+    `Vijay Misal is an AI engineer at Loopr AI who trains defect-detection models and builds full-stack TypeScript, React, and NestJS systems, with ${prCount} merged open-source pull requests to projects like Vite, axios, and Apache Superset and ${packageCount} published npm packages.`,
   keywords: [
     'Vijay Misal',
+    'AI Engineer',
     'Software Engineer',
     'Full-Stack Developer',
     'React',
@@ -71,16 +72,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: siteUrl,
-    title: 'Vijay Misal — Software Engineer',
+    title: 'Vijay Misal — AI Engineer',
     description:
-      `Software engineer at Loopr AI. ${prCount} merged open-source PRs (Vite, axios, Apache Superset) and ${packageCount} npm packages.`,
+      `AI engineer at Loopr AI. ${prCount} merged open-source PRs (Vite, axios, Apache Superset) and ${packageCount} npm packages.`,
     siteName: 'Vijay Misal',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Vijay Misal — Software Engineer',
+    title: 'Vijay Misal — AI Engineer',
     description:
-      `Software engineer at Loopr AI. ${prCount} merged open-source PRs and ${packageCount} npm packages.`,
+      `AI engineer at Loopr AI. ${prCount} merged open-source PRs and ${packageCount} npm packages.`,
   },
   other: {
     'theme-color': '#faf8f5',
@@ -100,7 +101,7 @@ export default function RootLayout({
     "@type": "Person",
     "name": "Vijay Misal",
     "url": siteUrl,
-    "jobTitle": "Software Engineer",
+    "jobTitle": "AI Engineer",
     "worksFor": { "@type": "Organization", "name": "Loopr AI" },
     "address": { "@type": "PostalAddress", "addressLocality": "Pune", "addressCountry": "IN" },
     "alumniOf": [
@@ -110,7 +111,7 @@ export default function RootLayout({
     "description": "Software engineer building full-stack TypeScript systems and automated workflows, and an active open-source contributor.",
     "sameAs": [
       "https://github.com/vjymisal0",
-      "https://www.linkedin.com/in/vijaymisal",
+      "https://www.linkedin.com/in/vijaymisal/",
       "https://www.npmjs.com/~vjymisal0"
     ],
     "knowsAbout": [
