@@ -1,25 +1,25 @@
 {
-  "updatedAt": "2026-10-28T11:49:25.618Z",
+  "updatedAt": "2026-10-29T03:01:21.527Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 232,
+      "monthlyDownloads": 234,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1540
+      "allTimeDownloads": 1542
     },
     "exposure-score": {
       "monthlyDownloads": 233,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1275
+      "allTimeDownloads": 1276
     },
     "pan-card-validator": {
-      "monthlyDownloads": 53,
+      "monthlyDownloads": 51,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1166
     },
     "gst-validator": {
       "monthlyDownloads": 40,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1046
+      "allTimeDownloads": 1047
     },
     "exif-purge": {
       "monthlyDownloads": 244,
@@ -27,19 +27,19 @@
       "allTimeDownloads": 1212
     },
     "photo-hash": {
-      "monthlyDownloads": 236,
+      "monthlyDownloads": 235,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1183
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 230,
+      "monthlyDownloads": 231,
       "firstPublished": "2026-09-17",
-      "allTimeDownloads": 1137
+      "allTimeDownloads": 1138
     },
     "glare-score": {
-      "monthlyDownloads": 385,
+      "monthlyDownloads": 386,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 902
+      "allTimeDownloads": 903
     },
     "pkg-bin-doctor": {
       "monthlyDownloads": 13,
@@ -52,9 +52,9 @@
       "allTimeDownloads": 929
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 199,
+      "monthlyDownloads": 200,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 611
+      "allTimeDownloads": 613
     },
     "env-example-drift": {
       "monthlyDownloads": 52,
@@ -62,9 +62,9 @@
       "allTimeDownloads": 452
     },
     "shadow-score": {
-      "monthlyDownloads": 398,
+      "monthlyDownloads": 399,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 874
+      "allTimeDownloads": 875
     },
     "todo-expiry": {
       "monthlyDownloads": 18,
@@ -72,54 +72,54 @@
       "allTimeDownloads": 401
     },
     "upi-validator": {
-      "monthlyDownloads": 412,
+      "monthlyDownloads": 415,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 775
+      "allTimeDownloads": 778
     },
     "rupee-words": {
-      "monthlyDownloads": 226,
+      "monthlyDownloads": 229,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 603
+      "allTimeDownloads": 607
     },
     "skew-score": {
-      "monthlyDownloads": 375,
+      "monthlyDownloads": 372,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 524
     },
     "ifsc-code-validator": {
-      "monthlyDownloads": 207,
+      "monthlyDownloads": 205,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 372
+      "allTimeDownloads": 373
     },
     "indian-vehicle-number": {
-      "monthlyDownloads": 366,
+      "monthlyDownloads": 371,
       "firstPublished": "2026-10-02",
-      "allTimeDownloads": 366
+      "allTimeDownloads": 371
     },
     "inkwire": {
-      "monthlyDownloads": 532,
+      "monthlyDownloads": 533,
       "firstPublished": "2026-10-01",
-      "allTimeDownloads": 532
+      "allTimeDownloads": 533
     },
     "mcp-tool-schema-lint": {
       "monthlyDownloads": 378,
       "firstPublished": "2026-09-30",
-      "allTimeDownloads": 378
+      "allTimeDownloads": 385
     },
     "env-leak-guard": {
-      "monthlyDownloads": 253,
+      "monthlyDownloads": 250,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 399
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 223,
+      "monthlyDownloads": 221,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 360
+      "allTimeDownloads": 361
     },
     "@vjymisal0/agentrules": {
-      "monthlyDownloads": 218,
+      "monthlyDownloads": 220,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 313
+      "allTimeDownloads": 319
     }
   },
   "contributions": [
