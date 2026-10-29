@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-29T03:01:21.527Z",
+  "updatedAt": "2026-10-29T15:01:24.852Z",
   "packages": {
     "blur-score": {
       "monthlyDownloads": 234,
@@ -123,6 +123,18 @@
     }
   },
   "contributions": [
+    {
+      "repo": "securo-finance/securo",
+      "title": "feat(budgets): add monthly budget rollover copying, surplus analysis, and multi-month forecasting",
+      "url": "https://github.com/securo-finance/securo/pull/860",
+      "number": 860,
+      "date": "2026-10-29",
+      "kind": "feature",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
     {
       "repo": "lit/lit",
       "title": "Make asyncAppend generic",
