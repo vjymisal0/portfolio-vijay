@@ -1,128 +1,140 @@
 {
-  "updatedAt": "2026-11-02T03:01:23.226Z",
+  "updatedAt": "2026-11-02T15:01:25.544Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 256,
+      "monthlyDownloads": 275,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1569
+      "allTimeDownloads": 1588
     },
     "exposure-score": {
-      "monthlyDownloads": 254,
+      "monthlyDownloads": 262,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1302
+      "allTimeDownloads": 1310
     },
     "pan-card-validator": {
-      "monthlyDownloads": 47,
+      "monthlyDownloads": 53,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1171
+      "allTimeDownloads": 1177
     },
     "gst-validator": {
-      "monthlyDownloads": 47,
+      "monthlyDownloads": 50,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1059
+      "allTimeDownloads": 1062
     },
     "exif-purge": {
-      "monthlyDownloads": 245,
+      "monthlyDownloads": 248,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1220
+      "allTimeDownloads": 1223
     },
     "photo-hash": {
-      "monthlyDownloads": 235,
+      "monthlyDownloads": 240,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1189
+      "allTimeDownloads": 1194
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 232,
+      "monthlyDownloads": 243,
       "firstPublished": "2026-09-17",
-      "allTimeDownloads": 1145
+      "allTimeDownloads": 1156
     },
     "glare-score": {
-      "monthlyDownloads": 271,
+      "monthlyDownloads": 280,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 936
+      "allTimeDownloads": 945
     },
     "pkg-bin-doctor": {
-      "monthlyDownloads": 13,
+      "monthlyDownloads": 18,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 438
+      "allTimeDownloads": 443
     },
     "contrast-score": {
-      "monthlyDownloads": 284,
+      "monthlyDownloads": 295,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 955
+      "allTimeDownloads": 966
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 68,
+      "monthlyDownloads": 75,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 621
+      "allTimeDownloads": 628
     },
     "env-example-drift": {
-      "monthlyDownloads": 46,
+      "monthlyDownloads": 59,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 455
+      "allTimeDownloads": 468
     },
     "shadow-score": {
-      "monthlyDownloads": 267,
+      "monthlyDownloads": 273,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 901
+      "allTimeDownloads": 907
     },
     "todo-expiry": {
-      "monthlyDownloads": 15,
+      "monthlyDownloads": 16,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 404
+      "allTimeDownloads": 405
     },
     "upi-validator": {
-      "monthlyDownloads": 282,
+      "monthlyDownloads": 289,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 791
+      "allTimeDownloads": 798
     },
     "rupee-words": {
-      "monthlyDownloads": 77,
+      "monthlyDownloads": 87,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 613
+      "allTimeDownloads": 623
     },
     "skew-score": {
-      "monthlyDownloads": 247,
+      "monthlyDownloads": 252,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 550
+      "allTimeDownloads": 555
     },
     "ifsc-code-validator": {
-      "monthlyDownloads": 197,
+      "monthlyDownloads": 205,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 377
+      "allTimeDownloads": 385
     },
     "indian-vehicle-number": {
-      "monthlyDownloads": 242,
+      "monthlyDownloads": 259,
       "firstPublished": "2026-10-02",
-      "allTimeDownloads": 376
+      "allTimeDownloads": 393
     },
     "inkwire": {
-      "monthlyDownloads": 243,
+      "monthlyDownloads": 248,
       "firstPublished": "2026-10-01",
-      "allTimeDownloads": 539
+      "allTimeDownloads": 544
     },
     "mcp-tool-schema-lint": {
       "monthlyDownloads": 324,
       "firstPublished": "2026-09-30",
-      "allTimeDownloads": 408
+      "allTimeDownloads": 452
     },
     "env-leak-guard": {
-      "monthlyDownloads": 242,
+      "monthlyDownloads": 257,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 410
+      "allTimeDownloads": 425
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 221,
+      "monthlyDownloads": 224,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 367
+      "allTimeDownloads": 377
     },
     "@vjymisal0/agentrules": {
-      "monthlyDownloads": 215,
+      "monthlyDownloads": 219,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 325
+      "allTimeDownloads": 329
     }
   },
   "contributions": [
+    {
+      "repo": "grafana/grafana",
+      "title": "Dashboard: Restore keyboard focus to an adjacent panel after deleting a panel",
+      "url": "https://github.com/grafana/grafana/pull/130607",
+      "number": 130607,
+      "date": "2026-11-02",
+      "kind": "cleanup",
+      "techs": [
+        "TypeScript"
+      ],
+      "auto": true
+    },
     {
       "repo": "securo-finance/securo",
       "title": "feat(budgets): add monthly budget rollover copying, surplus analysis, and multi-month forecasting",
