@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-02T15:01:25.544Z",
+  "updatedAt": "2026-11-03T03:00:55.054Z",
   "packages": {
     "blur-score": {
       "monthlyDownloads": 275,
@@ -17,7 +17,7 @@
       "allTimeDownloads": 1177
     },
     "gst-validator": {
-      "monthlyDownloads": 50,
+      "monthlyDownloads": 49,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1062
     },
@@ -27,9 +27,9 @@
       "allTimeDownloads": 1223
     },
     "photo-hash": {
-      "monthlyDownloads": 240,
+      "monthlyDownloads": 244,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1194
+      "allTimeDownloads": 1199
     },
     "@vjymisal0/upi-link": {
       "monthlyDownloads": 243,
@@ -37,32 +37,32 @@
       "allTimeDownloads": 1156
     },
     "glare-score": {
-      "monthlyDownloads": 280,
+      "monthlyDownloads": 266,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 945
     },
     "pkg-bin-doctor": {
-      "monthlyDownloads": 18,
+      "monthlyDownloads": 20,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 443
+      "allTimeDownloads": 445
     },
     "contrast-score": {
-      "monthlyDownloads": 295,
+      "monthlyDownloads": 282,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 966
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 75,
+      "monthlyDownloads": 60,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 628
     },
     "env-example-drift": {
-      "monthlyDownloads": 59,
+      "monthlyDownloads": 53,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 468
     },
     "shadow-score": {
-      "monthlyDownloads": 273,
+      "monthlyDownloads": 255,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 907
     },
@@ -72,54 +72,54 @@
       "allTimeDownloads": 405
     },
     "upi-validator": {
-      "monthlyDownloads": 289,
+      "monthlyDownloads": 273,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 798
     },
     "rupee-words": {
-      "monthlyDownloads": 87,
+      "monthlyDownloads": 72,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 623
+      "allTimeDownloads": 625
     },
     "skew-score": {
-      "monthlyDownloads": 252,
+      "monthlyDownloads": 240,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 555
     },
     "ifsc-code-validator": {
-      "monthlyDownloads": 205,
+      "monthlyDownloads": 204,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 385
     },
     "indian-vehicle-number": {
-      "monthlyDownloads": 259,
+      "monthlyDownloads": 240,
       "firstPublished": "2026-10-02",
-      "allTimeDownloads": 393
+      "allTimeDownloads": 396
     },
     "inkwire": {
-      "monthlyDownloads": 248,
+      "monthlyDownloads": 232,
       "firstPublished": "2026-10-01",
       "allTimeDownloads": 544
     },
     "mcp-tool-schema-lint": {
-      "monthlyDownloads": 324,
+      "monthlyDownloads": 361,
       "firstPublished": "2026-09-30",
       "allTimeDownloads": 452
     },
     "env-leak-guard": {
-      "monthlyDownloads": 257,
+      "monthlyDownloads": 255,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 425
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 224,
+      "monthlyDownloads": 227,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 377
+      "allTimeDownloads": 381
     },
     "@vjymisal0/agentrules": {
-      "monthlyDownloads": 219,
+      "monthlyDownloads": 221,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 329
+      "allTimeDownloads": 332
     }
   },
   "contributions": [
@@ -132,6 +132,30 @@
       "kind": "cleanup",
       "techs": [
         "TypeScript"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "reflex-dev/reflex",
+      "title": "fix(event): type rx.event handlers as EventCallback under mypy",
+      "url": "https://github.com/reflex-dev/reflex/pull/7715",
+      "number": 7715,
+      "date": "2026-11-02",
+      "kind": "fix",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "securo-finance/securo",
+      "title": "fix(groups): credit settlements in the group's workspace first",
+      "url": "https://github.com/securo-finance/securo/pull/1196",
+      "number": 1196,
+      "date": "2026-11-02",
+      "kind": "fix",
+      "techs": [
+        "Python"
       ],
       "auto": true
     },
