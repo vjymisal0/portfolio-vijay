@@ -1,123 +1,123 @@
 {
-  "updatedAt": "2026-11-03T15:01:21.753Z",
+  "updatedAt": "2026-11-04T03:01:24.328Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 276,
+      "monthlyDownloads": 269,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1589
+      "allTimeDownloads": 1591
     },
     "exposure-score": {
       "monthlyDownloads": 271,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1319
+      "allTimeDownloads": 1322
     },
     "pan-card-validator": {
-      "monthlyDownloads": 53,
+      "monthlyDownloads": 47,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1177
     },
     "gst-validator": {
-      "monthlyDownloads": 57,
+      "monthlyDownloads": 56,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1070
     },
     "exif-purge": {
-      "monthlyDownloads": 255,
+      "monthlyDownloads": 250,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1230
     },
     "photo-hash": {
-      "monthlyDownloads": 244,
+      "monthlyDownloads": 241,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1199
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 246,
+      "monthlyDownloads": 239,
       "firstPublished": "2026-09-17",
       "allTimeDownloads": 1159
     },
     "glare-score": {
-      "monthlyDownloads": 272,
+      "monthlyDownloads": 262,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 951
     },
     "pkg-bin-doctor": {
-      "monthlyDownloads": 20,
+      "monthlyDownloads": 19,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 445
     },
     "contrast-score": {
-      "monthlyDownloads": 282,
+      "monthlyDownloads": 254,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 966
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 61,
+      "monthlyDownloads": 50,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 629
     },
     "env-example-drift": {
-      "monthlyDownloads": 56,
+      "monthlyDownloads": 49,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 471
     },
     "shadow-score": {
-      "monthlyDownloads": 255,
+      "monthlyDownloads": 242,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 907
     },
     "todo-expiry": {
-      "monthlyDownloads": 17,
+      "monthlyDownloads": 15,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 406
     },
     "upi-validator": {
-      "monthlyDownloads": 275,
+      "monthlyDownloads": 261,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 800
     },
     "rupee-words": {
-      "monthlyDownloads": 73,
+      "monthlyDownloads": 60,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 626
     },
     "skew-score": {
-      "monthlyDownloads": 240,
+      "monthlyDownloads": 227,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 555
     },
     "ifsc-code-validator": {
-      "monthlyDownloads": 208,
+      "monthlyDownloads": 207,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 389
     },
     "indian-vehicle-number": {
-      "monthlyDownloads": 242,
+      "monthlyDownloads": 237,
       "firstPublished": "2026-10-02",
       "allTimeDownloads": 398
     },
     "inkwire": {
-      "monthlyDownloads": 235,
+      "monthlyDownloads": 217,
       "firstPublished": "2026-10-01",
       "allTimeDownloads": 547
     },
     "mcp-tool-schema-lint": {
-      "monthlyDownloads": 361,
+      "monthlyDownloads": 369,
       "firstPublished": "2026-09-30",
       "allTimeDownloads": 463
     },
     "env-leak-guard": {
-      "monthlyDownloads": 259,
+      "monthlyDownloads": 257,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 429
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 227,
+      "monthlyDownloads": 225,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 381
     },
     "@vjymisal0/agentrules": {
-      "monthlyDownloads": 223,
+      "monthlyDownloads": 222,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 334
     }
