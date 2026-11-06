@@ -1,15 +1,15 @@
 {
-  "updatedAt": "2026-11-05T15:01:19.618Z",
+  "updatedAt": "2026-11-06T03:01:20.248Z",
   "packages": {
     "blur-score": {
       "monthlyDownloads": 293,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1615
+      "allTimeDownloads": 1618
     },
     "exposure-score": {
       "monthlyDownloads": 280,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1333
+      "allTimeDownloads": 1339
     },
     "pan-card-validator": {
       "monthlyDownloads": 67,
