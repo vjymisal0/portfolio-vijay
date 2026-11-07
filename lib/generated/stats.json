@@ -1,15 +1,15 @@
 {
-  "updatedAt": "2026-11-07T03:01:20.473Z",
+  "updatedAt": "2026-11-07T15:01:21.057Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 296,
+      "monthlyDownloads": 299,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1623
+      "allTimeDownloads": 1626
     },
     "exposure-score": {
-      "monthlyDownloads": 280,
+      "monthlyDownloads": 285,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1340
+      "allTimeDownloads": 1345
     },
     "pan-card-validator": {
       "monthlyDownloads": 69,
@@ -22,34 +22,34 @@
       "allTimeDownloads": 1093
     },
     "exif-purge": {
-      "monthlyDownloads": 261,
+      "monthlyDownloads": 262,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1242
+      "allTimeDownloads": 1243
     },
     "photo-hash": {
-      "monthlyDownloads": 270,
+      "monthlyDownloads": 276,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1230
+      "allTimeDownloads": 1236
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 250,
+      "monthlyDownloads": 252,
       "firstPublished": "2026-09-17",
-      "allTimeDownloads": 1173
+      "allTimeDownloads": 1175
     },
     "glare-score": {
-      "monthlyDownloads": 271,
+      "monthlyDownloads": 275,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 963
+      "allTimeDownloads": 967
     },
     "pkg-bin-doctor": {
-      "monthlyDownloads": 28,
+      "monthlyDownloads": 29,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 455
+      "allTimeDownloads": 456
     },
     "contrast-score": {
-      "monthlyDownloads": 268,
+      "monthlyDownloads": 273,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 983
+      "allTimeDownloads": 988
     },
     "@vjymisal0/aadhaar-mask": {
       "monthlyDownloads": 54,
@@ -57,14 +57,14 @@
       "allTimeDownloads": 636
     },
     "env-example-drift": {
-      "monthlyDownloads": 56,
+      "monthlyDownloads": 59,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 479
+      "allTimeDownloads": 482
     },
     "shadow-score": {
-      "monthlyDownloads": 265,
+      "monthlyDownloads": 272,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 936
+      "allTimeDownloads": 943
     },
     "todo-expiry": {
       "monthlyDownloads": 24,
@@ -72,54 +72,54 @@
       "allTimeDownloads": 416
     },
     "upi-validator": {
-      "monthlyDownloads": 280,
+      "monthlyDownloads": 283,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 823
+      "allTimeDownloads": 826
     },
     "rupee-words": {
-      "monthlyDownloads": 68,
+      "monthlyDownloads": 70,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 643
+      "allTimeDownloads": 645
     },
     "skew-score": {
-      "monthlyDownloads": 227,
+      "monthlyDownloads": 232,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 561
+      "allTimeDownloads": 566
     },
     "ifsc-code-validator": {
-      "monthlyDownloads": 211,
+      "monthlyDownloads": 212,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 395
+      "allTimeDownloads": 396
     },
     "indian-vehicle-number": {
-      "monthlyDownloads": 237,
+      "monthlyDownloads": 238,
       "firstPublished": "2026-10-02",
-      "allTimeDownloads": 403
+      "allTimeDownloads": 404
     },
     "inkwire": {
-      "monthlyDownloads": 220,
+      "monthlyDownloads": 223,
       "firstPublished": "2026-10-01",
-      "allTimeDownloads": 554
+      "allTimeDownloads": 557
     },
     "mcp-tool-schema-lint": {
       "monthlyDownloads": 369,
       "firstPublished": "2026-09-30",
-      "allTimeDownloads": 487
+      "allTimeDownloads": 503
     },
     "env-leak-guard": {
-      "monthlyDownloads": 268,
+      "monthlyDownloads": 274,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 443
+      "allTimeDownloads": 449
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 232,
+      "monthlyDownloads": 234,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 392
+      "allTimeDownloads": 394
     },
     "@vjymisal0/agentrules": {
-      "monthlyDownloads": 222,
+      "monthlyDownloads": 223,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 336
+      "allTimeDownloads": 337
     }
   },
   "contributions": [
@@ -298,6 +298,18 @@
       "number": 1918,
       "date": "2026-10-05",
       "kind": "cleanup",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "Under-Research-Labs/CONTINUUM",
+      "title": "fix(http): handle malformed Content-Length and chunked Transfer-Encoding in dashboard and gateway (#522)",
+      "url": "https://github.com/Under-Research-Labs/CONTINUUM/pull/525",
+      "number": 525,
+      "date": "2026-09-05",
+      "kind": "fix",
       "techs": [
         "Python"
       ],
