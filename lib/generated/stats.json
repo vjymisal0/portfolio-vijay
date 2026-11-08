@@ -1,43 +1,43 @@
 {
-  "updatedAt": "2026-11-07T15:01:21.057Z",
+  "updatedAt": "2026-11-08T03:01:21.951Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 299,
+      "monthlyDownloads": 295,
       "firstPublished": "2026-08-03",
       "allTimeDownloads": 1626
     },
     "exposure-score": {
-      "monthlyDownloads": 285,
+      "monthlyDownloads": 284,
       "firstPublished": "2026-08-03",
       "allTimeDownloads": 1345
     },
     "pan-card-validator": {
-      "monthlyDownloads": 69,
+      "monthlyDownloads": 67,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1204
     },
     "gst-validator": {
-      "monthlyDownloads": 71,
+      "monthlyDownloads": 68,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1093
     },
     "exif-purge": {
-      "monthlyDownloads": 262,
+      "monthlyDownloads": 261,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1243
     },
     "photo-hash": {
-      "monthlyDownloads": 276,
+      "monthlyDownloads": 275,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1236
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 252,
+      "monthlyDownloads": 251,
       "firstPublished": "2026-09-17",
       "allTimeDownloads": 1175
     },
     "glare-score": {
-      "monthlyDownloads": 275,
+      "monthlyDownloads": 270,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 967
     },
@@ -47,12 +47,12 @@
       "allTimeDownloads": 456
     },
     "contrast-score": {
-      "monthlyDownloads": 273,
+      "monthlyDownloads": 268,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 988
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 54,
+      "monthlyDownloads": 49,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 636
     },
@@ -62,7 +62,7 @@
       "allTimeDownloads": 482
     },
     "shadow-score": {
-      "monthlyDownloads": 272,
+      "monthlyDownloads": 266,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 943
     },
@@ -72,17 +72,17 @@
       "allTimeDownloads": 416
     },
     "upi-validator": {
-      "monthlyDownloads": 283,
+      "monthlyDownloads": 279,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 826
     },
     "rupee-words": {
-      "monthlyDownloads": 70,
+      "monthlyDownloads": 65,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 645
     },
     "skew-score": {
-      "monthlyDownloads": 232,
+      "monthlyDownloads": 229,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 566
     },
@@ -92,12 +92,12 @@
       "allTimeDownloads": 396
     },
     "indian-vehicle-number": {
-      "monthlyDownloads": 238,
+      "monthlyDownloads": 235,
       "firstPublished": "2026-10-02",
       "allTimeDownloads": 404
     },
     "inkwire": {
-      "monthlyDownloads": 223,
+      "monthlyDownloads": 218,
       "firstPublished": "2026-10-01",
       "allTimeDownloads": 557
     },
@@ -107,7 +107,7 @@
       "allTimeDownloads": 503
     },
     "env-leak-guard": {
-      "monthlyDownloads": 274,
+      "monthlyDownloads": 273,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 449
     },
