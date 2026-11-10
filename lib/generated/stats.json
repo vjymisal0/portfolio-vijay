@@ -1,43 +1,43 @@
 {
-  "updatedAt": "2026-11-09T15:01:21.357Z",
+  "updatedAt": "2026-11-10T03:01:19.703Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 167,
+      "monthlyDownloads": 141,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1631
+      "allTimeDownloads": 1632
     },
     "exposure-score": {
-      "monthlyDownloads": 146,
+      "monthlyDownloads": 114,
       "firstPublished": "2026-08-03",
       "allTimeDownloads": 1347
     },
     "pan-card-validator": {
-      "monthlyDownloads": 63,
+      "monthlyDownloads": 61,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1205
+      "allTimeDownloads": 1206
     },
     "gst-validator": {
-      "monthlyDownloads": 63,
+      "monthlyDownloads": 65,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1095
+      "allTimeDownloads": 1097
     },
     "exif-purge": {
-      "monthlyDownloads": 112,
+      "monthlyDownloads": 91,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1247
+      "allTimeDownloads": 1251
     },
     "photo-hash": {
-      "monthlyDownloads": 134,
+      "monthlyDownloads": 109,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1242
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 108,
+      "monthlyDownloads": 79,
       "firstPublished": "2026-09-17",
-      "allTimeDownloads": 1178
+      "allTimeDownloads": 1179
     },
     "glare-score": {
-      "monthlyDownloads": 134,
+      "monthlyDownloads": 110,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 972
     },
@@ -47,57 +47,57 @@
       "allTimeDownloads": 458
     },
     "contrast-score": {
-      "monthlyDownloads": 141,
+      "monthlyDownloads": 114,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 998
+      "allTimeDownloads": 999
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 51,
+      "monthlyDownloads": 49,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 639
+      "allTimeDownloads": 640
     },
     "env-example-drift": {
-      "monthlyDownloads": 60,
+      "monthlyDownloads": 59,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 484
+      "allTimeDownloads": 485
     },
     "shadow-score": {
-      "monthlyDownloads": 151,
+      "monthlyDownloads": 123,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 952
+      "allTimeDownloads": 953
     },
     "todo-expiry": {
-      "monthlyDownloads": 26,
+      "monthlyDownloads": 25,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 418
     },
     "upi-validator": {
-      "monthlyDownloads": 141,
+      "monthlyDownloads": 114,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 828
+      "allTimeDownloads": 833
     },
     "rupee-words": {
-      "monthlyDownloads": 73,
+      "monthlyDownloads": 74,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 655
+      "allTimeDownloads": 658
     },
     "skew-score": {
-      "monthlyDownloads": 104,
+      "monthlyDownloads": 84,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 573
+      "allTimeDownloads": 574
     },
     "ifsc-code-validator": {
-      "monthlyDownloads": 81,
+      "monthlyDownloads": 61,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 402
+      "allTimeDownloads": 403
     },
     "indian-vehicle-number": {
-      "monthlyDownloads": 90,
+      "monthlyDownloads": 70,
       "firstPublished": "2026-10-02",
-      "allTimeDownloads": 407
+      "allTimeDownloads": 408
     },
     "inkwire": {
-      "monthlyDownloads": 90,
+      "monthlyDownloads": 67,
       "firstPublished": "2026-10-01",
       "allTimeDownloads": 560
     },
@@ -107,22 +107,34 @@
       "allTimeDownloads": 529
     },
     "env-leak-guard": {
-      "monthlyDownloads": 135,
+      "monthlyDownloads": 116,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 454
+      "allTimeDownloads": 455
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 101,
+      "monthlyDownloads": 83,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 401
+      "allTimeDownloads": 404
     },
     "@vjymisal0/agentrules": {
-      "monthlyDownloads": 77,
+      "monthlyDownloads": 60,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 342
+      "allTimeDownloads": 344
     }
   },
   "contributions": [
+    {
+      "repo": "kubestellar/console",
+      "title": "🌱 test(auth): add unit coverage for logoutCleanup branches",
+      "url": "https://github.com/kubestellar/console/pull/24640",
+      "number": 24640,
+      "date": "2026-11-09",
+      "kind": "feature",
+      "techs": [
+        "TypeScript"
+      ],
+      "auto": true
+    },
     {
       "repo": "grafana/grafana",
       "title": "Dashboard: Restore keyboard focus to an adjacent panel after deleting a panel",
