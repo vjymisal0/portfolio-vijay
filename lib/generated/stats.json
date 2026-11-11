@@ -1,25 +1,25 @@
 {
-  "updatedAt": "2026-11-11T03:01:20.613Z",
+  "updatedAt": "2026-11-11T15:01:24.235Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 109,
+      "monthlyDownloads": 110,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1632
+      "allTimeDownloads": 1633
     },
     "exposure-score": {
-      "monthlyDownloads": 92,
+      "monthlyDownloads": 94,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1347
+      "allTimeDownloads": 1349
     },
     "pan-card-validator": {
-      "monthlyDownloads": 59,
+      "monthlyDownloads": 60,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1206
+      "allTimeDownloads": 1207
     },
     "gst-validator": {
-      "monthlyDownloads": 67,
+      "monthlyDownloads": 68,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1099
+      "allTimeDownloads": 1100
     },
     "exif-purge": {
       "monthlyDownloads": 73,
@@ -27,14 +27,14 @@
       "allTimeDownloads": 1252
     },
     "photo-hash": {
-      "monthlyDownloads": 83,
+      "monthlyDownloads": 84,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1243
+      "allTimeDownloads": 1244
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 67,
+      "monthlyDownloads": 68,
       "firstPublished": "2026-09-17",
-      "allTimeDownloads": 1181
+      "allTimeDownloads": 1182
     },
     "glare-score": {
       "monthlyDownloads": 95,
@@ -42,9 +42,9 @@
       "allTimeDownloads": 975
     },
     "pkg-bin-doctor": {
-      "monthlyDownloads": 29,
+      "monthlyDownloads": 31,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 459
+      "allTimeDownloads": 461
     },
     "contrast-score": {
       "monthlyDownloads": 98,
@@ -57,14 +57,14 @@
       "allTimeDownloads": 642
     },
     "env-example-drift": {
-      "monthlyDownloads": 57,
+      "monthlyDownloads": 60,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 485
+      "allTimeDownloads": 488
     },
     "shadow-score": {
-      "monthlyDownloads": 108,
+      "monthlyDownloads": 112,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 954
+      "allTimeDownloads": 958
     },
     "todo-expiry": {
       "monthlyDownloads": 24,
@@ -72,19 +72,19 @@
       "allTimeDownloads": 418
     },
     "upi-validator": {
-      "monthlyDownloads": 95,
+      "monthlyDownloads": 96,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 834
+      "allTimeDownloads": 835
     },
     "rupee-words": {
-      "monthlyDownloads": 74,
+      "monthlyDownloads": 82,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 660
+      "allTimeDownloads": 668
     },
     "skew-score": {
-      "monthlyDownloads": 67,
+      "monthlyDownloads": 69,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 575
+      "allTimeDownloads": 577
     },
     "ifsc-code-validator": {
       "monthlyDownloads": 50,
@@ -92,34 +92,34 @@
       "allTimeDownloads": 405
     },
     "indian-vehicle-number": {
-      "monthlyDownloads": 56,
+      "monthlyDownloads": 57,
       "firstPublished": "2026-10-02",
-      "allTimeDownloads": 409
+      "allTimeDownloads": 410
     },
     "inkwire": {
-      "monthlyDownloads": 47,
+      "monthlyDownloads": 48,
       "firstPublished": "2026-10-01",
-      "allTimeDownloads": 562
+      "allTimeDownloads": 563
     },
     "mcp-tool-schema-lint": {
       "monthlyDownloads": 369,
       "firstPublished": "2026-09-30",
-      "allTimeDownloads": 539
+      "allTimeDownloads": 545
     },
     "env-leak-guard": {
-      "monthlyDownloads": 106,
+      "monthlyDownloads": 109,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 460
+      "allTimeDownloads": 463
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 74,
+      "monthlyDownloads": 77,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 405
+      "allTimeDownloads": 408
     },
     "@vjymisal0/agentrules": {
-      "monthlyDownloads": 50,
+      "monthlyDownloads": 51,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 345
+      "allTimeDownloads": 346
     }
   },
   "contributions": [
@@ -324,6 +324,18 @@
       "kind": "fix",
       "techs": [
         "Python"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "DefNotArham/YouTube-watch-party-",
+      "title": "fix: add smooth auto-scroll to the chat panel",
+      "url": "https://github.com/DefNotArham/YouTube-watch-party-/pull/9",
+      "number": 9,
+      "date": "2026-08-06",
+      "kind": "fix",
+      "techs": [
+        "TypeScript"
       ],
       "auto": true
     }
