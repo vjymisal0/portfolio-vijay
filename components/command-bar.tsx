@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type ComponentType }
 import { AnimatePresence, motion } from 'framer-motion'
 import { Boxes, Briefcase, Check, Copy, CornerDownLeft, GitPullRequest, Home, Package, Search } from 'lucide-react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
+import { useRouter } from 'next/navigation'
 
 const EMAIL = 'misalvijay153@gmail.com'
 
@@ -18,7 +19,6 @@ type Command = {
 
 export const OPEN_COMMAND_BAR = 'open-command-bar'
 
-const go = (hash: string) => { window.location.hash = hash }
 const open = (url: string) => { window.open(url, '_blank', 'noopener,noreferrer') }
 
 export default function CommandBar() {
@@ -27,12 +27,13 @@ export default function CommandBar() {
   const [index, setIndex] = useState(0)
   const [copied, setCopied] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
+  const router = useRouter()
 
   const commands = useMemo<Command[]>(() => [
-    { id: 'home', label: 'Home', group: 'Navigate', icon: Home, run: () => go('home') },
-    { id: 'experience', label: 'Experience', group: 'Navigate', icon: Briefcase, keywords: 'career work education', run: () => go('experience') },
-    { id: 'builds', label: 'Build Systems', group: 'Navigate', icon: Boxes, keywords: 'projects packages automation', run: () => go('builds') },
-    { id: 'oss', label: 'Open Source', group: 'Navigate', icon: GitPullRequest, keywords: 'contributions pull requests', run: () => go('oss') },
+    { id: 'home', label: 'Home', group: 'Navigate', icon: Home, run: () => router.push('/') },
+    { id: 'experience', label: 'Experience', group: 'Navigate', icon: Briefcase, keywords: 'career work education', run: () => router.push('/experience') },
+    { id: 'builds', label: 'Build Systems', group: 'Navigate', icon: Boxes, keywords: 'projects packages automation', run: () => router.push('/builds') },
+    { id: 'oss', label: 'Open Source', group: 'Navigate', icon: GitPullRequest, keywords: 'contributions pull requests', run: () => router.push('/oss') },
     { id: 'github', label: 'GitHub profile', group: 'Links', icon: FaGithub, run: () => open('https://github.com/vjymisal0') },
     { id: 'linkedin', label: 'LinkedIn', group: 'Links', icon: FaLinkedin, run: () => open('https://www.linkedin.com/in/vijaymisal/') },
     { id: 'npm', label: 'npm packages', group: 'Links', icon: Package, run: () => open('https://www.npmjs.com/~vjymisal0') },
@@ -44,7 +45,7 @@ export default function CommandBar() {
         setTimeout(() => setCopied(false), 1500)
       },
     },
-  ], [])
+  ], [router])
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase()

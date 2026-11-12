@@ -35,10 +35,10 @@ export default function OpenSource() {
   return (
     <section className="container mx-auto px-6 lg:px-12 max-w-4xl">
       <div className="mb-12">
-        <p className="mb-2 text-[11px] font-mono text-primary">$ cat contributions.md</p><h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground mb-3">Open Source</h2>
+        <p className="mb-2 text-[11px] font-mono text-primary">$ cat contributions.md</p><h1 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground mb-3">Open Source</h1>
         <p className="text-sm sm:text-base font-body text-muted-foreground leading-relaxed">
-          Pull requests merged across {repoCount} repositories <AnnotatedText variant="box" color="text-primary">I don&apos;t own</AnnotatedText>, from large projects to small tools I found useful. The featured ones explain what each change fixed.{' '}
-          <Link href="/#builds" className="underline underline-offset-2 hover:text-foreground transition-colors">My own npm packages &rarr;</Link>
+          Pull requests merged across {repoCount} repositories <span className="whitespace-nowrap"><AnnotatedText variant="box" color="text-primary">I don&apos;t own</AnnotatedText>,</span> from large projects to small tools I found useful. The featured ones explain what each change fixed.{' '}
+          <Link href="/builds" className="underline underline-offset-2 hover:text-foreground transition-colors">My own npm packages &rarr;</Link>
         </p>
       </div>
 
@@ -142,10 +142,10 @@ export default function OpenSource() {
         <GitHubCharts />
 
         {/* Let's Connect CTA */}
-        <div className="pt-24 mt-12">
+        <div className="pt-12">
           <div className="text-left border-t border-border pt-12">
             <h2 className="text-3xl sm:text-4xl font-mono font-medium tracking-tight text-foreground mb-6"><AnnotatedText variant="doubleUnderline" color="text-primary">Let's Connect.</AnnotatedText></h2>
-            <p className="text-lg text-muted-foreground mb-10 max-w-xl">
+            <p className="font-body text-lg text-muted-foreground mb-10 max-w-xl">
               I'm always open to discussing new projects, open-source collaborations, or creative ideas.
             </p>
             <div className="flex flex-wrap items-center gap-4">
@@ -156,7 +156,7 @@ export default function OpenSource() {
                  LinkedIn Profile
               </a>
             </div>
-            <p className="text-xs text-muted-foreground/70 mt-16">
+            <p className="font-body text-xs text-muted-foreground/70 mt-12">
               Designed, built, and maintained with AI coding tools, including Claude Code.
             </p>
           </div>

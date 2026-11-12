@@ -4,7 +4,6 @@ import type { ReactNode } from 'react'
 import StickyNavbar from '@/components/sticky-navbar'
 import ScrollToTop from '@/components/scroll-to-top'
 import CommandBar from '@/components/command-bar'
-import VisitorCount from '@/components/visitor-count'
 
 export default function SiteShell({ children }: { children: ReactNode }) {
   return (
@@ -15,7 +14,6 @@ export default function SiteShell({ children }: { children: ReactNode }) {
         <ScrollToTop />
       </main>
       <CommandBar />
-      <VisitorCount />
     </div>
   )
 }

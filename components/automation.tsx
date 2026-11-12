@@ -39,7 +39,7 @@ export default function Automation() {
             <StepPlayer steps={steps} name="Self-running AI publishing system" />
             <div>
               <h5 className="text-base font-medium text-foreground">Watch it handle a bad day</h5>
-              <p className="mb-4 mt-1 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              <p className="mb-4 mt-1 max-w-2xl font-body text-sm leading-relaxed text-muted-foreground">
                 Pick a scenario and press play: a normal day, an AI mistake caught, a duplicate avoided, a day with nothing reliable to post, and a failed publish that recovers.
               </p>
               <HealthDiagram />

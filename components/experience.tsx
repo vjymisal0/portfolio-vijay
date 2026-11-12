@@ -78,7 +78,7 @@ for (const exp of experiences) {
 export default function Experience() {
   return (
     <section className="container mx-auto px-6 lg:px-12 max-w-4xl">
-      <div className="mb-10"><p className="mb-2 text-[11px] font-mono text-primary">$ cat experience.log</p><h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground">Experience</h2><p className="mt-3 max-w-xl text-sm text-muted-foreground">A timeline of shipping, learning, and making systems <AnnotatedText variant="underline" color="text-primary">more dependable</AnnotatedText>.</p></div>
+      <div className="mb-10"><p className="mb-2 text-[11px] font-mono text-primary">$ cat experience.log</p><h1 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground">Experience</h1><p className="mt-3 max-w-xl font-body text-sm leading-relaxed text-muted-foreground sm:text-base">From intern to AI Engineer on one product at Loopr AI, making its systems <span className="whitespace-nowrap"><AnnotatedText variant="underline" color="text-primary">more dependable</AnnotatedText>.</span></p></div>
 
       <div className="flex flex-col border-t border-border">
         {groups.map((group) => (

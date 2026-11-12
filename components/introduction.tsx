@@ -1,9 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { ArrowRight, Mail } from 'lucide-react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { NotableRepos } from './github-charts'
+import RecentMerges from './recent-merges'
 import { TiltCard } from './ui/tilt-card'
 import { TechBadge } from './tech-badge'
 import { contributions, firstPublishedDate, packages } from '@/lib/data'
@@ -47,21 +49,21 @@ const highlights = [
     label: '01 / Product engineering',
     title: 'AI engineering at Loopr AI',
     description: 'Defect-detection models, the inference pipeline that serves them, and the product features built on top.',
-    href: '#experience',
+    href: '/experience',
     action: 'See my experience',
   },
   {
     label: '02 / Automation',
     title: 'Systems beyond the demo',
     description: 'AI systems that run a daily job on their own, check their own work, and only ask for help when it matters.',
-    href: '#builds',
+    href: '/builds',
     action: 'Explore build systems',
   },
   {
     label: '03 / Open source',
     title: 'Fixes that ship upstream',
     description: 'Bug fixes, features, and tests merged into projects maintained by other people, with notes on what each one changed.',
-    href: '#oss',
+    href: '/oss',
     action: 'See contributions',
   },
 ]
@@ -70,8 +72,8 @@ export default function Introduction() {
   const live = useLiveDownloads()
 
   return (
-    <section aria-labelledby="intro-title" className="container mx-auto max-w-4xl px-6 pb-16 lg:px-12">
-      <div className="max-w-3xl">
+    <section aria-labelledby="intro-title" className="container mx-auto max-w-4xl px-6 lg:px-12">
+      <div>
         <p className="mb-5 font-mono text-xs text-muted-foreground">
           <span className="text-primary">~ whoami</span> <span aria-hidden="true" className="mx-2">&rarr;</span> Vijay Misal, Pune, India
         </p>
@@ -79,13 +81,15 @@ export default function Introduction() {
           Software engineer,<br />
           <span className="text-primary">building with AI.</span>
         </h1>
-        <p className="mt-6 max-w-xl font-body text-base leading-relaxed text-muted-foreground sm:text-lg">
+        <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_21rem] lg:items-start">
+        <div>
+        <p className="max-w-xl font-body text-base leading-relaxed text-muted-foreground sm:text-lg">
           I&apos;m Vijay, an AI Engineer at Loopr AI. I train defect-detection models and ship the product around them for an industrial visual-inspection platform. Outside work I&apos;ve had <AnnotatedText variant="doubleUnderline" color="text-primary" delay={0.8}>{contributions.length} pull requests merged</AnnotatedText> into open-source projects over the last year, including Vite, axios, and Apache Superset, and I maintain {packages.length} npm packages.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
-          <a href="#builds" className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+          <Link href="/builds" className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
             Explore my work <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </a>
+          </Link>
           <a href="mailto:misalvijay153@gmail.com" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary">
             <Mail className="h-4 w-4" aria-hidden="true" /> Get in touch
           </a>
@@ -100,6 +104,9 @@ export default function Introduction() {
               <FaLinkedin className="h-4 w-4" aria-hidden="true" /> LinkedIn
             </a>
           </nav>
+        </div>
+        </div>
+        <RecentMerges />
         </div>
       </div>
 
@@ -139,19 +146,19 @@ export default function Introduction() {
             <p className="mb-1 text-[11px] font-mono text-primary">$ ls ./focus</p>
             <h2 id="selected-work-title" className="text-xl font-medium tracking-tight">What I work on</h2>
           </div>
-          <span className="text-xs text-muted-foreground">Product code to production workflows</span>
+          <span className="font-body text-xs text-muted-foreground">Product code to production workflows</span>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {highlights.map((item) => (
             <TiltCard key={item.href} className="flex">
-            <a href={item.href} className="group flex w-full flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/60">
+            <Link href={item.href} className="group flex w-full flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/60">
               <span className="text-[10px] uppercase tracking-widest text-primary">{item.label}</span>
               <h3 className="mt-4 text-lg font-medium">{item.title}</h3>
               <p className="mb-6 mt-3 font-body text-sm leading-relaxed text-muted-foreground">{item.description}</p>
               <span className="mt-auto inline-flex items-center gap-2 text-xs font-medium text-primary">
                 {item.action} <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
               </span>
-            </a>
+            </Link>
             </TiltCard>
           ))}
         </div>
@@ -159,9 +166,9 @@ export default function Introduction() {
 
       <div className="mt-12 border-t border-border pt-8">
         <NotableRepos />
-        <a href="#oss" className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-primary hover:underline">
+        <Link href="/oss" className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-primary hover:underline">
           Explore my contributions <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </a>
+        </Link>
       </div>
     </section>
   )

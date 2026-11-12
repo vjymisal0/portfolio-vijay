@@ -18,8 +18,8 @@ export default function BuildSystems() {
     <section className="container mx-auto max-w-4xl px-6 lg:px-12">
       <header className="mb-12">
         <p className="mb-2 text-[11px] font-mono text-primary">$ ls ./builds</p>
-        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground">Things I&apos;ve built</h2>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+        <h1 className="text-3xl sm:text-4xl font-medium tracking-tight text-foreground">Things I&apos;ve built</h1>
+        <p className="mt-3 max-w-2xl font-body text-sm leading-relaxed text-muted-foreground sm:text-base">
           I build software that keeps working after the demo: systems that run on their own, apps people use, and libraries other developers install. Each one below starts with the problem, the decision that shaped it, and what came of it.
         </p>
         <dl className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">

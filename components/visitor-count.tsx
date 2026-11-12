@@ -31,7 +31,7 @@ export default function VisitorCount() {
   if (count === null) return null
 
   return (
-    <p className="pointer-events-none fixed bottom-2 left-1/2 z-40 -translate-x-1/2 flex items-center gap-1.5 font-mono text-[10px] text-muted-foreground/70">
+    <p className="flex items-center gap-1.5 font-mono">
       <Eye className="h-3 w-3" aria-hidden="true" />
       <span>{count.toLocaleString()} unique visitors</span>
     </p>

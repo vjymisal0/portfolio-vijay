@@ -39,7 +39,7 @@ export default function CaseStudy(props: CaseStudyProps) {
   const rows = ROWS.filter(([, key]) => props[key])
   const { category, status, title, summary, technologies, github, live, details } = props
   return (
-    <article className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary/50">
+    <article className="rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary/50 sm:p-6">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
         <span className="text-[11px] font-mono uppercase tracking-wider text-primary">{category}</span>
         <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-mono ${STATUS_STYLES[status]}`}>
@@ -48,14 +48,14 @@ export default function CaseStudy(props: CaseStudyProps) {
         </span>
       </div>
       <h3 className="font-serif text-2xl font-medium text-foreground">{title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-foreground/90">{summary}</p>
+      <p className="mt-2 font-body text-sm leading-relaxed text-foreground/90 sm:text-base">{summary}</p>
 
       {rows.length > 0 && (
       <dl className="mt-6 grid gap-4 sm:grid-cols-2">
         {rows.map(([label, key]) => (
           <div key={key} className="rounded-xl border border-border/70 p-4">
             <dt className="mb-1.5 text-[11px] font-mono uppercase tracking-wider text-muted-foreground">{label}</dt>
-            <dd className="text-sm leading-relaxed text-foreground/85">{props[key]}</dd>
+            <dd className="font-body text-sm leading-relaxed text-foreground/85">{props[key]}</dd>
           </div>
         ))}
       </dl>
