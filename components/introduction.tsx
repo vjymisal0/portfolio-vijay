@@ -6,13 +6,15 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { NotableRepos } from './github-charts'
 import { TiltCard } from './ui/tilt-card'
 import { TechBadge } from './tech-badge'
-import { contributions, packages } from '@/lib/data'
+import { contributions, firstPublishedDate, packages } from '@/lib/data'
 import { AnnotatedText } from '@/components/ui/annotated-text'
-import { getNpmLastMonthTotal } from '@/app/actions/npm'
+import { getNpmTotals } from '@/app/actions/npm'
 
 const repoCount = new Set(contributions.map((c) => c.repo)).size
-// Snapshot fallback, replaced by the live npm total once it loads.
+// Snapshot fallbacks, replaced by the live npm totals once they load.
 const snapshotDownloads = packages.reduce((sum, p) => sum + p.monthlyDownloads, 0)
+const snapshotAllTime = packages.reduce((sum, p) => sum + p.allTimeDownloads, 0)
+const sinceLabel = new Date(firstPublishedDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
 const packageNames = packages.map((p) => p.name)
 
 const stats = [
@@ -21,12 +23,21 @@ const stats = [
   { value: `${packages.length}`, label: 'npm packages maintained' },
 ]
 
-function useLiveMonthlyDownloads() {
-  const [live, setLive] = useState<number | null>(null)
+function useLiveDownloads() {
+  const [live, setLive] = useState<{ month: number; allTime: number } | null>(null)
   useEffect(() => {
-    getNpmLastMonthTotal(packageNames).then((res) => res.success && setLive(res.total))
+    getNpmTotals(packageNames, firstPublishedDate).then((res) => res.success && setLive({ month: res.month, allTime: res.allTime }))
   }, [])
   return live
+}
+
+function LiveDot() {
+  return (
+    <span className="relative flex h-1.5 w-1.5" title="Live from the npm registry">
+      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60 motion-reduce:hidden" />
+      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+    </span>
+  )
 }
 
 const stack = ['TypeScript', 'React', 'NestJS', 'Node.js', 'Python', 'Go', 'Rust', 'n8n']
@@ -56,7 +67,7 @@ const highlights = [
 ]
 
 export default function Introduction() {
-  const liveDownloads = useLiveMonthlyDownloads()
+  const live = useLiveDownloads()
 
   return (
     <section aria-labelledby="intro-title" className="container mx-auto max-w-4xl px-6 pb-16 lg:px-12">
@@ -92,7 +103,7 @@ export default function Introduction() {
         </div>
       </div>
 
-      <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-4">
+      <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-5">
         {stats.map(({ value, label }) => (
           <div key={label} className="bg-card px-4 py-4">
             <dt className="sr-only">{label}</dt>
@@ -103,16 +114,21 @@ export default function Introduction() {
         <div className="bg-card px-4 py-4">
           <dt className="sr-only">monthly npm downloads</dt>
           <dd className="font-mono text-2xl font-medium tracking-tight text-foreground tabular-nums">
-            {(liveDownloads ?? snapshotDownloads).toLocaleString('en-US')}
+            {(live?.month ?? snapshotDownloads).toLocaleString('en-US')}
           </dd>
           <dd className="mt-1 flex items-center gap-1.5 text-[11px] leading-snug text-muted-foreground">
-            {liveDownloads !== null && (
-              <span className="relative flex h-1.5 w-1.5" title="Live from the npm registry">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60 motion-reduce:hidden" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
-              </span>
-            )}
+            {live !== null && <LiveDot />}
             monthly npm downloads
+          </dd>
+        </div>
+        <div className="col-span-2 bg-card px-4 py-4 sm:col-span-1">
+          <dt className="sr-only">npm downloads since {sinceLabel}</dt>
+          <dd className="font-mono text-2xl font-medium tracking-tight text-foreground tabular-nums">
+            {(live?.allTime ?? snapshotAllTime).toLocaleString('en-US')}
+          </dd>
+          <dd className="mt-1 flex items-center gap-1.5 text-[11px] leading-snug text-muted-foreground">
+            {live !== null && <LiveDot />}
+            npm downloads since {sinceLabel}
           </dd>
         </div>
       </dl>

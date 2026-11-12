@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Refreshes lib/generated/stats.json with npm monthly downloads and newly
+// Refreshes lib/generated/stats.json with npm 30-day and all-time downloads and newly
 // merged upstream PRs. Never touches lib/data.ts (it only reads it).
 //
 // Usage: npm run stats:update   (loads .env via node --env-file)
@@ -64,8 +64,14 @@ async function readDataTs() {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
+// npm's `last-month` alias froze on 2026-06-02:2026-07-01 (every package read
+// 0 on 2026-10-27), so ask for the explicit 30 days ending yesterday (UTC).
+const day = (d) => d.toISOString().slice(0, 10)
+const RANGE_END = day(new Date(Date.now() - 864e5))
+const RANGE = `${day(new Date(Date.now() - 30 * 864e5))}:${RANGE_END}`
+
 async function fetchMonthlyDownloads(name) {
-  const url = `https://api.npmjs.org/downloads/point/last-month/${encodeURIComponent(name)}`
+  const url = `https://api.npmjs.org/downloads/point/${RANGE}/${encodeURIComponent(name)}`
   let res
   for (let attempt = 1; attempt <= 4; attempt++) {
     res = await fetch(url)
@@ -77,7 +83,41 @@ async function fetchMonthlyDownloads(name) {
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const body = await res.json()
   if (typeof body.downloads !== 'number') throw new Error('no downloads field')
+  // a window that stops days short of the one asked for is stale data, not zero downloads
+  if (Date.parse(RANGE_END) - Date.parse(body.end) > 3 * 864e5) throw new Error(`stale window ending ${body.end}`)
   return body.downloads
+}
+
+// npm's range/point APIs cap one query at 18 months, so longer spans are
+// summed from consecutive chunks.
+function rangeChunks(start, end) {
+  const out = []
+  for (let from = Date.parse(start); from <= Date.parse(end); from += 540 * 864e5) {
+    out.push(`${day(new Date(from))}:${day(new Date(Math.min(from + 539 * 864e5, Date.parse(end))))}`)
+  }
+  return out
+}
+
+async function fetchFirstPublished(name) {
+  const res = await fetch(`https://registry.npmjs.org/${name.replace('/', '%2F')}`)
+  if (!res.ok) throw new Error(`registry HTTP ${res.status}`)
+  const created = (await res.json()).time?.created
+  if (!created) throw new Error('no time.created')
+  return created.slice(0, 10)
+}
+
+// Downloads from the first publish through RANGE_END, the same end day as the
+// 30-day figure, so the site's live totals match this snapshot.
+async function fetchAllTimeDownloads(name, since) {
+  let total = 0
+  for (const range of rangeChunks(since, RANGE_END)) {
+    const res = await fetch(`https://api.npmjs.org/downloads/point/${range}/${encodeURIComponent(name)}`)
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const body = await res.json()
+    if (typeof body.downloads !== 'number') throw new Error('no downloads field')
+    total += body.downloads
+  }
+  return total
 }
 
 // --- GitHub ---
@@ -161,17 +201,30 @@ async function main() {
   let pkgUpdated = 0
   const pkgFailed = []
   for (const name of packageNames) {
+    const was = prev.packages?.[name]
     try {
       const downloads = await fetchMonthlyDownloads(name)
       packages[name] = { monthlyDownloads: downloads }
-      if (prev.packages?.[name]?.monthlyDownloads !== downloads) pkgUpdated++
+      if (was?.monthlyDownloads !== downloads) pkgUpdated++
     } catch (err) {
       pkgFailed.push(name)
       console.warn(`[warn] npm ${name}: ${err.message} (keeping previous value)`)
-      if (prev.packages?.[name]) packages[name] = prev.packages[name]
+      if (was) packages[name] = { monthlyDownloads: was.monthlyDownloads }
+    }
+    if (!packages[name]) continue
+    try {
+      const firstPublished = was?.firstPublished ?? (await fetchFirstPublished(name))
+      packages[name].firstPublished = firstPublished
+      packages[name].allTimeDownloads = await fetchAllTimeDownloads(name, firstPublished)
+    } catch (err) {
+      console.warn(`[warn] npm all-time ${name}: ${err.message} (keeping previous value)`)
+      if (was?.firstPublished) packages[name].firstPublished = was.firstPublished
+      if (was?.allTimeDownloads !== undefined) packages[name].allTimeDownloads = was.allTimeDownloads
     }
   }
   const totalDownloads = Object.values(packages).reduce((s, p) => s + p.monthlyDownloads, 0)
+  const allTimeTotal = Object.values(packages).reduce((s, p) => s + (p.allTimeDownloads ?? 0), 0)
+  const firstPublished = Object.values(packages).map((p) => p.firstPublished).filter(Boolean).sort()[0]
 
   // GitHub
   await gh('/user') // fails fast with a clear message on bad tokens
@@ -256,6 +309,7 @@ async function main() {
     `Portfolio stats: ${changed ? 'UPDATED' : 'no changes'}`,
     ``,
     `npm, last 30 days: ${fmt(totalDownloads)} total${prevTotal ? ` (${delta(totalDownloads - prevTotal)})` : ''}`,
+    `npm, all time (since ${firstPublished}): ${fmt(allTimeTotal)} total`,
     `packages changed: ${pkgUpdated}/${packageNames.length}${pkgFailed.length ? ` | failed, kept old value: ${pkgFailed.join(', ')}` : ''}`,
     ...pkgLines,
     ``,
@@ -275,6 +329,7 @@ async function main() {
   const totalPRs = handUrls.size + contributions.length
   const body = [
     `📦 npm (30d): ${fmt(totalDownloads)}${prevTotal ? ` (${delta(totalDownloads - prevTotal)})` : ''} · ${pkgUpdated}/${packageNames.length} pkgs changed`,
+    `📦 npm (all time): ${fmt(allTimeTotal)}`,
     ups.length ? `▲ ${ups.map(([n, d]) => `${n} ${delta(d)}`).join(', ')}` : null,
     downs.length ? `▼ ${downs.map(([n, d]) => `${n} ${delta(d)}`).join(', ')}` : null,
     pkgFailed.length ? `⚠️ npm fetch failed (kept old value): ${pkgFailed.join(', ')}` : null,

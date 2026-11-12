@@ -42,7 +42,6 @@ export default function BuildSystems() {
           summary="One dashboard that shows an open-source contributor what needs their attention next, across every repository they work in."
           technologies={['TypeScript', 'Next.js', 'PostgreSQL', 'Redis', 'Docker']}
           github="https://github.com/vjymisal0/oss-tracker"
-          live="https://osstracker.vijaymisal.tech"
         />
         <CaseStudy
           category="Real-time app"
@@ -54,7 +53,6 @@ export default function BuildSystems() {
           decision="Built on Firebase for sign-in, storage, and live updates, so the effort went into the analysis and charts instead of running servers."
           result="Live and usable in the browser, with sentiment updating instantly as messages come in."
           technologies={['React', 'Firebase', 'Chart.js', 'JavaScript']}
-          github="https://github.com/vjymisal0/Chat-App-with-Sentiment-Analysis"
           live="https://chatapp-ai-tan.vercel.app"
         />
       </div>
