@@ -1,20 +1,20 @@
 {
-  "updatedAt": "2026-11-12T03:01:16.622Z",
+  "updatedAt": "2026-11-12T15:01:25.679Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 103,
+      "monthlyDownloads": 104,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1633
+      "allTimeDownloads": 1634
     },
     "exposure-score": {
-      "monthlyDownloads": 86,
+      "monthlyDownloads": 89,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1349
+      "allTimeDownloads": 1352
     },
     "pan-card-validator": {
-      "monthlyDownloads": 58,
+      "monthlyDownloads": 61,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1207
+      "allTimeDownloads": 1210
     },
     "gst-validator": {
       "monthlyDownloads": 63,
@@ -22,24 +22,24 @@
       "allTimeDownloads": 1100
     },
     "exif-purge": {
-      "monthlyDownloads": 64,
+      "monthlyDownloads": 68,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1252
+      "allTimeDownloads": 1256
     },
     "photo-hash": {
-      "monthlyDownloads": 73,
+      "monthlyDownloads": 74,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1244
+      "allTimeDownloads": 1245
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 60,
+      "monthlyDownloads": 61,
       "firstPublished": "2026-09-17",
-      "allTimeDownloads": 1182
+      "allTimeDownloads": 1183
     },
     "glare-score": {
-      "monthlyDownloads": 86,
+      "monthlyDownloads": 88,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 975
+      "allTimeDownloads": 977
     },
     "pkg-bin-doctor": {
       "monthlyDownloads": 31,
@@ -47,14 +47,14 @@
       "allTimeDownloads": 461
     },
     "contrast-score": {
-      "monthlyDownloads": 91,
+      "monthlyDownloads": 93,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 1000
+      "allTimeDownloads": 1002
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 47,
+      "monthlyDownloads": 50,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 642
+      "allTimeDownloads": 645
     },
     "env-example-drift": {
       "monthlyDownloads": 54,
@@ -62,67 +62,79 @@
       "allTimeDownloads": 488
     },
     "shadow-score": {
-      "monthlyDownloads": 104,
+      "monthlyDownloads": 105,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 958
+      "allTimeDownloads": 959
     },
     "todo-expiry": {
-      "monthlyDownloads": 22,
+      "monthlyDownloads": 23,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 418
+      "allTimeDownloads": 419
     },
     "upi-validator": {
-      "monthlyDownloads": 86,
+      "monthlyDownloads": 102,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 835
+      "allTimeDownloads": 851
     },
     "rupee-words": {
-      "monthlyDownloads": 81,
+      "monthlyDownloads": 83,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 668
+      "allTimeDownloads": 670
     },
     "skew-score": {
-      "monthlyDownloads": 63,
+      "monthlyDownloads": 65,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 577
+      "allTimeDownloads": 579
     },
     "ifsc-code-validator": {
-      "monthlyDownloads": 47,
+      "monthlyDownloads": 48,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 405
+      "allTimeDownloads": 406
     },
     "indian-vehicle-number": {
-      "monthlyDownloads": 51,
+      "monthlyDownloads": 52,
       "firstPublished": "2026-10-02",
-      "allTimeDownloads": 410
+      "allTimeDownloads": 411
     },
     "inkwire": {
-      "monthlyDownloads": 41,
+      "monthlyDownloads": 44,
       "firstPublished": "2026-10-01",
-      "allTimeDownloads": 563
+      "allTimeDownloads": 566
     },
     "mcp-tool-schema-lint": {
       "monthlyDownloads": 369,
       "firstPublished": "2026-09-30",
-      "allTimeDownloads": 545
+      "allTimeDownloads": 554
     },
     "env-leak-guard": {
-      "monthlyDownloads": 106,
+      "monthlyDownloads": 112,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 463
+      "allTimeDownloads": 469
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 69,
+      "monthlyDownloads": 75,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 408
+      "allTimeDownloads": 414
     },
     "@vjymisal0/agentrules": {
-      "monthlyDownloads": 43,
+      "monthlyDownloads": 50,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 346
+      "allTimeDownloads": 353
     }
   },
   "contributions": [
+    {
+      "repo": "Automattic/studio",
+      "title": "Fix noisy Windows CLI output when chcp is not on PATH",
+      "url": "https://github.com/Automattic/studio/pull/5911",
+      "number": 5911,
+      "date": "2026-11-12",
+      "kind": "fix",
+      "techs": [
+        "TypeScript"
+      ],
+      "auto": true
+    },
     {
       "repo": "kubestellar/console",
       "title": "🌱 test(auth): add unit coverage for logoutCleanup branches",
