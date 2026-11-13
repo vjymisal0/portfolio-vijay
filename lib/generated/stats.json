@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-11-13T03:01:22.987Z",
+  "updatedAt": "2026-11-13T15:01:25.054Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 100,
+      "monthlyDownloads": 101,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1634
+      "allTimeDownloads": 1635
     },
     "exposure-score": {
       "monthlyDownloads": 88,
@@ -12,14 +12,14 @@
       "allTimeDownloads": 1352
     },
     "pan-card-validator": {
-      "monthlyDownloads": 55,
+      "monthlyDownloads": 56,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1210
+      "allTimeDownloads": 1211
     },
     "gst-validator": {
-      "monthlyDownloads": 50,
+      "monthlyDownloads": 51,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1100
+      "allTimeDownloads": 1101
     },
     "exif-purge": {
       "monthlyDownloads": 67,
@@ -32,14 +32,14 @@
       "allTimeDownloads": 1245
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 58,
+      "monthlyDownloads": 60,
       "firstPublished": "2026-09-17",
-      "allTimeDownloads": 1183
+      "allTimeDownloads": 1185
     },
     "glare-score": {
-      "monthlyDownloads": 87,
+      "monthlyDownloads": 89,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 977
+      "allTimeDownloads": 979
     },
     "pkg-bin-doctor": {
       "monthlyDownloads": 29,
@@ -47,9 +47,9 @@
       "allTimeDownloads": 461
     },
     "contrast-score": {
-      "monthlyDownloads": 85,
+      "monthlyDownloads": 86,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 1002
+      "allTimeDownloads": 1003
     },
     "@vjymisal0/aadhaar-mask": {
       "monthlyDownloads": 49,
@@ -57,14 +57,14 @@
       "allTimeDownloads": 645
     },
     "env-example-drift": {
-      "monthlyDownloads": 52,
+      "monthlyDownloads": 53,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 488
+      "allTimeDownloads": 489
     },
     "shadow-score": {
-      "monthlyDownloads": 99,
+      "monthlyDownloads": 100,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 959
+      "allTimeDownloads": 960
     },
     "todo-expiry": {
       "monthlyDownloads": 23,
@@ -72,19 +72,19 @@
       "allTimeDownloads": 419
     },
     "upi-validator": {
-      "monthlyDownloads": 98,
+      "monthlyDownloads": 107,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 851
+      "allTimeDownloads": 860
     },
     "rupee-words": {
-      "monthlyDownloads": 82,
+      "monthlyDownloads": 83,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 670
+      "allTimeDownloads": 671
     },
     "skew-score": {
-      "monthlyDownloads": 65,
+      "monthlyDownloads": 66,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 579
+      "allTimeDownloads": 580
     },
     "ifsc-code-validator": {
       "monthlyDownloads": 46,
@@ -92,9 +92,9 @@
       "allTimeDownloads": 406
     },
     "indian-vehicle-number": {
-      "monthlyDownloads": 49,
+      "monthlyDownloads": 52,
       "firstPublished": "2026-10-02",
-      "allTimeDownloads": 411
+      "allTimeDownloads": 414
     },
     "inkwire": {
       "monthlyDownloads": 41,
@@ -104,17 +104,17 @@
     "mcp-tool-schema-lint": {
       "monthlyDownloads": 369,
       "firstPublished": "2026-09-30",
-      "allTimeDownloads": 554
+      "allTimeDownloads": 562
     },
     "env-leak-guard": {
-      "monthlyDownloads": 109,
+      "monthlyDownloads": 119,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 469
+      "allTimeDownloads": 479
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 70,
+      "monthlyDownloads": 74,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 414
+      "allTimeDownloads": 418
     },
     "@vjymisal0/agentrules": {
       "monthlyDownloads": 49,
@@ -123,6 +123,18 @@
     }
   },
   "contributions": [
+    {
+      "repo": "supabase/mcp",
+      "title": "docs(list_tables): clarify schemas default and [] for all schemas",
+      "url": "https://github.com/supabase/mcp/pull/396",
+      "number": 396,
+      "date": "2026-11-13",
+      "kind": "docs",
+      "techs": [
+        "TypeScript"
+      ],
+      "auto": true
+    },
     {
       "repo": "Automattic/studio",
       "title": "Fix noisy Windows CLI output when chcp is not on PATH",
