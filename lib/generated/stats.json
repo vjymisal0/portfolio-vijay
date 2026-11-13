@@ -1,68 +1,68 @@
 {
-  "updatedAt": "2026-11-12T15:01:25.679Z",
+  "updatedAt": "2026-11-13T03:01:22.987Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 104,
+      "monthlyDownloads": 100,
       "firstPublished": "2026-08-03",
       "allTimeDownloads": 1634
     },
     "exposure-score": {
-      "monthlyDownloads": 89,
+      "monthlyDownloads": 88,
       "firstPublished": "2026-08-03",
       "allTimeDownloads": 1352
     },
     "pan-card-validator": {
-      "monthlyDownloads": 61,
+      "monthlyDownloads": 55,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1210
     },
     "gst-validator": {
-      "monthlyDownloads": 63,
+      "monthlyDownloads": 50,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1100
     },
     "exif-purge": {
-      "monthlyDownloads": 68,
+      "monthlyDownloads": 67,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1256
     },
     "photo-hash": {
-      "monthlyDownloads": 74,
+      "monthlyDownloads": 68,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1245
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 61,
+      "monthlyDownloads": 58,
       "firstPublished": "2026-09-17",
       "allTimeDownloads": 1183
     },
     "glare-score": {
-      "monthlyDownloads": 88,
+      "monthlyDownloads": 87,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 977
     },
     "pkg-bin-doctor": {
-      "monthlyDownloads": 31,
+      "monthlyDownloads": 29,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 461
     },
     "contrast-score": {
-      "monthlyDownloads": 93,
+      "monthlyDownloads": 85,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 1002
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 50,
+      "monthlyDownloads": 49,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 645
     },
     "env-example-drift": {
-      "monthlyDownloads": 54,
+      "monthlyDownloads": 52,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 488
     },
     "shadow-score": {
-      "monthlyDownloads": 105,
+      "monthlyDownloads": 99,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 959
     },
@@ -72,12 +72,12 @@
       "allTimeDownloads": 419
     },
     "upi-validator": {
-      "monthlyDownloads": 102,
+      "monthlyDownloads": 98,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 851
     },
     "rupee-words": {
-      "monthlyDownloads": 83,
+      "monthlyDownloads": 82,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 670
     },
@@ -87,17 +87,17 @@
       "allTimeDownloads": 579
     },
     "ifsc-code-validator": {
-      "monthlyDownloads": 48,
+      "monthlyDownloads": 46,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 406
     },
     "indian-vehicle-number": {
-      "monthlyDownloads": 52,
+      "monthlyDownloads": 49,
       "firstPublished": "2026-10-02",
       "allTimeDownloads": 411
     },
     "inkwire": {
-      "monthlyDownloads": 44,
+      "monthlyDownloads": 41,
       "firstPublished": "2026-10-01",
       "allTimeDownloads": 566
     },
@@ -107,17 +107,17 @@
       "allTimeDownloads": 554
     },
     "env-leak-guard": {
-      "monthlyDownloads": 112,
+      "monthlyDownloads": 109,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 469
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 75,
+      "monthlyDownloads": 70,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 414
     },
     "@vjymisal0/agentrules": {
-      "monthlyDownloads": 50,
+      "monthlyDownloads": 49,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 353
     }
@@ -132,6 +132,18 @@
       "kind": "fix",
       "techs": [
         "TypeScript"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "securo-finance/securo",
+      "title": "feat(forecast): add automated recurring expense detection and predictive cashflow forecasting",
+      "url": "https://github.com/securo-finance/securo/pull/787",
+      "number": 787,
+      "date": "2026-11-12",
+      "kind": "feature",
+      "techs": [
+        "Python"
       ],
       "auto": true
     },
@@ -334,6 +346,30 @@
       "number": 525,
       "date": "2026-09-05",
       "kind": "fix",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "PyCalendar/icalendar",
+      "title": "ci: pin GitHub Action steps by commit hash",
+      "url": "https://github.com/PyCalendar/icalendar/pull/1688",
+      "number": 1688,
+      "date": "2026-09-02",
+      "kind": "cleanup",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "PyCalendar/icalendar",
+      "title": "Remove unreachable branches from vOrg.from_ical and vOrg.from_jcal",
+      "url": "https://github.com/PyCalendar/icalendar/pull/1643",
+      "number": 1643,
+      "date": "2026-08-07",
+      "kind": "cleanup",
       "techs": [
         "Python"
       ],
