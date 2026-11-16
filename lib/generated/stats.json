@@ -1,58 +1,58 @@
 {
-  "updatedAt": "2026-11-15T15:01:14.651Z",
+  "updatedAt": "2026-11-16T03:01:22.442Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 104,
+      "monthlyDownloads": 102,
       "firstPublished": "2026-08-03",
       "allTimeDownloads": 1638
     },
     "exposure-score": {
-      "monthlyDownloads": 91,
+      "monthlyDownloads": 89,
       "firstPublished": "2026-08-03",
       "allTimeDownloads": 1355
     },
     "pan-card-validator": {
-      "monthlyDownloads": 65,
+      "monthlyDownloads": 62,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1220
     },
     "gst-validator": {
-      "monthlyDownloads": 59,
+      "monthlyDownloads": 57,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1109
     },
     "exif-purge": {
-      "monthlyDownloads": 82,
+      "monthlyDownloads": 78,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1271
     },
     "photo-hash": {
-      "monthlyDownloads": 71,
+      "monthlyDownloads": 67,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1248
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 80,
+      "monthlyDownloads": 77,
       "firstPublished": "2026-09-17",
       "allTimeDownloads": 1205
     },
     "glare-score": {
-      "monthlyDownloads": 93,
+      "monthlyDownloads": 89,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 983
     },
     "pkg-bin-doctor": {
-      "monthlyDownloads": 35,
+      "monthlyDownloads": 33,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 467
     },
     "contrast-score": {
-      "monthlyDownloads": 91,
+      "monthlyDownloads": 88,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 1008
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 52,
+      "monthlyDownloads": 50,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 648
     },
@@ -62,7 +62,7 @@
       "allTimeDownloads": 500
     },
     "shadow-score": {
-      "monthlyDownloads": 107,
+      "monthlyDownloads": 102,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 967
     },
@@ -72,32 +72,32 @@
       "allTimeDownloads": 424
     },
     "upi-validator": {
-      "monthlyDownloads": 112,
+      "monthlyDownloads": 106,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 865
     },
     "rupee-words": {
-      "monthlyDownloads": 87,
+      "monthlyDownloads": 84,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 675
     },
     "skew-score": {
-      "monthlyDownloads": 68,
+      "monthlyDownloads": 66,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 582
     },
     "ifsc-code-validator": {
-      "monthlyDownloads": 48,
+      "monthlyDownloads": 44,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 408
     },
     "indian-vehicle-number": {
-      "monthlyDownloads": 55,
+      "monthlyDownloads": 50,
       "firstPublished": "2026-10-02",
       "allTimeDownloads": 417
     },
     "inkwire": {
-      "monthlyDownloads": 44,
+      "monthlyDownloads": 39,
       "firstPublished": "2026-10-01",
       "allTimeDownloads": 569
     },
@@ -107,17 +107,17 @@
       "allTimeDownloads": 579
     },
     "env-leak-guard": {
-      "monthlyDownloads": 135,
+      "monthlyDownloads": 129,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 495
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 79,
+      "monthlyDownloads": 73,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 423
     },
     "@vjymisal0/agentrules": {
-      "monthlyDownloads": 54,
+      "monthlyDownloads": 51,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 358
     }
