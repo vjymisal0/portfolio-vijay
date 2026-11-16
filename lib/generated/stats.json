@@ -1,128 +1,164 @@
 {
-  "updatedAt": "2026-11-12T03:01:16.622Z",
+  "updatedAt": "2026-11-16T03:01:22.442Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 103,
+      "monthlyDownloads": 102,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1633
+      "allTimeDownloads": 1638
     },
     "exposure-score": {
-      "monthlyDownloads": 86,
+      "monthlyDownloads": 89,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1349
+      "allTimeDownloads": 1355
     },
     "pan-card-validator": {
-      "monthlyDownloads": 58,
+      "monthlyDownloads": 62,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1207
+      "allTimeDownloads": 1220
     },
     "gst-validator": {
-      "monthlyDownloads": 63,
+      "monthlyDownloads": 57,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1100
+      "allTimeDownloads": 1109
     },
     "exif-purge": {
-      "monthlyDownloads": 64,
+      "monthlyDownloads": 78,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1252
+      "allTimeDownloads": 1271
     },
     "photo-hash": {
-      "monthlyDownloads": 73,
+      "monthlyDownloads": 67,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1244
+      "allTimeDownloads": 1248
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 60,
+      "monthlyDownloads": 77,
       "firstPublished": "2026-09-17",
-      "allTimeDownloads": 1182
+      "allTimeDownloads": 1205
     },
     "glare-score": {
-      "monthlyDownloads": 86,
+      "monthlyDownloads": 89,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 975
+      "allTimeDownloads": 983
     },
     "pkg-bin-doctor": {
-      "monthlyDownloads": 31,
+      "monthlyDownloads": 33,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 461
+      "allTimeDownloads": 467
     },
     "contrast-score": {
-      "monthlyDownloads": 91,
+      "monthlyDownloads": 88,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 1000
+      "allTimeDownloads": 1008
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 47,
+      "monthlyDownloads": 50,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 642
+      "allTimeDownloads": 648
     },
     "env-example-drift": {
-      "monthlyDownloads": 54,
+      "monthlyDownloads": 64,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 488
+      "allTimeDownloads": 500
     },
     "shadow-score": {
-      "monthlyDownloads": 104,
+      "monthlyDownloads": 102,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 958
+      "allTimeDownloads": 967
     },
     "todo-expiry": {
-      "monthlyDownloads": 22,
+      "monthlyDownloads": 28,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 418
+      "allTimeDownloads": 424
     },
     "upi-validator": {
-      "monthlyDownloads": 86,
+      "monthlyDownloads": 106,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 835
+      "allTimeDownloads": 865
     },
     "rupee-words": {
-      "monthlyDownloads": 81,
+      "monthlyDownloads": 84,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 668
+      "allTimeDownloads": 675
     },
     "skew-score": {
-      "monthlyDownloads": 63,
+      "monthlyDownloads": 66,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 577
+      "allTimeDownloads": 582
     },
     "ifsc-code-validator": {
-      "monthlyDownloads": 47,
+      "monthlyDownloads": 44,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 405
+      "allTimeDownloads": 408
     },
     "indian-vehicle-number": {
-      "monthlyDownloads": 51,
+      "monthlyDownloads": 50,
       "firstPublished": "2026-10-02",
-      "allTimeDownloads": 410
+      "allTimeDownloads": 417
     },
     "inkwire": {
-      "monthlyDownloads": 41,
+      "monthlyDownloads": 39,
       "firstPublished": "2026-10-01",
-      "allTimeDownloads": 563
+      "allTimeDownloads": 569
     },
     "mcp-tool-schema-lint": {
       "monthlyDownloads": 369,
       "firstPublished": "2026-09-30",
-      "allTimeDownloads": 545
+      "allTimeDownloads": 579
     },
     "env-leak-guard": {
-      "monthlyDownloads": 106,
+      "monthlyDownloads": 129,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 463
+      "allTimeDownloads": 495
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 69,
+      "monthlyDownloads": 73,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 408
+      "allTimeDownloads": 423
     },
     "@vjymisal0/agentrules": {
-      "monthlyDownloads": 43,
+      "monthlyDownloads": 51,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 346
+      "allTimeDownloads": 358
     }
   },
   "contributions": [
+    {
+      "repo": "supabase/mcp",
+      "title": "docs(list_tables): clarify schemas default and [] for all schemas",
+      "url": "https://github.com/supabase/mcp/pull/396",
+      "number": 396,
+      "date": "2026-11-13",
+      "kind": "docs",
+      "techs": [
+        "TypeScript"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "Automattic/studio",
+      "title": "Fix noisy Windows CLI output when chcp is not on PATH",
+      "url": "https://github.com/Automattic/studio/pull/5911",
+      "number": 5911,
+      "date": "2026-11-12",
+      "kind": "fix",
+      "techs": [
+        "TypeScript"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "securo-finance/securo",
+      "title": "feat(forecast): add automated recurring expense detection and predictive cashflow forecasting",
+      "url": "https://github.com/securo-finance/securo/pull/787",
+      "number": 787,
+      "date": "2026-11-12",
+      "kind": "feature",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
     {
       "repo": "kubestellar/console",
       "title": "🌱 test(auth): add unit coverage for logoutCleanup branches",
@@ -322,6 +358,30 @@
       "number": 525,
       "date": "2026-09-05",
       "kind": "fix",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "PyCalendar/icalendar",
+      "title": "ci: pin GitHub Action steps by commit hash",
+      "url": "https://github.com/PyCalendar/icalendar/pull/1688",
+      "number": 1688,
+      "date": "2026-09-02",
+      "kind": "cleanup",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "PyCalendar/icalendar",
+      "title": "Remove unreachable branches from vOrg.from_ical and vOrg.from_jcal",
+      "url": "https://github.com/PyCalendar/icalendar/pull/1643",
+      "number": 1643,
+      "date": "2026-08-07",
+      "kind": "cleanup",
       "techs": [
         "Python"
       ],
