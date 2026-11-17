@@ -1,25 +1,25 @@
 {
-  "updatedAt": "2026-11-17T03:01:20.232Z",
+  "updatedAt": "2026-11-17T15:01:24.048Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 99,
+      "monthlyDownloads": 100,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1638
+      "allTimeDownloads": 1639
     },
     "exposure-score": {
-      "monthlyDownloads": 84,
+      "monthlyDownloads": 85,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1355
+      "allTimeDownloads": 1356
     },
     "pan-card-validator": {
-      "monthlyDownloads": 59,
+      "monthlyDownloads": 60,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1222
+      "allTimeDownloads": 1223
     },
     "gst-validator": {
-      "monthlyDownloads": 53,
+      "monthlyDownloads": 54,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1110
+      "allTimeDownloads": 1111
     },
     "exif-purge": {
       "monthlyDownloads": 76,
@@ -27,19 +27,19 @@
       "allTimeDownloads": 1271
     },
     "photo-hash": {
-      "monthlyDownloads": 62,
+      "monthlyDownloads": 64,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1248
+      "allTimeDownloads": 1250
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 73,
+      "monthlyDownloads": 82,
       "firstPublished": "2026-09-17",
-      "allTimeDownloads": 1206
+      "allTimeDownloads": 1215
     },
     "glare-score": {
-      "monthlyDownloads": 89,
+      "monthlyDownloads": 92,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 986
+      "allTimeDownloads": 989
     },
     "pkg-bin-doctor": {
       "monthlyDownloads": 31,
@@ -52,29 +52,29 @@
       "allTimeDownloads": 1008
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 49,
+      "monthlyDownloads": 52,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 649
+      "allTimeDownloads": 652
     },
     "env-example-drift": {
-      "monthlyDownloads": 65,
+      "monthlyDownloads": 68,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 503
+      "allTimeDownloads": 506
     },
     "shadow-score": {
-      "monthlyDownloads": 103,
+      "monthlyDownloads": 105,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 973
+      "allTimeDownloads": 975
     },
     "todo-expiry": {
-      "monthlyDownloads": 24,
+      "monthlyDownloads": 25,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 424
+      "allTimeDownloads": 425
     },
     "upi-validator": {
-      "monthlyDownloads": 111,
+      "monthlyDownloads": 115,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 874
+      "allTimeDownloads": 878
     },
     "rupee-words": {
       "monthlyDownloads": 83,
@@ -82,9 +82,9 @@
       "allTimeDownloads": 676
     },
     "skew-score": {
-      "monthlyDownloads": 64,
+      "monthlyDownloads": 65,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 583
+      "allTimeDownloads": 584
     },
     "ifsc-code-validator": {
       "monthlyDownloads": 39,
@@ -92,9 +92,9 @@
       "allTimeDownloads": 408
     },
     "indian-vehicle-number": {
-      "monthlyDownloads": 48,
+      "monthlyDownloads": 50,
       "firstPublished": "2026-10-02",
-      "allTimeDownloads": 418
+      "allTimeDownloads": 420
     },
     "inkwire": {
       "monthlyDownloads": 36,
@@ -104,12 +104,12 @@
     "mcp-tool-schema-lint": {
       "monthlyDownloads": 369,
       "firstPublished": "2026-09-30",
-      "allTimeDownloads": 589
+      "allTimeDownloads": 591
     },
     "env-leak-guard": {
-      "monthlyDownloads": 125,
+      "monthlyDownloads": 126,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 497
+      "allTimeDownloads": 498
     },
     "prompt-token-meter": {
       "monthlyDownloads": 70,
@@ -117,12 +117,24 @@
       "allTimeDownloads": 424
     },
     "@vjymisal0/agentrules": {
-      "monthlyDownloads": 48,
+      "monthlyDownloads": 51,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 358
+      "allTimeDownloads": 361
     }
   },
   "contributions": [
+    {
+      "repo": "strapi/strapi",
+      "title": "fix(color-picker): typed values with parentheses break the admin styles",
+      "url": "https://github.com/strapi/strapi/pull/28158",
+      "number": 28158,
+      "date": "2026-11-17",
+      "kind": "fix",
+      "techs": [
+        "TypeScript"
+      ],
+      "auto": true
+    },
     {
       "repo": "supabase/mcp",
       "title": "docs(list_tables): clarify schemas default and [] for all schemas",
