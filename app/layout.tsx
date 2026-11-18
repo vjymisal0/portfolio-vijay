@@ -1,5 +1,5 @@
 import './globals.css'
-import { Geist, Geist_Mono, Outfit, Inter, Space_Grotesk } from 'next/font/google'
+import { Geist, Geist_Mono } from 'next/font/google'
 import { Metadata } from 'next'
 import { contributions, packages } from '@/lib/data'
 
@@ -7,28 +7,10 @@ import { contributions, packages } from '@/lib/data'
 const prCount = `${Math.floor(contributions.length / 10) * 10}+`
 const packageCount = packages.length
 
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-sans',
-})
-
 const geist = Geist({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-body',
-})
-
-const outfit = Outfit({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-display',
-})
-
-const grotesk = Space_Grotesk({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-grotesk',
 })
 
 const mono = Geist_Mono({
@@ -68,7 +50,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Vijay Misal', url: siteUrl }],
   creator: 'Vijay Misal',
   robots: { index: true, follow: true },
-  alternates: { canonical: siteUrl },
+  alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     url: siteUrl,
@@ -129,11 +111,9 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${outfit.variable} ${geist.variable} ${grotesk.variable} ${mono.variable}`}>
-      <head>
-      </head>
+    <html lang="en" suppressHydrationWarning className={`${geist.variable} ${mono.variable}`}>
       <body className={`${mono.className} bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary`}>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema).replace(/</g, '\\u003c') }} />
         {children}
       </body>
     </html>

@@ -11,13 +11,11 @@ export default {
   theme: {
   	extend: {
   		fontFamily: {
-  			sans: ['var(--font-body)', 'var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-  			body: ['var(--font-body)', 'Geist', 'sans-serif'],
-  			serif: ['var(--font-display)', 'Outfit', 'sans-serif'],
-  			display: ['var(--font-display)', 'Outfit', 'sans-serif'],
-  			reading: ['var(--font-display)', 'Outfit', 'sans-serif'],
-  			mono: ['var(--font-mono-notes)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
-  			grotesk: ['var(--font-grotesk)', 'ui-sans-serif', 'sans-serif'],
+  			sans: ['var(--font-body)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+  			body: ['var(--font-body)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+  			serif: ['var(--font-body)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+  			display: ['var(--font-body)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+  			mono: ['var(--font-mono)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
   		},
   		colors: {
   			ink: 'hsl(var(--ink))',
