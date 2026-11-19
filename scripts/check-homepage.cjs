@@ -16,14 +16,14 @@ const { chromium } = require('playwright')
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false)
       assert.equal(await page.getByRole('region', { name: 'home content' }).evaluate(el => el.scrollWidth > el.clientWidth), false)
       await page.getByRole('link', { name: 'Explore my work', exact: true }).click()
-      await page.getByRole('heading', { name: 'Automation & workflows' }).waitFor()
-      assert.equal(await page.locator('nav[aria-label="Main navigation"] [aria-current="page"]').getAttribute('href'), '/#builds')
+      await page.getByRole('heading', { name: "Things I've built" }).waitFor()
+      assert.equal(await page.locator('nav[aria-label="Main navigation"] [aria-current="page"]').getAttribute('href'), '/builds')
       await page.goBack()
       await page.getByRole('heading', { level: 1 }).waitFor()
       console.log(`PASS ${width}px: homepage, overflow, work CTA, active navigation, browser back`)
     }
-    for (const [section, title] of [['experience', 'Experience'], ['builds', 'Automation & workflows'], ['oss', 'Open Source']]) {
-      await page.goto(`${base}/#${section}`)
+    for (const [section, title] of [['experience', 'Experience'], ['builds', "Things I've built"], ['oss', 'Open Source']]) {
+      await page.goto(`${base}/${section}`)
       const heading = page.getByRole('heading', { name: title, exact: true })
       await heading.waitFor()
       const style = await heading.evaluate(el => {

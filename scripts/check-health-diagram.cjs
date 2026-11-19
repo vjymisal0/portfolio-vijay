@@ -9,7 +9,7 @@ const { chromium } = require('playwright')
     page.on('pageerror', e => errors.push(e.message))
     for (const width of [1280, 390]) {
       await page.setViewportSize({ width, height: 900 })
-      await page.goto('http://localhost:3000/#builds')
+      await page.goto('http://localhost:3000/builds')
       const vm = page.locator('figure', { has: page.getByText('VM health monitoring & failover', { exact: true }) })
       await vm.waitFor()
       assert.equal(await page.locator('figure canvas').count(), 0)

@@ -18,7 +18,7 @@ export default function Projects() {
       <div className="mb-10">
         <p className="mb-2 text-[11px] font-mono text-primary">$ ls ./packages</p>
         <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-foreground">Open-source packages</h2>
-        <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
+        <p className="mt-3 max-w-2xl font-body text-sm leading-relaxed text-muted-foreground sm:text-base">
           {packages.length} npm packages I wrote and maintain, with ~{formatCount(totalDownloads)} combined monthly downloads ({snapshotLabel}). Small, focused libraries that solve one problem well, grouped by what they are for.
         </p>
       </div>

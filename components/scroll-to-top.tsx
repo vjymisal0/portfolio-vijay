@@ -3,10 +3,18 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)
   const [scrollContainer, setScrollContainer] = useState<HTMLElement | null>(null)
+  const pathname = usePathname()
+
+  // Each page has its own scroll container, so a navigation starts back at the top.
+  useEffect(() => {
+    setIsVisible(false)
+    setScrollContainer(null)
+  }, [pathname])
 
   useEffect(() => {
     const handleScroll = (e: Event) => {
@@ -22,15 +30,7 @@ export default function ScrollToTop() {
 
     // Use capture phase to catch scroll events from any nested container
     window.addEventListener('scroll', handleScroll, true)
-    
-    // Also reset visibility on hash change (when switching sections)
-    const handleHashChange = () => setIsVisible(false)
-    window.addEventListener('hashchange', handleHashChange)
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll, true)
-      window.removeEventListener('hashchange', handleHashChange)
-    }
+    return () => window.removeEventListener('scroll', handleScroll, true)
   }, [])
 
   const scrollToTop = () => {
