@@ -1,15 +1,15 @@
 {
-  "updatedAt": "2026-11-18T15:01:25.241Z",
+  "updatedAt": "2026-11-19T03:01:22.193Z",
   "packages": {
     "blur-score": {
       "monthlyDownloads": 95,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1640
+      "allTimeDownloads": 1641
     },
     "exposure-score": {
       "monthlyDownloads": 81,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1357
+      "allTimeDownloads": 1358
     },
     "pan-card-validator": {
       "monthlyDownloads": 55,
@@ -123,6 +123,18 @@
     }
   },
   "contributions": [
+    {
+      "repo": "payloadcms/payload",
+      "title": "ci: scope notify-next-canary concurrency to each PR",
+      "url": "https://github.com/payloadcms/payload/pull/18770",
+      "number": 18770,
+      "date": "2026-11-18",
+      "kind": "cleanup",
+      "techs": [
+        "TypeScript"
+      ],
+      "auto": true
+    },
     {
       "repo": "strapi/strapi",
       "title": "fix(color-picker): typed values with parentheses break the admin styles",
