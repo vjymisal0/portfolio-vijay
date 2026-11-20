@@ -7,6 +7,10 @@ import { contributions, packages } from '@/lib/data'
 const prCount = `${Math.floor(contributions.length / 10) * 10}+`
 const packageCount = packages.length
 
+// Commit this build came from (Netlify sets COMMIT_REF), exposed as
+// <meta name="build"> so you can check what prod is running with curl.
+const buildRef = (process.env.COMMIT_REF ?? process.env.VERCEL_GIT_COMMIT_SHA ?? 'local').slice(0, 7)
+
 const geist = Geist({
   subsets: ['latin'],
   display: 'swap',
@@ -67,6 +71,7 @@ export const metadata: Metadata = {
   },
   other: {
     'theme-color': '#faf8f5',
+    build: buildRef,
   },
   icons: {
     icon: '/favicon.ico',
