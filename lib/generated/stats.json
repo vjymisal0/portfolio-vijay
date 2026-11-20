@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-19T15:01:23.396Z",
+  "updatedAt": "2026-11-20T03:01:24.610Z",
   "packages": {
     "blur-score": {
       "monthlyDownloads": 96,
@@ -123,6 +123,18 @@
     }
   },
   "contributions": [
+    {
+      "repo": "reflex-dev/reflex",
+      "title": "fix(events): link explicit handler errors to documentation",
+      "url": "https://github.com/reflex-dev/reflex/pull/7936",
+      "number": 7936,
+      "date": "2026-11-19",
+      "kind": "fix",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
     {
       "repo": "payloadcms/payload",
       "title": "ci: scope notify-next-canary concurrency to each PR",
