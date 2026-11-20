@@ -1,35 +1,35 @@
 {
-  "updatedAt": "2026-11-19T03:01:22.193Z",
+  "updatedAt": "2026-11-20T03:01:24.610Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 95,
+      "monthlyDownloads": 96,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1641
+      "allTimeDownloads": 1642
     },
     "exposure-score": {
-      "monthlyDownloads": 81,
+      "monthlyDownloads": 82,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1358
+      "allTimeDownloads": 1359
     },
     "pan-card-validator": {
-      "monthlyDownloads": 55,
+      "monthlyDownloads": 57,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1223
+      "allTimeDownloads": 1225
     },
     "gst-validator": {
-      "monthlyDownloads": 54,
+      "monthlyDownloads": 55,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1112
+      "allTimeDownloads": 1113
     },
     "exif-purge": {
-      "monthlyDownloads": 80,
+      "monthlyDownloads": 81,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1281
+      "allTimeDownloads": 1282
     },
     "photo-hash": {
-      "monthlyDownloads": 63,
+      "monthlyDownloads": 66,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1252
+      "allTimeDownloads": 1255
     },
     "@vjymisal0/upi-link": {
       "monthlyDownloads": 80,
@@ -42,9 +42,9 @@
       "allTimeDownloads": 992
     },
     "pkg-bin-doctor": {
-      "monthlyDownloads": 29,
+      "monthlyDownloads": 30,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 467
+      "allTimeDownloads": 468
     },
     "contrast-score": {
       "monthlyDownloads": 78,
@@ -52,9 +52,9 @@
       "allTimeDownloads": 1010
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 42,
+      "monthlyDownloads": 48,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 652
+      "allTimeDownloads": 658
     },
     "env-example-drift": {
       "monthlyDownloads": 68,
@@ -62,9 +62,9 @@
       "allTimeDownloads": 507
     },
     "shadow-score": {
-      "monthlyDownloads": 102,
+      "monthlyDownloads": 106,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 975
+      "allTimeDownloads": 979
     },
     "todo-expiry": {
       "monthlyDownloads": 24,
@@ -72,14 +72,14 @@
       "allTimeDownloads": 425
     },
     "upi-validator": {
-      "monthlyDownloads": 114,
+      "monthlyDownloads": 121,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 881
+      "allTimeDownloads": 888
     },
     "rupee-words": {
-      "monthlyDownloads": 78,
+      "monthlyDownloads": 83,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 677
+      "allTimeDownloads": 682
     },
     "skew-score": {
       "monthlyDownloads": 62,
@@ -104,25 +104,37 @@
     "mcp-tool-schema-lint": {
       "monthlyDownloads": 263,
       "firstPublished": "2026-09-30",
-      "allTimeDownloads": 592
+      "allTimeDownloads": 596
     },
     "env-leak-guard": {
-      "monthlyDownloads": 121,
+      "monthlyDownloads": 127,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 499
+      "allTimeDownloads": 505
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 66,
+      "monthlyDownloads": 68,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 424
+      "allTimeDownloads": 426
     },
     "@vjymisal0/agentrules": {
-      "monthlyDownloads": 51,
+      "monthlyDownloads": 52,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 362
+      "allTimeDownloads": 363
     }
   },
   "contributions": [
+    {
+      "repo": "reflex-dev/reflex",
+      "title": "fix(events): link explicit handler errors to documentation",
+      "url": "https://github.com/reflex-dev/reflex/pull/7936",
+      "number": 7936,
+      "date": "2026-11-19",
+      "kind": "fix",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
     {
       "repo": "payloadcms/payload",
       "title": "ci: scope notify-next-canary concurrency to each PR",
