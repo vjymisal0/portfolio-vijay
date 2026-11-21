@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-20T15:01:24.694Z",
+  "updatedAt": "2026-11-21T03:01:16.829Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 96,
+      "monthlyDownloads": 95,
       "firstPublished": "2026-08-03",
       "allTimeDownloads": 1642
     },
@@ -12,17 +12,17 @@
       "allTimeDownloads": 1359
     },
     "pan-card-validator": {
-      "monthlyDownloads": 57,
+      "monthlyDownloads": 56,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1225
     },
     "gst-validator": {
-      "monthlyDownloads": 56,
+      "monthlyDownloads": 54,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1114
     },
     "exif-purge": {
-      "monthlyDownloads": 81,
+      "monthlyDownloads": 77,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1282
     },
@@ -32,7 +32,7 @@
       "allTimeDownloads": 1255
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 84,
+      "monthlyDownloads": 83,
       "firstPublished": "2026-09-17",
       "allTimeDownloads": 1224
     },
@@ -47,22 +47,22 @@
       "allTimeDownloads": 469
     },
     "contrast-score": {
-      "monthlyDownloads": 78,
+      "monthlyDownloads": 77,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 1010
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 49,
+      "monthlyDownloads": 48,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 659
     },
     "env-example-drift": {
-      "monthlyDownloads": 70,
+      "monthlyDownloads": 69,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 509
     },
     "shadow-score": {
-      "monthlyDownloads": 109,
+      "monthlyDownloads": 108,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 982
     },
@@ -72,27 +72,27 @@
       "allTimeDownloads": 426
     },
     "upi-validator": {
-      "monthlyDownloads": 123,
+      "monthlyDownloads": 118,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 890
     },
     "rupee-words": {
-      "monthlyDownloads": 85,
+      "monthlyDownloads": 82,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 684
     },
     "skew-score": {
-      "monthlyDownloads": 64,
+      "monthlyDownloads": 63,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 587
     },
     "ifsc-code-validator": {
-      "monthlyDownloads": 39,
+      "monthlyDownloads": 38,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 411
     },
     "indian-vehicle-number": {
-      "monthlyDownloads": 51,
+      "monthlyDownloads": 50,
       "firstPublished": "2026-10-02",
       "allTimeDownloads": 422
     },
@@ -107,22 +107,34 @@
       "allTimeDownloads": 596
     },
     "env-leak-guard": {
-      "monthlyDownloads": 132,
+      "monthlyDownloads": 131,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 510
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 70,
+      "monthlyDownloads": 67,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 428
     },
     "@vjymisal0/agentrules": {
-      "monthlyDownloads": 52,
+      "monthlyDownloads": 50,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 363
     }
   },
   "contributions": [
+    {
+      "repo": "ipfs/aegir",
+      "title": "feat: add --ordered option to run command",
+      "url": "https://github.com/ipfs/aegir/pull/1989",
+      "number": 1989,
+      "date": "2026-11-20",
+      "kind": "feature",
+      "techs": [
+        "JavaScript"
+      ],
+      "auto": true
+    },
     {
       "repo": "reflex-dev/reflex",
       "title": "fix(events): link explicit handler errors to documentation",
