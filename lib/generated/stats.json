@@ -1,128 +1,164 @@
 {
-  "updatedAt": "2026-11-20T03:01:24.610Z",
+  "updatedAt": "2026-11-23T03:01:14.923Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 96,
+      "monthlyDownloads": 94,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1642
+      "allTimeDownloads": 1643
     },
     "exposure-score": {
-      "monthlyDownloads": 82,
+      "monthlyDownloads": 83,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1359
+      "allTimeDownloads": 1361
     },
     "pan-card-validator": {
-      "monthlyDownloads": 57,
+      "monthlyDownloads": 59,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1225
+      "allTimeDownloads": 1229
     },
     "gst-validator": {
-      "monthlyDownloads": 55,
+      "monthlyDownloads": 54,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1113
+      "allTimeDownloads": 1114
     },
     "exif-purge": {
       "monthlyDownloads": 81,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1282
+      "allTimeDownloads": 1288
     },
     "photo-hash": {
-      "monthlyDownloads": 66,
+      "monthlyDownloads": 70,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1255
+      "allTimeDownloads": 1263
     },
     "@vjymisal0/upi-link": {
-      "monthlyDownloads": 80,
+      "monthlyDownloads": 92,
       "firstPublished": "2026-09-17",
-      "allTimeDownloads": 1220
+      "allTimeDownloads": 1233
     },
     "glare-score": {
-      "monthlyDownloads": 92,
+      "monthlyDownloads": 97,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 992
+      "allTimeDownloads": 997
     },
     "pkg-bin-doctor": {
-      "monthlyDownloads": 30,
+      "monthlyDownloads": 32,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 468
+      "allTimeDownloads": 470
     },
     "contrast-score": {
-      "monthlyDownloads": 78,
+      "monthlyDownloads": 84,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 1010
+      "allTimeDownloads": 1017
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 48,
+      "monthlyDownloads": 50,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 658
+      "allTimeDownloads": 662
     },
     "env-example-drift": {
-      "monthlyDownloads": 68,
+      "monthlyDownloads": 66,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 507
+      "allTimeDownloads": 510
     },
     "shadow-score": {
-      "monthlyDownloads": 106,
+      "monthlyDownloads": 112,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 979
+      "allTimeDownloads": 988
     },
     "todo-expiry": {
-      "monthlyDownloads": 24,
+      "monthlyDownloads": 25,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 425
+      "allTimeDownloads": 426
     },
     "upi-validator": {
-      "monthlyDownloads": 121,
+      "monthlyDownloads": 118,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 888
+      "allTimeDownloads": 898
     },
     "rupee-words": {
-      "monthlyDownloads": 83,
+      "monthlyDownloads": 79,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 682
+      "allTimeDownloads": 685
     },
     "skew-score": {
-      "monthlyDownloads": 62,
+      "monthlyDownloads": 71,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 585
+      "allTimeDownloads": 595
     },
     "ifsc-code-validator": {
-      "monthlyDownloads": 38,
+      "monthlyDownloads": 45,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 410
+      "allTimeDownloads": 418
     },
     "indian-vehicle-number": {
-      "monthlyDownloads": 51,
+      "monthlyDownloads": 53,
       "firstPublished": "2026-10-02",
-      "allTimeDownloads": 422
+      "allTimeDownloads": 425
     },
     "inkwire": {
-      "monthlyDownloads": 36,
+      "monthlyDownloads": 41,
       "firstPublished": "2026-10-01",
-      "allTimeDownloads": 570
+      "allTimeDownloads": 575
     },
     "mcp-tool-schema-lint": {
       "monthlyDownloads": 263,
       "firstPublished": "2026-09-30",
-      "allTimeDownloads": 596
+      "allTimeDownloads": 603
     },
     "env-leak-guard": {
-      "monthlyDownloads": 127,
+      "monthlyDownloads": 132,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 505
+      "allTimeDownloads": 518
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 68,
+      "monthlyDownloads": 69,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 426
+      "allTimeDownloads": 434
     },
     "@vjymisal0/agentrules": {
-      "monthlyDownloads": 52,
+      "monthlyDownloads": 53,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 363
+      "allTimeDownloads": 369
     }
   },
   "contributions": [
+    {
+      "repo": "keploy/keploy",
+      "title": "test(mock): cover clearing stale mappings during re-recording",
+      "url": "https://github.com/keploy/keploy/pull/4564",
+      "number": 4564,
+      "date": "2026-11-22",
+      "kind": "tests",
+      "techs": [
+        "Go"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "keploy/keploy",
+      "title": "fix(cli): propagate errors from utility commands to exit non-zero on failure",
+      "url": "https://github.com/keploy/keploy/pull/4557",
+      "number": 4557,
+      "date": "2026-11-22",
+      "kind": "fix",
+      "techs": [
+        "Go"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "ipfs/aegir",
+      "title": "feat: add --ordered option to run command",
+      "url": "https://github.com/ipfs/aegir/pull/1989",
+      "number": 1989,
+      "date": "2026-11-20",
+      "kind": "feature",
+      "techs": [
+        "JavaScript"
+      ],
+      "auto": true
+    },
     {
       "repo": "reflex-dev/reflex",
       "title": "fix(events): link explicit handler errors to documentation",
