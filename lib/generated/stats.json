@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-11-23T15:01:19.562Z",
+  "updatedAt": "2026-11-24T03:01:20.899Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 96,
+      "monthlyDownloads": 95,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1645
+      "allTimeDownloads": 1646
     },
     "exposure-score": {
       "monthlyDownloads": 85,
@@ -22,12 +22,12 @@
       "allTimeDownloads": 1117
     },
     "exif-purge": {
-      "monthlyDownloads": 87,
+      "monthlyDownloads": 86,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1294
     },
     "photo-hash": {
-      "monthlyDownloads": 73,
+      "monthlyDownloads": 72,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1266
     },
@@ -39,47 +39,47 @@
     "glare-score": {
       "monthlyDownloads": 102,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 1002
+      "allTimeDownloads": 1129
     },
     "pkg-bin-doctor": {
       "monthlyDownloads": 33,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 471
+      "allTimeDownloads": 715
     },
     "contrast-score": {
-      "monthlyDownloads": 88,
+      "monthlyDownloads": 86,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 1021
+      "allTimeDownloads": 1153
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 54,
+      "monthlyDownloads": 53,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 666
+      "allTimeDownloads": 885
     },
     "env-example-drift": {
-      "monthlyDownloads": 71,
+      "monthlyDownloads": 68,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 515
+      "allTimeDownloads": 664
     },
     "shadow-score": {
-      "monthlyDownloads": 116,
+      "monthlyDownloads": 115,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 992
+      "allTimeDownloads": 1142
     },
     "todo-expiry": {
       "monthlyDownloads": 30,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 431
+      "allTimeDownloads": 554
     },
     "upi-validator": {
-      "monthlyDownloads": 122,
+      "monthlyDownloads": 121,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 902
+      "allTimeDownloads": 1042
     },
     "rupee-words": {
-      "monthlyDownloads": 84,
+      "monthlyDownloads": 83,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 690
+      "allTimeDownloads": 820
     },
     "skew-score": {
       "monthlyDownloads": 72,
@@ -87,7 +87,7 @@
       "allTimeDownloads": 596
     },
     "ifsc-code-validator": {
-      "monthlyDownloads": 46,
+      "monthlyDownloads": 45,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 419
     },
@@ -97,7 +97,7 @@
       "allTimeDownloads": 428
     },
     "inkwire": {
-      "monthlyDownloads": 43,
+      "monthlyDownloads": 42,
       "firstPublished": "2026-10-01",
       "allTimeDownloads": 577
     },
@@ -107,22 +107,46 @@
       "allTimeDownloads": 603
     },
     "env-leak-guard": {
-      "monthlyDownloads": 135,
+      "monthlyDownloads": 126,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 521
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 71,
+      "monthlyDownloads": 70,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 436
     },
     "@vjymisal0/agentrules": {
-      "monthlyDownloads": 53,
+      "monthlyDownloads": 51,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 369
     }
   },
   "contributions": [
+    {
+      "repo": "reflex-dev/reflex",
+      "title": "fix(set): match set cases by their elements and coerce set[...] event args",
+      "url": "https://github.com/reflex-dev/reflex/pull/7890",
+      "number": 7890,
+      "date": "2026-11-23",
+      "kind": "fix",
+      "techs": [
+        "Python"
+      ],
+      "auto": true
+    },
+    {
+      "repo": "Vuepic/vue-datepicker",
+      "title": "fix: update-month-year event not emitted when navigating to January",
+      "url": "https://github.com/Vuepic/vue-datepicker/pull/1289",
+      "number": 1289,
+      "date": "2026-11-23",
+      "kind": "fix",
+      "techs": [
+        "TypeScript"
+      ],
+      "auto": true
+    },
     {
       "repo": "keploy/keploy",
       "title": "test(mock): cover clearing stale mappings during re-recording",
