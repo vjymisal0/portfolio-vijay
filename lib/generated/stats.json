@@ -1,15 +1,15 @@
 {
-  "updatedAt": "2026-11-25T03:01:16.501Z",
+  "updatedAt": "2026-11-25T15:01:19.644Z",
   "packages": {
     "blur-score": {
-      "monthlyDownloads": 105,
+      "monthlyDownloads": 107,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1663
+      "allTimeDownloads": 1665
     },
     "exposure-score": {
-      "monthlyDownloads": 85,
+      "monthlyDownloads": 86,
       "firstPublished": "2026-08-03",
-      "allTimeDownloads": 1375
+      "allTimeDownloads": 1376
     },
     "pan-card-validator": {
       "monthlyDownloads": 66,
@@ -17,19 +17,19 @@
       "allTimeDownloads": 1248
     },
     "gst-validator": {
-      "monthlyDownloads": 64,
+      "monthlyDownloads": 65,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1132
+      "allTimeDownloads": 1133
     },
     "exif-purge": {
-      "monthlyDownloads": 86,
+      "monthlyDownloads": 88,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1308
+      "allTimeDownloads": 1310
     },
     "photo-hash": {
-      "monthlyDownloads": 81,
+      "monthlyDownloads": 82,
       "firstPublished": "2026-09-16",
-      "allTimeDownloads": 1281
+      "allTimeDownloads": 1282
     },
     "@vjymisal0/upi-link": {
       "monthlyDownloads": 102,
@@ -37,34 +37,34 @@
       "allTimeDownloads": 1250
     },
     "glare-score": {
-      "monthlyDownloads": 108,
+      "monthlyDownloads": 109,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 1142
+      "allTimeDownloads": 1143
     },
     "pkg-bin-doctor": {
-      "monthlyDownloads": 38,
+      "monthlyDownloads": 39,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 724
+      "allTimeDownloads": 725
     },
     "contrast-score": {
-      "monthlyDownloads": 89,
+      "monthlyDownloads": 91,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 1164
+      "allTimeDownloads": 1166
     },
     "@vjymisal0/aadhaar-mask": {
-      "monthlyDownloads": 60,
+      "monthlyDownloads": 64,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 901
+      "allTimeDownloads": 905
     },
     "env-example-drift": {
-      "monthlyDownloads": 75,
+      "monthlyDownloads": 76,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 675
+      "allTimeDownloads": 676
     },
     "shadow-score": {
-      "monthlyDownloads": 117,
+      "monthlyDownloads": 122,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 1155
+      "allTimeDownloads": 1160
     },
     "todo-expiry": {
       "monthlyDownloads": 30,
@@ -72,29 +72,29 @@
       "allTimeDownloads": 557
     },
     "upi-validator": {
-      "monthlyDownloads": 125,
+      "monthlyDownloads": 136,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 1052
+      "allTimeDownloads": 1063
     },
     "rupee-words": {
-      "monthlyDownloads": 86,
+      "monthlyDownloads": 87,
       "firstPublished": "2026-09-15",
-      "allTimeDownloads": 831
+      "allTimeDownloads": 832
     },
     "skew-score": {
-      "monthlyDownloads": 76,
+      "monthlyDownloads": 77,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 605
+      "allTimeDownloads": 606
     },
     "ifsc-code-validator": {
-      "monthlyDownloads": 46,
+      "monthlyDownloads": 48,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 424
+      "allTimeDownloads": 426
     },
     "indian-vehicle-number": {
-      "monthlyDownloads": 57,
+      "monthlyDownloads": 58,
       "firstPublished": "2026-10-02",
-      "allTimeDownloads": 430
+      "allTimeDownloads": 431
     },
     "inkwire": {
       "monthlyDownloads": 45,
@@ -104,15 +104,15 @@
     "mcp-tool-schema-lint": {
       "monthlyDownloads": 256,
       "firstPublished": "2026-09-30",
-      "allTimeDownloads": 609
+      "allTimeDownloads": 613
     },
     "env-leak-guard": {
-      "monthlyDownloads": 133,
+      "monthlyDownloads": 139,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 533
+      "allTimeDownloads": 539
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 69,
+      "monthlyDownloads": 72,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 445
     },
