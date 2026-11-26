@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T15:01:19.644Z",
+  "updatedAt": "2026-11-26T03:01:22.523Z",
   "packages": {
     "blur-score": {
       "monthlyDownloads": 107,
@@ -7,22 +7,22 @@
       "allTimeDownloads": 1665
     },
     "exposure-score": {
-      "monthlyDownloads": 86,
+      "monthlyDownloads": 85,
       "firstPublished": "2026-08-03",
       "allTimeDownloads": 1376
     },
     "pan-card-validator": {
-      "monthlyDownloads": 66,
+      "monthlyDownloads": 65,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1248
     },
     "gst-validator": {
-      "monthlyDownloads": 65,
+      "monthlyDownloads": 64,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1133
     },
     "exif-purge": {
-      "monthlyDownloads": 88,
+      "monthlyDownloads": 87,
       "firstPublished": "2026-09-16",
       "allTimeDownloads": 1310
     },
@@ -37,7 +37,7 @@
       "allTimeDownloads": 1250
     },
     "glare-score": {
-      "monthlyDownloads": 109,
+      "monthlyDownloads": 108,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 1143
     },
@@ -57,7 +57,7 @@
       "allTimeDownloads": 905
     },
     "env-example-drift": {
-      "monthlyDownloads": 76,
+      "monthlyDownloads": 69,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 676
     },
@@ -72,12 +72,12 @@
       "allTimeDownloads": 557
     },
     "upi-validator": {
-      "monthlyDownloads": 136,
+      "monthlyDownloads": 134,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 1063
     },
     "rupee-words": {
-      "monthlyDownloads": 87,
+      "monthlyDownloads": 86,
       "firstPublished": "2026-09-15",
       "allTimeDownloads": 832
     },
@@ -107,14 +107,14 @@
       "allTimeDownloads": 613
     },
     "env-leak-guard": {
-      "monthlyDownloads": 139,
+      "monthlyDownloads": 133,
       "firstPublished": "2026-09-25",
       "allTimeDownloads": 539
     },
     "prompt-token-meter": {
-      "monthlyDownloads": 72,
+      "monthlyDownloads": 69,
       "firstPublished": "2026-09-25",
-      "allTimeDownloads": 445
+      "allTimeDownloads": 448
     },
     "@vjymisal0/agentrules": {
       "monthlyDownloads": 52,
